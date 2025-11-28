@@ -1,5 +1,20 @@
 package web.com.springweb.a02_mvc;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
 public class A01_MVC_Controller {
 
+	@Autowired
+	private A02_MVC_Service service;
+	
+	// http://localhost:5050/deptList
+	@GetMapping("deptList")
+	public String deptList(Model d) {
+		
+		return "";
+	}
 }
