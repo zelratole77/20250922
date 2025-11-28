@@ -11,10 +11,14 @@ public class A01_MVC_Controller {
 	@Autowired
 	private A02_MVC_Service service;
 	
+	
+	// Model : 핵심
 	// http://localhost:5050/deptList
 	@GetMapping("deptList")
 	public String deptList(Model d) {
+		// model : 핵심데이터, view 보낼데이터..
+		d.addAttribute("deptList", service.getDeptList());
+		return "deptList.jsp";
 		
-		return "";
 	}
 }
