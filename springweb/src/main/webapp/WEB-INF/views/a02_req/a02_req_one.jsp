@@ -31,16 +31,18 @@
 <body>
 <div class="jumbotron text-center">
   <h2>과일명 get방식으로 요청 페이지</h2>
+  <h2>과일명 ${param.prodName}</h2>
 
 </div>
 <%-- 
-		
+	//req11_one?prodName=사과
+	클릭시, 위와 같은 url을 만들어 주고, java의 메서드 @GetMapping("req11_one)
+	// public String req11_one(@RequestParam("prodName") String prodName ) 전달한다.
 --%>
 <div class="container">
-	<form id="frm01" class="form"  method="post">
+	<form id="frm01" class="form" action="/req11_one" ><!-- method를 생략하면 method="get"과 동일하다. -->
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="제목" name=""  class="form-control mr-sm-2" />
-	    <input placeholder="내용" name=""  class="form-control mr-sm-2"/>
+	    <input placeholder="과일명 입력" name="prodName"  class="form-control mr-sm-2" />
 	    <button class="btn btn-info" type="submit">Search</button>
 	    <button class="btn btn-success" 
 	    	data-toggle="modal" data-target="#exampleModalCenter"

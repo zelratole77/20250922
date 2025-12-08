@@ -31,6 +31,15 @@ public class A04_ReqValController {
 		return "a02_req\\a02_req_one";
 	}
 	// req11_one ==> prodName=사과 전송해서 get방식으로 요청하고 출력되게 하세요..
+	// url이나 client에서 결국은 처리해주는 내용
+	// http://localhost:5050/req11_one ==> 안된다(x)  왜?
+	// http://localhost:5050/req11_one?prodName=사과
+	@GetMapping("req11_one")
+	public String req11_one(@RequestParam("prodName") String prodName) { // 요청key=val형태가 필수..
+		System.out.println("get방식으로  받은 물건명:"+prodName);
+		
+		return "a02_req\\a02_req_one";
+	}
 	
 	
 	
