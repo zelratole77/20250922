@@ -70,5 +70,11 @@ public class A03_ReqController {
 		System.out.println("req06으로 Post방식 호출");
 		return "a01_req\\a06_req";
 	}	
+	// http://localhost:5050/req07   - post 방식 a05_reqPost.jsp
+	@PostMapping("req07")
+	public String req07Post() {
+		System.out.println("req07으로 Post방식 호출");
+		return "a01_req\\a06_req";
+	}		
 	
 }
