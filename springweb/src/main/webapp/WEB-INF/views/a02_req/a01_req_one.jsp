@@ -32,6 +32,8 @@
 <div class="jumbotron text-center">
   <h2>단일 요청값 처리 페이지</h2>
 
+
+
 </div>
 <%-- 
 		
