@@ -31,6 +31,7 @@
 <body>
 <div class="jumbotron text-center">
   <h2>단일 요청값 처리 페이지</h2>
+  <h2>요청값:${param.name}</h2>
 
 
 
@@ -39,10 +40,10 @@
 		
 --%>
 <div class="container">
-	<form id="frm01" class="form"  method="post">
+	<form id="frm01" class="form" action="req10_one" method="get" > 
+		<!--  method는 생략시 기본적을 get방식으로 처리된다 -->
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="제목" name=""  class="form-control mr-sm-2" />
-	    <input placeholder="내용" name=""  class="form-control mr-sm-2"/>
+	    <input placeholder="이름" name="name"  class="form-control mr-sm-2" />
 	    <button class="btn btn-info" type="submit">Search</button>
 	    <button class="btn btn-success" 
 	    	data-toggle="modal" data-target="#exampleModalCenter"
