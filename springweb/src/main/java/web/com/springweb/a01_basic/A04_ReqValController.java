@@ -2,6 +2,7 @@ package web.com.springweb.a01_basic;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -40,6 +41,25 @@ public class A04_ReqValController {
 		
 		return "a02_req\\a02_req_one";
 	}
+	// 동일한 url로 get방식과 post방식을 각각 처리하는 것은 가능하다.(단 한번만)
+	// get 방식(req12)
+	// http://localhost:5050/req12  반드시 url로 호출
+	@GetMapping("req12")
+	public String req12() {
+		return "a02_req\\a03_req";
+	}
+	// post 방식(req12)
+	// url로 호출되지 않는데, <form method="post">방식으로 만 가능.. name="no1" name="no2" 설정.. 
+	@PostMapping("req12")
+	public String req12Post(@RequestParam("no1") int no1, 
+							@RequestParam("no2") int no2 ) {
+		System.out.println("번호1:"+no1);
+		System.out.println("번호2:"+no2);
+		
+		return "a02_req\\a03_req";
+	}
+	
+	
 	
 	
 	
