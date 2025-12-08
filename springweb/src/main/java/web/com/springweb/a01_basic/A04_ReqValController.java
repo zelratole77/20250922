@@ -25,7 +25,11 @@ public class A04_ReqValController {
 		
 	}
 	// req11 ==> 초기 페이지 a02_req\\a02_req_one.jsp
-	
+	// http://localhost:5050/req11
+	@GetMapping("req11")
+	public String req11() {
+		return "a02_req\\a02_req_one";
+	}
 	// req11_one ==> prodName=사과 전송해서 get방식으로 요청하고 출력되게 하세요..
 	
 	
