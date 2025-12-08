@@ -1,0 +1,25 @@
+
+1.  [개념] spring의 공통css/js환경을 설정하기 위해 어떤 폴더를 설정하여야 하고 호출하는 페이지에서 설정하는 내용을 기술하세요
+
+2.  [개념] spring에서 jsp를 처리하기 위하여 설정하는 부분을 설명하세요.
+
+3.  [실습] 스프링 탐정이 사라진 뷰 파일을 찾고 있습니다. 컨트롤러가 return "member/login"; 을 반환했습니다. servlet-context.xml에 prefix="/WEB-INF/views/", suffix=".jsp" 로 설정되어 있다면, 실제 서버 내의 어느 경로에 login.jsp 파일이 숨어 있어야 할까요? 전체 경로를 적으세요.
+
+4.  [개념] spring에서 초기 jsp 화면을 처리하기 위해서 처리할 controller 파일 및 메서드 선언 규칙을 기술하세요
+
+5.  [실습] 여러분이 쇼핑몰 사이트를 오픈했습니다. 사용자가 http://localhost:8080/shop/main 주소로 들어왔을 때, main.jsp 화면을 보여주려고 합니다. 이를 처리할 MainController 클래스 내부의 메서드를 작성하세요. (어노테이션 포함)
+
+6.  [개념] spring에서 get방식이 처리될 때와 post방식이 처리될 때를 view단과 backend단(java)을 나누어서 설명하세요
+
+7.  [실습] 뷰(View)단에서 아래 두 가지 요청을 보냈습니다. 백엔드(Controller)에서 각각 어떤 어노테이션으로 받아야 할지 매칭하세요.
+    A: \<a href="delete?id=5"\>삭제하기\</a\>
+    B: \<form action="register" method="post"\>...\</form\>
+
+8.  [개념] spring에서 get방식으로 단일 데이터를 전송시 사용되는 controller와 view단 처리되는 방식 코드를 설명하세요
+
+9. [실습] 카페 키오스크를 만들고 있습니다. 고객이 "아이스아메리카노"를 선택하여 URL이 /order?menu=ice\_americano 로 요청되었습니다. 컨트롤러 메서드에서 이 'menu' 파라미터를 받아 String selectedMenu 변수에 저장하려면 메서드 파라미터에 무엇을 작성해야 할까요?
+
+10. [개념] spring에서 post방식으로 처리되는 조건을 예제를 통해 기술하세요
+
+11. [실습] 사용자가 비밀 일기장에 일기를 쓰고 '저장' 버튼을 눌렀습니다. 일기 내용에는 줄바꿈도 많고 내용이 아주 깁니다. 이때 \<form\> 태그를 작성할 때 method 속성을 무엇으로 해야 하며, 그 이유는 무엇인지 '데이터의 양'과 'URL 표시' 관점에서 설명하세요.
+

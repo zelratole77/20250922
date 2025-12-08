@@ -1,0 +1,114 @@
+#### 1\. [개념] Spring의 공통 css/js 환경을 설정하기 위해 어떤 폴더를 설정하여야 하고 호출하는 페이지에서 설정하는 내용을 기술하세요.
+
+  * **답변:**
+      * **폴더 위치:** `src/main/resources/static`
+      * **호출 방법:** 위 폴더는 웹 루트(`/`) 경로로 매핑되므로, JSP 등 뷰 페이지에서는 다음과 같이 절대 경로로 호출합니다.
+        ```html
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="/js/common.js"></script>
+        ```
+  * **해설:** Spring Boot는 기본적으로 `classpath:/static/` 경로를 정적 리소스(Static Resources)의 기본 경로로 제공합니다. 따라서 `/static/css/style.css`에 파일을 두면 브라우저는 `http://도메인/css/style.css`로 접근할 수 있습니다.
+
+#### 2\. [개념] Spring에서 JSP를 처리하기 위하여 설정하는 부분을 설명하세요.
+
+  * **답변:** `application.properties` 파일에 **ViewResolver** 설정을 추가해야 합니다.
+    ```properties
+    spring.mvc.view.prefix=/WEB-INF/views/
+    spring.mvc.view.suffix=.jsp
+    ```
+  * **해설:** 컨트롤러가 문자열(예: "main")을 반환할 때, 이 설정이 앞(prefix)과 뒤(suffix)에 붙어 실제 물리적인 JSP 파일 경로(`/WEB-INF/views/main.jsp`)를 완성해 줍니다.
+
+#### 3\. [실습] 실제 서버 내의 어느 경로에 login.jsp 파일이 숨어 있어야 할까요?
+
+  * **정답:** `/WEB-INF/views/member/login.jsp`
+  * **풀이:**
+    1.  Prefix: `/WEB-INF/views/`
+    2.  Controller Return: `member/login`
+    3.  Suffix: `.jsp`
+    4.  **조합 결과:** `/WEB-INF/views/` + `member/login` + `.jsp`
+
+#### 4\. [개념] Spring에서 초기 JSP 화면을 처리하기 위해서 처리할 controller 파일 및 메서드 선언 규칙을 기술하세요.
+
+  * **답변:**
+    1.  클래스 위에 `@Controller` 어노테이션을 선언하여 스프링 빈으로 등록합니다.
+    2.  메서드 위에 `@GetMapping("요청URL")`을 선언하여 URL을 매핑합니다.
+    3.  메서드의 리턴 타입은 `String`으로 하며, 이동할 JSP 파일의 이름(논리 경로)을 반환합니다.
+
+#### 5\. [실습] MainController 클래스 내부의 메서드를 작성하세요.
+
+  * **정답:**
+    ```java
+    @Controller
+    public class MainController {
+        
+        @GetMapping("/shop/main")
+        public String main() {
+            return "main"; // 또는 설정에 따라 "shop/main"
+        }
+    }
+    ```
+  * **해설:** 사용자가 `/shop/main`으로 들어오므로 `@GetMapping("/shop/main")`으로 매핑하고, `main.jsp`를 보여주기 위해 문자열 `"main"`을 리턴합니다. (폴더 구조에 따라 리턴값은 달라질 수 있으나 핵심은 어노테이션 매핑입니다.)
+
+#### 6\. [개념] Spring에서 GET 방식과 POST 방식이 처리될 때를 View단과 Backend단을 나누어서 설명하세요.
+
+  * **답변:**
+      * **GET 방식**
+          * **View단:** 브라우저 주소창 입력, `<a>` 태그 클릭, `<form method="get">` (또는 method 생략 시).
+          * **Backend단:** `@GetMapping("url")` 어노테이션을 사용하여 처리. 데이터는 URL 뒤에 쿼리 스트링(?key=value)으로 전달됨.
+      * **POST 방식**
+          * **View단:** 반드시 `<form method="post">`로 지정하여 submit 버튼 클릭.
+          * **Backend단:** `@PostMapping("url")` 어노테이션을 사용하여 처리. 데이터는 HTTP Body에 담겨 숨겨져서 전달됨.
+
+#### 7\. [실습] 백엔드(Controller)에서 각각 어떤 어노테이션으로 받아야 할지 매칭하세요.
+
+  * **정답:**
+      * **A (**`<a href...>`**):** `@GetMapping`
+      * **B (**`<form method="post">`**):** `@PostMapping`
+  * **해설:** 링크(`<a>`) 이동은 무조건 GET 방식이며, form 태그에 method="post"가 명시되면 POST 방식입니다.
+
+#### 8\. [개념] Spring에서 GET 방식으로 단일 데이터를 전송 시 사용되는 Controller와 View단 처리되는 방식 코드를 설명하세요.
+
+  * **답변:**
+      * **View단:** `href="url?key=value"` 형태 또는 `<form>` 태그의 input 요소로 전송.
+      * **Controller단:** 메서드 파라미터에 `@RequestParam("key") 자료형 변수명`을 선언하여 받음.
+      * **예시 코드:**
+        ```java
+        // URL: /search?query=spring
+        @GetMapping("search")
+        public String search(@RequestParam("query") String keyword) { ... }
+        ```
+
+#### 9\. [실습] 메서드 파라미터에 무엇을 작성해야 할까요?
+
+  * **정답:** `@RequestParam("menu") String selectedMenu`
+  * **코드 예시:**
+    ```java
+    public String order(@RequestParam("menu") String selectedMenu) { ... }
+    ```
+  * **해설:** 요청 파라미터 이름(`menu`)과 변수명(`selectedMenu`)이 다르기 때문에, `@RequestParam("menu")`를 명시하여 매핑해 주어야 합니다.
+
+#### 10\. [개념] Spring에서 POST 방식으로 처리되는 조건을 예제를 통해 기술하세요.
+
+  * **답변:**
+      * **조건:** 클라이언트(JSP)에서 `<form>` 태그의 `method` 속성을 반드시 `"post"`로 설정해야 합니다.
+      * **예제:**
+        ```html
+        <form action="login" method="post">
+            <input type="text" name="id">
+            <button type="submit">로그인</button>
+        </form>
+        ```
+        ```java
+        // Controller
+        @PostMapping("login")
+        public String loginProc(...) { ... }
+        ```
+
+#### 11\. [실습] \<form\> 태그 작성 시 method 속성을 무엇으로 해야 하며, 그 이유는 무엇인지 설명하세요.
+
+  * **정답:**
+      * **속성:** `method="post"`
+      * **이유:**
+        1.  **데이터의 양:** GET 방식은 URL 길이 제한이 있어 긴 일기 내용을 보내기 어렵지만, **POST 방식은 데이터 크기에 제한이 거의 없습니다.**
+        2.  **URL 표시:** GET 방식을 쓰면 URL 뒤에 일기 내용이 모두 노출되어 지저분해지지만, **POST 방식은 데이터를 Body에 숨겨서 전송하므로 URL이 깔끔하게 유지됩니다.**
+
