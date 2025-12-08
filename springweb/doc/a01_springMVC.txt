@@ -1,0 +1,34 @@
+# 스프링 MVC 학습 내용 및 내용 계열화
+1. 목표 : 실무적인 요청값과 url 처리 패턴을 익숙하게 하고, DB처리를 단계별로 sql에 따른
+	처리를 하기 위한 내용이다.
+2. 단계별 이해 내용
+	1) spring을 url을 처리 프로세스를 통한 MVC 처리와 그 결과 출력에 대한 이해
+	2) spring 요청값 처리
+		- get방식 post방식 차이 이해
+		- 단일 데이터 요청
+		- 동일한 요청 키에 따른 여러 데이터 처리 요청
+		- 다양한 키에 따른 요청 데이터 처리
+		- 요청값을 객체로 할당하여 처리
+	3) 데이터 처리 구조 이해
+	4) sql의 유형에 따른 데이터 처리(조회형)
+		- 단일 데이터 전달(DB결과) - select count(*) cnt from emp 
+		- 리스트형 데이터 전달(DB결과) - select ename from emp
+		- 단일 요청값 단일 데이터 전달(요청+DB결과) - select count(*) cnt from emp  where deptno=#{deptno}  
+				부서번호로 요청해서 해당 부서정보에 가지고 있는 갯수 확인
+		- 단일 요청값 리스트형 데이터 전달(요청+DB결과) - select dname from emp  where deptno=#{deptno)		 
+		- 다중 요청값 리스트형 데이터 전달(요청+DB결과) - select dname from emp  where sal between #{start} and #{end}
+		- 단일 요청값 객체형(여러속성) 데이터 전달 - select * from emp where empno=#{empno} 		 
+		- 단일 요청값 객체형 리스트 데이터 전달(여러속성) 데이터 전달 - select * from emp where job = #{job}
+		- 다중 요청값 객체형 리스트 데이터 전달(여러속성) 데이터 전달 
+			- select * from emp where ename like #{ename} and job like #{job}
+	5) sql의 유형에 따른 데이터 처리(등록/수정/삭제)
+		- 단일 요청값 결과값(등록한 갯수 리턴) - insert into emp(empno) values(#{empno});
+		- 여러가지 속성 요청값 등록한 갯수 리턴 - insert into dept values(#{deptno},#{dname},#{loc})
+		- 여러가지 속성 요청값 수정한 갯수 리턴 - update dept
+		                                  set dname = #{dname},
+		                                      loc = #{loc}
+		                                 where deptno = #{deptno}
+		- 단일 요청값 삭제한 갯수 리턴  - delete from emp where empno = #{empno}                                 			
+		 		 
+				
+	 
