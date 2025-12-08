@@ -24,4 +24,10 @@ public class A04_ReqValController {
 		return "a02_req\\a01_req_one";  // a01_req_one.jsp
 		
 	}
+	// req11 ==> 초기 페이지 a02_req\\a02_req_one.jsp
+	
+	// req11_one ==> prodName=사과 전송해서 get방식으로 요청하고 출력되게 하세요..
+	
+	
+	
 }
