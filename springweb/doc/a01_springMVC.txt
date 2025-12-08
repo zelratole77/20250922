@@ -3,6 +3,44 @@
 	처리를 하기 위한 내용이다.
 2. 단계별 이해 내용
 	1) spring을 url을 처리 프로세스를 통한 MVC 처리와 그 결과 출력에 대한 이해
+		- 초기에 url : http://localhost:5050/start01 브라우저에 입력
+		- dispatcherServlet(스프링이 내장하고 있는 공통 controller) 
+		- urlhandlerMapping(위 url 주소에 맞는 사용자 정의 controller 안에 특정한 메서드를 찾기)
+		- 위에 url에 해당하는 controller로 등록된 객체안에 특정 기능 기능메서드 위한 선언된
+			@GettingMapping("start")  에 해당 하는 메서드 찾아서 메서드 내용을 실행
+		- 마지막에 return "view단" 해당 view단을 호출하여 초기 화면을 로딩 합니다.
+		- 화면이 로딩된 상황에서 form객체 안에 요청값을 입력 name="name" name="age"  이름[홍길동] 나이[김길동]
+			입력 후, action 지정된 controller의 url을 다시 호출 합니다. <form action="schReq">
+		- schReq?name=홍길동&age=김길동 형식으로 다시 위의 과정을 거친다. 
+			- dispatchServlet ==> urlhandlerMapping ==> controller 안에 있는 @GettingMapping("schReq")
+			- 호출하면서 특정 기능 메서드 
+				public String getSeach(@RequestParam("name") String name, 
+									   @RequestParam("age") int age, 
+				)
+				로 요청값을 전달한다.
+			- 그리고 위 내용에 DB와 관련되어 결과값을 처리해야 한다면 Serivce 객체의 메서드(String name, int age)
+			- Dao 인터페이스의 매개변수로 처리하여 데이터를 결과를 처리한다.
+				@Select("select * from person where name=#{name} and age=#{age})
+				public Person getPerson(@Param("name") String name, @Param("age") int age);
+				==> 위와 같애 form에 입력한 내용이 DB sql의 조회 조건의 매개값으로까지 전달하고,
+				그 결과 데이터를 ==> Person이라는 객체에 할당하면
+			- 다시 Service낭에 Person객체를 전달하고,
+			- 다시 Controller에 전달하고, 이 Person객체는 View단을 보내기 위해 Model 이라는 객체를 이용하여
+				Model d
+				d.addAttribute("person", service.getPerson(name, age));
+				형태로 view단에 보낼 준비를 하고
+			- return "personInfo.jsp" 로 view를 호출하고
+			- personInfo.jsp에서는  위 controller 안에서 정의된 person키를 통해서
+				${person.name)
+				${person.age)
+				${person.loc) 로 여러가지 css/javascript/html안에서 핵심데이터를 모델을 출력하게 된다.
+				이게 DB와 연동된 기본 MVC 패턴의 핵심 프로세스이다.
+				 	
+			
+				
+	
+	
+	
 	2) spring 요청값 처리
 		- get방식 post방식 차이 이해
 		- 단일 데이터 요청
