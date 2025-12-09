@@ -1,9 +1,20 @@
 package web.com.springweb.a01_basic;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class A06_ObjectReqController {
+	// http://localhost:5050/objectParam1
+	// http://localhost:5050/objectParam1?name=홍길동
+	// http://localhost:5050/objectParam1?age=25
+	// http://localhost:5050/objectParam1?name=마길동&age=27&loc=서울	
+	@GetMapping("objectParam1")
+	public String objectParam1() {
+		
+		return "a02_req/a08_ObjectParam";
+	}
 
 }
 
