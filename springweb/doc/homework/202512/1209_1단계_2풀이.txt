@@ -1,0 +1,438 @@
+### 1\. Spring에서 GET/POST 요청 처리 기본 어노테이션
+
+Spring MVC에서 하나의 메서드 또는 각각의 메서드로 GET 방식과 POST 방식을 모두 처리할 때 사용되는 **기본 어노테이션**은 주로 `@RequestMapping`입니다.
+
+| 구분 | 어노테이션 | 코드 형식 | 설명 |
+| :--- | :--- | :--- | :--- |
+| `@RequestMapping()`<br> |
+| *(권장 방식)* | **축약 어노테이션** | 
+
+-----
+
+### 2\. `/login` 요청 GET/POST 처리 Controller 코드 (실습)
+
+요청 URL `/login`에 대해 GET(페이지 이동)과 POST(로그인 처리)를 `@RequestMapping`을 사용하여 분리 처리하는 Controller 코드입니다.
+
+```java
+@Controller
+public class LoginController {
+
+    // 1. GET 방식 처리 (로그인 폼 페이지 이동)
+    @GetMapping(value = "/login")
+    public String loginForm() {
+        System.out.println("GET /login 요청: 로그인 폼으로 이동");
+        return "loginForm"; // loginForm.jsp 등의 View 이름
+    }
+
+    // 2. POST 방식 처리 (실제 로그인 처리 로직)
+    @PostMapping(value = "/login")
+    public String loginProcess(String userId, String userPw) {
+        System.out.println("POST /login 요청: 로그인 처리");
+        // 실제 로그인 처리 로직 (DB 확인 등)
+        if ("test".equals(userId) && "1234".equals(userPw)) {
+            return "redirect:/main"; // 로그인 성공 시 메인 페이지로 리다이렉트
+        } else {
+            return "redirect:/login?error"; // 로그인 실패 시 에러 표시
+        }
+    }
+}
+```
+
+-----
+
+### 3\. @RequestParam 필수 여부 및 기본값 설정 (개념)
+
+요청 파라미터가 넘어오지 않을 때 발생하는 `MissingServletRequestParameterException` 등의 예외를 방지하기 위해, `@RequestParam` 어노테이션의 속성을 사용합니다.
+
+  * **`required` 속성**: 파라미터의 필수 여부를 설정합니다. \*\*`true`\*\*가 기본값이며, \*\*`false`\*\*로 설정하면 파라미터가 없어도 예외가 발생하지 않습니다.
+  * **`defaultValue` 속성**: 파라미터가 넘어오지 않거나 빈 문자열("")로 넘어왔을 때 **대신 사용될 기본값**을 설정합니다. `required = false`를 설정하지 않아도 `defaultValue`를 설정하면 해당 파라미터는 필수가 아니게 됩니다.
+
+#### 💡 예제
+
+```java
+@GetMapping("/search")
+public String search(
+    // 1. required = false: 'keyword' 파라미터가 없어도 에러 발생 안 함 (값은 null이 됨)
+    @RequestParam(value = "keyword", required = false) String searchKeyword,
+
+    // 2. defaultValue 설정: 'page' 파라미터가 없으면 '1'로 자동 설정됨
+    @RequestParam(value = "page", defaultValue = "1") int currentPage
+) {
+    System.out.println("검색 키워드: " + searchKeyword);
+    System.out.println("현재 페이지: " + currentPage);
+    // ... 검색 로직 ...
+    return "searchResult";
+}
+```
+
+-----
+
+### 4\. `/cafe/order` 메서드 시그니처 (실습)
+
+요청 URL `/cafe/order`에 대해 메뉴는 필수, 수량은 기본값 1을 갖도록 설정하는 메서드 시그니처입니다.
+
+```java
+// Controller 메서드 시그니처 (매개변수 부분)
+
+public String order(@RequestParam("menu") String menuName,
+                    @RequestParam(value = "count", defaultValue = "1") int orderCount) {
+    // ... 주문 처리 로직 ...
+    // ...
+}
+```
+
+  * **`@RequestParam("menu") String menuName`**: `required` 속성 생략 (기본값 **`true`**). 메뉴 파라미터는 **필수**입니다.
+  * **`@RequestParam(value = "count", defaultValue = "1") int orderCount`**: `count` 파라미터가 넘어오지 않을 경우 **기본값 1**이 설정되어 에러를 방지하고, 수량 파라미터가 없어도 에러가 발생하지 않습니다.
+
+-----
+
+### 5\. 다수의 요청 매개변수를 객체(DTO)로 받을 때의 장점과 예제 (개념)
+
+#### 🚀 장점
+
+1.  **코드의 간결성 및 가독성 향상**: 수십 개의 파라미터를 메서드의 매개변수에 하나하나 나열할 필요 없이 **하나의 객체**로 깔끔하게 처리할 수 있습니다.
+2.  **유지보수 용이성**: 요청 파라미터가 추가되거나 삭제되어도 **Controller 메서드의 시그니처(매개변수 목록)를 수정할 필요가 없습니다.** DTO(Data Transfer Object)나 VO(Value Object) 클래스만 수정하면 됩니다.
+3.  **데이터 무결성 및 응집성**: 관련된 데이터를 하나의 객체로 묶어 관리함으로써 **데이터의 응집성**을 높이고, 해당 데이터가 하나의 논리적 단위로 취급됩니다.
+
+#### 💡 구현 예제 코드
+
+```java
+// 1. DTO/VO 클래스
+public class MemberInfo {
+    private String id;
+    private String name;
+    private int age;
+    // (Getter/Setter 생략)
+}
+
+// 2. Controller 코드
+@Controller
+public class MemberController {
+
+    @PostMapping("/join")
+    // 스프링이 요청 파라미터(id, name, age 등)의 이름과
+    // Command Object(MemberInfo)의 필드명을 매핑하여 자동으로 값을 채워줍니다.
+    public String joinProcess(MemberInfo member) {
+        System.out.println("회원 ID: " + member.getId());
+        System.out.println("회원 이름: " + member.getName());
+        System.out.println("회원 나이: " + member.getAge());
+
+        // ... 회원 가입 처리 로직 ...
+        return "joinSuccess";
+    }
+}
+```
+
+-----
+
+### 6\. 회원가입 정보 MemberVO 및 Controller 메서드 (실습)
+
+7가지 회원 정보를 MemberVO 객체로 한 번에 받는 코드를 작성합니다.
+
+#### 1\. MemberVO 클래스 (Value Object)
+
+```java
+public class MemberVO {
+    private String memberId;    // 아이디
+    private String memberPw;    // 비밀번호
+    private String name;        // 이름
+    private String phone;       // 전화번호
+    private String email;       // 이메일
+    private String address;     // 주소
+    private int age;            // 나이
+
+    // Lombok을 사용하지 않는 경우, 아래 Getter/Setter는 필수입니다.
+    // public String getMemberId() { ... }
+    // public void setMemberId(String memberId) { ... }
+    // ... 모든 필드에 대한 Getter/Setter ...
+}
+```
+
+#### 2\. Controller 메서드
+
+```java
+@Controller
+public class MemberController {
+
+    @PostMapping("/member/register")
+    // 매개변수로 MemberVO 객체를 선언하는 것만으로 자동 바인딩이 이루어집니다.
+    public String registerMember(MemberVO member) {
+        System.out.println("회원가입 정보:");
+        System.out.println("ID: " + member.getMemberId());
+        System.out.println("이름: " + member.getName());
+        System.out.println("나이: " + member.getAge());
+        // ... 나머지 정보 출력 및 DB 저장 로직 ...
+
+        return "registerResult";
+    }
+}
+```
+
+-----
+
+### 7\. 단일 데이터 Model 객체 전달 기본 코드 (개념)
+
+Controller에서 문자열이나 정수 같은 단일 데이터를 `Model` 객체에 담아 View(JSP 등)로 전달하는 기본 코드 형식입니다.
+
+#### 💡 예제
+
+```java
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class DataController {
+
+    @GetMapping("/hello")
+    public String sendData(Model model) {
+
+        // 1. Model 객체에 데이터 추가 (addAttribute(키, 값))
+        String message = "Spring MVC Model 사용 예제입니다.";
+        model.addAttribute("greeting", message); // 키: "greeting", 값: message 변수의 내용
+
+        int userNo = 100;
+        model.addAttribute("userNo", userNo); // 키: "userNo", 값: userNo 변수의 내용
+
+        return "dataView"; // dataView.jsp로 이동
+    }
+}
+
+// dataView.jsp (View 페이지에서 데이터를 출력하는 예시 - EL 표기법)
+/*
+    <body>
+        <h1>${greeting}</h1>
+        <p>사용자 번호: ${userNo}</p>
+    </body>
+*/
+```
+
+-----
+
+### 8\. 행운 점수 게임 구현 (실습)
+
+Controller에서 랜덤 정수를 생성하여 Model에 담고 View로 전달하는 시나리오 구현입니다.
+
+```java
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.Random;
+
+@Controller
+public class GameController {
+
+    @GetMapping("/luckyscore")
+    public String getLuckyScore(Model model) {
+
+        // 1. Controller에서 1부터 100 사이의 랜덤 정수 생성
+        Random rand = new Random();
+        int score = rand.nextInt(100) + 1; // 0~99 + 1 = 1~100
+
+        // 2. 생성된 숫자를 'luckyScore'라는 이름으로 Model에 담기
+        model.addAttribute("luckyScore", score);
+
+        // 3. View 페이지로 이동 (luckyScoreView.jsp 등으로 가정)
+        return "luckyScoreView";
+    }
+}
+
+// luckyScoreView.jsp (View 페이지에서의 출력 예시)
+/*
+    <body>
+        <h2>오늘의 행운 점수는...</h2>
+        <h1>${luckyScore}점!</h1>
+    </body>
+*/
+```
+
+-----
+
+### 9\. 배열/리스트 데이터 Model 저장 및 View 출력 기본 코드 (개념)
+
+Controller에서 배열(`Array`)이나 리스트(`List`) 형태의 데이터를 Model에 저장하고, View(JSP 등)에서 \*\*반복문(JSTL `forEach` 등)\*\*을 통해 출력하는 기본 코드 설명입니다.
+
+#### 💡 Controller 코드
+
+```java
+import org.springframework.ui.Model;
+import java.util.Arrays;
+import java.util.List;
+
+// ...
+public String sendList(Model model) {
+    // List 형태의 데이터 생성
+    List<String> fruits = Arrays.asList("Apple", "Banana", "Cherry");
+
+    // Model에 리스트를 'fruitList'라는 키로 저장
+    model.addAttribute("fruitList", fruits);
+
+    return "listView";
+}
+```
+
+#### 💡 View 코드 (JSP, JSTL `forEach` 사용 예시)
+
+View 페이지에서는 \*\*JSTL(JSP Standard Tag Library)\*\*의 `<c:forEach>` 태그를 사용하여 Model에서 넘어온 리스트를 반복 처리합니다.
+
+```jsp
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+...
+<ul>
+<c:forEach var="item" items="${fruitList}">
+    <li>${item}</li>
+</c:forEach>
+</ul>
+```
+
+  * **`items="${fruitList}"`**: Model에서 "fruitList"라는 키로 저장된 리스트를 가져옵니다.
+  * **`var="item"`**: 반복을 돌면서 리스트의 요소 하나하나를 담을 임시 변수 이름입니다.
+  * **`${item}`**: 반복문 내부에서 현재 요소의 값을 EL 표기법으로 출력합니다.
+
+-----
+
+### 10\. 급식 당번 명단 출력 구현 (실습)
+
+급식 당번 3명의 명단을 List로 생성하여 Model에 담고, View에서 출력하는 시나리오 구현입니다.
+
+#### 1\. Controller 코드
+
+```java
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.Arrays;
+import java.util.List;
+
+@Controller
+public class DutyController {
+
+    @GetMapping("/duty")
+    public String getDutyList(Model model) {
+
+        // 1. "철수", "영희", "민수" 세 명의 이름을 가진 List<String> 생성
+        List<String> lunchDutyList = Arrays.asList("철수", "영희", "민수");
+
+        // 2. 이 리스트를 Model에 담아 View로 전송
+        model.addAttribute("dutyMembers", lunchDutyList);
+
+        return "dutyListView";
+    }
+}
+```
+
+#### 2\. View에서의 출력 방식 (머릿속으로 상상해보기)
+
+View 페이지(`dutyListView.jsp` 등)에서는 JSTL의 `<c:forEach>` 태그를 사용하여 리스트를 반복 출력합니다.
+
+```jsp
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+...
+<h2>🍜 급식 당번 명단</h2>
+<ol>
+<c:forEach var="member" items="${dutyMembers}">
+    <li>${member}</li>
+</c:forEach>
+</ol>
+```
+
+-----
+
+### 11\. 객체(VO/DTO) 데이터 Model 설정 및 View 호출 형식 (개념)
+
+Spring Controller에서 단순 변수가 아닌 객체(VO/DTO) 형태로 Model에 설정하여 보낼 때의 코드와 View(EL 표기법)에서 객체의 속성을 호출하는 형식입니다.
+
+#### 💡 Controller 코드
+
+```java
+// 예시 VO 클래스
+public class UserVO {
+    private String userId;
+    private String userName;
+    // (Getter/Setter 생략)
+}
+
+// Controller
+public String sendObject(Model model) {
+    UserVO user = new UserVO();
+    user.setUserId("springuser");
+    user.setUserName("김스프링");
+
+    // 'userInfo'라는 키로 UserVO 객체를 Model에 저장
+    model.addAttribute("userInfo", user);
+
+    return "userView";
+}
+```
+
+#### 💡 View (EL 표기법)에서 객체의 속성 호출 형식
+
+View(JSP)에서는 **EL(Expression Language) 표기법**을 사용하여 Model에 저장된 객체의 **"키.속성명"** 형식으로 객체의 필드(속성)에 접근합니다. 이때 EL은 내부적으로 해당 속성에 대한 **Getter 메서드**를 호출합니다.
+
+| Model에 저장된 키 | 객체 속성명 | View에서 호출 형식 (EL) | 호출되는 Getter 메서드 |
+| :--- | :--- | :--- | :--- |
+| `userInfo` | `userId` | **`${userInfo.userId}`** | `user.getUserId()` |
+| `userInfo` | `userName` | **`${userInfo.userName}`** | `user.getUserName()` |
+
+-----
+
+### 12\. 쇼핑몰 상품 상세 페이지 구현 (실습)
+
+`Product` 객체를 생성하고 Model에 담은 후, View에서 상품 이름과 가격을 출력하는 EL 표기법을 작성하는 시나리오 구현입니다.
+
+#### 1\. Product 클래스
+
+```java
+// Product 클래스
+public class Product {
+    private String name;
+    private int price;
+
+    // 생성자, Getter/Setter 생략 시 자동 바인딩이 안 될 수 있으므로 필요
+    // public String getName() { return name; }
+    // public void setName(String name) { this.name = name; }
+    // public int getPrice() { return price; }
+    // public void setPrice(int price) { this.price = price; }
+}
+```
+
+#### 2\. Controller 코드
+
+```java
+import org.springframework.ui.Model;
+
+// Controller
+public String productDetail(Model model) {
+
+    // 2. name은 "게이밍 마우스", price는 50000인 Product 객체 생성
+    Product product = new Product();
+    product.setName("게이밍 마우스");
+    product.setPrice(50000);
+
+    // 3. 이 객체를 productInfo라는 키값으로 Model에 담기
+    model.addAttribute("productInfo", product);
+
+    return "productView";
+}
+```
+
+#### 4\. View에서 상품 정보 출력 (EL 표기법)
+
+Model의 키(`productInfo`) 뒤에 객체의 속성명(`name`, `price`)을 붙여서 접근합니다.
+
+  * 상품 이름 출력: **`${productInfo.name}`**
+  * 상품 가격 출력: **`${productInfo.price}`**
+
+<!-- end list -->
+
+```jsp
+// productView.jsp에서의 출력 예시
+/*
+    <body>
+        <h2>상품 상세 정보</h2>
+        <p>상품명: <strong>${productInfo.name}</strong></p>
+        <p>가격: <strong>${productInfo.price}</strong>원</p>
+    </body>
+*/
+```
+
