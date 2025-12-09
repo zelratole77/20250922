@@ -3,6 +3,7 @@ package web.com.springweb.a01_basic;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import web.com.springweb.z01_dto.NeonSign;
 import web.com.springweb.z01_dto.Person;
 
 @Controller
@@ -27,8 +28,16 @@ public class A06_ObjectReqController {
 	}
 	// http://localhost:5050/neonSign 
 	// 웹 페이지의 글자 색상과 배경 색상을 사용하여 화면에 반영하는 내용을 처리하세요
-	// 입력항목 : 문구(어서오세요?반값습니다),  글자 색상(색상명), 글자 크기(숫자만 입력)
+	// 입력항목 : 문구(어서오세요?반값습니다 msg),  글자 색상(색상명 color), 글자 크기(숫자만 입력 fontSize)
 	// a02_req/a09_neonSign.jsp;   // 요청값을 입력하고, 모델 데이터로 출력하게 하세요..
+	@GetMapping("neonSign")
+	public String neonSign(NeonSign ns) {
+		System.out.println("# 네오 사인 #");
+		System.out.println("메시지:"+ns.getMsg());
+		System.out.println("색상:"+ns.getColor());
+		System.out.println("글자크기:"+ns.getFontSize());
+		return "a02_req/a09_neonSign";
+	}
 	
 }
 
