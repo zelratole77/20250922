@@ -32,6 +32,7 @@
 <div class="jumbotron text-center">
   <h2>요청값 처리(get/post)</h2>
   <h3>입력한 물건명:${param.product }</h3>
+  <h3>입력한 가격:${param.price }</h3>
 
 </div>
 <%-- 
@@ -41,6 +42,11 @@
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	    <input placeholder="물건명입력" name="product"  class="form-control mr-sm-2" />
+	    <input placeholder="가격" name="price" value="0" type="number" class="form-control mr-sm-2" />
+	    <%--
+	    적어도 요청값을 형변환수 있는 데이터는 입력하여야 한다. 삼철 = 0
+	    
+	     --%>
 	    <button class="btn btn-info" type="submit">Search</button>
 	    <button class="btn btn-success" 
 	    	data-toggle="modal" data-target="#exampleModalCenter"

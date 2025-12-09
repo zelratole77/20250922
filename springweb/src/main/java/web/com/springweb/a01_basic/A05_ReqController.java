@@ -23,13 +23,22 @@ public class A05_ReqController {
 	// http://localhost:5050/reqParamOpt  	
 	// http://localhost:5050/reqParamOpt?product=사과&price=4000
 	// 요청값이 없을 때나 있을 때, 둘다 처리.. 요청값이 없으면 공백으로 처리..
+	// RequestParam("name") RequestParam(name="name")  ==> name=홍길동  즉 요청 키가 name인 것을 말한다.
 	@RequestMapping("reqParamOpt")
-	public String reqParamOpt(@RequestParam(name = "product", defaultValue = "") String name,
+	public String reqParamOpt(@RequestParam(name = "product", defaultValue = "") String product,
 							  @RequestParam(name = "price", defaultValue = "0") int price	
 			                  ) {
-		System.out.println("구매할 물건 :"+name);
+		System.out.println("구매할 물건 :"+product);
 		System.out.println("구매할 물건 가격 :"+price);
 		return "a02_req/a06_reqParamOpt";
 	}	
+	// http://localhost:5050/calSalary  
+	// a02_req/a07_calcuSalary.jsp
+	// 알바 급여 계산기
+	// 이름 :[   ] 시급:[    ] 근무 시간:[    ] [계산]
+	// @@@는 시간당 @@@원, 근무시간은 @@시간이러서 총급여 @@@원 입니다. 출력..
+	
+	
+	
 	
 }
