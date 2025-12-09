@@ -36,8 +36,16 @@ public class A05_ReqController {
 	// a02_req/a07_calcuSalary.jsp
 	// 알바 급여 계산기
 	// 이름 :[   ] 시급:[    ] 근무 시간:[    ] [계산]
-	// @@@는 시간당 @@@원, 근무시간은 @@시간이러서 총급여 @@@원 입니다. 출력..
-	
+	// @@@는 시간당 @@@원, 근무시간은 @@시간 총급여 @@@원 입니다. 출력..
+	@RequestMapping("calSalary")
+	public String calSalary(@RequestParam(name="name", defaultValue = "") String name,
+							@RequestParam(name="pay", defaultValue = "0") int pay,
+							@RequestParam(name="whour", defaultValue = "0") int whour ) {
+		System.out.println("근무자 명:"+name);
+		System.out.println("급여:"+pay);
+		System.out.println("근무시작:"+whour);
+		return "a02_req/a07_calcuSalary";
+	}
 	
 	
 	
