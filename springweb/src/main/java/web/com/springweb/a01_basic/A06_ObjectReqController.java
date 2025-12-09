@@ -31,5 +31,19 @@ public class A06_ObjectReqController {
 	3) A - Automatic(자동 할당 처리)
 		스프링은 이 객체를 만들기 위해 기본 생성자를 사용해서 빈 깡통 객체를 먼저 만들고 시작합니다.
 		(기본 생성자가 없으면 에러 날 수 있으니 주의)..
+4. 장점
+	1) 많은 요청 매개변수를 선언하지 않아도 된다. 객체 하나로 많을 요청값을 받은 객체로 전달 된다.
+	2) 만일 요청값 없더라도 default로 처리된다. 단, 요청값이 선언되면 유형을 맞춰서 전달 하여야 한다.
+		?age=25  (o)
+		?age=0   (o)
+		?name=홍길동 (o)
+		?age=이십오 (x)
+		public void setAge(int age)
+	3) 객체로 받은 모델데이터까지 자동을 설정된다..
+		?name=홍길동&age=25&loc=수원
+		getPerson(Person p){  // 요청값 Person객체에 데이터를 할당할 뿐아니라, 모델데이터가 자동 처리되어
+			// Model d   d.addAttribute("person", p) Person==> person 자동으로 모델객체 설정..(이 코드가 생략)
+		}`
+		view단에서 ${person.name}${person.age}${person.loc} 로 출력할 수 있다.
 		
 */
