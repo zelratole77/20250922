@@ -2,20 +2,34 @@ package web.com.springweb.a01_basic;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import web.com.springweb.z01_dto.Person;
 
 @Controller
 public class A06_ObjectReqController {
 	// http://localhost:5050/objectParam1
 	// http://localhost:5050/objectParam1?name=홍길동
 	// http://localhost:5050/objectParam1?age=25
-	// http://localhost:5050/objectParam1?name=마길동&age=27&loc=서울	
+	// http://localhost:5050/objectParam1?name=마길동&age=27&loc=서울 (o)
+	// "27" ==> 27 ==> setAge(int age)
+	// http://localhost:5050/objectParam1?name=마길동&age=&loc=서울 (x)
+	// ""  ==> setAge(int age)   int age = "";(x)
+	// http://localhost:5050/objectParam1?name=25&age=25&loc=서울 (o)
+	// "25" ==> setName(String name) String name="25";
 	@GetMapping("objectParam1")
-	public String objectParam1() {
+	public String objectParam1(Person p) {
+		System.out.println("# controller 요청 데이터 #");
+		System.out.println(p.getName());
+		System.out.println(p.getAge());
+		System.out.println(p.getLoc());
 		
 		return "a02_req/a08_ObjectParam";
 	}
-
+	// http://localhost:5050/neonSign 
+	// 웹 페이지의 글자 색상과 배경 색상을 사용하여 화면에 반영하는 내용을 처리하세요
+	// 입력항목 : 문구(어서오세요?반값습니다),  글자 색상(색상명), 글자 크기(숫자만 입력)
+	// a02_req/a09_neonSign.jsp;   // 요청값을 입력하고, 모델 데이터로 출력하게 하세요..
+	
 }
 
 
