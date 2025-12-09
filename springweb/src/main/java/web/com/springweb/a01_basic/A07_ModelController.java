@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import web.com.springweb.z01_dto.Lotto;
+import web.com.springweb.z01_dto.Student;
+
 @Controller
 public class A07_ModelController {
 
@@ -53,12 +56,28 @@ public class A07_ModelController {
 				Arrays.asList( new String[] {"여행자 패스포트","계절에 맞는 옷","함께 하고 싶은 사람"} ));
 		return "a03_model/a04_items";
 	}
-	
-	
-	
-	
-	
 	// 객체형 처리
+	// http://localhost:5050/modelObject
+	@GetMapping("modelObject")
+	public String modelObject(Model d) {
+		d.addAttribute("student", new Student("홍길동",70,80,90));
+		// ${student.name} ${student.kor} ${student.eng} ${student.math} 
+		
+		
+		return "a03_model/a05_modelObj";
+	}
+	// http://localhost:5050/lotto
+	// a03_model/a06_lotto_result.jsp
+	// Lotto - 행운의 숫자(luckNum-1~100램덤할당, price-당첨금, msg-축하메시지)
+	@GetMapping("lotto")
+	public String lotto(Model d) {
+		
+		d.addAttribute("lottoResult",new Lotto((int)(Math.random()*100+1),
+												2100000000,"행운인가?^^ 당신에겐 행운이길! 축하합니다."));
+		// ${lottoResult.luckyNum} ${lottoResult.price} ${lottoResult.msg}
+		
+		return "a03_model/a06_lotto_result";
+	}
 	
 	// 객체형 배열 처리..
 	
