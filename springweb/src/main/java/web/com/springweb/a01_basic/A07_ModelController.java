@@ -1,5 +1,7 @@
 package web.com.springweb.a01_basic;
 
+import java.util.Arrays;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +28,41 @@ public class A07_ModelController {
 		d.addAttribute("level", 77);
 		d.addAttribute("hp", 125);
 		d.addAttribute("isAlive", true);
+		// ${name} ${level} ${hp} ${isAlive} 
 		return "a03_model/a02_hero";
 	}
+	// 배열형 처리
+	// http://localhost:5050/fruits
+	@GetMapping("fruits")
+	public String fruits(Model d) {
+		// 고정형 배열
+		d.addAttribute("fruits1", new String[] {"사과", "바나나","딸기"});
+		// 고정형 배열을 가변형 배열로 만들기(List<String>)
+		String [] fruits2 = {"키위", "오렌지","수박"};
+		d.addAttribute("fruits2", Arrays.asList(fruits2));
+		
+		return "a03_model/a03_fruits";
+	}
+	// http://localhost:5050/travItems
+	// a03_model/a04_items.jsp 설정해서, 여행에 필요한 아이템을 가변형 배열로
+	// 선언하여 출력하세요..
+	@GetMapping("travItems")
+	public String travItems(Model d) {
+		
+		d.addAttribute("travelItems", 
+				Arrays.asList( new String[] {"여행자 패스포트","계절에 맞는 옷","함께 하고 싶은 사람"} ));
+		return "a03_model/a04_items";
+	}
+	
+	
+	
+	
+	
+	// 객체형 처리
+	
+	// 객체형 배열 처리..
+	
+	
 	
 	
 }
