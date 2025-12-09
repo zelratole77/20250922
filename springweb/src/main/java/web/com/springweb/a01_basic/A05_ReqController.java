@@ -21,11 +21,14 @@ public class A05_ReqController {
 	}
 	// 요청값을 받을 때, 요청값이 없을 처리되는 메서드 선언..
 	// http://localhost:5050/reqParamOpt  	
-	// http://localhost:5050/reqParamOpt?product=사과
+	// http://localhost:5050/reqParamOpt?product=사과&price=4000
 	// 요청값이 없을 때나 있을 때, 둘다 처리.. 요청값이 없으면 공백으로 처리..
 	@RequestMapping("reqParamOpt")
-	public String reqParamOpt(@RequestParam(name = "product", defaultValue = "") String name ) {
+	public String reqParamOpt(@RequestParam(name = "product", defaultValue = "") String name,
+							  @RequestParam(name = "price", defaultValue = "0") int price	
+			                  ) {
 		System.out.println("구매할 물건 :"+name);
+		System.out.println("구매할 물건 가격 :"+price);
 		return "a02_req/a06_reqParamOpt";
 	}	
 	
