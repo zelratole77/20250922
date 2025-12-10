@@ -15,7 +15,8 @@ public class A01_DBController {
 	public String dbexp01(Model d) {
 		// 서비스단을 호출하여 해당 메서드에서 리턴한 결과를 모델 데이터로
 		// 저장.
-		d.addAttribute("empCnt", service.getCountEmp());
+		//d.addAttribute("empCnt", service.getCountEmp());
+		service.dbexp();
 		
 		return "a04_dbexp/a01_exp01";
 	}

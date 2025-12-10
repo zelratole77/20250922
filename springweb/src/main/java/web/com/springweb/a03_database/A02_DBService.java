@@ -16,4 +16,8 @@ public class A02_DBService {
 		
 		return dao.getCountEmp();
 	}
+	public void dbexp() {
+		System.out.println("사원건수:"+dao.getCountEmp());
+	}
+	
 }
