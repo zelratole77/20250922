@@ -2,6 +2,7 @@ package web.com.springweb.a03_database;
 
 import java.util.Date;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,10 @@ public class A02_DBService {
 			System.out.println(sal);
 		}
 	}
+	
+	public int getCountByDeptno(int deptno) {
+		return dao.getCountByDeptno(deptno);
+	}
+	
 	
 }

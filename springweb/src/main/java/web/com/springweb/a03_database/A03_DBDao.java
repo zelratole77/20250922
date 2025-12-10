@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
@@ -44,5 +45,9 @@ public interface A03_DBDao {
 	
 	@Select("SELECT SAL FROM EMP WHERE DEPTNO = 30")
 	List<Double> getSalByDeptno();	
+
+	@Select("SELECT COUNT(*) FROM EMP WHERE DEPTNO=#{deptno}")
+	int getCountByDeptno(@Param("deptno") int deptno);	
+	
 	
 }
