@@ -23,7 +23,7 @@ public class A01_DBController {
 	}
 	// http://localhost:5050/empCntBydeptno
 	// http://localhost:5050/empCntBydeptno?deptno=10
-	@GetMapping("dbexp01")
+	@GetMapping("empCntBydeptno")
 	public String empCntBydeptno(@RequestParam(name="deptno", defaultValue = "0") int deptno,
 								 Model d) {
 		
