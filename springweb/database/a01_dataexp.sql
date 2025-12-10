@@ -53,10 +53,25 @@ List<String> getEnames();
 
 service단에서 확인하는데까지(반복문)
 *ex1) 급여가 2000~5000사이의 사원명 처리
+
+
+@Select("SELECT ENAME FROM EMP WHERE SAL BETWEEN 2000 AND 5000")
+List<String> getEnamesBySal();
+
 ex2) 직책(job)이 SALESMAN인 사원의 입사일 처리
-ex3) 관리자번호(mgr)이 7698인 사원의 사원번호(empno) 처리
+@Select("SELECT HIREDATE FROM EMP WHERE JOB = 'SALESMAN'")
+List<Date> getHiredates();
+*ex3) 관리자번호(mgr)이 7698인 사원의 사원번호(empno) 처리
+@Select("SELECT EMPNO FROM EMP WHERE MGR = 7698")
+List<Integer> getEmpnoByMgr()
 ex4) 부서번호가 30인 사원의 급여 처리
+@Select("SELECT SAL FROM EMP WHERE DEPTNO = 30")
+List<Double> getSalByDeptno();
  * */
+SELECT SAL FROM EMP WHERE DEPTNO = 30;
+SELECT EMPNO FROM EMP WHERE MGR = 7698;
+SELECT HIREDATE FROM EMP WHERE JOB = 'SALESMAN';
+SELECT ENAME FROM EMP WHERE SAL BETWEEN 2000 AND 5000;
 SELECT * FROM EMP;
 
 

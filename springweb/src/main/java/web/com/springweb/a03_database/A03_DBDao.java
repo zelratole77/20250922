@@ -32,5 +32,17 @@ public interface A03_DBDao {
 	
 	@Select("SELECT ENAME FROM EMP")
 	List<String> getEnames();
+
+	@Select("SELECT ENAME FROM EMP WHERE SAL BETWEEN 2000 AND 5000")
+	List<String> getEnamesBySal();
+	
+	@Select("SELECT HIREDATE FROM EMP WHERE JOB = 'SALESMAN'")
+	List<Date> getHiredates();	
+	
+	@Select("SELECT EMPNO FROM EMP WHERE MGR = 7698")
+	List<Integer> getEmpnoByMgr();
+	
+	@Select("SELECT SAL FROM EMP WHERE DEPTNO = 30")
+	List<Double> getSalByDeptno();	
 	
 }

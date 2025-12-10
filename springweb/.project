@@ -26,11 +26,4 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.jkiss.dbeaver.DBeaverNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>Scripts/database</name>
-			<type>2</type>
-			<location>//C:/a02_boot/workspace/springweb/database/</location>
-		</link>
-	</linkedResources>
 </projectDescription>

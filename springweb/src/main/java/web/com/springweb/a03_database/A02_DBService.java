@@ -1,5 +1,7 @@
 package web.com.springweb.a03_database;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +23,32 @@ public class A02_DBService {
 		//System.out.println("사원의 최고급여:"+dao.getMaxSal());
 		//System.out.println("사원명 확인:"+dao.getEnameByJob());
 		///System.out.println("최초입사일:"+dao.getInitHiredate());
-		
+		/*
 		for(String ename:dao.getEnames()) {
 			System.out.println(ename);
+		}
+		*/
+		/*
+		System.out.println("# 급여에 의한 사원명 #");
+		for(String ename:dao.getEnamesBySal()) {
+			System.out.println(ename);
+		}
+		*/
+		/*
+		System.out.println("# SALESMAN의 입사일 #");
+		for(Date date:dao.getHiredates()) {
+			System.out.println(date);
+		}
+		*/
+		/*
+		System.out.println("# 관리자 번호에 의해 사원번호 #");
+		for(int empno:dao.getEmpnoByMgr()) {
+			System.out.println(empno);
+		}
+		*/
+		System.out.println("부서 번호에 따른 급여");
+		for(double sal:dao.getSalByDeptno()) {
+			System.out.println(sal);
 		}
 	}
 	
