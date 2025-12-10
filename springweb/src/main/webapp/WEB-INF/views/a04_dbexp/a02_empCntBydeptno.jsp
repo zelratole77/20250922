@@ -32,7 +32,7 @@
 <div class="jumbotron text-center">
   	<h2>부서번호에 의한 사원수 검색</h2>
 	<h3>검색하는 부서번호:${param.deptno}</h3>
-	<h3>검색된 사원 인원:${0}</h3>
+	<h3>검색된 사원 인원:${deptCnt}</h3>
 </div>
 <%-- 
 		
@@ -40,7 +40,7 @@
 <div class="container">
 	<form id="frm01" class="form" >
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="부서번호" name="deptno"  class="form-control mr-sm-2" />
+	    <input placeholder="부서번호" name="deptno" value="${param.deptno}"  class="form-control mr-sm-2" />
 	    <button class="btn btn-info" type="submit">Search</button>
  	</nav>
 	</form>

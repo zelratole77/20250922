@@ -26,6 +26,7 @@ public class A01_DBController {
 	@GetMapping("empCntBydeptno")
 	public String empCntBydeptno(@RequestParam(name="deptno", defaultValue = "0") int deptno,
 								 Model d) {
+		d.addAttribute("deptCnt", service.getCountByDeptno(deptno));
 		
 		return "a04_dbexp/a02_empCntBydeptno";
 	}	

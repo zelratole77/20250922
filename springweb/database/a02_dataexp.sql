@@ -11,3 +11,5 @@ int getCountByDeptno(@Param("deptno") int deptno);
 
 
  * */
+
+SELECT * FROM emp;
