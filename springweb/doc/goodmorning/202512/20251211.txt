@@ -1,0 +1,146 @@
+## 📝 객관식 4지선다형 문제 (20문제)
+
+### 1. 데이터 처리 구조 이해
+
+1.  사용자의 요청을 받아 비즈니스 로직을 처리하고 최종적으로 응답할 View를 결정하는 핵심 컴포넌트는 무엇입니까?
+    A) Service
+    B) Model
+    C) Controller
+    D) DAO
+
+2.  Spring 기반 웹 애플리케이션에서 `Controller`와 `DAO` 사이에서 실질적인 **비즈니스 로직**을 담당하는 계층은 무엇입니까?
+    A) View
+    B) Model
+    C) Service
+    D) MyBatis
+
+3.  데이터베이스에 접근하여 SQL을 실행하고 그 결과를 객체로 매핑(Mapping)하는 역할을 수행하는 계층은 무엇입니까?
+    A) Controller
+    B) Service
+    C) DAO (Data Access Object)
+    D) View
+
+4.  제시된 구조(`controller ==> service ==> dao ==> service ==> model ==> view(jsp)`)에서, 데이터베이스 처리 결과를 **DAO**로부터 받아 **Controller**로 전달하는 역할을 하는 것은 무엇입니까?
+    A) Model
+    B) View
+    C) Service
+    D) JSP
+
+5.  Controller에서 Service 메서드를 호출하여 반환된 결과를 View(JSP)로 전달하기 위해 사용하는 Spring/Spring Boot의 객체는 무엇입니까?
+    A) Request
+    B) Response
+    C) Model
+    D) HttpSession
+
+### 2. Spring & Annotation 이해
+
+6.  Spring Framework에서 특정 클래스가 사용자의 요청(Request)을 처리하는 컨트롤러 역할을 한다는 것을 선언하는 어노테이션은 무엇입니까?
+    A) `@Service`
+    B) `@Mapper`
+    C) `@Repository`
+    D) `@Controller`
+
+7.  Spring Framework에서 의존성 주입(Dependency Injection, DI)을 위해 사용하는 어노테이션으로, 주로 Service 객체를 Controller에 주입하거나 DAO 객체를 Service에 주입할 때 사용되는 것은 무엇입니까?
+    A) `@Mapper`
+    B) `@Param`
+    C) `@Autowired`
+    D) `@Select`
+
+8.  특정 URL 요청을 메서드와 매핑하여 처리하도록 설정하는 Spring MVC 어노테이션은 무엇입니까? (제시된 예시: `@GetMapping("dbexp01")`)
+    A) `@PostMapping`
+    B) `@RequestMapping`
+    C) `@GetMapping`
+    D) `@PutMapping`
+
+9.  Controller 메서드의 매개변수에서 URL 쿼리 문자열(Query String)의 특정 파라미터 값을 가져올 때 사용하는 어노테이션은 무엇입니까? (제시된 예시: `@RequestParam(name="deptno", ...)`)
+    A) `@ModelAttribute`
+    B) `@PathVariable`
+    C) `@RequestParam`
+    D) `@RequestBody`
+
+### 3. MyBatis & SQL 이해
+
+10. MyBatis에서 인터페이스가 데이터베이스 접근 객체(DAO)의 역할을 수행하도록 선언하는 어노테이션은 무엇입니까?
+    A) `@Service`
+    B) `@Controller`
+    C) `@Mapper`
+    D) `@Repository`
+
+11. DAO 인터페이스 메서드 위에 위치하여 해당 메서드가 실행할 SQL 조회(SELECT) 쿼리를 지정하는 MyBatis 어노테이션은 무엇입니까?
+    A) `@Insert`
+    B) `@Update`
+    C) `@Select`
+    D) `@Delete`
+
+12. SQL 쿼리 내에서 매개변수를 참조할 때 사용하는 표현식으로, 객체의 필드명이나 기본 매개변수 이름을 따라 데이터가 치환되는 방식은 무엇입니까? (제시된 예시: `WHERE DEPTNO=#{deptno}`)
+    A) $value$
+    B) $param$
+    C) \#\{\}
+    D) \$\{\}
+
+13. DAO 인터페이스 메서드가 단일 요청값(예: `int deptno`)을 받고 SQL에서 참조할 때, 매개변수 이름이 SQL 구문의 변수 이름과 다를 경우 명시적으로 이름을 지정해주는 어노테이션은 무엇입니까? (제시된 예시: `@Param("deptno")`)
+    A) `@Mapper`
+    B) `@Autowired`
+    C) `@Select`
+    D) `@Param`
+
+### 4. SQL 결과 유형 및 매핑 이해
+
+14. `select count(*) from emp`와 같이 **단일 숫자** 결과를 반환하는 SQL 쿼리를 처리하는 DAO 메서드의 리턴 타입으로 가장 적절한 것은 무엇입니까?
+    A) `List<String>`
+    B) `double`
+    C) `Date`
+    D) `int`
+
+15. `select ename from emp`와 같이 **단일 컬럼의 여러 행** 결과를 반환하는 SQL 쿼리를 처리하는 DAO 메서드의 리턴 타입으로 가장 적절한 것은 무엇입니까?
+    A) `String`
+    B) `Date`
+    C) `List<String>`
+    D) `Emp` (단일 객체)
+
+16. `select * from emp where empno = 7369`와 같이 **단일 행의 모든 컬럼**을 반환하며, 이 결과를 `Emp`라는 DTO/VO 객체로 매핑하는 DAO 메서드의 리턴 타입으로 가장 적절한 것은 무엇입니까?
+    A) `List<Emp>`
+    B) `int`
+    C) `Emp`
+    D) `String`
+
+17. 다음 중 `List<Emp> getEmpList(Emp sch);`와 같이 **여러 행의 결과**를 담는 DAO 메서드의 리턴 타입은 무엇입니까?
+    A) 단일 기본형 데이터
+    B) 단일 사용자 정의 객체
+    C) 객체형 배열 형태 (Collection)
+    D) void
+
+18. Controller에서 `d.addAttribute("empList", service.getEmpList(sch));`를 통해 Model에 저장한 데이터를 JSP(View)에서 접근할 때 사용하는 EL(Expression Language) 문법은 무엇입니까?
+    A) `<c:out value="empList"/>`
+    B) `$[{empList}]$`
+    C) `${empList}`
+    D) `Model.get("empList")`
+
+19. 제시된 코드에서, Service 계층의 `getCountByDeptno(int deptno)` 메서드가 DAO의 `getCountByDeptno(int deptno)` 메서드를 호출하는 것은 어떤 디자인 패턴 또는 원칙을 활용한 것입니까?
+    A) 캡슐화 (Encapsulation)
+    B) 다형성 (Polymorphism)
+    C) 위임 (Delegation)
+    D) 상속 (Inheritance)
+
+20. Spring 기반의 애플리케이션 실행 시, `@Autowired`가 붙은 객체(예: `A02_DBService` 클래스의 `A03_DBDao dao`)를 Spring이 자동으로 생성하고 주입해주는 기능을 무엇이라고 합니까?
+    A) AOP (Aspect-Oriented Programming)
+    B) 트랜잭션 관리 (Transaction Management)
+    C) DI (Dependency Injection, 의존성 주입)
+    D) IoC (Inversion of Control, 제어의 역전)
+
+---
+
+## ✏️ 주관식 기술형 문제 (5문제)
+
+1.  제시된 데이터 처리 구조(`controller ==> service ==> dao ==> service ==> model ==> view`)에서, 데이터베이스에 접근하기 위한 **SQL 구문**을 정의하고 실행하는 역할을 하는 계층은 무엇인지 서술하고 그 역할을 설명하시오.
+
+2.  `A03_DBDao` 인터페이스에 `@Select("SELECT COUNT(*) FROM EMP WHERE DEPTNO=#{deptno}") int getCountByDeptno(@Param("deptno") int deptno);`와 같이 메서드를 정의했을 때, MyBatis 프레임워크가 **실제 이 기능을 수행하는 객체**를 어떻게 생성하는지 그 원리를 간략히 설명하시오.
+
+3.  Spring Framework에서 `@Autowired` 어노테이션을 사용하여 객체 간의 의존성을 주입하는 방식의 핵심 이점(장점) 한 가지를 설명하시오.
+
+4.  Controller에서 `d.addAttribute("deptCnt", service.getCountByDeptno(deptno));`를 통해 Model에 데이터를 저장한 후, View(JSP) 파일로 전달되어 사용자에게 최종 화면이 출력되는 전체 과정에서 **Model 객체의 역할**을 간략히 서술하시오.
+
+5.  제시된 코드에서, 사원 정보를 검색할 때 **사원명과 직책명**을 요청값으로 받아 처리하는 SQL 구문은 다음과 같습니다. 이 SQL이 어떤 방식으로 MyBatis를 통해 실행되는지, 특히 **요청값(매개변수)의 처리**에 초점을 맞추어 설명하시오.
+    > `@Select("SELECT * FROM EMP WHERE ENAME LIKE #{ename} AND JOB LIKE #{job}")`
+    
+    
