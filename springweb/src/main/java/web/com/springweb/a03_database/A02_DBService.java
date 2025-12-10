@@ -10,4 +10,10 @@ public class A02_DBService {
 	@Autowired(required=false)
 	private A03_DBDao dao;
 	
+	// mybatis에서 인터페이스를 상속받은 실제 객체의 기능메서드에 의해
+	// sql의 결과 데이터를 리턴하는 메서드 처리..
+	public int getCountEmp() {
+		
+		return dao.getCountEmp();
+	}
 }

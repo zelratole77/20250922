@@ -76,7 +76,13 @@
 		
 		
 	4) sql의 유형에 따른 데이터 처리(조회형)
-		- 단일 데이터 전달(DB결과) - select count(*) cnt from emp 
+		- 단일 데이터 전달(DB결과) - select count(*) from emp
+			한개의 데이터가 전달하는 경우 (결과만 있고, 입력x)
+			데이터유형에 맞게 결과에 맞는 리턴유형 dao인터페이스에 선언.
+			@Select("select count(*) from emp")
+			int getEmpCount();
+			
+		 
 		- 리스트형 데이터 전달(DB결과) - select ename from emp
 		- 단일 요청값 단일 데이터 전달(요청+DB결과) - select count(*) cnt from emp  where deptno=#{deptno}  
 				부서번호로 요청해서 해당 부서정보에 가지고 있는 갯수 확인

@@ -31,7 +31,8 @@
 <body>
 <div class="jumbotron text-center">
   <h2>DB 연동 연습</h2>
-
+	<h3>사원수:${empCnt}</h3>
+	
 </div>
 <%-- 
 		
