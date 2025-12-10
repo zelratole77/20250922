@@ -81,7 +81,7 @@
 			데이터유형에 맞게 결과에 맞는 리턴유형 dao인터페이스에 선언.
 			@Select("select count(*) from emp")
 			int getEmpCount();
-			
+		--------------------------------------------------		
 		 
 		- 리스트형 데이터 전달(DB결과) - select ename from emp
 		- 단일 요청값 단일 데이터 전달(요청+DB결과) - select count(*) cnt from emp  where deptno=#{deptno}  

@@ -1,6 +1,7 @@
 package web.com.springweb.a03_database;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -29,5 +30,7 @@ public interface A03_DBDao {
 	@Select("SELECT EMPNO FROM EMP WHERE ENAME='WARD'")
 	int getEmpnoByEname();
 	
+	@Select("SELECT ENAME FROM EMP")
+	List<String> getEnames();
 	
 }

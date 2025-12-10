@@ -17,7 +17,14 @@ public class A02_DBService {
 		return dao.getCountEmp();
 	}
 	public void dbexp() {
-		System.out.println("사원건수:"+dao.getCountEmp());
+		//System.out.println("사원건수:"+dao.getCountEmp());
+		//System.out.println("사원의 최고급여:"+dao.getMaxSal());
+		//System.out.println("사원명 확인:"+dao.getEnameByJob());
+		///System.out.println("최초입사일:"+dao.getInitHiredate());
+		
+		for(String ename:dao.getEnames()) {
+			System.out.println(ename);
+		}
 	}
 	
 }
