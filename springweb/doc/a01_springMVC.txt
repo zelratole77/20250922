@@ -50,6 +50,31 @@
 		
 	3) 데이터 처리 구조 이해
 		controller ==> service ==> dao ==> service ==> model ==> view(jsp)
+		
+		초기화면이 url의해서 출력(view)
+			사원정보 검색을 위한 ui 구성
+			사원명 :[    ]   직책명:[    ]  [검색]  => 비슷한 사원명과 직책명이 있으면 검색 UI
+			---------------------------------
+			사원번호 사원명 직책명 입사일 급여 보너스 부서번호
+			----------------------------------
+			....
+			....
+		요청값으로 사원명과 직책명을 입력하고 검색을 클릭
+		==> controller 호출 요청값이 Emp(사원명, 직책포함)
+		==> service 매개변수로 전달.
+		==> dao단에 sql에 전달 @Select("SELECT * FROM EMP WHERE ENAME LIKE #{ename} AND JOB LIKE #{job}");
+		==> mybatis framework에 의해 위 내용을 처리한 결과 객체를 메서드의 선언형태로 실제 객체를 만들다.
+			public List<Emp> getEmpList(Emp sch);	
+			List<Emp> : 객체형 배열형태로 만들어 진다.
+		==> service 리턴값으로 전달.
+		==> controller 전달해서. model데이터로 설정한다.
+			d.addAttribute("empList", service.getEmpList(sch));
+		==> view단(jsp)에 전달하여 반복문으로 테이블 리스트로 출력한다.
+			<c:forEach var="emp" items="${empList}">
+				<tr><td>${emp.empno}</td><td>${emp.ename}</td><td>${emp.job}</td>...</td>
+			</c:forEach>	
+		
+		
 	4) sql의 유형에 따른 데이터 처리(조회형)
 		- 단일 데이터 전달(DB결과) - select count(*) cnt from emp 
 		- 리스트형 데이터 전달(DB결과) - select ename from emp
