@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class A01_DBController {
@@ -20,5 +21,14 @@ public class A01_DBController {
 		
 		return "a04_dbexp/a01_exp01";
 	}
+	// http://localhost:5050/empCntBydeptno
+	// http://localhost:5050/empCntBydeptno?deptno=10
+	@GetMapping("dbexp01")
+	public String empCntBydeptno(@RequestParam(name="deptno", defaultValue = "0") int deptno,
+								 Model d) {
+		
+		return "a04_dbexp/a02_empCntBydeptno";
+	}	
+	
 	
 }

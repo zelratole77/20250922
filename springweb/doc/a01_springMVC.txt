@@ -81,11 +81,16 @@
 			데이터유형에 맞게 결과에 맞는 리턴유형 dao인터페이스에 선언.
 			@Select("select count(*) from emp")
 			int getEmpCount();
-		--------------------------------------------------		
-		 
 		- 리스트형 데이터 전달(DB결과) - select ename from emp
+		--------------------------------------------------			
 		- 단일 요청값 단일 데이터 전달(요청+DB결과) - select count(*) cnt from emp  where deptno=#{deptno}  
 				부서번호로 요청해서 해당 부서정보에 가지고 있는 갯수 확인
+			# 전체 개발 처리 
+			1. 초기 화면 호출 (controller ==> view(jsp))
+			2. database 처리 (dao ==> service ==> controller단에 연결)	
+				
+				
+				
 		- 단일 요청값 리스트형 데이터 전달(요청+DB결과) - select dname from emp  where deptno=#{deptno)		 
 		- 다중 요청값 리스트형 데이터 전달(요청+DB결과) - select dname from emp  where sal between #{start} and #{end}
 		- 단일 요청값 객체형(여러속성) 데이터 전달 - select * from emp where empno=#{empno} 		 
