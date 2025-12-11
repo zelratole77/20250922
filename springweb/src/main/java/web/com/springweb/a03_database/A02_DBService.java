@@ -1,6 +1,7 @@
 package web.com.springweb.a03_database;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +58,9 @@ public class A02_DBService {
 		return dao.getCountByDeptno(deptno);
 	}
 	
+	public List<String> getEnamesByDeptno1( int deptno){
+		
+		return dao.getEnamesByDeptno1(deptno);
+	}
 	
 }

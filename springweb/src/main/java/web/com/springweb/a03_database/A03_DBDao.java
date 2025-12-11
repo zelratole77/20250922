@@ -48,6 +48,9 @@ public interface A03_DBDao {
 
 	@Select("SELECT COUNT(*) FROM EMP WHERE DEPTNO=#{deptno}")
 	int getCountByDeptno(@Param("deptno") int deptno);	
-	
+
+	@Select("SELECT ENAME FROM EMP WHERE DEPTNO=#{deptno}")
+	List<String> getEnamesByDeptno1(@Param("deptno") int deptno);
+		
 	
 }

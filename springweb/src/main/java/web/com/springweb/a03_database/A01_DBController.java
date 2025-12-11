@@ -30,6 +30,12 @@ public class A01_DBController {
 		
 		return "a04_dbexp/a02_empCntBydeptno";
 	}	
-	
+	// http://localhost:5050/getEnamesByDeptno1
+	@GetMapping("getEnamesByDeptno1")
+	public String getEnamesByDeptno1(@RequestParam(name="deptno", defaultValue = "0") int deptno,
+			 							Model d) {
+		d.addAttribute("dnames", service.getEnamesByDeptno1(deptno));
+		return "a04_dbexp/a03getEnamesByDeptno1";
+	}
 	
 }

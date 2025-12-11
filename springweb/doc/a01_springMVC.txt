@@ -88,9 +88,6 @@
 			# 전체 개발 처리 
 			1. 초기 화면 호출 (controller ==> view(jsp))
 			2. database 처리 (dao ==> service ==> controller단에 연결)	
-				
-				
-				
 		- 단일 요청값 리스트형 데이터 전달(요청+DB결과) - select dname from emp  where deptno=#{deptno)		 
 		- 다중 요청값 리스트형 데이터 전달(요청+DB결과) - select dname from emp  where sal between #{start} and #{end}
 		- 단일 요청값 객체형(여러속성) 데이터 전달 - select * from emp where empno=#{empno} 		 
