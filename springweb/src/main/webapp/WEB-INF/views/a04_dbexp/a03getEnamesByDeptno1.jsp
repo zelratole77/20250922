@@ -43,6 +43,9 @@
 	    <button class="btn btn-info" type="submit">Search</button>
  	</nav>
 	</form>
+	<%-- 
+	EX) SELECT EMPNO FROM EMP WHERE JOB='SALESMAN' 직책별로 사원번호를 검색..
+	 --%>
    <table class="table table-hover table-striped">
    	<col width="20%">
    	<col width="80%">
