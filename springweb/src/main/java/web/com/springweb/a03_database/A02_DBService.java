@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import web.com.springweb.a02_mvc.Dept;
+
 @Service
 public class A02_DBService {
 
@@ -66,6 +68,10 @@ public class A02_DBService {
 	public List<Integer> getEmpnosByJob(String job){
 		return dao.getEmpnosByJob(job);
 	}	
+	
+	public Dept getDept(int deptno) {
+		return dao.getDept(deptno);
+	}
 }
 
 

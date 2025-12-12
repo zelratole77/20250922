@@ -41,7 +41,23 @@ List<Integer> getEmpnosByJob(Param("job") String job);
 
 **/
 
-
+/*
+# 단일 데이터 요청으로 여러 개의 다른 속성의 값을 처리
+1. 부서번호 10으로 여러가지 다양한 속성명과 데이터 유형을 가진 데이터를 열단위로 출력
+2. 입력과 리턴값을 정리
+	1) 입력 : 10 ==>  int ==> 매개변수 : @Param("deptno") int deptno
+	2) 리턴값 : 10 ACCOUNTING  NEW YORK ==> 다른 이름에 다른 유형으로 3가지 데이터를 담을 수 있는 데이터?
+		==> 객체( class 선으로 해당 이름과 유형에 맞게 선언 )
+		class Dept{
+			private int deptno;  // 유형 컬럼명에 맞게 선
+			private String dname;
+			private String loc;
+		}
+	3) 메서드 선언
+@Select("SELECT * FROM DEPT WHERE DEPTNO = #{deptno}")
+Dept getDept(@Param("deptno") int deptno);		
+ * */
+SELECT * FROM DEPT WHERE DEPTNO = 10;
 
 
 

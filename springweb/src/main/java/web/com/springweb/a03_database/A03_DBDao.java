@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import web.com.springweb.a02_mvc.Dept;
+
 @Mapper
 public interface A03_DBDao {
 	// public 생략..
@@ -54,5 +56,8 @@ public interface A03_DBDao {
 		
 	@Select("SELECT EMPNO FROM EMP WHERE JOB=#{job}")
 	List<Integer> getEmpnosByJob(@Param("job") String job);	
+
+	@Select("SELECT * FROM DEPT WHERE DEPTNO = #{deptno}")
+	Dept getDept(@Param("deptno") int deptno);		
 	
 }
