@@ -35,7 +35,15 @@ public class A01_DBController {
 	public String getEnamesByDeptno1(@RequestParam(name="deptno", defaultValue = "0") int deptno,
 			 							Model d) {
 		d.addAttribute("dnames", service.getEnamesByDeptno1(deptno));
-		return "a04_dbexp/a03getEnamesByDeptno1";
+		return "a04_dbexp/a03_getEnamesByDeptno1";
 	}
+	// http://localhost:5050/getEmpnosByJob?job=SALESMAN
+	@GetMapping("getEmpnosByJob")
+	public String getEmpnosByJob(@RequestParam(name="job", defaultValue = "") String job,
+			 							Model d) {
+		d.addAttribute("empnos", service.getEmpnosByJob(job));
+		return "a04_dbexp/a04_getEmpnosByJob";
+	}	
+	
 	
 }

@@ -62,5 +62,13 @@ public class A02_DBService {
 		
 		return dao.getEnamesByDeptno1(deptno);
 	}
-	
+		
+	public List<Integer> getEmpnosByJob(String job){
+		return dao.getEmpnosByJob(job);
+	}	
 }
+
+
+
+
+
