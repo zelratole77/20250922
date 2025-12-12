@@ -44,6 +44,12 @@ public class A01_DBController {
 		d.addAttribute("empnos", service.getEmpnosByJob(job));
 		return "a04_dbexp/a04_getEmpnosByJob";
 	}	
-	
+	// http://localhost:5050/getDept?deptno=10
+	@GetMapping("getDept")
+	public String getDept(@RequestParam(name="deptno", defaultValue = "0") int deptno,
+			 							Model d) {
+		d.addAttribute("dept", service.getDept(deptno));
+		return "a04_dbexp/a05_getDept";
+	}		
 	
 }
