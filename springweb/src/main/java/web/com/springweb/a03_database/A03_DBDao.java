@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import web.com.springweb.a02_mvc.Dept;
+import web.com.springweb.z01_dto.Hero;
 
 @Mapper
 public interface A03_DBDao {
@@ -59,5 +60,8 @@ public interface A03_DBDao {
 
 	@Select("SELECT * FROM DEPT WHERE DEPTNO = #{deptno}")
 	Dept getDept(@Param("deptno") int deptno);		
+	
+	@Select("SELECT * FROM HERO_LIST WHERE NAME LIKE #{name} ")
+	List<Hero> getHero(@Param("name") String name);	
 	
 }

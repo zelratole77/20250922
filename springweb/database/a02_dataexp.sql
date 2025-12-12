@@ -60,10 +60,10 @@ Dept getDept(@Param("deptno") int deptno);
 SELECT * FROM DEPT WHERE DEPTNO = 10;
 
 
-SELECT * FROM HERO_LIST; WHERE NAME LIKE '%맨%' AND city LIKE '%뉴욕%';
+SELECT * FROM HERO_LIST WHERE NAME LIKE '%맨%' AND city LIKE '%뉴욕%';
 /*
 입력 : name, city ==> 문자열 2  ==> @Param("name") String name, @Param("city") String city
-리턴 : int id, String name, int power, int city ==> class 객체.. ==> 배열형 객체 
+리턴 : int id, String name, int power, int city ==> class 객체.. ==> 배열형 객체 List<Hero)
 	class Hero{
 		private int id;
 		private String name;
@@ -71,6 +71,14 @@ SELECT * FROM HERO_LIST; WHERE NAME LIKE '%맨%' AND city LIKE '%뉴욕%';
 		private String city;
 			
 	}
+								                 getName()              getCity() ==> 객체로 선언. 가능
+@Select("SELECT * FROM HERO_LIST WHERE NAME LIKE #{name} AND city LIKE #{city}")
+Hero getHero(Hero sch);
+
+
+@Select("SELECT * FROM HERO_LIST WHERE NAME LIKE #{name} ")
+List<Hero) getHero(@Param("name") String name);
+
 
  * */
 

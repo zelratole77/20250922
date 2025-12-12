@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import web.com.springweb.a02_mvc.Dept;
+import web.com.springweb.z01_dto.Hero;
 
 @Service
 public class A02_DBService {
@@ -71,6 +72,11 @@ public class A02_DBService {
 	
 	public Dept getDept(int deptno) {
 		return dao.getDept(deptno);
+	}
+	
+	public List<Hero> getHero(@Param("name") String name){
+		// 키워드 검색으로 %% 포함 처리..
+		return dao.getHero("%"+name+"%");
 	}
 }
 

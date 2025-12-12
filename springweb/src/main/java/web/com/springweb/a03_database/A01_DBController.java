@@ -49,7 +49,16 @@ public class A01_DBController {
 	public String getDept(@RequestParam(name="deptno", defaultValue = "0") int deptno,
 			 							Model d) {
 		d.addAttribute("dept", service.getDept(deptno));
+		// 모델명 객체 dept로 설정  new Dept(10,"인사","수원"))
+		// view ${dept.deptno} 		${dept.dname} ${dept.loc} 
+		//             getDeptno()        .getDname()    .getLoc()
 		return "a04_dbexp/a05_getDept";
 	}		
-	
+	// http://localhost:5050/getHeroList
+	@GetMapping("getHeroList")
+	public String getHero(@RequestParam(name="name", defaultValue = "") String name,
+			 							Model d) {
+		d.addAttribute("heros", service.getHero(name)); // 객체형 배열 저장. 모델 ${heros}
+		return "a04_dbexp/a06_getHeroList";
+	}	
 }

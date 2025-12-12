@@ -20,7 +20,7 @@ public class Hero {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
+	public String getName() {  // el  ${hero.name} 
 		return name;
 	}
 	public void setName(String name) {
