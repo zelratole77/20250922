@@ -27,7 +27,19 @@ SELECT * FROM emp;
 5. service ==> controller(모델설정) ==> 화면 호출 처리..
  * */
 SELECT ENAME FROM EMP WHERE DEPTNO=10;
+/*
+SELECT EMPNO FROM EMP WHERE JOB='SALESMAN' 직책별로 사원번호를 검색..
+ * */
+SELECT EMPNO FROM EMP WHERE JOB='SALESMAN';
+/*
+입력 : SALESMAN ==> 문자열  ==> 매개변수 처리 : @Param("job") String job
+출력 : int 배열 ==> List<Integer> ==> 리턴값 처리
 
+@Select("SELECT EMPNO FROM EMP WHERE JOB=#{job}")
+List<Integer> getEmpnosByJob(Param("job") String job);
+
+
+**/
 
 
 

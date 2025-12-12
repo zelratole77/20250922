@@ -52,5 +52,7 @@ public interface A03_DBDao {
 	@Select("SELECT ENAME FROM EMP WHERE DEPTNO=#{deptno}")
 	List<String> getEnamesByDeptno1(@Param("deptno") int deptno);
 		
+	@Select("SELECT EMPNO FROM EMP WHERE JOB=#{job}")
+	List<Integer> getEmpnosByJob(@Param("job") String job);	
 	
 }
