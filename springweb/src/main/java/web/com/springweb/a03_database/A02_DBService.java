@@ -1,7 +1,9 @@
 package web.com.springweb.a03_database;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,10 +53,28 @@ public class A02_DBService {
 			System.out.println(empno);
 		}
 		*/
-		System.out.println("부서 번호에 따른 급여");
-		for(double sal:dao.getSalByDeptno()) {
-			System.out.println(sal);
-		}
+		//System.out.println("부서 번호에 따른 급여");
+		//for(double sal:dao.getSalByDeptno()) {
+		//	System.out.println(sal);
+		//}
+		// dao.empList(1000,3000);
+		System.out.println(dao.empList(1000,3000).size());
+		System.out.println(dao.getDept01(10,20).size());
+		
+		Map<String, Integer> map1 = new HashMap<>();
+		map1.put("start", 1000);
+		map1.put("end", 4000);
+		System.out.println(dao.empList4(map1).size());
+		
+		Map<String, Integer> map2 = new HashMap<>();
+		map2.put("deptno1", 10);
+		map2.put("deptno2", 20);		
+		System.out.println(dao.getDept02(map2).size());
+		
+		// dao.getDept02(map2); 
+		
+		
+		
 	}
 	
 	public int getCountByDeptno(int deptno) {
