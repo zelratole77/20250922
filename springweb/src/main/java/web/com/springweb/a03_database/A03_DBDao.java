@@ -70,7 +70,7 @@ public interface A03_DBDao {
 	List<Emp> empList(@Param("start") int start, @Param("end") int end);
 	
 	@Select("SELECT * FROM EMP WHERE SAL BETWEEN #{start} AND #{end}")
-	List<Emp> empList4(Map<String, Integer> map);
+	List<Emp> empList4(Map map);
 	// dao.empList(1000,3000);
 	// dao.empList4(map1);
 	// dao.getDept01(10,20);
@@ -80,12 +80,19 @@ public interface A03_DBDao {
 	List<Dept> getDept01(@Param("deptno1") int deptno1, @Param("deptno2") int deptno2);
 	
 	@Select("SELECT * FROM DEPT WHERE DEPTNO IN(#{deptno1},#{deptno2})")
-	List<Dept> getDept02(Map<String, Integer> map);	
+	List<Dept> getDept02(Map map);	
+	
 	
 	@Select("SELECT * FROM EMP WHERE EMPNO BETWEEN #{empno1} AND #{empno2}")
 	List<Emp> empList2(	@Param("empno1") int empno1, @Param("empno2") int empno2 );
-	
+	// map형식으로  empList5
 	@Select("SELECT * FROM EMP WHERE JOB = #{job} OR DEPTNO = #{deptno}")
 	List<Emp> empList3(@Param("job") String job, @Param("deptno") int deptno);	
+	// map형식으로  empList6
+	// 서비스단 호출..
+	
+	
+	
+	
 	
 }
