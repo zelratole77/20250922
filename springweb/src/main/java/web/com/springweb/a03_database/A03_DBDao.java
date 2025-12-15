@@ -2,12 +2,14 @@ package web.com.springweb.a03_database;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import web.com.springweb.a02_mvc.Dept;
+import web.com.springweb.z01_dto.Emp;
 import web.com.springweb.z01_dto.Hero;
 
 @Mapper
@@ -63,5 +65,23 @@ public interface A03_DBDao {
 	
 	@Select("SELECT * FROM HERO_LIST WHERE NAME LIKE #{name} ")
 	List<Hero> getHero(@Param("name") String name);	
+	
+	@Select("SELECT * FROM EMP WHERE SAL BETWEEN #{start} AND #{end}")
+	List<Emp> empList(@Param("start") int start, @Param("end") int end);
+	
+	@Select("SELECT * FROM EMP WHERE SAL BETWEEN #{start} AND #{end}")
+	List<Emp> empList4(Map map);
+
+	@Select("SELECT * FROM DEPT WHERE DEPTNO IN(#{deptno1},#{deptno2})")
+	List<Dept> getDept01(@Param("deptno1") int deptno1, @Param("deptno2") int deptno2);
+	
+	@Select("SELECT * FROM DEPT WHERE DEPTNO IN(#{deptno1},#{deptno2})")
+	List<Dept> getDept02(Map map);	
+	
+	@Select("SELECT * FROM EMP WHERE EMPNO BETWEEN #{empno1} AND #{empno2}")
+	List<Emp> empList2(	@Param("empno1") int empno1, @Param("empno2") int empno2 );
+	
+	@Select("SELECT * FROM EMP WHERE JOB = #{job} OR DEPTNO = #{deptno}")
+	List<Emp> empList3(@Param("job") String job, @Param("deptno") int deptno);	
 	
 }
