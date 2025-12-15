@@ -2,92 +2,119 @@ Good morning QUIZ!! 좋은 하루 시작입니다. ^^
 
 ### [객관식] Spring MVC 및 데이터 처리 프로세스 이해 (20문항)
 
-**1. 스프링 MVC에서 클라이언트(브라우저)의 모든 요청을 가장 먼저 받아들이는 ‘프론트 컨트롤러(Front Controller)’ 역할을 하는 스프링 내장 객체는 무엇인가?**
+**1. 스프링 MVC에서 클라이언트(브라우저)의 모든 요청을 가장 먼저 받아들이는 
+‘프론트 컨트롤러(Front Controller)’ 역할을 하는 스프링 내장 객체는 무엇인가?**
+DispatcherServlet ==> HandlerMapping ==> Controller ==> Model ==> ViewResolver ==> View
+
 ① ViewResolver
 ② HandlerMapping
-③ DispatcherServlet
-④ MultipartResolver
+#③ DispatcherServlet 
+④ MultipartResolver : 파일업로드시, stream으로 파일일 클라이언트에서 전달되는 내용을 서버단에서 받아서 실제 파일로 저장 처리한다.
 
 **2. 브라우저에서 요청한 URL(예: `/start01`)을 분석하여, 이를 처리할 적절한 Controller와 해당 메서드를 찾아주는 역할을 하는 컴포넌트는?**
-① HandlerMapping
+#① HandlerMapping
 ② Service
 ③ DAO
 ④ Model
 
-**3. Controller의 특정 메서드가 특정 URL 요청을 처리하도록 지정하기 위해 메서드 위에 선언하는 어노테이션으로, 제공된 내용에서 사용된 것은?**
+**3. Controller의 특정 메서드가 특정 URL 요청을 처리하도록 지정하기 위해 메서드 위에 선언하는 어노테이션으로, 
+제공된 내용에서 사용된 것은?**
 ① @Controller
 ② @Autowired
-③ @GetMapping
+#③ @GetMapping  url 호출, method 속성 생략 method="get"일 때, 처리되는 형태..
 ④ @Repository
 
 **4. Controller에서 비즈니스 로직(Service) 처리 후, 결과 데이터를 View(JSP)로 전달하기 위해 사용하는 객체는?**
 ① Request
 ② Response
-③ Model
+#③ Model
 ④ Session
 
 **5. 제공된 학습 내용의 데이터 처리 구조(Layer Architecture) 흐름으로 가장 올바른 순서는?**
 ① View → DAO → Service → Controller → DB
-② Controller → Service → DAO → DB
+#② Controller → Service → DAO → DB
+	요청값에 의해서 DB까지 매개변수를 전달하면 return 값에 의해서 다시 Controller에 모델로 설정이 된다.
 ③ Service → Controller → DAO → DB
 ④ DAO → Controller → Service → DB
 
-**6. 클라이언트가 쿼리 스트링(예: `?name=홍길동`)으로 보낸 요청 파라미터를 Controller 메서드의 매개변수로 개별적으로 받을 때 사용하는 어노테이션은?**
+**6. 클라이언트가 쿼리 스트링(예: `?name=홍길동`)으로 보낸 요청 파라미터를 Controller 메서드의 매개변수로 
+개별적으로 받을 때 사용하는 어노테이션은?**
 ① @PathVariable
 ② @RequestBody
-③ @RequestParam
+#③ @RequestParam
 ④ @ModelAttribute
 
 **7. 폼(Form) 태그에서 입력된 데이터를 서버로 전송할 때, 데이터가 도착할 목적지 URL을 지정하는 속성은?**
 ① method
 ② name
-③ action
+#③ action
 ④ type
 
-**8. MyBatis의 Mapper(DAO) 인터페이스에서 SQL 문을 메서드에 직접 지정할 때, `SELECT` 쿼리를 수행하기 위해 사용하는 어노테이션은?**
+**8. MyBatis의 Mapper(DAO) 인터페이스에서 SQL 문을 메서드에 직접 지정할 때, 
+`SELECT` 쿼리를 수행하기 위해 사용하는 어노테이션은?**
 ① @Insert
 ② @Update
 ③ @Delete
-④ @Select
+#④ @Select
 
 **9. MyBatis SQL 작성 시, 자바에서 넘겨준 파라미터 값을 SQL 쿼리 내에 바인딩(치환)하기 위해 사용하는 문법은?**
 ① ${variable}
-② \#{variable}
+#② \#{variable}
 ③ @variable
 ④ \&variable
 
 **10. Controller가 작업을 마친 후 `return "personInfo";`를 실행했을 때 일어나는 동작으로 올바른 것은?**
 ① 브라우저에 "personInfo"라는 문자열을 그대로 출력한다.
-② personInfo.jsp라는 View 페이지를 찾아 포워딩(이동)한다.
+#② personInfo.jsp라는 View 페이지를 찾아 포워딩(이동)한다.
 ③ personInfo라는 이름의 새로운 Controller를 호출한다.
 ④ 데이터베이스에 personInfo 테이블을 생성한다.
 
 **11. 다음 중 `SELECT count(*) FROM emp`와 같이 결과값이 숫자 하나로 나오는 SQL을 처리할 때, DAO 메서드의 리턴 타입으로 가장 적절한 것은?**
 ① void
-② int
+#② int
 ③ List\<Emp\>
 ④ Emp
 
 **12. `SELECT * FROM emp`와 같이 결과가 여러 행(Row)으로 반환되는 경우, DAO 메서드의 리턴 타입으로 가장 적절한 것은?**
+	여러개의 속성으로 리턴값으로 가져올 때, 이 여러개의 타입에 따를 속성을 저장하는 데이터 ==> 객체 ==> Emp
+	여러개의 행으로 리턴값으로 가져올 때, List<데이터유형>
+	==> 위 두가지 내용을 만족하는 리턴 유형 List<Emp>
 ① int
 ② String
 ③ Emp
-④ List\<Emp\>
+#④ List\<Emp\>
 
-**13. Controller에서 `model.addAttribute("msg", "Hello");` 라고 저장한 데이터를 JSP(View)에서 EL(Expression Language)로 올바르게 출력한 것은?**
+**13. Controller에서 `model.addAttribute("msg", "Hello");` 라고 저장한 데이터를 JSP(View)에서
+ EL(Expression Language)로 올바르게 출력한 것은?**
 ① \<%= msg %\>
-② ${msg}
+#② ${msg}
 ③ \#{msg}
 ④ @{msg}
 
-**14. 요청 파라미터가 많을 때(예: 사원명, 직책, 입사일 등), 이를 하나씩 `@RequestParam`으로 받지 않고, VO(DTO) 객체 단위로 한 번에 할당받아 처리하는 방식에 대한 설명으로 틀린 것은?**
+**14. 요청 파라미터가 많을 때(예: 사원명, 직책, 입사일 등), 이를 하나씩 `@RequestParam`으로 받지 않고,
+	 VO(DTO) 객체 단위로 한 번에 할당받아 처리하는 방식에 대한 설명으로 틀린 것은?**
 ① 요청 파라미터의 `name` 속성값과 객체의 멤버 변수(필드)명이 일치해야 한다.
 ② 이를 커맨드 객체(Command Object)라고도 부른다.
-③ 반드시 `@RequestParam` 어노테이션을 객체 앞에 붙여야만 한다.
+#③ 반드시 `@RequestParam` 어노테이션을 객체 앞에 붙여야만 한다.
 ④ Setter 메서드가 존재해야 데이터가 할당된다.
+	getDept?deptno=10&dname=회계&loc=수원
+	setDeptno
+	setDname
+	setLoc
+	있는 클래스를 선언
+	class Dept{}
+	
+	@GetMapping("getDept")
+	public String getDept(Dept sch){}  위 요청값을 set property인 메서드로 받아서 데이터를 가진 Dept 객체 
+	생성 매개변수로 사용가능..
 
 **15. MyBatis의 `@Select` 구문에서 `WHERE name = #{name} AND age = #{age}` 처럼 두 개 이상의 파라미터를 DAO 메서드로 전달받을 때, 각 매개변수를 SQL의 변수명과 매핑하기 위해 사용하는 어노테이션은?**
-① @Param
+		Person getPerson(@Param("name") String name, @Param("age") int age)
+		
+		Person getPerson(Person sch)  getName(), getAge()가 있을 때.
+		
+
+#① @Param
 ② @Header
 ③ @Body
 ④ @Value
@@ -95,48 +122,73 @@ Good morning QUIZ!! 좋은 하루 시작입니다. ^^
 **16. JSP에서 Controller로부터 전달받은 리스트 형태의 데이터(`List<Emp>`)를 반복문으로 출력하기 위해 주로 사용하는 JSTL 태그는?**
 ① \<c:if\>
 ② \<c:choose\>
-③ \<c:forEach\>
+#③ \<c:forEach\>
 ④ \<c:set\>
 
 **17. DML 문(INSERT, UPDATE, DELETE)을 실행하는 DAO 메서드의 리턴 타입은 일반적으로 무엇을 의미하는가?**
 ① 변경된 데이터 그 자체
 ② 실행된 SQL 문의 개수
-③ 변경(영향)을 받은 행(Row)의 개수
+#③ 변경(영향)을 받은 행(Row)의 개수
 ④ 성공 여부를 나타내는 boolean 값
 
 **18. Controller에서 `d.addAttribute("empList", service.getEmpList(sch));` 코드가 수행하는 역할은?**
-① DB에서 가져온 사원 목록을 뷰(View)에서 사용할 수 있도록 'empList'라는 키로 저장한다.
+#① DB에서 가져온 사원 목록을 뷰(View)에서 사용할 수 있도록 'empList'라는 키로 저장한다.
 ② DB에 사원 목록을 저장한다.
 ③ 클라이언트에게 empList라는 URL로 리다이렉트한다.
 ④ empList라는 이름의 세션을 삭제한다.
 
 **19. `DELETE FROM emp WHERE empno = #{empno}` 쿼리를 수행할 때 필요한 요청 값의 유형으로 가장 적절한 것은?**
 ① 데이터가 필요 없음
-② 삭제할 대상의 식별자(PK)인 단일 데이터
+#② 삭제할 대상의 식별자(PK)인 단일 데이터
 ③ 전체 컬럼을 포함하는 객체 데이터
 ④ 다중 리스트 데이터
 
 **20. 스프링 MVC 패턴을 사용하는 가장 주된 목적(장점)과 거리가 먼 것은?**
 ① 화면(View)과 비즈니스 로직(Controller/Service)의 분리
 ② 유지보수성과 확장성의 용이
-③ 개발자가 직접 서블릿(Servlet) 객체를 생성하고 관리해야 하는 번거로움 증가
+#③ 개발자가 직접 서블릿(Servlet) 객체를 생성하고 관리해야 하는 번거로움 증가
 ④ URL 요청 처리의 중앙 집중화(DispatcherServlet)
 
 -----
 
 ### [주관식] 개념 및 프로세스 기술 (5문항)
 
-**1. 브라우저에서 `http://localhost:8080/schReq`라는 URL을 호출하여 데이터베이스 조회 후 결과 화면이 나오기까지의 과정을, 아래의 키워드를 모두 포함하여 순서대로 서술하시오.**
+**1. 브라우저에서 `http://localhost:8080/schReq`라는 URL을 호출하여 데이터베이스 조회 후 결과 화면이 나오기까지의 과정을, 
+아래의 키워드를 모두 포함하여 순서대로 서술하시오.**
 
 > (키워드: DispatcherServlet, Controller, Service, DAO, Model, View)
+DispatcherServlet ==> Controller ==> Service ==> DAO
+Dao ==> Service ==> Controller ==> Model ==> View
 
-**2. Controller에서 사용자가 입력한 요청 값(Parameter)을 처리하는 두 가지 방식(단일 데이터 처리 방식과 객체형 데이터 처리 방식)의 차이점과 각각 어떤 상황에서 사용하는 것이 유리한지 설명하시오.**
 
-**3. MyBatis를 사용하여 DB 연동 처리를 할 때, DAO 인터페이스의 메서드 선언부(리턴 타입, 매개변수)와 `@Select` 어노테이션의 SQL문(`#{}`) 사이의 데이터 매핑(전달) 관계를 설명하시오.**
+**2. Controller에서 사용자가 입력한 요청 값(Parameter)을 처리하는 두 가지 방식
+(단일 데이터 처리 방식과 객체형 데이터 처리 방식)의 차이점과 각각 어떤 상황에서 사용하는 것이 유리한지 설명하시오.**
+public String getEmpList(@RequestParam("job") String job, @RequestParam("ename") String ename)
+public String getEmpList(Emp sch) setJob, setEname이 있을 때..
+
+**3. MyBatis를 사용하여 DB 연동 처리를 할 때, DAO 인터페이스의 메서드 선언부(리턴 타입, 매개변수)와 `@Select` 
+어노테이션의 SQL문(`#{}`) 사이의 데이터 매핑(전달) 관계를 설명하시오.**
 (예: 메서드의 매개변수가 SQL의 어디로 가고, SQL의 실행 결과가 메서드의 리턴 타입에 어떻게 영향을 미치는지)
+메서드의 매개변수 @Param("매개변수")
+@("SELECT * FROM EMP WHERE empno=#{empno}")
+Emp getEmp(@Param("empno") int empno);
+
+service단에 empno를 매개변수로 호출해서 전달 하면 (7369),  int empno에 할당이되고, 다시 .#{empno}에서 사용할
+변수 @Param("empno")에 7369가 할당. SELECT * FROM EMP WHERE empno=7369 수행되면
+그 결과값으로 한행의 사원 정보를 리턴 유형 Emp에 할당되어 다시 service에 전달된다.
 
 **4. View(JSP) 단에서 `${person.name}`과 같은 코드가 실행될 때, 내부적으로 Controller에서 넘겨준 객체의 어떤 메서드가 호출되어 데이터를 가져오는지 기술하시오.**
+	person객체 안에 getName()메서드가 호출되어 출력되어진다.
 
-**5. 데이터베이스의 데이터를 수정(Update)하는 기능을 구현하려 한다. 이때 ① Controller가 받아야 할 요청 값의 형태, ② DAO 메서드의 리턴 타입, ③ 실행될 SQL 문의 기본 형태를 각각 기술하시오.**
+**5. 데이터베이스의 데이터를 수정(Update)하는 기능을 구현하려 한다. 이때 ① Controller가 받아야 할 요청 값의 형태, 
+	② DAO 메서드의 리턴 타입, ③ 실행될 SQL 문의 기본 형태를 각각 기술하시오.**
+	@Update("UPDATE DEPT 
+				SET DNAME=#{dname},
+				    LOC=#{loc}
+		       WHERE DEPTNO=#{deptno}"
+    int updateDept(Dept upt);
+	    
+	
+	
 
 
