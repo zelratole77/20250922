@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import web.com.springweb.a02_mvc.Dept;
+import web.com.springweb.z01_dto.Emp;
 import web.com.springweb.z01_dto.Hero;
 
 @Service
@@ -58,6 +59,7 @@ public class A02_DBService {
 		//	System.out.println(sal);
 		//}
 		// dao.empList(1000,3000);
+		/*
 		System.out.println(dao.empList(1000,3000).size());
 		System.out.println(dao.getDept01(10,20).size());
 		
@@ -70,12 +72,13 @@ public class A02_DBService {
 		map2.put("deptno1", 10);
 		map2.put("deptno2", 20);		
 		System.out.println(dao.getDept02(map2).size());
-		
+		*/
 		// dao.getDept02(map2); 
-		
-		
-		
 	}
+	public List<Emp> empList4(Map map){
+		return dao.empList4(map);
+	}
+	
 	
 	public int getCountByDeptno(int deptno) {
 		return dao.getCountByDeptno(deptno);

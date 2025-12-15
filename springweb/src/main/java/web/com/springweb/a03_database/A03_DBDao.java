@@ -85,12 +85,20 @@ public interface A03_DBDao {
 	
 	@Select("SELECT * FROM EMP WHERE EMPNO BETWEEN #{empno1} AND #{empno2}")
 	List<Emp> empList2(	@Param("empno1") int empno1, @Param("empno2") int empno2 );
-	// map형식으로  empList5
+
+	
 	@Select("SELECT * FROM EMP WHERE JOB = #{job} OR DEPTNO = #{deptno}")
 	List<Emp> empList3(@Param("job") String job, @Param("deptno") int deptno);	
+	
+	
+	// map형식으로  empList5
+	@Select("SELECT * FROM EMP WHERE EMPNO BETWEEN #{empno1} AND #{empno2}")
+	List<Emp> empList5(Map map);	
+	
 	// map형식으로  empList6
 	// 서비스단 호출..
-	
+	@Select("SELECT * FROM EMP WHERE JOB = #{job} OR DEPTNO = #{deptno}")
+	List<Emp> empList6(Map map);		
 	
 	
 	
