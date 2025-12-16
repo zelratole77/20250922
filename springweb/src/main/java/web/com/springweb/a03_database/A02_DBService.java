@@ -14,6 +14,9 @@ import web.com.springweb.z01_dto.Salgrade;
 
 @Service
 public class A02_DBService {
+	
+	@Autowired(required = false)
+    private A04_CUDDao dao2;
 
 	// 객체끼리 자동으로 연관관계롤 1:1로 할당 처리..
 	@Autowired(required=false)
@@ -26,6 +29,8 @@ public class A02_DBService {
 		return dao.getCountEmp();
 	}
 	public void dbexp() {
+		System.out.println("등록 건수:"+dao2.insertDept01(new Dept(60,"재무","판교")));
+		
 		//System.out.println("사원건수:"+dao.getCountEmp());
 		//System.out.println("사원의 최고급여:"+dao.getMaxSal());
 		//System.out.println("사원명 확인:"+dao.getEnameByJob());
