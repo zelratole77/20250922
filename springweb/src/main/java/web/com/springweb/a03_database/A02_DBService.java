@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import web.com.springweb.a02_mvc.Dept;
 import web.com.springweb.z01_dto.Emp;
 import web.com.springweb.z01_dto.Heroes;
+import web.com.springweb.z01_dto.Idol;
 import web.com.springweb.z01_dto.Salgrade;
 
 @Service
@@ -29,7 +30,8 @@ public class A02_DBService {
 		return dao.getCountEmp();
 	}
 	public void dbexp() {
-		System.out.println("등록 건수:"+dao2.insertDept01(new Dept(60,"재무","판교")));
+		System.out.println("아이돌 등록 건수:"+dao2.insertIdol(new Idol(110,"강다니엘",2019,6,0)));
+		//System.out.println("등록 건수:"+dao2.insertDept01(new Dept(60,"재무","판교")));
 		
 		//System.out.println("사원건수:"+dao.getCountEmp());
 		//System.out.println("사원의 최고급여:"+dao.getMaxSal());
