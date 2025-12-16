@@ -75,6 +75,7 @@ public class A02_DBService {
 		*/
 		// dao.getDept02(map2); 
 		// 	List<Emp> empList5(Map map); // empno1 empno2
+		/*
 		Map<String, Integer> map3 = new HashMap<>();
 		map3.put("empno1", 7400);
 		map3.put("empno2", 7600);
@@ -86,7 +87,11 @@ public class A02_DBService {
 		map4.put("job", "SALESMAN"); // Object ob = "SALESMAN"
 		map4.put("deptno", 20);		// Object ob = Integer = int = 20
 		System.out.println(dao.empList6(map4).size());
-		
+		*/
+		Emp sch = new Emp();
+		sch.setJob("SALESMAN");
+		sch.setDeptno(20);
+		System.out.println(dao.getEmpList10(sch).size());
 	}
 	public List<Emp> empList4(Map map){
 		return dao.empList4(map);

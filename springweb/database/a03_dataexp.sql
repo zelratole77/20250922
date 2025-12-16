@@ -40,3 +40,42 @@ SELECT * FROM EMP WHERE EMPNO BETWEEN 7400 AND 7600;
 
 
 -- 3) Dto 객체를 통한 처리..
+SELECT * FROM EMP;
+-- 부서번호와 직책을 기준으로 검색 처리하는 형태
+SELECT * 
+FROM EMP 
+WHERE JOB = 'SALESMAN' 
+OR DEPTNO = 20;
+/*
+입력값(파라미터) : 문자열 job, 정수형 deptno ==> set/get job, deptno ==> class Emp
+출력값(리턴값) : 사원정보 전체(Emp)  ==> 다중행 List ==> List<Emp>
+
+@Select("SELECT * 
+FROM EMP 
+WHERE JOB = #{job} 
+OR DEPTNO = #{deptno}")   
+List<Emp> getEmpList10(Emp sch);  
+#{job}, #{deptno}  ==> Emp객체의 getJob(), getDeptno() 호출하여 처리되는 형식..
+
+
+
+SELECT * 
+FROM EMP 
+WHERE JOB = #{job} 
+OR DEPTNO = #{deptno}
+
+
+SELECT * 
+FROM EMP 
+WHERE JOB = #{job} 
+OR DEPTNO = #{deptno}
+ * */
+
+
+
+
+
+
+
+
+

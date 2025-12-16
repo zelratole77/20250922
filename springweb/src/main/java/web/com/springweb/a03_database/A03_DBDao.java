@@ -100,7 +100,11 @@ public interface A03_DBDao {
 	@Select("SELECT * FROM EMP WHERE JOB = #{job} OR DEPTNO = #{deptno}")
 	List<Emp> empList6(Map map);	// job deptno	
 	
-	
+	@Select("SELECT * \r\n"
+			+ "FROM EMP \r\n"
+			+ "WHERE JOB = #{job} \r\n"
+			+ "OR DEPTNO = #{deptno}   ")   
+	List<Emp> getEmpList10(Emp sch); 	
 	
 	
 }
