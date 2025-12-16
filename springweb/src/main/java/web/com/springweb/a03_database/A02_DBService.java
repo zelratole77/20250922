@@ -74,6 +74,19 @@ public class A02_DBService {
 		System.out.println(dao.getDept02(map2).size());
 		*/
 		// dao.getDept02(map2); 
+		// 	List<Emp> empList5(Map map); // empno1 empno2
+		Map<String, Integer> map3 = new HashMap<>();
+		map3.put("empno1", 7400);
+		map3.put("empno2", 7600);
+		System.out.println(dao.empList5(map3).size());
+		
+		// List<Emp> empList6(Map map);	// job deptno	
+		// 값이 하나는  String, Integer로 둘다 할당가능한 Object로 설정ㄴ..
+		Map<String, Object> map4 = new HashMap();
+		map4.put("job", "SALESMAN"); // Object ob = "SALESMAN"
+		map4.put("deptno", 20);		// Object ob = Integer = int = 20
+		System.out.println(dao.empList6(map4).size());
+		
 	}
 	public List<Emp> empList4(Map map){
 		return dao.empList4(map);

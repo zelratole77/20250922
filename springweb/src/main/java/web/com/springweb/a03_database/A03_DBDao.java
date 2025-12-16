@@ -93,12 +93,12 @@ public interface A03_DBDao {
 	
 	// map형식으로  empList5
 	@Select("SELECT * FROM EMP WHERE EMPNO BETWEEN #{empno1} AND #{empno2}")
-	List<Emp> empList5(Map map);	
+	List<Emp> empList5(Map map); // empno1 empno2
 	
 	// map형식으로  empList6
 	// 서비스단 호출..
 	@Select("SELECT * FROM EMP WHERE JOB = #{job} OR DEPTNO = #{deptno}")
-	List<Emp> empList6(Map map);		
+	List<Emp> empList6(Map map);	// job deptno	
 	
 	
 	
