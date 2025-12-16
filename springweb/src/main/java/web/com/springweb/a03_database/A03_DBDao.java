@@ -10,7 +10,9 @@ import org.apache.ibatis.annotations.Select;
 
 import web.com.springweb.a02_mvc.Dept;
 import web.com.springweb.z01_dto.Emp;
+import web.com.springweb.z01_dto.Hero;
 import web.com.springweb.z01_dto.Heroes;
+import web.com.springweb.z01_dto.Salgrade;
 
 @Mapper
 public interface A03_DBDao {
@@ -112,6 +114,11 @@ public interface A03_DBDao {
 			+ "	OR DNAME = #{dname}")
 	List<Dept> getDeptList(Dept sch);
 	
+	@Select("SELECT * \r\n"
+			+ "FROM HERO \r\n"
+			+ "WHERE hero_code = #{heroCode} OR age= #{age}")
+	List<Hero> getHeros(Hero sch);	
 	
-	
+	@Select("SELECT * FROM SALGRADE WHERE LOSAL = #{losal} AND HISAL = #{hisal}")
+	Salgrade getSalgrade(Salgrade sch);	
 }

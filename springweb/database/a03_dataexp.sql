@@ -100,8 +100,13 @@ SELECT * FROM DEPT WHERE DEPTNO = 10 OR DNAME = 'SALES';
 	List<Dept> getDeptList(Dept sch);
 **/	
 -- EX2) 히로우 코드 또는 나이로 검색되는 히로우정보 리스트 DAO 메서드 선언(dto 추가..)
-SELECT * FROM HERO WHERE AGE = 40 OR HERO_NAME='트로우';
+SELECT * FROM HERO WHERE hero_code = 101 OR age=35;
 /*
+SELECT * 
+FROM HERO 
+WHERE hero_code = #{heroCode} OR age= #{age}
+
+
 @Select("
 SELECT * FROM HERO 
 WHERE AGE = #{age} OR HERO_NAME=#{heroName}
@@ -114,12 +119,27 @@ class Hero{
 	private int age;
 	
 }
+	@Select("SELECT * \r\n"
+			+ "FROM HERO \r\n"
+			+ "WHERE hero_code = #{heroCode} OR age= #{age}")
+	List<Hero> getHeros(Hero sch);	
+
  * */
 -- EX3) SALGRADE 테이블의 최저금액과 최고금액을 통한 SALGRADE단일 행 정보 가져오는 DAO메서드 선언.(dto 추가..)
+/*
+class Salgrade{
+	private int grade;
+	private int losal;
+	private int hisal;
+}
+@Select("SELECT * FROM SALGRADE WHERE LOSAL = #{local} AND HISAL = #{hisal}")
+Salgrade getSalgrade(Salgrade sch);
+ * */
+SELECT * FROM SALGRADE WHERE LOSAL = 700 AND HISAL = 1200;
 
 
 SELECT * FROM HERO;
-SELECT * FROM SALGRADE;
+
 SELECT * FROM ORDERS;
 /*
 impdp system/1111@//localhost:1521/XEPDB1 DIRECTORY=DATA_PUMP_DIR DUMPFILE=scott_backup.dmp LOGFILE=scott_import.log SCHEMAS=SCOTT TABLE_EXISTS_ACTION=REPLACE

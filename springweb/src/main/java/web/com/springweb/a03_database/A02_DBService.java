@@ -1,7 +1,5 @@
 package web.com.springweb.a03_database;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 import web.com.springweb.a02_mvc.Dept;
 import web.com.springweb.z01_dto.Emp;
 import web.com.springweb.z01_dto.Heroes;
+import web.com.springweb.z01_dto.Salgrade;
 
 @Service
 public class A02_DBService {
@@ -88,10 +87,17 @@ public class A02_DBService {
 		map4.put("deptno", 20);		// Object ob = Integer = int = 20
 		System.out.println(dao.empList6(map4).size());
 		*/
+		/*
 		Emp sch = new Emp();
 		sch.setJob("SALESMAN");
 		sch.setDeptno(20);
 		System.out.println(dao.getEmpList10(sch).size());
+		*/
+		
+		Salgrade sal = dao.getSalgrade( new Salgrade(0, 700, 1200) );
+		System.out.println(sal.getGrade());
+		System.out.println(sal.getLosal());
+		System.out.println(sal.getHisal());
 	}
 	public List<Emp> empList4(Map map){
 		return dao.empList4(map);
