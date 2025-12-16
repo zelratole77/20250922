@@ -1,0 +1,63 @@
+{
+	"folders": {},
+	"connections": {
+		"oracle_thin-19b060674de-1af84d4b18fdd6ae": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "xepdb1",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "xepdb1",
+				"url": "jdbc:oracle:thin:@//localhost:1521/xepdb1",
+				"configurationType": "MANUAL",
+				"home": "C:\\app\\humantech\\product\\21c\\dbhomeXE",
+				"type": "dev",
+				"closeIdleConnection": true,
+				"provider-properties": {
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			}
+		},
+		"oracle_thin-19b25318fad-1932ca2763130e2b": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "xe",
+			"save-password": true,
+			"configuration": {
+				"host": "192.168.0.6",
+				"port": "1521",
+				"database": "xe",
+				"url": "jdbc:oracle:thin:@//192.168.0.6:1521/xe",
+				"configurationType": "MANUAL",
+				"home": "C:\\app\\humantech\\product\\21c\\dbhomeXE",
+				"type": "dev",
+				"closeIdleConnection": true,
+				"provider-properties": {
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"smart-commit": false,
+			"smart-commit-recover": true,
+			"auto-close-transactions": true,
+			"close-transactions-period": 1800,
+			"auto-close-connections": true,
+			"close-connections-period": 14400
+		}
+	}
+}

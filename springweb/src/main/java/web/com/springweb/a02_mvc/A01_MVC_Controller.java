@@ -18,7 +18,7 @@ public class A01_MVC_Controller {
 	public String deptList(Model d) {
 		// model : 핵심데이터, view 보낼데이터..
 		d.addAttribute("deptList", service.getDeptList());
-		return "deptList.jsp";
+		return "deptList";
 		
 	}
 }
