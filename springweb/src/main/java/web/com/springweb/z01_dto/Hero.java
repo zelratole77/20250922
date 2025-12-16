@@ -1,42 +1,57 @@
 package web.com.springweb.z01_dto;
 
 public class Hero {
-	private int id;
-	private String name;
-	private int power;
-	private String city;
+	private int heroCode;
+	private String heroName;
+	private String email;
+	private int age;
 	public Hero() {
 		// TODO Auto-generated constructor stub
 	}
-	public Hero(int id, String name, int power, String city) {
-		this.id = id;
-		this.name = name;
-		this.power = power;
-		this.city = city;
+	
+	public Hero(String heroName, int age) {
+		this.heroName = heroName;
+		this.age = age;
 	}
-	public int getId() {
-		return id;
+
+	public Hero(int heroCode, String heroName, String email, int age) {
+		this.heroCode = heroCode;
+		this.heroName = heroName;
+		this.email = email;
+		this.age = age;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public int getHeroCode() {
+		return heroCode;
 	}
-	public String getName() {  // el  ${hero.name} 
-		return name;
+
+	public void setHeroCode(int heroCode) {
+		this.heroCode = heroCode;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public String getHeroName() {
+		return heroName;
 	}
-	public int getPower() {
-		return power;
+
+	public void setHeroName(String heroName) {
+		this.heroName = heroName;
 	}
-	public void setPower(int power) {
-		this.power = power;
+
+	public String getEmail() {
+		return email;
 	}
-	public String getCity() {
-		return city;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public void setCity(String city) {
-		this.city = city;
+
+	public int getAge() {
+		return age;
 	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
 	
 }

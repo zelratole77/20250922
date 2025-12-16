@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
 
 import web.com.springweb.a02_mvc.Dept;
 import web.com.springweb.z01_dto.Emp;
-import web.com.springweb.z01_dto.Hero;
+import web.com.springweb.z01_dto.Heroes;
 
 @Mapper
 public interface A03_DBDao {
@@ -64,7 +64,7 @@ public interface A03_DBDao {
 	Dept getDept(@Param("deptno") int deptno);		
 	
 	@Select("SELECT * FROM HERO_LIST WHERE NAME LIKE #{name} ")
-	List<Hero> getHero(@Param("name") String name);	
+	List<Heroes> getHero(@Param("name") String name);	
 	
 	@Select("SELECT * FROM EMP WHERE SAL BETWEEN #{start} AND #{end}")
 	List<Emp> empList(@Param("start") int start, @Param("end") int end);
@@ -105,6 +105,13 @@ public interface A03_DBDao {
 			+ "WHERE JOB = #{job} \r\n"
 			+ "OR DEPTNO = #{deptno}   ")   
 	List<Emp> getEmpList10(Emp sch); 	
+
+	@Select("	SELECT * \r\n"
+			+ "	FROM DEPT \r\n"
+			+ "	WHERE DEPTNO = #{deptno} \r\n"
+			+ "	OR DNAME = #{dname}")
+	List<Dept> getDeptList(Dept sch);
+	
 	
 	
 }

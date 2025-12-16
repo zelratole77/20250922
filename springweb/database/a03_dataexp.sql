@@ -70,9 +70,61 @@ FROM EMP
 WHERE JOB = #{job} 
 OR DEPTNO = #{deptno}
  * */
+SELECT * FROM DEPT;
+-- *EX1) 부서번호 또는 부서명으로 검색되는 부서정보 리스트 DAO 메서드 선언..
+/*
+입력값: DEPTNO, DNAME ==> Dept
+리턴값 : Dept ==> List ==> List<Dept>
+SELECT * 
+FROM DEPT 
+WHERE DEPTNO = #{deptno} 
+OR DNAME = #{dname}
 
 
+@Select("")
+List<Dept> getDeptList(Dept sch);
+ *  * */
+SELECT * FROM DEPT WHERE DEPTNO = 10 OR DNAME = 'SALES';
 
+
+	@Select("	SELECT * \r\n"
+			+ "	FROM DEPT \r\n"
+			+ "	WHERE DEPTNO = #{deptno} \r\n"
+			+ "	OR DNAME = #{dname}")
+	List<Dept> getDeptList(Dept sch);
+/*
+	@Select("	SELECT * \r\n"
+			+ "	FROM DEPT \r\n"
+			+ "	WHERE DEPTNO = #{deptno} \r\n"
+			+ "	OR DNAME = #{dname}")
+	List<Dept> getDeptList(Dept sch);
+**/	
+-- EX2) 히로우 코드 또는 나이로 검색되는 히로우정보 리스트 DAO 메서드 선언(dto 추가..)
+SELECT * FROM HERO WHERE AGE = 40 OR HERO_NAME='트로우';
+/*
+@Select("
+SELECT * FROM HERO 
+WHERE AGE = #{age} OR HERO_NAME=#{heroName}
+")
+List<Hero> getHeros(Hero sch);
+class Hero{
+	private int heroCode;
+	private String heroName;
+	private String email;
+	private int age;
+	
+}
+ * */
+-- EX3) SALGRADE 테이블의 최저금액과 최고금액을 통한 SALGRADE단일 행 정보 가져오는 DAO메서드 선언.(dto 추가..)
+
+
+SELECT * FROM HERO;
+SELECT * FROM SALGRADE;
+SELECT * FROM ORDERS;
+/*
+impdp system/1111@//localhost:1521/XEPDB1 DIRECTORY=DATA_PUMP_DIR DUMPFILE=scott_backup.dmp LOGFILE=scott_import.log SCHEMAS=SCOTT TABLE_EXISTS_ACTION=REPLACE
+
+ * */
 
 
 
