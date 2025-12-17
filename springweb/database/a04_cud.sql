@@ -29,6 +29,29 @@ int insertIdol(Idol ins);
 
 *
 **/
+SELECT * FROM DEPT01;
+UPDATE DEPT01 
+   SET DNAME = '회계2',
+       LOC = '수원2'
+ WHERE DEPTNO = 50;
+/*
+입력매개변수 : String dname, String loc, int deptno ==> Dept
+리턴유형 : 등록/수정/삭제 처리된 데이터 return int
+UPDATE DEPT01 
+   SET DNAME = #{dname},
+       LOC = #{loc}
+ WHERE DEPTNO = #{deptno}
+@Update("")
+int updateDept01(Dept upt);
+
+
+
+
+
+
+ * */
+
+
 
 
 

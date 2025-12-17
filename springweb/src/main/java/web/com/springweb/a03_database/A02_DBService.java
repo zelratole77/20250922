@@ -30,7 +30,11 @@ public class A02_DBService {
 		return dao.getCountEmp();
 	}
 	public void dbexp() {
-		System.out.println("아이돌 등록 건수:"+dao2.insertIdol(new Idol(110,"강다니엘",2019,6,0)));
+		System.out.println("부서정보 수정:"+dao2.updateDept01(new Dept(60,"기획","제주")));
+		
+		
+		
+		//System.out.println("아이돌 등록 건수:"+dao2.insertIdol(new Idol(110,"강다니엘",2019,6,0)));
 		//System.out.println("등록 건수:"+dao2.insertDept01(new Dept(60,"재무","판교")));
 		
 		//System.out.println("사원건수:"+dao.getCountEmp());
