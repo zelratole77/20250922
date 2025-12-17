@@ -35,4 +35,9 @@ public interface A04_CUDDao {
 	@Delete("DELETE FROM EMP01 WHERE EMPNO = #{empno}")
 	int deleteEmp01(@Param("empno") int empno);	
 	
+	@Delete("DELETE FROM DEPT01 WHERE DEPTNO = #{deptno}")
+	int deleteDept01(@Param("deptno") int deptno);
+	
+	
+	
 }

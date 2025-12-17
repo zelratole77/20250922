@@ -31,7 +31,8 @@ public class A02_DBService {
 	public void dbexp() {
 		// int updateEmp01(Emp upt);
 		// int deleteEmp01(@Param("empno") int empno);	
-		System.out.println("사원정보 삭제:"+dao2.deleteEmp01(7566));
+		System.out.println("부서정보 삭제:"+dao2.deleteDept01(50));
+//		System.out.println("사원정보 삭제:"+dao2.deleteEmp01(7566));
 		//System.out.println("부서정보 수정:"+dao2.updateEmp01(new Emp(5000.0,350.0,20)));
 		//System.out.println("부서정보 수정:"+dao2.updateDept01(new Dept(60,"기획","제주")));
 		

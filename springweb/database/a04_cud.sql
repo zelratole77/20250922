@@ -74,7 +74,15 @@ WHERE EMPNO = 7521;
 @Delete("DELETE FROM EMP01 WHERE EMPNO = #{empno}")
 int deleteEmp01(@Param("empno") int empno);
 
+
+EX) 부서번호로 부서정보 삭제 DAO SERVICE 처리..
+@Delete("DELETE FROM DEPT01 WHERE DEPTNO = #{deptno}")
+int deleteDept01(@Param("deptno") int deptno);
+
  * */
+SELECT * FROM DEPT01;
+DELETE FROM DEPT01 WHERE DEPTNO = 60;
+
        
 
 
