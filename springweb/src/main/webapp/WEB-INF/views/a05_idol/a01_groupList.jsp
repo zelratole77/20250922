@@ -30,17 +30,20 @@
 
 <body>
 <div class="jumbotron text-center">
-  <h2>타이틀</h2>
+  <h2>아이돌 그룹 리스트</h2>
 
 </div>
 <%-- 
-		
+ * where 조건 ==> 요청값  groupName, fandomName  ==> DTO (A04Group) 
+ * 		<input name="groupName"   <input name="fandomName"  
+ * 출력하는 데이터 ==> 화면 테이블에 리스트 ==> DTO List
+ * 		테이블의 타이틀명 : 그룹번호   그룹명  데뷰날짜 팬그룹이름		
 --%>
 <div class="container">
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="제목" name=""  class="form-control mr-sm-2" />
-	    <input placeholder="내용" name=""  class="form-control mr-sm-2"/>
+	    <input placeholder="그룹명입력" name="groupName"  value="${param.groupName}" class="form-control mr-sm-2" />
+	    <input placeholder="팬그룹이름입력" name="fandomName"   value="${param.fandomName}"   class="form-control mr-sm-2"/>
 	    <button class="btn btn-info" type="submit">Search</button>
 	    <button class="btn btn-success" 
 	    	data-toggle="modal" data-target="#exampleModalCenter"
@@ -48,25 +51,20 @@
  	</nav>
 	</form>
    <table class="table table-hover table-striped">
-   	<col width="10%">
-   	<col width="50%">
-   	<col width="15%">
-   	<col width="15%">
-   	<col width="10%">
+   	<col width="25%">
+   	<col width="25%">
+   	<col width="25%">
+   	<col width="25%">
     <thead>
-    
       <tr class="table-success text-center">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회</th>
+        <th>그룹번호</th>
+        <th>그룹명</th>
+        <th>데뷰날짜</th>
+        <th>팬그룹이름</th>
       </tr>
     </thead>	
     <tbody>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td></tr>
     </tbody>
 	</table>    
     

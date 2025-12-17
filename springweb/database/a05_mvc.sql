@@ -39,8 +39,16 @@ ORDER BY G.GROUP_NO ASC;
 -- TBL_GROUP TBL_MEMBER
 -- 초기 그룹 조회 화면 구성
 SELECT * FROM TBL_GROUP 
-WHERE GROUP_NAME LIKE '%방탄%' 
-AND FANDOM_NAME LIKE '%아미%';
+WHERE GROUP_NAME LIKE '%%' 
+AND FANDOM_NAME LIKE '%%';
+/* 검색되는 값 
+ * where 조건 ==> 요청값  groupName, fandomName  ==> DTO (A04Group) 
+ * 		<input name="groupName"   <input name="fandomName"  
+ * 출력하는 데이터 ==> 화면 테이블에 리스트 ==> DTO List
+ * 		테이블의 타이틀명 : 그룹번호   그룹명  데뷰날짜 팬그룹이름
+ *                
+ * 
+ * */
 /*
 private int groupNo;
 private String groupName;

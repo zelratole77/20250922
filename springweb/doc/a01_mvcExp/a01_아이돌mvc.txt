@@ -45,6 +45,16 @@
 	5) A01_Idol_Controller 에서 service에서 넘겨오 모델 데이터 설정
 	6) view(jsp)에서 처리 후 화면 내용 수행..코드.. (js script, 모델에서 온 데이터 처리)
 	
+5. 리스트 조회 화면 구현..
+	1)  초기 기본 화면 화면과 UI 결정
+		A01_Idol_Controller
+			http://localhost:5050/idolGrpList  a01_groupList.jsp
+			메서드 정의 view단 호출..
+		a01_groupList.jsp
+			form 요청 처리..
+			table 리스트 화면 
+			
+	
 				
 		
 	
