@@ -41,5 +41,20 @@ ORDER BY G.GROUP_NO ASC;
 SELECT * FROM TBL_GROUP 
 WHERE GROUP_NAME LIKE '%방탄%' 
 AND FANDOM_NAME LIKE '%아미%';
+/*
+private int groupNo;
+private String groupName;
+private Date debutDate;
+private String fandomName;
+
+private int memberNo;
+private String realName;
+private String stageName;
+private String position;
+private double height;
+private int groupNo;
+
+ * */
+SELECT * FROM TBL_MEMBER;
 
 
