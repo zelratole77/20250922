@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import web.com.springweb.a02_mvc.Dept;
 import web.com.springweb.z01_dto.Emp;
 import web.com.springweb.z01_dto.Heroes;
-import web.com.springweb.z01_dto.Idol;
 import web.com.springweb.z01_dto.Salgrade;
 
 @Service
@@ -30,7 +29,9 @@ public class A02_DBService {
 		return dao.getCountEmp();
 	}
 	public void dbexp() {
-		System.out.println("부서정보 수정:"+dao2.updateDept01(new Dept(60,"기획","제주")));
+		// int updateEmp01(Emp upt);
+		System.out.println("부서정보 수정:"+dao2.updateEmp01(new Emp(5000.0,350.0,20)));
+		//System.out.println("부서정보 수정:"+dao2.updateDept01(new Dept(60,"기획","제주")));
 		
 		
 		

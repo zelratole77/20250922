@@ -44,12 +44,31 @@ UPDATE DEPT01
 @Update("")
 int updateDept01(Dept upt);
 
-
-
-
-
-
  * */
+SELECT * FROM EMP01;
+UPDATE EMP01
+   SET SAL = 3000,
+       COMM = 100
+ WHERE DEPTNO = 30; 
+ALTER TABLE EMP01 
+RENAME COLUMN salary TO sal;
+/*
+DAO 메서드 선언..
+UPDATE EMP01
+   SET SAL = #{sal},
+       COMM = #{comm}
+ WHERE DEPTNO = #{deptno}
+ 
+@Update("")
+int updateEmp01(Emp upt);
+ 
+
+
+SERVICE 처리 
+결과확인..
+ * */
+       
+
 
 
 

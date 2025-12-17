@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Update;
 
 import web.com.springweb.a02_mvc.Dept;
+import web.com.springweb.z01_dto.Emp;
 import web.com.springweb.z01_dto.Idol;
 
 @Mapper
@@ -23,4 +24,9 @@ public interface A04_CUDDao {
 			+ " WHERE DEPTNO = #{deptno}")
 	int updateDept01(Dept upt);	
 	
+	@Update("UPDATE EMP01\r\n"
+			+ "   SET SAL = #{sal},\r\n"
+			+ "       COMM = #{comm}\r\n"
+			+ " WHERE DEPTNO = #{deptno}")
+	int updateEmp01(Emp upt);	
 }
