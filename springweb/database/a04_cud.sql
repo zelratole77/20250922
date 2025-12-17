@@ -67,6 +67,14 @@ int updateEmp01(Emp upt);
 SERVICE 처리 
 결과확인..
  * */
+SELECT * FROM EMP01;
+WHERE EMPNO = 7521;
+//DELETE FROM EMP01 WHERE EMPNO = #{empno};
+/*
+@Delete("DELETE FROM EMP01 WHERE EMPNO = #{empno}")
+int deleteEmp01(@Param("empno") int empno);
+
+ * */
        
 
 

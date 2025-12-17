@@ -1,7 +1,9 @@
 package web.com.springweb.a03_database;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 
 import web.com.springweb.a02_mvc.Dept;
@@ -28,5 +30,9 @@ public interface A04_CUDDao {
 			+ "   SET SAL = #{sal},\r\n"
 			+ "       COMM = #{comm}\r\n"
 			+ " WHERE DEPTNO = #{deptno}")
-	int updateEmp01(Emp upt);	
+	int updateEmp01(Emp upt);
+	
+	@Delete("DELETE FROM EMP01 WHERE EMPNO = #{empno}")
+	int deleteEmp01(@Param("empno") int empno);	
+	
 }
