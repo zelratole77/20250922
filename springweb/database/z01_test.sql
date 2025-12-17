@@ -13,6 +13,8 @@ CREATE TABLE BLIND_DATE (
 
 CREATE SEQUENCE SEQ_DATE_NO NOCACHE;
 
+SELECT count(*) FROM MEMBER WHERE id =  AND pwd=
+
 /* 1. 이미 지나간 소개팅 (실패 사례들) */
 
 -- 사진과 실물이 달랐던 경우

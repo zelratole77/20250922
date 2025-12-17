@@ -10,6 +10,9 @@ public class A01_Idol_Controller {
 	// http://localhost:5050/idolGrpList  a01_groupList.jsp
 	@RequestMapping("idolGrpList")
 	public String idolGrpList() {
+		
+		
+		
 		return "a05_idol/a01_groupList";
 	}
 
