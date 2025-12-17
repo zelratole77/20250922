@@ -1,7 +1,7 @@
 # 스프링 MVC로 아이돌 관리 프로그램 처리..
 1. 데이터 테이블
 	TBL_GROUP(그룹)
-	TBL_MEMBER(메버)
+	TBL_MEMBER(멤버)
 2. 처리할 파일
 	패키지 : 
 		web.com.springweb.a02_mvc.a01_idol
