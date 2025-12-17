@@ -1,0 +1,50 @@
+# 스프링 MVC로 아이돌 관리 프로그램 처리..
+1. 데이터 테이블
+	TBL_GROUP(그룹)
+	TBL_MEMBER(메버)
+2. 처리할 파일
+	패키지 : 
+		web.com.springweb.a02_mvc.a01_idol
+	클래스 :
+		A01_Idol_Controller.java
+		A02_Idol_Service.java
+		A03_Idol_Dao.java	
+		A04Group.java  // dto
+		A05Member.java 
+	view 
+		폴드명 : webapp\WEB-INF\views\a05_idol
+		a01_groupList.jsp
+		a02_groupInsert.jsp
+		a03_groupDetail.jsp
+3. 프로세스에 대한 이해
+	1) url : http://localhost:5050/idolGrpList
+		로 호출하면 전체 검색된 아이돌 그룹리스트가 이름과 팬닉네임으로 키워드 검색이 된다.
+		A01_Idol_Controller ==> A02_Idol_Service ==> A03_Idol_Dao
+		A03_Idol_Dao ==> A02_Idol_Service ==> A01_Idol_Controller ==> a01_groupList.jsp
+	2) 해당 화면에서 등록 버튼틀 클릭 하면	http://localhost:5050/idolGrpInsert 로
+		url이 호출되면 아이돌 그룹등록 창이 나와서 그룹이름, 데뷰날짜, 팬닉네임을 입력할 수 있는 화면이 나온다.
+		데이터를 등록 하면, 등록완료 후, 조회하면에서 등록된 데이터 리스트를 볼 수 있다.
+		A01_Idol_Controller ==> a02_groupInsert.jsp
+		a02_groupInsert.jsp ==> A01_Idol_Controller ==> A02_Idol_Service ==> A03_Idol_Dao
+			등록된 건수 출력.. 
+	3) 전체 검색 리스트화면에서, 행단위로 특정 아이돌 그룹명을 클릭시, 상세화면 http://localhost:5050/idolGrpDetail
+		로 이동하여 해당 아이돌 그룹의 데이터를 수정 삭제 할 수 있는 데이터가 있는 화면이 나온다.
+			그룹이름, 데뷰날짜, 팬닉네임을 수정 후 수정버튼을 클릭시, 수정 처리된다.
+			삭제버튼클릭시 삭제 처리된다.
+		A01_Idol_Controller ==> A02_Idol_Service ==> A03_Idol_Dao
+		A03_Idol_Dao ==> A02_Idol_Service ==> A01_Idol_Controller ==> a03_groupDetail.jsp
+		수정 삭제로 
+		a02_groupInsert.jsp ==> A01_Idol_Controller ==> A02_Idol_Service ==> A03_Idol_Dao
+4.	개발 순서
+	1) 초기 기본 화면 화면과 UI 결정
+		A01_Idol_Controller url 패턴으로 메서드 정의
+		각각 필요한 화면 UI를 jsp(view)로 만들어 데이터를 없지만 화면 구성 처리(요청 form까지)
+	2) 요청값에 의해서 처리되는 데이터 초기 sql 처리
+	3) A03_Idol_Dao 처리
+	4) A02_Idol_Service 호출
+	5) A01_Idol_Controller 에서 service에서 넘겨오 모델 데이터 설정
+	6) view(jsp)에서 처리 후 화면 내용 수행..코드.. (js script, 모델에서 온 데이터 처리)
+	
+				
+		
+	
