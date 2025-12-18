@@ -11,6 +11,7 @@ public class A04Group {
 	public A04Group() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public A04Group(int groupNo, String groupName, Date debutDate, String fandomName) {
 		this.groupNo = groupNo;
 		this.groupName = groupName;
