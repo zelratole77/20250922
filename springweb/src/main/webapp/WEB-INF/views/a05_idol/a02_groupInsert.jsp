@@ -59,8 +59,8 @@ groupNo groupName debutDate fandomName
             <input type="text" value="" class="form-control" id="fandomName" name="fandomName" 
             	placeholder="팬이름" required>
         </div>
-        <button id="regBtn" type="submit" class="btn btn-primary">등록</button>
-	    <button id="lstBtn" type="button" class="btn btn-info">메인</button>              
+        <button id="regBtn" type="submit" class="btn btn-info">등록</button>
+	    <button id="lstBtn" type="button" class="btn btn-primary" >메인</button>              
     </form>     
 </div>
 
