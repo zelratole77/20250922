@@ -11,10 +11,10 @@ public class A02_Meet_Service {
 	private A03_Meet_Dao dao;
 	
 	public List<A04Meet> getBlindDate(A04Meet sch){
-		if(sch.getParnterName()==null) sch.setParnterName("");
+		if(sch.getPartnerName()==null) sch.setPartnerName("");
 		if(sch.getLocation()==null) sch.setLocation("");
 		
-		sch.setParnterName("%"+sch.getParnterName()+"%");
+		sch.setPartnerName("%"+sch.getPartnerName()+"%");
 		sch.setLocation("%"+sch.getLocation()+"%");
 		
 		return dao.getBlindDate(sch);
