@@ -34,6 +34,8 @@ public class A01_Idol_Controller {
 	@PostMapping("idolGrpInsert")
 	public String idolGrpInsertPost(A04Group ins, Model d) {
 		
+		d.addAttribute("msg", service.insertIdoGrp(ins));
+		
 		return "a05_idol\\a02_groupInsert";
 	}	
 
