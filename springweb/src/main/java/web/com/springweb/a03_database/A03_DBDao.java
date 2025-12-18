@@ -62,6 +62,7 @@ public interface A03_DBDao {
 	@Select("SELECT EMPNO FROM EMP WHERE JOB=#{job}")
 	List<Integer> getEmpnosByJob(@Param("job") String job);	
 
+	// deptno dname loc
 	@Select("SELECT * FROM DEPT WHERE DEPTNO = #{deptno}")
 	Dept getDept(@Param("deptno") int deptno);		
 	

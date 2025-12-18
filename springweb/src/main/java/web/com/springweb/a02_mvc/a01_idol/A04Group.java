@@ -10,6 +10,7 @@ public class A04Group {
 							// 속성 설정을 할 수 있다. 
 	private String fandomName;
 	
+	
 	public A04Group() {
 		// TODO Auto-generated constructor stub
 	}

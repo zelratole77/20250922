@@ -2,6 +2,8 @@ package web.com.springweb.a02_mvc;
 
 
 public class Dept {
+	
+	// 10 인사  수원
 	private int deptno;
 	private String dname;
 	private String loc;
