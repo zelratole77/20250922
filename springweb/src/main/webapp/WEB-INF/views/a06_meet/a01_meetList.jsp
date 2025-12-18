@@ -64,7 +64,7 @@
     </thead>	
     <tbody>
     	<c:forEach var="meet" items="${mlist}">
-    	<tr><td>${meet.dateNo}</td><td>${meet.parnterName}</td>
+    	<tr><td>${meet.dateNo}</td><td>${meet.partnerName}</td>
     		<td>${meet.partnerAge}</td><td>${meet.location}</td>
     		<td><fmt:formatDate value="${meet.meetDate}" pattern="yyyy-MM-dd"/>
     		</td></tr>
