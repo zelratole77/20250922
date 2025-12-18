@@ -23,15 +23,15 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		$("#regBtn").click(function(){
+			location.href="idolGrpInsert"
+		})
 	});
 </script>
 </head>
-
 <body>
 <div class="jumbotron text-center">
   <h2>아이돌 그룹 리스트</h2>
-
 </div>
 <%-- 
  * where 조건 ==> 요청값  groupName, fandomName  ==> DTO (A04Group) 
@@ -45,9 +45,7 @@
 	    <input placeholder="그룹명입력" name="groupName"  value="${param.groupName}" class="form-control mr-sm-2" />
 	    <input placeholder="팬그룹이름입력" name="fandomName"   value="${param.fandomName}"   class="form-control mr-sm-2"/>
 	    <button class="btn btn-info" type="submit">Search</button>
-	    <button class="btn btn-success" 
-	    	data-toggle="modal" data-target="#exampleModalCenter"
-	        type="button">등록</button>
+	    <button class="btn btn-success" id="regBtn" type="button">등록</button>
  	</nav>
 	</form>
    <table class="table table-hover table-striped">
