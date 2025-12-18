@@ -8,6 +8,16 @@ VALUES (20, '뉴진스', '2022-07-22', '버니즈');
 INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
 VALUES (30, '아이브', '2021-12-01', '다이브');
 
+CREATE SEQUENCE idolgrp_seq
+	START WITH 40
+	INCREMENT BY 10;
+INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
+VALUES (idolgrp_seq.nextval, '아이브2', '2021-12-01', '다이브2');
+
+SELECT * FROM TBL_GROUP;
+
+
+
 /* 2. 멤버 데이터 생성 */
 
 -- 방탄조끼소년단 멤버 (그룹번호 10)

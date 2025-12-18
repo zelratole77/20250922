@@ -88,7 +88,39 @@
 			검색된 모델 데이터 설정
 		- view단 
 			모델데이터 반복문 처리..			
-			
+6. 등록 처리 구현
+	1) A01_Idol_Controller 
+		controller 단에서 등록 UI(form) 화면 호출(GET방식)
+		http://localhost:5050/idolGrpInsert
+	2) a02_groupInsert.jsp 등록화면구현
+	   - 등록에 필요한 form method="post" 화면 처리
+	   groupNo groupName debutDate fandomName
+	   	<input name="groupName">
+	   	<input name="debutDate">
+	   	<input name="fandomName">   
+    3) a01_groupList.jsp 
+    	리스트 화면에서 등록버튼 클릭시 위 등록 화면 이동
+    	location.href="idolGrpInsert"
+    ---------------------------------------------	
+    	
+    4) sql 작성 (실제 등록 처리)
+		 INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
+		VALUES (idolgrp_seq.nextval, '아이브2', '2021-12-01', '다이브2');   
+    
+    5) dao ==> service 등록이 1이상일 때 리턴값을 등록 성공으로 처리..
+    6) controller  	
+    	/idolGrpInsert(POST방식)
+    	d.addAttribute("msg", "등록성공");
+    7) a02_groupInsert.jsp
+    	let msg = "${msg}"
+    	if(msg!='')
+    		if( confirm(msg+"조회화면으로 이동하시겠습니까?") ){
+    			location.href="idolGrpList"
+    		}
+    		
+    	
+    	
+				
 	
 				
 		

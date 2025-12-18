@@ -35,7 +35,7 @@
 <div class="container">
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="이름" name="parnterName" value="${param.parnterName}" class="form-control mr-sm-2" />
+	    <input placeholder="이름" name="partnerName" value="${param.partnerName}" class="form-control mr-sm-2" />
 	    <input placeholder="위치" name="location"  value="${param.location}"   class="form-control mr-sm-2"/>
 	    <button class="btn btn-info" type="submit">Search</button>
 	    <button class="btn btn-success" 

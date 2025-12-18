@@ -30,7 +30,7 @@
 
 <body>
 <div class="jumbotron text-center">
-  <h2>타이틀</h2>
+  <h2>아이돌 그룹 등록</h2>
 
 </div>
 <%-- 

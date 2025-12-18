@@ -3,6 +3,8 @@ package web.com.springweb.a02_mvc.a01_idol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,5 +25,16 @@ public class A01_Idol_Controller {
 		
 		return "a05_idol/a01_groupList";
 	}
+	// http://localhost:5050/idolGrpInsert   GET 방식으로 등록 화면 로딩
+	@GetMapping("idolGrpInsert")
+	public String idolGrpInsertGet() {
+		return "a05_idol\\a02_groupInsert";
+	}
+	
+	@PostMapping("idolGrpInsert")
+	public String idolGrpInsertPost(A04Group ins, Model d) {
+		
+		return "a05_idol\\a02_groupInsert";
+	}	
 
 }
