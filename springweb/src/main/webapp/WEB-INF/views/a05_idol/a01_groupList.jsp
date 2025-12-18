@@ -72,6 +72,12 @@
     	</c:forEach>
     </tbody>
 	</table>    
+	<%-- ex) a01_meet 리스트 출력 처리  단계별 진행..
+		*dao
+		service
+		controller
+		view
+	 --%>
     
 </div>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
