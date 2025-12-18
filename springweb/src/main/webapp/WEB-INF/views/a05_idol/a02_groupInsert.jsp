@@ -40,7 +40,8 @@ groupNo groupName debutDate fandomName
     <form  method="post"  >
       	<div class="form-group">
             <label for="groupName">그룹명</label>
-            <input type="text" value="" class="form-control" id="groupName" name="groupName" placeholder="그룹명 입력하세요" required>
+            <input type="text" value="" class="form-control" id="groupName" name="groupName" 
+               placeholder="그룹명 입력하세요" required>
         </div>
       	<div class="form-group">
             <label for="debutDate">데뷰일</label>

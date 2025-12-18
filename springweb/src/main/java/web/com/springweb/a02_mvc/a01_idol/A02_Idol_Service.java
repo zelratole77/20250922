@@ -26,5 +26,9 @@ public class A02_Idol_Service {
 		
 		return dao.getIdolGrpList(sch);
 	}
+	public String insertIdoGrp(A04Group ins) {
+		
+		return dao.insertIdoGrp(ins)>0?"등록성공":"등록되지 않았습니다";
+	}
 
 }

@@ -106,8 +106,15 @@
     4) sql 작성 (실제 등록 처리)
 		 INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
 		VALUES (idolgrp_seq.nextval, '아이브2', '2021-12-01', '다이브2');   
-    
+    	
     5) dao ==> service 등록이 1이상일 때 리턴값을 등록 성공으로 처리..
+		 INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
+		VALUES (idolgrp_seq.nextval, #{groupName}, #{debutDate}, #{fandomName})    
+		
+    	@Insert("")
+    	int insertIdoGrp(A04Group ins);
+    
+    
     6) controller  	
     	/idolGrpInsert(POST방식)
     	d.addAttribute("msg", "등록성공");

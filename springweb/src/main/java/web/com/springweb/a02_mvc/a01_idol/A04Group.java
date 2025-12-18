@@ -5,7 +5,9 @@ import java.util.Date;
 public class A04Group {
 	private int groupNo;
 	private String groupName;
-	private Date debutDate;
+	private Date debutDate;  // <input type="date" name="debutDate" 요청처리하더라도 문자열로 전달되어 Date 형식과
+							// 맞지 않다.. 그래서, 전역적으로 spring 자동으로 yyyy-MM-dd형식의 문자열 Date로 변환 처리
+							// 속성 설정을 할 수 있다. 
 	private String fandomName;
 	
 	public A04Group() {
