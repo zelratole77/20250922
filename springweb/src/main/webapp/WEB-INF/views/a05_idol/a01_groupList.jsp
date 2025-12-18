@@ -64,7 +64,12 @@
       </tr>
     </thead>	
     <tbody>
-    	<tr><td></td><td></td><td></td><td></td></tr>
+    	<%-- // groupNo groupName debutDate fandomName --%>
+    	<c:forEach var="grp" items="${grpList}">
+    	<tr><td>${grp.groupNo}</td><td>${grp.groupName}</td>
+    		<td><fmt:formatDate value="${grp.debutDate}"/></td>
+    		<td>${grp.fandomName}</td></tr>
+    	</c:forEach>
     </tbody>
 	</table>    
     

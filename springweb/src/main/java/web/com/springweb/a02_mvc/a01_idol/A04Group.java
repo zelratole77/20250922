@@ -1,7 +1,7 @@
 package web.com.springweb.a02_mvc.a01_idol;
 
 import java.util.Date;
-
+// groupNo groupName debutDate fandomName
 public class A04Group {
 	private int groupNo;
 	private String groupName;
