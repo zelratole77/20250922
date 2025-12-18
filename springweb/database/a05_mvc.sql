@@ -83,6 +83,23 @@ SELECT * FROM TBL_MEMBER WHERE REAL;
 SELECT * FROM BLIND_DATE;
 SELECT * FROM BLIND_DATE WHERE partner_name LIKE '%%' AND location LIKE '%%';
 /*
+위 sql에 dao 메서드
+입력 partnerName, location ==> A04Meet
+리턴값 A04Meet
+
+SELECT * FROM BLIND_DATE 
+WHERE partner_name LIKE #{partnerName} 
+AND location LIKE #{location}
+
+@Select("")
+List<A04Meet> getBlindDate(A04Meet sch);
+
+
+
+
+
+
+
 parnterName  location
 
 dateNo parnterName partnerAge  location meetDate
