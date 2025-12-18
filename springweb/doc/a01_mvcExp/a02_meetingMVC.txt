@@ -1,0 +1,64 @@
+BLIND_DATE 
+
+# 스프링 MVC로 아이돌 관리 프로그램 처리..
+1. 데이터 테이블
+	BLIND_DATE
+2. 처리할 파일
+	패키지 : 
+		web.com.springweb.a02_mvc.a02_Meet
+	클래스 :
+		A01_Meet_Controller.java
+		A02_Meet_Service.java
+		A03_Meet_Dao.java	
+		A04Meet.java  // dto
+
+			private int dateNo;
+			private String parnterName;
+			private int partnerAge;
+			private String job;
+			private String location;
+			private Date meetDate;
+			private String status;
+			private int score;
+			private String review;
+
+	view 
+		폴드명 : webapp\WEB-INF\views\a06_meet
+		a01_meetList.jsp
+		a02_meetInsert.jsp
+		a03_meetDetail.jsp
+3. 프로세스에 대한 이해
+	1) url : http://localhost:5050/meetList
+		로 호출하면 전체 검색된 아이돌 그룹리스트가 이름과 팬닉네임으로 키워드 검색이 된다.
+	2) 해당 화면에서 등록 버튼틀 클릭 하면	http://localhost:5050/meetInsert 로
+		url이 호출되면 아이돌 그룹등록 창이 나와서 그룹이름, 데뷰날짜, 팬닉네임을 입력할 수 있는 화면이 나온다.
+		데이터를 등록 하면, 등록완료 후, 조회하면에서 등록된 데이터 리스트를 볼 수 있다.
+			등록된 건수 출력.. 
+	3) 전체 검색 리스트화면에서, 행단위로 특정 아이돌 그룹명을 클릭시, 
+		상세화면 http://localhost:5050/meetDetail
+		로 이동하여 해당 아이돌 그룹의 데이터를 수정 삭제 할 수 있는 데이터가 있는 화면이 나온다.
+			그룹이름, 데뷰날짜, 팬닉네임을 수정 후 수정버튼을 클릭시, 수정 처리된다.
+			삭제버튼클릭시 삭제 처리된다.
+4.	개발 순서
+	1) 초기 기본 화면 화면과 UI 결정
+		A01_Meet_Controller url 패턴으로 메서드 정의
+		각각 필요한 화면 UI를 jsp(view)로 만들어 데이터를 없지만 화면 구성 처리(요청 form까지)
+	2) 요청값에 의해서 처리되는 데이터 초기 sql 처리
+	3) A03_Meet_Dao 처리
+	4) A02_Meet_Service 호출
+	5) A01_Meet_Controller 에서 service에서 넘겨오 모델 데이터 설정
+	6) view(jsp)에서 처리 후 화면 내용 수행..코드.. (js script, 모델에서 온 데이터 처리)
+	
+5. 리스트 조회 화면 구현..
+	1)  초기 기본 화면 화면과 UI 결정
+		A01_Meet_Controller
+			http://localhost:5050/meetList  a01_meetList.jsp
+			메서드 정의 view단 호출..
+		a01_meetList.jsp
+			form 요청 처리..
+			table 리스트 화면 
+			
+	
+				
+		
+	

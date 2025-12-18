@@ -65,4 +65,24 @@ private int groupNo;
  * */
 SELECT * FROM TBL_MEMBER;
 
+SELECT * FROM BLIND_DATE;
+SELECT * FROM BLIND_DATE WHERE partner_name LIKE '%%' AND location LIKE '%%';
+/*
+parnterName  location
+
+dateNo parnterName partnerAge  location meetDate
+
+private int dateNo;
+private String parnterName;
+private int partnerAge;
+private String job;
+private String location;
+private Date meetDate;
+private String status;
+private int score;
+private String review;
+
+
+ * */
+
 
