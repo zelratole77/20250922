@@ -41,6 +41,20 @@ ORDER BY G.GROUP_NO ASC;
 SELECT * FROM TBL_GROUP 
 WHERE GROUP_NAME LIKE '%%' 
 AND FANDOM_NAME LIKE '%%';
+/*
+EX) DAO 메서드 선언..
+매개변수
+리턴값선언
+SELECT * FROM TBL_GROUP 
+WHERE GROUP_NAME LIKE #{groupName} 
+AND FANDOM_NAME LIKE #{fandomName}
+@Select("")
+List<A04Group> getIdolGrpList(A04Group sch);
+
+
+
+ * 
+ * */
 /* 검색되는 값 
  * where 조건 ==> 요청값  groupName, fandomName  ==> DTO (A04Group) 
  * 		<input name="groupName"   <input name="fandomName"  
@@ -64,6 +78,7 @@ private int groupNo;
 
  * */
 SELECT * FROM TBL_MEMBER;
+SELECT * FROM TBL_MEMBER WHERE REAL;
 
 SELECT * FROM BLIND_DATE;
 SELECT * FROM BLIND_DATE WHERE partner_name LIKE '%%' AND location LIKE '%%';
