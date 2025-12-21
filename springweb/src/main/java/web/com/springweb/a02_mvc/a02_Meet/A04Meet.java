@@ -2,6 +2,7 @@ package web.com.springweb.a02_mvc.a02_Meet;
 
 import java.util.Date;
 
+
 public class A04Meet {
 	private int dateNo;
 	private String partnerName;
