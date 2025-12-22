@@ -2,6 +2,7 @@ package web.com.springweb.a02_mvc.a02_Meet;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +20,9 @@ public class A02_Meet_Service {
 		
 		return dao.getBlindDate(sch);
 	}
+	// A04Meet getMeet(@Param("dateNo") int dateNo);
+	public A04Meet getMeet(@Param("dateNo") int dateNo) {
+		return dao.getMeet(dateNo);
+	}
+	
 }

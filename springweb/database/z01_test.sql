@@ -59,3 +59,9 @@ COMMIT;
 
 /* 조회 확인: 별점 높은 순으로 정렬해서 보기 */
 SELECT * FROM BLIND_DATE ORDER BY SCORE DESC, MEET_DATE DESC;
+
+
+
+
+
+

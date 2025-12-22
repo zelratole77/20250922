@@ -148,6 +148,32 @@ A04Group  getIdolGrop(@Param("groupNo") int groupNo);
 
 
 
+/*
+  
+ * */
+SELECT * FROM BLIND_DATE; WHERE date_no = 1;
+/* 상세화면 처리..
+1. sql
+*2. dao 메서드 선언
+@Select("SELECT * FROM BLIND_DATE WHERE date_no = #{dateNo}")
+A04Meet getMeet(@Param("dateNo") int dateNo);
+
+
+*
+*
+**
+3. service
+4. controller 모델 데이터 설정
+5. jsp 화면 구성..
+6. list 에서 더블클릭으로 상세화면 호출..
+
+
+
+
+ * 
+ * */
+
+
 
 
 

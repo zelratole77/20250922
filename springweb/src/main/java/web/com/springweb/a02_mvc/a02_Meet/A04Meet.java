@@ -2,13 +2,18 @@ package web.com.springweb.a02_mvc.a02_Meet;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
+// dateNo partnerName partnerAge job location meetDate status
+// score review
 public class A04Meet {
 	private int dateNo;
 	private String partnerName;
 	private int partnerAge;
 	private String job;
 	private String location;
+	// 입력시 포맷과 일치시켜서 날짜와시간까지 DB 입력되게 처리한다..
+	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	private Date meetDate;
 	private String status;
 	private int score;

@@ -27,6 +27,10 @@
 			location.href="idolGrpInsert"
 		})
 	});
+	function goDetail(groupNo){
+		//alert(groupNo)
+		location.href="/idolGrpDetail?groupNo="+groupNo
+	}
 </script>
 </head>
 <body>
@@ -64,7 +68,7 @@
     <tbody>
     	<%-- // groupNo groupName debutDate fandomName --%>
     	<c:forEach var="grp" items="${grpList}">
-    	<tr><td>${grp.groupNo}</td><td>${grp.groupName}</td>
+    	<tr ondblclick="goDetail(${grp.groupNo})"><td>${grp.groupNo}</td><td>${grp.groupName}</td>
     		<td><fmt:formatDate value="${grp.debutDate}"/></td>
     		<td>${grp.fandomName}</td></tr>
     	</c:forEach>
