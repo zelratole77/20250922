@@ -42,10 +42,9 @@
             <label for="subject">제목</label>
             <input type="text" value="" class="form-control" id="subject" name="subject" placeholder="제목을 입력하세요" required>
         </div>
-            <button id="regBtn" type="button" class="btn btn-primary">등록</button>
-	    	<button id="lstBtn" type="button" class="btn btn-info">메인</button>              
-        </form>
-    </form>     
+        <button id="regBtn" type="button" class="btn btn-primary">등록</button>
+   	    <button id="lstBtn" type="button" class="btn btn-info">메인</button>              
+    </form>
 </div>
 
 </body>
