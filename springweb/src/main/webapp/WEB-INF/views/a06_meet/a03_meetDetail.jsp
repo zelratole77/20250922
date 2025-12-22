@@ -30,17 +30,13 @@
 
 <body>
 <div class="jumbotron text-center">
-  <h2>타이틀</h2>
+<h2>등록/상세폼</h2>
 
 </div>
 <%-- 
 		
 --%>
 <div class="container">
-<div class="jumbotron text-center">
-  <h2>등록/상세폼</h2>
-
-</div>
 <%-- 
 // ${meet.dateNo}  ${meet.partnerName} ${meet.partnerAge} ${meet.job}
 ///${meet.location}  ${meet.meetDate} ${meet.status} ${meet.score} ${meet.review}		
