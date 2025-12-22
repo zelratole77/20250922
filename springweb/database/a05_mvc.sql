@@ -126,5 +126,32 @@ private String review;
 
 
  * */
+/*
+# 상세데이터 처리
+
+ * */
+SELECT * FROM TBL_GROUP WHERE GROUP_NO = 70;
+/*
+SELECT * FROM TBL_GROUP WHERE GROUP_NO = #{groupNo}
+입력값 int ==> 매개변수 ==> @Param("groupNo") int groupNo
+리턴값 A04Group ==> 
+ex) dao 처리
+@Select("SELECT * FROM TBL_GROUP WHERE GROUP_NO = #{groupNo}")
+A04Group  getIdolGrop(@Param("groupNo") int groupNo);
+ * */
+-- 출력  group_no 70, group_name LIGHTSUM, debu_date 2025-12-10...  fandom_name SUMIT
+-- ==> VO  groupNo int,  groupName String,  debuDate Date,  fandomName String
+--     설정하는 Dto ==> A04Group   sql의 처리 결과를 setGrouNo(70), setGroupName('LIGHTSUM')..
+---    데이터가 담긴 최종 결과값을 리턴객체로 설정한다.
+
+
+
+
+
+
+
+
+
+
 
 

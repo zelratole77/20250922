@@ -2,6 +2,7 @@ package web.com.springweb.a02_mvc.a01_idol;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,12 @@ public class A02_Idol_Service {
 		
 		return dao.insertIdoGrp(ins)>0?"등록성공":"등록되지 않았습니다";
 	}
+	// A04Group  getIdolGrop(@Param("groupNo") int groupNo); 
+	// 서비스단 처리..
+	public A04Group getIdolGrop(int groupNo) {
+		
+		return dao.getIdolGrop(groupNo);
+	}
+	
 
 }

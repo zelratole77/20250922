@@ -23,7 +23,9 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		$("#lstBtn").click(function(){
+			location.href="idolGrpList"
+		})
 	});
 </script>
 </head>
@@ -34,15 +36,29 @@
 
 </div>
 <%-- 
-		
+// ${group.groupNo} ${group.groupName}  ${group.debutDate} ${group.fandomName}		
 --%>
 <div class="container">
     <form  method="post"  >
       	<div class="form-group">
-            <label for="subject">제목</label>
-            <input type="text" value="" class="form-control" id="subject" name="subject" placeholder="제목을 입력하세요" required>
+            <label for="groupNo">그룹번호</label>
+            <input type="text" readonly value="${group.groupNo}" class="form-control" id="groupNo" name="groupNo"  required>
         </div>
-            <button id="regBtn" type="button" class="btn btn-primary">등록</button>
+      	<div class="form-group">
+            <label for="groupName">그룹이름</label>
+            <input type="text" value="${group.groupName}" class="form-control" id="groupName" name="groupName"  required>
+        </div>      
+      	<div class="form-group">
+            <label for="debutDate">데뷰날짜</label>
+            <input type="date" value='<fmt:formatDate value="${group.debutDate}" pattern="yyyy-MM-dd"/>' 
+            	class="form-control" id="debutDate" name="debutDate"  required>
+        </div>      
+      	<div class="form-group">
+            <label for="fandomName">팬이름</label>
+            <input type="text" value="${group.fandomName}" class="form-control" id="fandomName" name="fandomName"  required>
+        </div>      
+            <button id="regBtn" type="button" class="btn btn-success">수정</button>
+            <button id="regBtn" type="button" class="btn btn-warning">삭제</button>
 	    	<button id="lstBtn" type="button" class="btn btn-info">메인</button>              
         </form>
     </form>     

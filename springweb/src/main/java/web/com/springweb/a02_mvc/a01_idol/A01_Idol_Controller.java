@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class A01_Idol_Controller {
@@ -40,5 +41,16 @@ public class A01_Idol_Controller {
 		
 		return "a05_idol\\a02_groupInsert";
 	}	
+	// http://localhost:5050/idolGrpDetail GET방식으로 처리
+	// 모델이름은 group로 설정..  a03_groupDetail.jsp 화면 호출..
+	// http://localhost:5050/idolGrpDetail?groupNo=70
+	@GetMapping("idolGrpDetail")
+	public String idolGrpDetail(@RequestParam("groupNo") int groupNo, Model d) {
+		d.addAttribute("group", service.getIdolGrop(groupNo));
+		// ${group.groupNo} ${group.groupName}  ${group.debutDate} ${group.fandomName}
+		return "a05_idol\\a03_groupDetail";
+	}
+	
+	
 
 }
