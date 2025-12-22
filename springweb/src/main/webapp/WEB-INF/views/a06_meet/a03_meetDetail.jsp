@@ -96,8 +96,7 @@
             <button id="uptBtn" type="button" class="btn btn-success">수정</button>
             <button id="delBtn" type="button" class="btn btn-danger">삭제</button>
 	    	<button id="lstBtn" type="button" class="btn btn-info">메인</button>              
-        </form>
-    </form>     
+    </form>
 </div>
 </div>
 </body>
