@@ -55,12 +55,12 @@
 		if(msg!=""){
 			if( msg.indexOf("수정") > -1){
 				if(confirm(msg+"\n 메인화면으로 이동하시겠습니까?")){
-					location.href = "${path}/meetList.do"; // 예시 이동 경로
+					location.href = "${path}/meetList"; // 예시 이동 경로
 				}
 			}
 			if( msg.indexOf("삭제") > -1){
 				alert(msg)
-				location.href = "${path}/meetList.do"; // 예시 이동 경로
+				location.href = "${path}/meetList"; // 예시 이동 경로
 			}			
 		}
 	});
