@@ -39,8 +39,8 @@ EX) dao 메서드 선언..
  * */
 
 
-
-
+-- foreign key 연결되어 있으면 하위 종속적인 데이터를 삭제해야지 main 데이터 삭제 가능..
+ALTER TABLE TBL_MEMBER DROP CONSTRAINT FK_GROUP_MEMBER;
 
 
 

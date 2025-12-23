@@ -50,7 +50,22 @@ public class A01_Idol_Controller {
 		// ${group.groupNo} ${group.groupName}  ${group.debutDate} ${group.fandomName}
 		return "a05_idol\\a03_groupDetail";
 	}
+	// idolGrpUpdate idolGrpDelete
+	// http://localhost:5050/idolGrpUpdate  POST방식으로 처리
+	@PostMapping("idolGrpUpdate")
+	public String updateGroup(A04Group upt, Model d) {
+		d.addAttribute("msg", service.updateGroup(upt));
+		// 수정된 이후 내용을 상세화면에서 확인..
+		d.addAttribute("group", service.getIdolGrop(upt.getGroupNo()));
+		return "a05_idol\\a03_groupDetail";
+	}  
 	
-	
+	// http://localhost:5050/idolGrpDelete  POST방식으로 처리
+	@PostMapping("idolGrpDelete")
+	public String deleteGroup(@RequestParam("groupNo") int groupNo, Model d) {
+		d.addAttribute("msg", service.deleteGroup(groupNo));
+		return "a05_idol\\a03_groupDetail";
+	}
+		
 
 }
