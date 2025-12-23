@@ -23,8 +23,11 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		
 	});
+	function goDetail(dateNo){
+		location.href="meet?dateNo="+dateNo
+	}
 </script>
 </head>
 <body>
@@ -64,7 +67,7 @@
     </thead>	
     <tbody>
     	<c:forEach var="meet" items="${mlist}">
-    	<tr><td>${meet.dateNo}</td><td>${meet.partnerName}</td>
+    	<tr ondblclick="goDetail(${meet.dateNo})"><td>${meet.dateNo}</td><td>${meet.partnerName}</td>
     		<td>${meet.partnerAge}</td><td>${meet.location}</td>
     		<td><fmt:formatDate value="${meet.meetDate}" pattern="yyyy-MM-dd"/>
     		</td></tr>

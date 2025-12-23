@@ -37,6 +37,11 @@ public class A02_Idol_Service {
 		
 		return dao.getIdolGrop(groupNo);
 	}
+	public String updateGroup(A04Group upt) {
+		return dao.updateGroup(upt)>0?"수정 성공":"수정 되지 않았습니다.";
+	}  
+	public String deleteGroup(int groupNo) {
+		return dao.deleteGroup(groupNo)>0?"삭제 성공":"삭제가 되지 않았습니다";
+	}
 	
-
 }

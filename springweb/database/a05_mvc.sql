@@ -15,6 +15,36 @@ INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME)
 VALUES (idolgrp_seq.nextval, '아이브2', '2021-12-01', '다이브2');
 
 SELECT * FROM TBL_GROUP;
+UPDATE TBL_GROUP
+    SET GROUP_NAME='방탄소년',
+        DEBUT_DATE = SYSDATE,
+        FANDOM_NAME = '아미2'
+  WHERE GROUP_NO = 10;    
+/*
+UPDATE TBL_GROUP
+    SET GROUP_NAME=#{groupName},
+        DEBUT_DATE = #{debutDate},
+        FANDOM_NAME = #{fandomName}
+  WHERE GROUP_NO = #{groupNo}
+@Update("")
+int updateGroup(A04Group upt);  
+
+@Delete("DELETE FROM TBL_GROUP WHERE GROUP_NO = #{groupNo}")
+int deleteGroup(@Param("groupNo") int groupNo);
+EX) dao 메서드 선언..
+
+
+
+ * 
+ * */
+
+
+
+
+
+
+
+
 
 
 

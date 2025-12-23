@@ -32,7 +32,7 @@
 
 <body>
 <div class="jumbotron text-center">
-  <h2>등록/상세폼</h2>
+  <h2>아이돌 그룹 상세(수정/삭제)</h2>
 
 </div>
 <%-- 

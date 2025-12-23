@@ -76,8 +76,9 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="meetDate">만남일</label> <input type="datetime-local"
-									value="${fmtDate}" class="form-control" id="meetDate"
+								<label for="meetDate">만남일</label> 
+									<input type="datetime-local"
+									value="${fmtDate}" pattern="yyyy-MM-dd'T'HH:mm" class="form-control" id="meetDate"
 									name="meetDate" required>
 							</div>
 						</div>
