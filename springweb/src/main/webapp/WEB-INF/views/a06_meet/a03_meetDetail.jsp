@@ -37,22 +37,32 @@
 		// 버튼 이벤트 핸들러 (기능에 맞게 action 설정 필요)
 		$("#uptBtn").click(function() {
 			if (confirm("수정하시겠습니까?")) {
-				$("form").attr("action", "${path}/updateMeet.do"); // 예시 action
+				$("form").attr("action", "${path}/updateBlindDate"); // 예시 action
 				$("form").submit();
 			}
 		});
-
 		$("#delBtn").click(function() {
 			if (confirm("정말로 삭제하시겠습니까?")) {
-				$("#method").val("DELETE"); // Hidden 필드 등을 이용한 처리 예시
-				// location.href = ... 혹은 form submit
-				alert("삭제 기능 구현 필요");
+				$("form").attr("action", "${path}/deleteBlindDate"); // 예시 action
+				$("form").submit();
 			}
 		});
-
 		$("#lstBtn").click(function() {
-			location.href = "${path}/meetList.do"; // 예시 이동 경로
+			location.href = "${path}/meetList"; // 예시 이동 경로
 		});
+		let msg = "${msg}"
+		
+		if(msg!=""){
+			if( msg.indexOf("수정") > -1){
+				if(confirm(msg+"\n 메인화면으로 이동하시겠습니까?")){
+					location.href = "${path}/meetList.do"; // 예시 이동 경로
+				}
+			}
+			if( msg.indexOf("삭제") > -1){
+				alert(msg)
+				location.href = "${path}/meetList.do"; // 예시 이동 경로
+			}			
+		}
 	});
 </script>
 </head>

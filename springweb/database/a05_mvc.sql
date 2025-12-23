@@ -199,9 +199,46 @@ A04Meet getMeet(@Param("dateNo") int dateNo);
 
 
 
+1. sql 작성 BLIND_DATE
+	수정
+	삭제
+2. dao 처리
+UPDATE BLIND_DATE
+   SET PARTNER_NAME=#{partnerName},
+       PARTNER_AGE = #{partnerAge},
+       LOCATION = #{location},
+       MEET_DATE = #{meetDate},
+       STATUS = #{status},
+       SCORE = #{score},
+       REVIEW = #{review}
+ WHERE DATE_NO =#{dateNo}
+@Update("")
+int updateBlindDate(A04Meet upt); 
+ 
 
- * 
+@Delete("DELETE FROM BLIND_DATE WHERE  DATE_NO = #{dateNo}")
+int deleteBlindDate(@Param("dateNo") int dateNo); 
+
+
+
+--------------------------------
+3. service 처리
+4. controller 처리
+5. view 처리
  * */
+SELECT * FROM BLIND_DATE;
+UPDATE BLIND_DATE
+   SET PARTNER_NAME='홍길동',
+       PARTNER_AGE = 25,
+       LOCATION = '경기 수원',
+       MEET_DATE = SYSDATE,
+       STATUS = 'SUCCESS',
+       SCORE = 2.0,
+       REVIEW = '좋은 시간이었습니다.'
+ WHERE DATE_NO = 1;    
+DELETE FROM BLIND_DATE WHERE  DATE_NO = 1;  
+
+       
 
 
 

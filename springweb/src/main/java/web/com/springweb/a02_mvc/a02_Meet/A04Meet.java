@@ -16,24 +16,12 @@ public class A04Meet {
 	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	private Date meetDate;
 	private String status;
-	private int score;
+	private double score;
 	private String review;
 	public A04Meet() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public A04Meet(int dateNo, String partnerName, int partnerAge, String job, String location, Date meetDate,
-			String status, int score, String review) {
-		this.dateNo = dateNo;
-		this.partnerName = partnerName;
-		this.partnerAge = partnerAge;
-		this.job = job;
-		this.location = location;
-		this.meetDate = meetDate;
-		this.status = status;
-		this.score = score;
-		this.review = review;
-	}
 
 	
 	public int getDateNo() {
@@ -78,12 +66,19 @@ public class A04Meet {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getScore() {
+
+	public double getScore() {
 		return score;
 	}
-	public void setScore(int score) {
+
+
+
+	public void setScore(double score) {
 		this.score = score;
 	}
+
+
+
 	public String getReview() {
 		return review;
 	}

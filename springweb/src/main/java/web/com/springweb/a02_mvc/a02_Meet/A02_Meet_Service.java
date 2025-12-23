@@ -24,5 +24,14 @@ public class A02_Meet_Service {
 	public A04Meet getMeet(@Param("dateNo") int dateNo) {
 		return dao.getMeet(dateNo);
 	}
+	public String updateBlindDate(A04Meet upt) {
+		
+		return dao.updateBlindDate(upt)>0?"수정 성공":"수정지 못 했습니다.";
+	}
+	public String deleteBlindDate( int dateNo) {
+		
+		return dao.deleteBlindDate(dateNo)>0?"삭제 성공":"삭제하지 못 했습니다.";
+	}
+
 	
 }
