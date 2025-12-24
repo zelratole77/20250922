@@ -63,7 +63,7 @@
 				location.href = "${path}/meetList"; // 예시 이동 경로
 			}			
 		}
-	});
+	}); // 163-95-02038
 </script>
 </head>
 
