@@ -17,7 +17,7 @@ public class Diexp12 {
 		System.out.println(ob.getName());
 		StudentCard cd = ob.getCard();
 		System.out.println("객체 안에 있는 카드 번호:"+cd.getCardNumber());
-		// 2. 컨테이너 처리하는 메모리 해재
+
 		ctx.close();
 		
 

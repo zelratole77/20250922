@@ -1,5 +1,7 @@
 package a01_diexp.vo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Student {
 	private String name;
 	private StudentCard card;
