@@ -2,6 +2,8 @@ package a01_diexp;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import a01_diexp.vo.Car;
+import a01_diexp.vo.Engine;
 import a01_diexp.vo.Pet;
 import a01_diexp.vo.PetOwner;
 
@@ -20,6 +22,19 @@ public class Diexp13 {
 		// 컨테이너 안에 Pet PetOwner가 각각 있고, Autowired에 의해 선언 되어 있을 때..
 		// 자동으로 연결되어 처리 된다..
 		// 2. 컨테이너 처리하는 메모리 해재
+		
+		// ex) vo 패키지 안에 Engine(engineType-문자열)
+		//                 Car(model-문자열, engine - Engine )
+		//     Config13안에 위 두객체가 선언되고, 속성을 설정하되.. Car에서 autowired
+		//     통해서 자동을 할당되게 처리 후, 확인하세요..
+		Car car = ctx.getBean("car", Car.class);
+		System.out.println("자동차 모델:"+car.getModel());
+		Engine engine = car.getEngine();
+		System.out.println("엔진 타입:"+engine.getEngineType());
+		
+		
+		
+		
 		ctx.close();
 		
 

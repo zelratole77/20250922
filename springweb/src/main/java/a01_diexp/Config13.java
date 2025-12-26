@@ -3,6 +3,8 @@ package a01_diexp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import a01_diexp.vo.Car;
+import a01_diexp.vo.Engine;
 import a01_diexp.vo.Pet;
 import a01_diexp.vo.PetOwner;
 
@@ -26,5 +28,16 @@ public class Config13 {
 	public PetOwner getPetOwner() {
 		return new PetOwner("홍길동", 25);
 	}	
+	
+	@Bean
+	public Engine getEngine() {
+		return new Engine("v6");
+	}
+	@Bean("car")
+	public Car getCar() {
+		return new Car("뉴그랜저");
+	}
+	
+	
 	
 }
