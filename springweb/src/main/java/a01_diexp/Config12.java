@@ -17,7 +17,7 @@ public class Config12 {
 		return new Object();
 	}
 	// 컨테이너 안에 bean 객체 생성
-	@Bean    
+	@Bean("studentCard")    
 	public StudentCard studentCard() {
 		return new StudentCard("QA244211");
 	}
