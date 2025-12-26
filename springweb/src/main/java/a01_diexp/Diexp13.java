@@ -31,13 +31,7 @@ public class Diexp13 {
 		System.out.println("자동차 모델:"+car.getModel());
 		Engine engine = car.getEngine();
 		System.out.println("엔진 타입:"+engine.getEngineType());
-		
-		
-		
-		
 		ctx.close();
 		
-
 	}
-
 }
