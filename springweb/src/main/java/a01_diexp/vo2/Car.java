@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Car {
+public class Car {  // Car ==> car 이름으로 bean으로 설정...(Component로 설정시)
 	private String model;
 	@Autowired(required=false)
 	private Engine engine;
