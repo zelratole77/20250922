@@ -1,5 +1,6 @@
 package web.com.springweb.a04_file;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class A01_FileController {
+	@Autowired(required=false)
+	private A02_FileService service;
 	
 	// http://localhost:5050/upload
 	@GetMapping("upload")
@@ -19,6 +22,7 @@ public class A01_FileController {
 	@PostMapping("upload")
 	public String uploadPost(@RequestParam("report") MultipartFile file) {
 		System.out.println("업로드된 파일:"+file.getOriginalFilename());
+		
 		
 		return "a07_file\\a01_fileUpload";
 	}
