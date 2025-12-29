@@ -1,10 +1,10 @@
 # 파일 업로드 및 DB 정보 할당
-1. 웹 애플리케이션에서 파일 업로드 기능을 구현하는 방법을 알아보겠습니다. 파일 업로드는 사용자가 파일을 선택하여 서보로 전송하고,
+1. 웹 애플리케이션에서 파일 업로드 기능을 구현하는 방법을 알아보겠습니다. 파일 업로드는 사용자가 파일을 선택하여 서버로 전송하고,
 서버에서 파일을 지정한 후, 해당 파일 정보를 데이터베이스에 저장하여 관리할 수 있는 기능을 다룹니다. 이 과정에서 파일업로드의
 구현 방법과 함께 이후 진행하는 특정 게시물에 연관하여 파일 다운로드 하기 위하여 DB 파일 정보 저장하는 방법을 알아봅시다.
 2. 목표
 	1) 사용자가 파일을 선택하여 서버에 업로드하는 방법을 이해한다.
-	2) 업로드된 파일을 서버의 저정된 경로에 저장하고, 해당 파일 정보를 데이터베이스에 저장하는 방법을 학습한다.
+	2) 업로드된 파일을 서버의 지정된 경로에 저장하고, 해당 파일 정보를 데이터베이스에 저장하는 방법을 학습한다.
 	3) 실제 웹 개발 환경에서 파일 업로드 기능을 구현하고, 업로드한 파일을 파일 다운하거나 재활용할 수 있도록 하는 방법을 익힌다.
 3. 파일 업로드의 필요성
 	1) 웹 애플리케이션에서 파일 업로드 기능은 사용자로부터 파일을 받아 저장하고, 이후에 다운로드하거나 사용하기 위해 필요합니다.
@@ -18,8 +18,8 @@
 		- 파일 업로드를 처리할 위치와 최소/최대 용량을 설정합니다.
 		user.upload=경로명
 	2) controller/service단 처리
-		- 파일 업로드할 요청 url을 통해 MultiPart 객체를 통해 stream으로 특정한 파일이 전송되게 한다.
-		- service단에서 위 MultiPart 객체를 통해 전달해온 메모리상 객체를 실제 물리적 파일로 저장(File객체)되게 한다.
+		- 파일 업로드할 요청 url을 통해 MultiPartFile 객체를 통해 stream으로 특정한 파일이 전송되게 한다.
+		- service단에서 위 MultiPartFile 객체를 통해 전달해온 메모리상 객체를 실제 물리적 파일로 저장(File객체)되게 한다.
 		- 필요에 따라 해당 경로 파일 정보를 DB에 저장되게 처리한다.
 	3) 화면구성(html/jsp)
 		- 기본적으로 파일을 업로드에 필요한 정보를 입력하는 form을 처리한다.
@@ -31,5 +31,18 @@
 		ex)
 		<form action="upload" method="post" enctype="multipart/form-data">
 			<input type="file" name="report" multiple="multiple">
+5. 처리할 파일..
+	resources\application.properties  : 업로드할 경로 설정..
+	a04_file.A01_FileController.java
+	a04_file.A02_FileService.java
+	a04_file.A03_FileDao.java
+	webapp\WEB-INF\views\a07_file\a01_fileUpload.jsp 파일업로드할 form
+	webapp\WEB-INF\views\a07_file\a02_fileDownload.jsp 파일다운로드 form
+	C:\Users\humantech\git\20250927\springweb\src\main\webapp\download
+		실제 업로드한 파일이 위치할 경로
+	
+	
+	
+				
 			
 		
