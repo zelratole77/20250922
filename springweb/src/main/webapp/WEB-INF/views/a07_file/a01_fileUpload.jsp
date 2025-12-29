@@ -23,7 +23,10 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		let msg = "${msg}"
+		if(msg!=""){  // 초기화면과 구분
+			alert(msg)
+		}
 	});
 </script>
 </head>
