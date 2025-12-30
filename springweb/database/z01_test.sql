@@ -1,3 +1,40 @@
+/*
+# 업로드된 파일 정보 저장하기..
+1. 테이블 구성..
+	파일등록seq, 파일명, 경로명, 등록일, 수정일, 기타정보
+2. dao에서 등록 처리
+3. service단에 파일 저장시, 등록 처리..
+**/
+CREATE TABLE file_info(
+	fno NUMBER,
+	fname varchar2(50),
+	fpath varchar2(200),
+	regdte DATE,
+	uptdte DATE,
+	etc varchar2(500)
+);
+CREATE SEQUENCE file_seq;
+INSERT INTO file_info values(file_seq.nextval, '연습파일','연습경로',sysdate, sysdate,'기타정보');
+SELECT * FROM file_info;
+/*
+class FileInfo{
+	private int fno;
+	private String fname;
+	private String fpath;
+	private Date regdte;
+	private Date uptdte;
+	private String etc;
+}
+
+@Insert("INSERT INTO file_info values(file_seq.nextval, #{fname},
+	#{fpath},sysdate, sysdate,#{etc})")
+int insertFileInfo(FileInfo ins);
+
+ * 
+ * */
+
+
+
 /* 소개팅 관리 테이블 */
 CREATE TABLE BLIND_DATE (
     DATE_NO     NUMBER PRIMARY KEY,       -- 번호

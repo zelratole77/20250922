@@ -52,7 +52,14 @@
 	webapp\WEB-INF\views\a07_file\a05_fileDownload.jsp 파일다운로드 form
 	C:\Users\humantech\git\20250927\springweb\src\main\webapp\download2
 			
-		
+# 업로드된 파일 정보 저장하기..
+1. 테이블 구성..
+	파일등록seq, 파일명, 경로명, 등록일, 수정일, 기타정보
+2. dao에서 등록 처리
+3. service단에 파일 저장시, 등록 처리..
+
+# 다운로드..	
+			
 	
 	
 	
