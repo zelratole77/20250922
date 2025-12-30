@@ -40,6 +40,19 @@
 	webapp\WEB-INF\views\a07_file\a02_fileDownload.jsp 파일다운로드 form
 	C:\Users\humantech\git\20250927\springweb\src\main\webapp\download
 		실제 업로드한 파일이 위치할 경로
+	ex)	경로와 파일을 새로 만들어 위 내용 처리 하세요.. 
+
+	
+	
+	resources\application.properties  : 업로드할 경로 설정..
+	a04_file.A04_FileController.java
+	a04_file.A05_FileService.java
+	a04_file.A06_FileDao.java
+	webapp\WEB-INF\views\a07_file\a04_fileUpload.jsp 파일업로드할 form
+	webapp\WEB-INF\views\a07_file\a05_fileDownload.jsp 파일다운로드 form
+	C:\Users\humantech\git\20250927\springweb\src\main\webapp\download2
+			
+		
 	
 	
 	

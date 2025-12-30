@@ -1,0 +1,173 @@
+오랜만에 Good morning QUIZ입니다 ^^
+오늘도 화이팅 하시길. ~~
+
+### [Part 1] 객관식 20문제 (4지선다형)
+
+**1. 다음 중 Spring 설정 클래스임을 명시하여, 해당 클래스 내부에서 빈(Bean) 설정을 할 수 있게 해주는 어노테이션은 무엇인가?**
+① `@Component`
+② `@Controller`
+#③ `@Configuration` - 해당 클래스를 통한 객체가 가상의 컨테이너를 만들어, Bean설정한 객체들을 포함하여 처리하고 있다.
+④ `@Service`
+
+**2. 제공된 코드에서 `AnnotationConfigApplicationContext`를 생성할 때 파라미터로 넘겨준 클래스의 역할로 가장 적절한 것은?**
+		main()에서 컨테이너 객체를 호출하여, 포함하고 있는 bean 객체들을 메모리에 올려 확인하고자 할 때, 사용
+① 데이터베이스 연결 정보를 가진 DAO 클래스
+② 웹 브라우저의 요청을 처리하는 컨트롤러 클래스
+#③ Spring 컨테이너 설정 및 Bean 생성 정보를 담고 있는 설정 클래스
+④ 파일 업로드를 수행하는 서비스 클래스
+
+**3. `@ComponentScan(basePackages = "...")`의 역할로 올바른 설명은?**
+① 지정된 패키지 경로에 있는 파일들을 서버로 업로드한다.
+#② 지정된 패키지 하위의 `@Component`, `@Controller` 등이 붙은 클래스를 찾아 자동으로 Bean으로 등록한다.
+③ 지정된 패키지의 데이터베이스 접속 정보를 자동으로 설정한다.
+④ 해당 패키지 내의 모든 Java 파일을 컴파일하여 실행한다.
+
+**4. `@Bean` 어노테이션이 붙은 메서드(`obj()`)에서 별도의 이름을 지정하지 않았을 때, 생성되는 Bean의 기본 이름(ID)은 무엇인가?**
+#① 메서드의 이름 (예: obj) default  @Bean("p01") ==> p01로 호출할 수 있게 설정..
+② 리턴하는 클래스 이름의 소문자 (예: object)
+③ 무작위로 생성된 ID
+④ 패키지명을 포함한 전체 클래스 경로
+
+**5. `Car` 클래스 내부의 `Engine` 필드에 적용된 `@Autowired(required=false)`의 의미로 올바른 것은?**
+① Engine 객체가 반드시 존재해야 하며, 없으면 에러가 발생한다.
+#② Engine 객체를 찾을 수 없으면 null을 주입하고 에러를 발생시키지 않는다.
+③ Engine 객체를 자동으로 생성하여 데이터베이스에 저장한다.
+④ Engine 객체가 없을 경우 새로운 Engine 객체를 `new` 연산자로 생성한다.
+
+**6. Spring 컨테이너(Context)에서 관리되는 객체(Bean)를 가져오기 위해 사용하는 메서드는?**
+① `getComponent()`
+② `createBean()`
+#③ `getBean()`  Car ob = ctx.getBean("car", Car.class); //
+④ `loadClass()`
+
+**7. HTML 폼(Form)에서 파일을 전송하기 위해 `<form>` 태그에 반드시 설정해야 하는 속성과 값은?**
+① `method="get"`
+#② `enctype="multipart/form-data"`   <input type="file"
+③ `type="file-upload"`
+④ `action="download"`
+
+**8. 파일 업로드를 위해 `controller` 메서드에서 파일을 전달받을 때 사용하는 Spring의 인터페이스 객체는?**
+	<input type="file" name="report"> ==> 파일을 자체를 물리적으로 저장..(클라이언트)
+	==> MultipartFile (네트워크-메모리 전환) ==> controller  
+		(public String uploadPost(@RequestParam("report") MultipartFile file )
+	==> (서버단) mpf.transferTo(file); File객체를 통해서 서버에 특정한 위치에 물리적 파일로 저장..
+① `File`
+② `FileInputStream`
+#③ `MultipartFile`
+④ `UploadFile`
+
+**9. `application.properties` 파일에 정의된 키(`user.upload`)의 값을 자바 변수에 주입하기 위해 사용하는 어노테이션은?**
+	공통된 파일 위치를 특정한 키로 지정해서, 서버에 안에 모든 소스에 해당 경로를 호출할 수 있게 
+	처리함..	@Value("${user.upload}")
+			private String path; 
+① `@Autowired`
+② `@Resource`
+#③ `@Value`
+④ `@Inject`
+
+**10. 서비스 클래스(`A02_FileService`)의 `fileUpload` 메서드에서 `mpf.transferTo(file)` 코드가 수행하는 핵심 기능은 무엇인가?**
+① 클라이언트가 보낸 파일명을 데이터베이스에 저장한다.
+② 업로드된 파일의 내용을 콘솔 창에 출력한다.
+#③ 메모리상에 임시로 존재하는 파일 데이터를 실제 물리적 경로(디스크)에 파일로 저장한다.
+④ 물리적 경로에 있는 파일을 읽어와서 메모리에 로딩한다.
+
+**11. 파일 업로드 시 발생할 수 있는 예외를 처리하기 위해 `try-catch` 블록에서 처리하고 있는 예외가 아닌 것은? (코드 기준)**
+① `IllegalStateException`
+② `IOException`
+#③ `SQLException` :DB 예외 발생시..
+④ `Exception` (상위 클래스)
+
+**12. HTML `<input>` 태그에서 사용자가 한 번에 여러 개의 파일을 선택할 수 있도록 해주는 속성은?**
+#① `multiple="multiple"`
+② `select="all"`
+③ `type="files"`
+④ `array="true"`
+
+**13. Spring MVC에서 폼(Form) 데이터와 파일을 동시에 전송받을 때, `MultipartFile` 객체 외에 일반 데이터를 받기 위해 함께 사용할 수 있는 객체나 어노테이션이 아닌 것은?**
+① `HttpServletRequest`
+② `@RequestParam`
+③ `Model` (데이터를 뷰로 넘길 때 사용)
+#④ `FileInputStream` (직접 스트림 생성)
+
+**14. 제공된 `Config14` 클래스 코드 주석에 따르면, 컨테이너 안에 객체가 생성되는 시점은 언제인가?**
+① 사용자가 웹 페이지에서 버튼을 클릭할 때
+#② Tomcat 서버가 실행되고 초기 화면(설정)이 로딩될 때  - 현재 사용하는 스프링에서 처리..
+③ 개발자가 소스 코드를 저장할 때
+④ `ctx.close()` 메서드가 호출될 때
+
+**15. `A01_FileController`에서 `@PostMapping("upload")`가 하는 역할은?**
+① "/upload" URL로 들어오는 GET 요청을 처리하여 업로드 폼 페이지를 보여준다.
+#② "/upload" URL로 들어오는 POST 요청을 받아 실제 파일 업로드 로직을 수행한다.
+③ 파일 다운로드를 처리하는 경로를 매핑한다.
+④ 데이터베이스에 파일 정보를 저장하는 DAO를 호출한다.
+
+**16. 코드 상에서 `new File(path, mpf.getOriginalFilename())`을 통해 생성된 `File` 객체의 역할은?**
+#① 실제 디스크에 저장될 파일의 경로와 이름을 지정하는 객체(껍데기) 생성 ==>  mpf.transferTo(file) 하드디스크에 파일이 생성..
+② 이 코드가 실행되는 즉시 하드디스크에 파일이 생성됨
+③ 업로드된 파일의 내용을 읽어오는 스트림 객체 생성
+④ 데이터베이스에 저장될 파일의 메타데이터 객체 생성
+
+**17. `A01_FileController`에서 `Model d` 파라미터를 사용한 이유는?**
+① 업로드된 파일을 DB에 저장하기 위해서
+#② 업로드 처리 결과 메시지(msg)를 뷰(JSP) 화면으로 전달하기 위해서
+③ 사용자가 입력한 ID와 비밀번호를 검증하기 위해서
+④ 파일의 크기를 제한하기 위해서
+
+**18. JSP 파일 내의 jQuery 코드 `$(document).ready(function(){ ... })`의 실행 시점은?**
+① 서버에서 자바 코드가 실행될 때
+#② 브라우저가 HTML 문서를 모두 로딩한 직후
+③ 사용자가 파일 선택 버튼을 눌렀을 때
+④ 파일 전송이 시작되는 순간
+
+**19. 업로드 경로를 설정하는 `application.properties`의 `user.upload` 값은 어떤 형태로 작성되어야 하는가? (예시 기준)**
+① 웹 URL 경로 (http://...)
+② 데이터베이스 접속 주소 (jdbc:...)
+#③ 파일을 저장할 서버(PC)의 물리적 디렉토리 경로 : 공통된 저장 경로를 어떠한 컨테이너 안에 어떤 소스에서도 접근이 가능하게 처리하기 위해..
+④ 클라우드 스토리지의 API 키
+
+**20. 다음 중 파일 업로드 전체 프로세스에서 순서가 가장 올바르게 나열된 것은?**
+① 뷰(Form 전송) → Service(물리적 저장) → Controller(요청 수신)
+#② 뷰(Form 전송) → Controller(요청 수신) → Service(물리적 저장)
+③ Controller(요청 수신) → 뷰(Form 전송) → Service(물리적 저장)
+④ Service(물리적 저장) → Controller(요청 수신) → 뷰(Form 전송)
+
+---
+
+### [Part 2] 주관식 서술형 5문제
+
+**1. 파일 업로드 기능을 구현할 때, HTML Form 태그에 `enctype="multipart/form-data"` 속성을 반드시 
+	지정해야 하는 이유를 서술하시오.**
+기본적인 form 전송 방식(application/x-www-form-urlencoded")은 데이터를 텍스트(문자열) 형태로 인코딩하여 전송하기 때문에,
+이미지나 문서 같은 바이너리(이진) 데이터를 전송할 수 없습니다.
+multipart/form-data를 설정해야만 http 요청 메시지를 여러 부분(part)으로 나누어, 텍스트 데이터와 바이너리(이진) 파일 데이터를
+구분하여 서버로 전송할 수 있기 때문입니다.
+	
+
+**2. Spring Service 계층에서 `MultipartFile` 객체의 `transferTo()` 메서드가 수행하는 역할과, 
+이 메서드를 호출하지 않았을 때 업로드된 파일이 어떻게 되는지 설명하시오.**
+MultipartFile 객체가 메모리나 임시 저장소에 가지고 있고 실제 물리적인 경로(서버의 하드디스크 등)에 저장되지 않는다.
+
+**3. `@Autowired(required=false)` 설정이 필요한 상황은 어떤 경우인지, 제공된 `Car`와 `Engine` 클래스의 
+관계를 빗대어 설명하시오.**
+스프링 컨테이너에 해당 타입(Engine)의 Beean이 존재하지 않더라도 에러를 발생시키지 않고, null 상태로라도 객체(Car)를 생성하고
+싶을 때 사용합니다.
+
+
+**4. 소스 코드에서 `application.properties`에 파일 저장 경로(`user.upload`)를 별도로 분리하여 작성하고, 
+	`@Value` 어노테이션으로 주입받아 사용하는 방식의 장점은 무엇인가?**
+파일 저장 경로는 개발 환경과 운영 환경이 다를 수 있는데, 소스 코드(java)에 경로를 하드코드하면 환경이 바뀔 때마다 코드를	
+수정하고 다시 컴파일해야 하는데, 설정 파일로 분리하면 소스 수정 없이 설정값만 변경하여 바로 적용할 수 있다.
+	
+
+**5. `@Component` 어노테이션과 `@Bean` 어노테이션의 차이점을 '설정 위치'와 '사용 목적'의 관점에서 간단히 서술하시오.**
+@Component는 클래스 단위에 붙이면 @Bean은 @Configuration 클래스 내부에 메서드 단위에 붙입니다.
+
+
+
+
+
+
+
+
+
+
