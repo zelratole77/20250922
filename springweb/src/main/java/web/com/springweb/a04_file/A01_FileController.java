@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,4 +29,13 @@ public class A01_FileController {
 		
 		return "a07_file\\a01_fileUpload";
 	}
+	// http://localhost:5050/fileList
+	@RequestMapping("fileList")
+	public String fileList(@RequestParam(value = "fname", defaultValue = "") String fname, Model d) {
+		// fname flist
+		d.addAttribute("flist", service.getFileList(fname));
+		
+		return "a07_file\\a02_fileDownload";
+	}	
+	
 }

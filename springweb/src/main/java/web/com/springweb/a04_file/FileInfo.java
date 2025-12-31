@@ -3,6 +3,7 @@ package web.com.springweb.a04_file;
 import java.util.Date;
 
 public class FileInfo {
+	// fno fname regdte uptdte etc
 	private int fno;
 	private String fname;
 	private String fpath;

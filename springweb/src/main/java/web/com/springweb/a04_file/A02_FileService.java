@@ -47,9 +47,7 @@ public class A02_FileService {
 	}
 	
 	public List<FileInfo> getFileList(String fname){
-		if(fname==null) {
-			fname="";
-		}
+
 		fname = "%"+fname+"%";
 		return dao.getFileList(fname);
 	}
