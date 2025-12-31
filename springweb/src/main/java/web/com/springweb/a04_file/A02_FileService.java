@@ -2,7 +2,9 @@ package web.com.springweb.a04_file;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,14 @@ public class A02_FileService {
 			System.out.println(e.getMessage());
 		}
 		return msg;
+	}
+	
+	public List<FileInfo> getFileList(String fname){
+		if(fname==null) {
+			fname="";
+		}
+		fname = "%"+fname+"%";
+		return dao.getFileList(fname);
 	}
 
 }
