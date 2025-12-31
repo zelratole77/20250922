@@ -23,25 +23,34 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		$("#btn01").click(function(){
+			$.ajax({
+				url:"/callAjax01",  // 서버단 호출.
+				success:function(msg){ // 서버단에서 전달되어온 데이터 
+					alert(msg)
+				}
+			})
+		})
 	});
 </script>
 </head>
-
 <body>
 <div class="jumbotron text-center">
   <h2>ajax 연습 화면!!</h2>
-
 </div>
 <%-- 
-		
+ex) 두번째 ajax 호출을 클릭시, 서버에 callAjax02를 호출하고,
+	해당 url에 리턴되는 문자 - ajax 기초는 할만 한가요? 라고 출력되게 하세요..
+	- javascript 이벤트 처리
+	- controller에 ajax 호출 메서드 선언..
+			
 --%>
 <div class="container">
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	    <input placeholder="제목" name=""  class="form-control mr-sm-2" />
-	    <input placeholder="내용" name=""  class="form-control mr-sm-2"/>
-	    <button class="btn btn-info" type="submit">Search</button>
+	    <button id="btn01" class="btn btn-info" type="button">첫번째 ajax 호출</button>
+	    <button id="btn02" class="btn btn-info" type="button">두번째 ajax 호출</button>
 	    <button class="btn btn-success" 
 	    	data-toggle="modal" data-target="#exampleModalCenter"
 	        type="button">등록</button>
