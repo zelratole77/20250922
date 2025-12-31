@@ -1,4 +1,10 @@
+SELECT * FROM file_info WHERE fname LIKE '%%';
 /*
+@Select("SELECT * FROM file_info WHERE fname LIKE #{fname}")
+List<FileInfo> getFileList(@Param("fname") String fname);
+
+
+
 # 업로드된 파일 정보 저장하기..
 1. 테이블 구성..
 	파일등록seq, 파일명, 경로명, 등록일, 수정일, 기타정보
