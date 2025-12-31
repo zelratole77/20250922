@@ -29,7 +29,7 @@ public class A01_FileController {
 		
 		return "a07_file\\a01_fileUpload";
 	}
-	// http://localhost:5050/fileList
+	// http://192.168.0.39:5050/fileList
 	@RequestMapping("fileList")
 	public String fileList(@RequestParam(value = "fname", defaultValue = "") String fname, Model d) {
 		// fname flist

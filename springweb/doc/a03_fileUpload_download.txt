@@ -73,8 +73,23 @@
 		- controller
 		- jsp 화면구현 (테이블 형식 화면 구성 javascript 이벤트 처리)
 	2) 파일다운로드 controller 클래스 선언..
-
 	
+# 다운로드 controller 처리
+1. 다운로드 controller는 특정한 파일이나 정보를 요청값으로 받아서, 파일명과 서버의 경로명으로 파일 객체를 만들어,
+해당 파일을 Steam 방식으로 요청하는 client에 전달하는 객체이다.
+2. 처리 순서
+	1) 경로명 지정 - 공통 properties에 설정된 내용
+	2) 메서드 요청값 처리 - get방식으로 전달되어온 파일정보를 요청값으로 받아서, 위 경로명과 파일 객체를 만들어
+	3) 클라이언트 전송을 위한 작업
+		- 한글 파일의 경우, 네트워크를 통해 전달시 encoding이 필요로 한다. 
+		- 전송시, 8진수 stream객체로 변경하기 위해서, contentType을 application/octet-steam으로 설정
+		- ResponseEntity객체를 통해 요청이 정상 전달될 때 기준으로
+			contentType
+			header - 파일 정보
+			body - 실제 전달할 파일 객체로
+			각, 메서드별로 처리하여 return 하면 client(브라우저)를 통해 전달된다.
+			
+		
 
 
 
