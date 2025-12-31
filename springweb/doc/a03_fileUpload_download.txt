@@ -88,6 +88,20 @@
 			header - 파일 정보
 			body - 실제 전달할 파일 객체로
 			각, 메서드별로 처리하여 return 하면 client(브라우저)를 통해 전달된다.
+ex) 연습예제
+A11_FileController.java
+	fileList2
+		첨부파일된
+A12_FileService.java		
+A13_FileDao.java
+		조회리스트
+		
+#a03_fileList.jsp - 출력리스트, 검색 form, js 로 더블클릭시, 다운로드 controller 호출..
+		
+	 
+B02_DownloadController.java
+	download2
+		 
 			
 		
 
