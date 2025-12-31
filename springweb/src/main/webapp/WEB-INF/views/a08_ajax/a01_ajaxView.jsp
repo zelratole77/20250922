@@ -31,6 +31,14 @@
 				}
 			})
 		})
+		$("#btn02").click(function(){
+			$.ajax({
+				url:"/callAjax02",
+				success:function(msg){
+					alert(msg)
+				}
+			})
+		})
 	});
 </script>
 </head>
