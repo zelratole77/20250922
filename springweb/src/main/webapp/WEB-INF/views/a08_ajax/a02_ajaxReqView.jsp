@@ -66,22 +66,35 @@
 				}
 			})			
 		})
-
+		//ex) btn04 를 클릭시, Student 객체 호출 출력.. callObjAjax02
+		$("#btn04").click(function(){
+			$.ajax({
+				url:"callObjAjax02",
+				dataType:"json",
+				success:function(stud){
+					alert(stud.name)
+					alert(stud.kor)
+					alert(stud.eng)
+					alert(stud.math)
+					$("h3").text(`이름:\${stud.name},
+							      국어:\${stud.kor},
+							      영어:\${stud.eng},
+							      수학:\${stud.math}`)	
+					
+				}
+			})
+		})
 	});
 </script>
 </head>
-
 <body>
 <div class="jumbotron text-center">
   <h2>요청값 처리 ajax</h2>
   <h3></h3>
-
 </div>
-<%-- 
-		
---%>
 <div class="container">
 	<button class="btn btn-info" id="btn03" type="button">obj 호출</button>
+	<button class="btn btn-info" id="btn04" type="button">Student객체 호출</button>
 
 
 	<form id="frm01" class="form"  method="post">
