@@ -1,0 +1,100 @@
+제시해주신 AJAX 및 파일 다운로드 관련 개념과 실습 문제들에 대한 해설입니다. 수업 진행 시 참고하실 수 있도록 핵심 원리와 코드 위주로 정리해 드립니다.
+
+---
+
+## 1. [개념 정리] 주관식 문제 정답 및 해설
+
+**Q1. @Value**
+
+* **설명:** 스프링의 `org.springframework.beans.factory.annotation.Value`를 사용하여 설정 파일(`application.properties` 또는 `yml`)의 값을 주입받습니다.
+* **사용 예:** `@Value("${user.upload}") private String uploadPath;`
+
+**Q2. UrlResource**
+
+* **설명:** `Path` 객체로부터 URI를 추출한 뒤, `new UrlResource(path.toUri())`를 통해 생성합니다. 스프링에서 파일 리소스를 `ResponseEntity`에 담아 보낼 때 주로 사용됩니다.
+
+**Q3. attachment; filename="파일명"**
+
+* **설명:** 브라우저에게 "이 응답 데이터는 보여주지 말고 첨부파일(attachment)로 다운로드하라"고 지시하는 표준 규약입니다.
+
+**Q4. UTF-8**
+
+* **설명:** 웹 표준에서 가장 널리 쓰이는 유니코드 인코딩 방식입니다. 파일명에 포함된 한글이나 공백을 `%EB%AC%B8...` 형태의 퍼센트 인코딩으로 변환하여 데이터 손실을 방지합니다.
+
+**Q5. success**
+
+* **설명:** `$.ajax({ ... success: function(data) { ... } })` 형태로 사용하며, 서버 응답이 HTTP 200번대인 경우 실행됩니다.
+
+**Q6. probeContentType**
+
+* **설명:** `Files.probeContentType(path)`는 운영체제의 설정을 확인하여 파일의 MIME 타입을 문자열로 반환합니다.
+
+**Q7. @ResponseBody**
+
+* **설명:** 이 어노테이션이 붙으면 리턴값이 뷰 리졸버로 전달되지 않고, HTTP 응답 본문(Body)에 직접 쓰여집니다. 최근 REST 컨트롤러에서는 `@RestController`를 사용해 이를 일괄 적용하기도 합니다.
+
+---
+
+## 2. [실습 응용] 해설 코드
+
+### 실습 1: [Controller 매핑]
+
+```java
+@GetMapping("/reportDownload")
+public ResponseEntity<Resource> reportDownload(@RequestParam String reportName) {
+    // 내부 로직 구현
+}
+
+```
+
+### 실습 2: [AJAX 실습]
+
+```javascript
+$.ajax({
+    url: '/checkServerTime',
+    method: 'GET',
+    success: function(response) {
+        console.log("서버 현재 시간: ", response);
+    },
+    error: function(err) {
+        console.error("요청 실패", err);
+    }
+});
+
+```
+
+### 실습 3: [파일 존재 여부 확인]
+
+```java
+if (!resource.exists() || !resource.isReadable()) {
+    return ResponseEntity.notFound().build();
+}
+
+```
+
+### 실습 4: [JSP 다운로드 이벤트]
+
+```javascript
+function goDownload(fname) {
+    // 한글 파일명을 고려하여 encodeURIComponent 활용 권장
+    location.href = "/reportDownload?reportName=" + encodeURIComponent(fname);
+}
+
+// JSP 태그 예시
+// <tr ondblclick="goDownload('final_report.pdf')"> ... </tr>
+
+```
+
+### 실습 5: [MIME 타입 예외 처리]
+
+```java
+// 삼항 연산자 방식
+String contentType = (probedType != null) ? probedType : "application/octet-stream";
+
+// if문 방식
+if (contentType == null) {
+    contentType = "application/octet-stream";
+}
+
+```
+
