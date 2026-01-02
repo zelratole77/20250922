@@ -1,9 +1,12 @@
 package web.com.springweb.a05_ajax;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import web.com.springweb.z01_dto.Person;
 
 @Controller
 public class A02_AjaxController {
@@ -27,5 +30,17 @@ public class A02_AjaxController {
 		String msg="구매 가격은 "+price+"원 이고, 구매 갯수는 "+cnt+"개, 총계는 "+(price*cnt)+"원 입니다.";
 		return msg;
 	}	
+	// class형 객체를 json형태로 처리하기
+	// http://localhost:5050/callObjAjax01
+	@GetMapping("callObjAjax01")
+	public ResponseEntity<?> callObjAjax01(){
+		return ResponseEntity.ok(new Person("홍길동",25,"수원"));
+	}
+	
+	
+	
+	
+	
+	
 	
 }

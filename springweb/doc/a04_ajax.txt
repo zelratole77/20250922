@@ -62,10 +62,24 @@
 	a08_ajax\a02_ajaxReqView.jsp (요청값 연습하는 view단 처리)
 		이름 : [    ] [ajax처리] 라고 하면, 서버단에 메시지를 보내고 안녕하세요라고
 			서버에서 결과값 받은 ajax 처리..
-			
-
-
 3. 요청값 전달, 결과를 json데이터 받아서 처리
+	class Person{
+		String name;  ==> new Person("홍길동", 25) ==> {"name":"홍길동","age":25}  객체를 json 형태로 처리..
+		int age;
+	}
+	서버단
+	ResponseEntity<Person>.ok(new Person("홍길동", 25));
+	client (ajax)
+	$.ajax({
+		dataType:"json",
+		success:function( person ){
+			person.name ==> 서버에서 받은 객체를 json형태로 처리가 가능하다.
+			person.age
+		}
+	}) 
+
+
+
 4. 요청값 전달, DB 처리, 결과를 json데이터 받아서 처리.
 5. ajax를 이용한 CRUD 화면 처리 예제.
 
