@@ -23,7 +23,35 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		$("#btn01").click(function(){
+			$.ajax({
+				url:"/callReqAjax01",
+				data:"name="+$("[name=name]").val(),
+				success:function(msg){
+					alert(msg)
+					$("h3").text(msg)
+				},
+				error:function(err){
+					console.log(err)	
+				}
+			})
+		})
+		// /callReqAjax02?price=3000&cnt=5
+		$("#btn02").click(function(){
+			let priceVal = $("[name=price]").val()
+			let cntVal = $("[name=cnt]").val()
+			$.ajax({
+				url:"/callReqAjax02",
+				data:{price:priceVal, cnt:cntVal},
+				success:function(msg){
+					alert(msg)
+					$("h3").text(msg)
+				},
+				error:function(err){
+					console.log(err)
+				}
+			})
+		})
 	});
 </script>
 </head>
@@ -31,6 +59,7 @@
 <body>
 <div class="jumbotron text-center">
   <h2>요청값 처리 ajax</h2>
+  <h3></h3>
 
 </div>
 <%-- 
@@ -39,13 +68,23 @@
 <div class="container">
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="제목" name=""  class="form-control mr-sm-2" />
-	    <input placeholder="내용" name=""  class="form-control mr-sm-2"/>
-	    <button class="btn btn-info" type="submit">Search</button>
-	    <button class="btn btn-success" 
-	    	data-toggle="modal" data-target="#exampleModalCenter"
-	        type="button">등록</button>
+	    <input placeholder="이름입력" name="name"  class="form-control mr-sm-2" />
+	    <button class="btn btn-info" id="btn01" type="button">ajax처리1(요청)</button>
  	</nav>
+ 	<%-- ex) 가격과 구매갯수 입력 버튼 클릭시, 
+ 			/callReqAjax02에 가격과 구매갯수을 전달하고,
+ 			결과로 총비용 @@@를  alert()띄우고, h3에 출력 처리..
+ 			1) controller 메서드 선언 (v)
+ 			2) view단 ajax 처리..
+ 			
+ 			
+ 	--%>
+   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	    <input placeholder="가격입력" name="price"  class="form-control mr-sm-2" />
+	    <input placeholder="갯수입력" name="cnt"  class="form-control mr-sm-2" />
+	    <button class="btn btn-info" id="btn02" type="button">총계 계산</button>
+ 	</nav>	
+ 	
 	</form>
    <table class="table table-hover table-striped">
    	<col width="10%">

@@ -20,5 +20,12 @@ public class A02_AjaxController {
 		String msg=name+" 안녕하세요!!";
 		return msg;
 	}
+	// http://localhost:5050/callReqAjax02?price=3000&cnt=5
+	@GetMapping("callReqAjax02")
+	@ResponseBody
+	public String callReqAjax02(@RequestParam("price") int price, @RequestParam("cnt") int cnt ) {
+		String msg="구매 가격은 "+price+"원 이고, 구매 갯수는 "+cnt+"개, 총계는 "+(price*cnt)+"원 입니다.";
+		return msg;
+	}	
 	
 }
