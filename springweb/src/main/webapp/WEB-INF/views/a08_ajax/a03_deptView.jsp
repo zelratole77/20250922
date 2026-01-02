@@ -24,6 +24,23 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		// deptAjax?deptno=10
+		$("[name=deptno]").change(function(){
+			let deptnoVal = $(this).val()
+			$.ajax({
+				url:"/deptAjax",
+				data:{deptno:deptnoVal},
+				dataType:"json",
+				success:function(dept){
+					let deptView = `<tr><td>\${dept.deptno}</td>
+										<td>\${dept.dname}</td>
+										<td>\${dept.loc}</td></tr>`
+					$("#deptInfo").html(deptView)					
+				},
+				error:function(err){
+					console.log(err)
+				}
+			})
+		})
 	});
 </script>
 </head>
