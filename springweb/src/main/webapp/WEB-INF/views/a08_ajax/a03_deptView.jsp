@@ -23,7 +23,7 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		// deptAjax?deptno=10
 	});
 </script>
 </head>
@@ -39,34 +39,27 @@
 <div class="container">
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="제목" name=""  class="form-control mr-sm-2" />
-	    <input placeholder="내용" name=""  class="form-control mr-sm-2"/>
-	    <button class="btn btn-info" type="submit">Search</button>
-	    <button class="btn btn-success" 
-	    	data-toggle="modal" data-target="#exampleModalCenter"
-	        type="button">등록</button>
+	    <select name="deptno"  class="form-control mr-sm-2" >
+	    	<option value="0">부서번호 선택</option>
+	    	<option >10</option>
+	    	<option >20</option>
+	    	<option >30</option>
+	    	<option >40</option>
+	    </select>
  	</nav>
 	</form>
    <table class="table table-hover table-striped">
-   	<col width="10%">
-   	<col width="50%">
-   	<col width="15%">
-   	<col width="15%">
-   	<col width="10%">
+   	<col width="33%">
+   	<col width="34%">
+   	<col width="33%">
     <thead>
-    
       <tr class="table-success text-center">
         <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회</th>
+        <th>부서명</th>
+        <th>부서위치</th>
       </tr>
     </thead>	
-    <tbody>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tbody id="deptInfo">
     </tbody>
 	</table>    
     
