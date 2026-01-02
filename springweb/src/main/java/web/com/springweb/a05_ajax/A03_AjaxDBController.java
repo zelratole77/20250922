@@ -11,11 +11,15 @@ public class A03_AjaxDBController {
 	
 	@Autowired(required=false)
 	private A04_AjaxDBService service;
-	
+
+	// http://localhost:5050/deptAjaxCallView
+	@GetMapping("deptAjaxCallView")
+	public String deptAjaxCallView() {
+		return "a08_ajax\\a03_deptView";
+	}
 	// http://localhost:5050/deptAjax?deptno=10
 	@GetMapping("deptAjax")
 	public ResponseEntity<?> deptAjax(@RequestParam("deptno") int deptno){
-		
 		return ResponseEntity.ok(service.getDept(deptno));
 	}
 
