@@ -52,6 +52,21 @@
 				}
 			})
 		})
+		// callObjAjax01
+		$("#btn03").click(function(){
+			$.ajax({
+				url:"/callObjAjax01",
+				dataType:"json",   // DTO 객체 ==> 문자열 ==> json 
+				success:function(person){
+					alert(person.name)
+					alert(person.age)
+					alert(person.loc)
+					$("h3").text(`이름:\${person.name}, 나이:\${person.age}, 사는곳:\${person.loc}`)
+					// jsp에서 백틱변수와 jsp의 el을 구분하기 위하여 \를 사용하여야 한다.
+				}
+			})			
+		})
+
 	});
 </script>
 </head>
@@ -66,6 +81,9 @@
 		
 --%>
 <div class="container">
+	<button class="btn btn-info" id="btn03" type="button">obj 호출</button>
+
+
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	    <input placeholder="이름입력" name="name"  class="form-control mr-sm-2" />

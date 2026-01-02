@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import web.com.springweb.z01_dto.Person;
+import web.com.springweb.z01_dto.Student;
 
 @Controller
 public class A02_AjaxController {
@@ -35,6 +36,12 @@ public class A02_AjaxController {
 	@GetMapping("callObjAjax01")
 	public ResponseEntity<?> callObjAjax01(){
 		return ResponseEntity.ok(new Person("홍길동",25,"수원"));
+	}
+	// http://localhost:5050/callObjAjax02
+	// Student 설정  {"name":"홍길동", "kor":70,"eng":80,"math":50}
+	@GetMapping("callObjAjax02")
+	public ResponseEntity<?> callObjAjax02(){
+		return ResponseEntity.ok(new Student("홍길동",70,80,50));
 	}
 	
 	
