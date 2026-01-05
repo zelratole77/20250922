@@ -22,5 +22,11 @@ public class A03_AjaxDBController {
 	public ResponseEntity<?> deptAjax(@RequestParam("deptno") int deptno){
 		return ResponseEntity.ok(service.getDept(deptno));
 	}
-
+	// http://localhost:5050/registerMemberView
+	@GetMapping("registerMemberView")
+	public String registerMemberView() {
+		return "a08_ajax\\a04_registerMember";
+	}
+	
+	
 }
