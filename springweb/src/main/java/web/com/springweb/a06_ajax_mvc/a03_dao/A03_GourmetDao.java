@@ -1,9 +1,11 @@
-package web.com.springweb.a06_ajax_mvc;
+package web.com.springweb.a06_ajax_mvc.a03_dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import web.com.springweb.a06_ajax_mvc.dto.GourmetStore;
 
 @Mapper
 public interface A03_GourmetDao {

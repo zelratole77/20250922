@@ -1,4 +1,4 @@
-package web.com.springweb.a06_ajax_mvc;
+package web.com.springweb.a06_ajax_mvc.dto;
 
 import java.util.Date;
 

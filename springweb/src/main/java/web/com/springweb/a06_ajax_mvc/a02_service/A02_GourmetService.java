@@ -1,9 +1,12 @@
-package web.com.springweb.a06_ajax_mvc;
+package web.com.springweb.a06_ajax_mvc.a02_service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import web.com.springweb.a06_ajax_mvc.a03_dao.A03_GourmetDao;
+import web.com.springweb.a06_ajax_mvc.dto.GourmetStore;
 
 @Service
 public class A02_GourmetService {
