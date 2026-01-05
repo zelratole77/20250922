@@ -83,6 +83,49 @@
 4. 요청값 전달, DB 처리, 결과를 json데이터 받아서 처리.
 5. ajax를 이용한 CRUD 화면 처리 예제.
 
+
+# [실무 예제] 회원가입시, 회원 아이디 중복여부 처리..
+1. 기본 프로세스
+	회원 아이디를 입력할 때, 해당 회원아이디가 중복여부가 있는지 여부를 확인하고, 처리하는 것을 말한다.
+	결국, 등록할 회원 아이디가 중복이 되지 않을 때, 해당 아이디로 회원등록이 가능하여야 하기에, ajax로 입력한 아이디를
+	비동기적으로 중복여부를 확인 한다.
+	화면에 아이디값을 입력 후, 중복여부 버튼을 클릭시, 요청값으로 controller단에 id가 넘겨가고 service dao를 
+	통해서 sql(select count(*) from member where id=#{id}로 확인 하여 service단에서
+	public String isValidId(String id){
+		return dao.IsValidId(id)>0?"중복된 아이디가 있습니다":"중복된 아이디가 없습니다"
+	}
+	로, 처리되어 controller단에 msg로 중복여부를 전달하고, 그 내용를 화면단에서 처리한다..
+2. 개발 처리
+	1) 개발할 파일 정리
+		A03_AjaxDBController.java
+			/isValidId=id
+			isValidId()
+		A04_AjaxDBService.java
+			isValidId(String id)
+		A05_AjaxDBDao.java
+			int isValidId(@Param("id"))
+			
+		/a08_ajax/a04_registerMember.jsp
+	
+	2) 단계별 처리 내용 핵심..
+		sql 작성  : SELECT COUNT(*) FROM MEMBER WHERE ID=#{id}
+		dao
+		service
+		controller
+		jsp
+			등록할 아이디:[     ] [중복확인]
+			
+	
+
+
+
+
+
+
+
+
+	
+
 	
 	
 	
