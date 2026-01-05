@@ -142,6 +142,35 @@ controller
 	 
 view(jsp)	
 		
+# 점심 메뉴 리스트 처리
+A02_LunchMenuController.java
+A02_LunchMenuService.java
+A02_LunchMenuDao.java
+LunchMenu.java
+a08_ajax\a07_lunchMng.jsp
+SELECT * FROM LUNCH_MENU;
+
+SELECT menu_id, category, menu_name FROM LUNCH_MENU WHERE menu_name LIKE '%%' AND category LIKE '%%';
+
+1. sql
+
+2. dto
+3. dao
+---------
+4. service
+5. controller
+	/lunchView
+	/lunchMenuList
+	
+6. jsp
+
+
+
+
+
+
+
+
 
 
 

@@ -72,9 +72,15 @@ view(jsp)
 
  * */
 
+SELECT * FROM LUNCH_MENU;
 
+SELECT menu_id, category, menu_name FROM LUNCH_MENU
+WHERE menu_name LIKE '%%' AND category LIKE '%%';
+/*
+SELECT menu_id, category, menu_name FROM LUNCH_MENU
+WHERE menu_name LIKE #{menuName} AND category LIKE #{category}
+@Select("")
+LunchMenu lunchMenuList(LunchMenu sch);
 
-
-
-
-
+ * 
+ * */
