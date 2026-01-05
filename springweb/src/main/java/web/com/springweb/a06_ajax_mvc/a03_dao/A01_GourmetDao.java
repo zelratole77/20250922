@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import web.com.springweb.a06_ajax_mvc.dto.GourmetStore;
 
 @Mapper
-public interface A03_GourmetDao {
+public interface A01_GourmetDao {
 	@Select("	SELECT id, name, category,  keyword, rating \r\n"
 			+ "	FROM GOURMET_STORE WHERE name LIKE #{name} and keyword LIKE #{keyword}")
 	List<GourmetStore> getGourmetList(GourmetStore sch);

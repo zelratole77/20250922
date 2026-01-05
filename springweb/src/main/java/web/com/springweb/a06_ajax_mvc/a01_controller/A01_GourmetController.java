@@ -6,13 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import web.com.springweb.a06_ajax_mvc.a02_service.A02_GourmetService;
+import web.com.springweb.a06_ajax_mvc.a02_service.A01_GourmetService;
 import web.com.springweb.a06_ajax_mvc.dto.GourmetStore;
 
 @Controller
 public class A01_GourmetController {
 	@Autowired(required=false)
-	private A02_GourmetService service;
+	private A01_GourmetService service;
 	
 	//	http://localhost:5050/gourmetMngView (초기view단 호출)
 	@GetMapping("gourmetMngView")
