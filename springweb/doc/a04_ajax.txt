@@ -117,7 +117,31 @@
 			
 	
 
-
+# ajax를 활용한 맛집 관리 프로그래밍
+1. 화면 단위 기능
+	1) 키워드로 전체 리스트 검색
+	2) 등록 처리 화면(모달)
+	3) 상세 화면(모달)
+		- 수정
+		- 삭제
+2. 처리할 파일
+	a06_ajax_mvc  패키지
+	A01_GourmetController.java
+	A02_GourmetService.java
+	A03_GourmetDao.java
+	GourmetStore.java
+	a08_ajax/a06_gourmetMng.jsp
+	
+sql
+dto(GourmetStore.java)
+dao
+service
+controller
+	/gourmetMngView (초기view단 호출)
+	/gourmetList  (ajax)
+	 
+view(jsp)	
+		
 
 
 
