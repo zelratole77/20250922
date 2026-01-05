@@ -23,8 +23,36 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+	// id, name, category,  keyword, rating 
+		ajaxList()
+		$("[name=name], [name=keyword]").keyup(function(){
+			if(event.keyCode==13)
+				ajaxList()
+		})
+		$("#schBtn").click(function(){
+			ajaxList()
+		})
 	});
+	function ajaxList(){
+		//showList		
+		let nameVal = $("[name=name]").val()
+		let keywordVal = $("[name=keyword]").val()
+		$.ajax({
+			url:"/gourmetList",
+			data:{name:nameVal, keyword:keywordVal},
+			dataType:"json",
+			success:function(gList){
+				let showList = ""
+				$(gList).each(function( idx, gm ){
+					showList+=`<tr><td>\${gm.id}</td><td>\${gm.name}</td>
+							  <td>\${gm.category}</td><td>\${gm.keyword}</td>
+						      <td>\${gm.rating}</td></tr>`	
+				})
+				$("#showList").html(showList)
+			}
+		})
+		
+	}
 </script>
 </head>
 
@@ -37,36 +65,30 @@
 		
 --%>
 <div class="container">
-	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="제목" name=""  class="form-control mr-sm-2" />
-	    <input placeholder="내용" name=""  class="form-control mr-sm-2"/>
-	    <button class="btn btn-info" type="submit">Search</button>
+	    <input placeholder="이름" name="name"  class="form-control mr-sm-2" />
+	    <input placeholder="키워드" name="keyword"  class="form-control mr-sm-2"/>
+	    <button class="btn btn-info" id="schBtn" type="button">Search</button>
 	    <button class="btn btn-success" 
 	    	data-toggle="modal" data-target="#exampleModalCenter"
 	        type="button">등록</button>
  	</nav>
-	</form>
    <table class="table table-hover table-striped">
-   	<col width="10%">
-   	<col width="50%">
-   	<col width="15%">
-   	<col width="15%">
-   	<col width="10%">
+   	<col width="20%">
+   	<col width="20%">
+   	<col width="20%">
+   	<col width="20%">
+   	<col width="20%">
     <thead>
-    
       <tr class="table-success text-center">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회</th>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>분류</th>
+        <th>키워드</th>
+        <th>좋아요</th>
       </tr>
     </thead>	
-    <tbody>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tbody id="showList">
     </tbody>
 	</table>    
     
