@@ -13,4 +13,9 @@ public class A04_AjaxDBService {
 	public Dept getDept(int deptno) {
 		return dao.getDept(deptno);
 	}
+	// dao에 해당 데이터가 0초과가일 때는 문자열로 등록한 아이디가 있습니다. 그외
+	// 등록가능한 아이디 입니다. 출력되게 메서드 선언..
+	public String isValidId(String id) {
+		return dao.isValidId(id)>0?"등록된 아이디가 있습니다":"등록 가능한 아이디입니다.";
+	}
 }

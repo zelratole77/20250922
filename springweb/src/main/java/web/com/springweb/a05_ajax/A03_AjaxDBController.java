@@ -27,6 +27,16 @@ public class A03_AjaxDBController {
 	public String registerMemberView() {
 		return "a08_ajax\\a04_registerMember";
 	}
+	/*
+			/isValidId?id=himan
+			isValidId()
+	*/
+	// http://localhost:5050/isValidId?id=himan
+	@GetMapping("isValidId")
+	public ResponseEntity<?>  isValidId(@RequestParam("id") String id ){
+		
+		return ResponseEntity.ok(service.isValidId(id));
+	}
 	
 	
 }

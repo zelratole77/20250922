@@ -1,3 +1,25 @@
+SELECT COUNT(*) FROM MEMBER WHERE id='himan';
+
+SELECT * FROM MEMBER;
+INSERT INTO MEMBER VALUES('himan','7777','홍길동',1000,'admin');
+/*
+ex) dao단 처리 isValidId 
+@Select("SELECT COUNT(*) FROM MEMBER WHERE id=#{id}")
+int isValidId(@Param("id") String id);
+
+
+
+ * 
+ * */
+
+CREATE TABLE member(
+	id varchar2(50),
+	pwd varchar2(50),
+	name varchar2(50),
+	point NUMBER,
+	auth varchar2(20)
+);
+
 SELECT * FROM file_info WHERE fname LIKE '%%';
 /*
 @Select("SELECT * FROM file_info WHERE fname LIKE #{fname}")

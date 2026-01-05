@@ -12,4 +12,7 @@ public interface A05_AjaxDBDao {
 	@Select("SELECT * FROM DEPT WHERE DEPTNO = #{deptno}")
 	Dept getDept(@Param("deptno") int deptno);
 	
+	@Select("SELECT COUNT(*) FROM MEMBER WHERE id=#{id}")
+	int isValidId(@Param("id") String id);
+	
 }
