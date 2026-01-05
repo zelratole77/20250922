@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class A03_AjaxDBController {
@@ -33,9 +34,11 @@ public class A03_AjaxDBController {
 	*/
 	// http://localhost:5050/isValidId?id=himan
 	@GetMapping("isValidId")
-	public ResponseEntity<?>  isValidId(@RequestParam("id") String id ){
+	@ResponseBody
+	public String isValidId(@RequestParam("id") String id ){
+		System.out.println("id:"+id);
 		
-		return ResponseEntity.ok(service.isValidId(id));
+		return service.isValidId(id);
 	}
 	
 	
