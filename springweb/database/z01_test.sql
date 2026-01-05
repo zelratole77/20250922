@@ -2,6 +2,40 @@ SELECT COUNT(*) FROM MEMBER WHERE id='himan';
 
 SELECT * FROM MEMBER;
 INSERT INTO MEMBER VALUES('himan','7777','홍길동',1000,'admin');
+
+-- ex)
+SELECT * FROM kpop_idols ;
+
+SELECT * FROM kpop_idols WHERE group_id=101;
+/*
+1. sql
+2. dto  IdoleGroup.java
+	private int groupId;
+	private String groupName;
+	private String agency;
+	private String debutSong;
+	private String members;
+	
+3. dao
+	@Select("SELECT * FROM kpop_idols WHERE group_id=#{groupId}")
+	IdoleGroup idolInfo(@Param("groupId") int groupId);
+	
+--------------------	
+4. service
+5. controller
+	/idolView
+	/idolInfo
+	 	idolInfo()
+	
+6. jsp( a05_idoleInfo.jsp )
+
+ * 
+ * */
+
+
+
+
+
 /*
 ex) dao단 처리 isValidId 
 @Select("SELECT COUNT(*) FROM MEMBER WHERE id=#{id}")
