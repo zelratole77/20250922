@@ -1,6 +1,7 @@
 package web.com.springweb.z01_dto;
 // web.com.springweb.z01_dto.IdoleGroup
 public class IdoleGroup {
+	// groupId groupName agency debutSong members
 	private int groupId;
 	private String groupName;
 	private String agency;

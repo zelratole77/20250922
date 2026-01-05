@@ -40,6 +40,17 @@ public class A03_AjaxDBController {
 		
 		return service.isValidId(id);
 	}
+//	http://localhost:5050/idoleView  초기 화면 ( a05_idoleInfo.jsp )
+	@GetMapping("idoleView")
+	public String idoleView() {
+		return "a08_ajax\\a05_idoleInfo";
+	}
+//	http://localhost:5050/idoleInfo?groupId=101
+//	 	idolInfo()
+	@GetMapping("idoleInfo")
+	public ResponseEntity<?> idolInfo(@RequestParam("groupId") int groupId){
+		return ResponseEntity.ok(service.idolInfo(groupId));
+	}	
 	
-	
+
 }
