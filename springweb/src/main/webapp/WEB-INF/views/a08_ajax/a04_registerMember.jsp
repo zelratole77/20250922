@@ -25,7 +25,7 @@
 	$(document).ready(function(){
 		$("#ckBtn").click(function(){
 			let idVal = $("[name=id]").val()
-			alert("중복확인할 아이디:"+idVal)
+			//alert("중복확인할 아이디:"+idVal)
 			
 			// /isValidId?id=himan
 			// ajax 처리..		
