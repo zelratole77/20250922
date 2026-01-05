@@ -42,6 +42,10 @@ public class A02_AjaxController {
 	@GetMapping("callObjAjax02")
 	public ResponseEntity<?> callObjAjax02(){
 		return ResponseEntity.ok(new Student("홍길동",70,80,50));
+		// ResponseEntity.ok(java객체) ==> json 문자열로 변환..
+		// [{},{},....]
+		// ResponseEntity<Student> : ok 매개변수에 특정한 객체 유형을 지정하거나, 
+		// ResponseEntity<?> :  또는 각 객체유형에 따라 적절하게 처리 하는 것(?)을 의미한다.
 	}
 	
 	
