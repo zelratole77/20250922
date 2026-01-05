@@ -24,6 +24,16 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		ajaxFun()
+		// category menuName
+		$("[name=category], [name=menuName]").keyup(function(){
+			if(event.keyCode==13){
+				ajaxFun()
+			}
+		})
+		$("#schBtn").click(function(){
+			ajaxFun()
+		})
+		
 	});
 	function ajaxFun(){
 		let categoryVal=$("[name=category]").val()
