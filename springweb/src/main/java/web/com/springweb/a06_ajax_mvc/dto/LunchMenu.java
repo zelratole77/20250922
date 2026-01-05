@@ -1,6 +1,7 @@
 package web.com.springweb.a06_ajax_mvc.dto;
 
 public class LunchMenu {
+	// menuId category menuName priceTag
 	private int menuId;
 	private String category;
 	private String menuName;

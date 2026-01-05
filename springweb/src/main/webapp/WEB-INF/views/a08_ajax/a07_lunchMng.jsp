@@ -23,8 +23,30 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		ajaxFun()
 	});
+	function ajaxFun(){
+		let categoryVal=$("[name=category]").val()
+		let menuNameVal=$("[name=menuName]").val()
+		$.ajax({
+			url:"lunchMenuList",
+			data:{category:categoryVal,menuName:menuNameVal},
+			dateType:"json",
+			success:function( menuList ){
+				let menuListView=''
+				// menuId category menuName priceTag
+				$(menuList).each(function(idx, menu){
+					menuListView+=`<tr><td>\${menu.menuId}</td><td>\${menu.category}</td>
+										<td>\${menu.menuName}</td><td>\${menu.priceTag}</td></tr>`
+				})
+				$("#menuListView").html(menuListView)
+			},
+			error:function(err){
+				console.log(err)
+			}
+			
+		})
+	}
 </script>
 </head>
 
@@ -34,39 +56,32 @@
 
 </div>
 <%-- 
-		
+	// menuId category menuName priceTag	
 --%>
 <div class="container">
-	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="제목" name=""  class="form-control mr-sm-2" />
-	    <input placeholder="내용" name=""  class="form-control mr-sm-2"/>
-	    <button class="btn btn-info" type="submit">Search</button>
+	    <input placeholder="분류" name="category"  class="form-control mr-sm-2" />
+	    <input placeholder="메뉴명" name="menuName"  class="form-control mr-sm-2"/>
+	    <button id="schBtn" class="btn btn-info" type="button">Search</button>
 	    <button class="btn btn-success" 
 	    	data-toggle="modal" data-target="#exampleModalCenter"
 	        type="button">등록</button>
  	</nav>
-	</form>
    <table class="table table-hover table-striped">
-   	<col width="10%">
-   	<col width="50%">
-   	<col width="15%">
-   	<col width="15%">
-   	<col width="10%">
+   	<col width="25%">
+   	<col width="25%">
+   	<col width="25%">
+   	<col width="25%">
     <thead>
     
       <tr class="table-success text-center">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회</th>
+        <th>아이디</th>
+        <th>분류</th>
+        <th>메뉴명</th>
+        <th>가격태그</th>
       </tr>
     </thead>	
-    <tbody>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tbody id="menuListView">
     </tbody>
 	</table>    
     
