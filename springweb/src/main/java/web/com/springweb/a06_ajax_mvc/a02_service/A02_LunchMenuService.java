@@ -33,6 +33,13 @@ public class A02_LunchMenuService {
 		return dao.getLunchMenu(menuId);
 	}
 	
+	public String updateLunchMenu(LunchMenu upt) {
+		return dao.updateLunchMenu(upt)>0?"수정성공":"수정되지 않았습니다!";
+	}
+	
+	public String deleteLunchMenu(int menuId) {
+		return dao.deleteLunchMenu(menuId)>0?"삭제성공":"삭제되지 않았습니다";
+	}
 
 
 	

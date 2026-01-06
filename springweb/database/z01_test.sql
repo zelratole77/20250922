@@ -26,6 +26,32 @@ int insertLunchMenu(LunchMenu ins);
 	// 아이디   분뉴       메뉴명     가격태그   평가태그
  * */
 
+SELECT * FROM LUNCH_MENU;
+UPDATE LUNCH_MENU
+   SET category = '일식',
+       menu_name = '라멘',
+       price_tag = '맛난 특별한',
+       comment_msg = '이국적인 맛'
+ WHERE MENU_ID = 4;
+
+DELETE FROM LUNCH_MENU WHERE MENU_ID = 4;
+/*
+UPDATE LUNCH_MENU
+   SET category = #{category},
+       menu_name = #{menuName},
+       price_tag = #{priceTag},
+       comment_msg = #{commentMsg}
+ WHERE MENU_ID = #{menuId}
+@Update("")
+int updateLunchMenu(LunchMenu upt);
+
+@Delete("DELETE FROM LUNCH_MENU WHERE MENU_ID = #{menuId}")
+int deleteLunchMenu(@Param("menuId") int menuId);
+ 
+  
+    
+*/
+
 -- 1번 손님: 한식
 INSERT INTO LUNCH_MENU (menu_id, category, menu_name, price_tag, comment_msg)
 VALUES (LUNCH_SEQ.NEXTVAL, '한식', '돼지국밥', '가성비', '전날 마신 술이 싹 씻겨 내려가는 국물!');

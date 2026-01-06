@@ -2,10 +2,12 @@ package web.com.springweb.a06_ajax_mvc.a03_dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import web.com.springweb.a06_ajax_mvc.dto.LunchMenu;
 
@@ -24,5 +26,17 @@ public interface A02_LunchMenuDao {
 	@Select("SELECT * FROM LUNCH_MENU WHERE MENU_ID=#{menuId}")
 	LunchMenu getLunchMenu(@Param("menuId") int menuId);
 
+	@Update("	UPDATE LUNCH_MENU\r\n"
+			+ "	   SET category = #{category},\r\n"
+			+ "	       menu_name = #{menuName},\r\n"
+			+ "	       price_tag = #{priceTag},\r\n"
+			+ "	       comment_msg = #{commentMsg}\r\n"
+			+ "	 WHERE MENU_ID = #{menuId}")
+	int updateLunchMenu(LunchMenu upt);
+
+	
+	@Delete("DELETE FROM LUNCH_MENU WHERE MENU_ID = #{menuId}")
+	int deleteLunchMenu(@Param("menuId") int menuId);	
+	
 	
 }
