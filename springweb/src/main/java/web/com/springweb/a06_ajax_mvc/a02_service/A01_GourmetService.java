@@ -19,4 +19,8 @@ public class A01_GourmetService {
 		sch.setKeyword("%"+sch.getKeyword()+"%");
 		return dao.getGourmetList(sch);
 	}
+	
+	public String insertGourmet(GourmetStore ins) {
+		return dao.insertGourmet(ins)>0 ?"등록성공":"등록되지 않았습니다";
+	}
 }

@@ -22,6 +22,21 @@ private String keyword;
 private int rating;
 private Date createdAt;
 
+
+# 등록 처리 dao..
+INSERT INTO GOURMET_STORE VALUES (GOURMET_SEQ.NEXTVAL, #{name}, #{category}, #{keyword}, 
+	#{description}, #{rating}, SYSDATE)
+
+@Select("")	
+int insertGourmet(GourmetStore ins);			
+	
+
+
+
+
+
+
+
  * */
 
 -- 4. 제약 조건 추가 (별점 1~5점 제한)

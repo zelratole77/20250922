@@ -33,7 +33,10 @@
 		$("#schBtn").click(function(){
 			ajaxFun()
 		})
-		
+		$("#regBtn").click(function(){
+			// frm02 
+			
+		})
 	});
 	function ajaxFun(){
 		let categoryVal=$("[name=category]").val()
@@ -105,21 +108,36 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <%-- 	// 등록  name  category  keyword  description  rating		
+			//     이름     분류       키워드     설명          좋아요(1~5) --%>
       <div class="modal-body">
 		<form id="frm02" class="form"  method="post">
 	     <div class="row">
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="사원명 입력" name="ename">
+	        <input type="text" class="form-control" placeholder="이름 입력" name="name">
 	      </div>
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="직책명 입력" name="job">
+	        <input type="text" class="form-control" placeholder="분류 입력" name="category">
 	      </div>
 	     </div>
+	     <div class="row">
+	      <div class="col">
+	        <input type="text" class="form-control" placeholder="키워드 입력" name="keyword">
+	      </div>
+	      <div class="col">
+	        <input type="number" class="form-control" placeholder="좋아요 입력" name="rating">
+	      </div>
+	     </div>
+	     <div class="row">
+	      <div class="col">
+	      	<textarea class="form-control"  placeholder="설명 입력" name="description"></textarea>
+	      </div>
+	     </div>	     	     
 	    </form> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button id="regBtn" type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
