@@ -12,9 +12,26 @@ CREATE SEQUENCE LUNCH_SEQ
 START WITH 1          -- 1부터 시작해라!
 INCREMENT BY 1        -- 1씩 증가해라!
 NOCACHE;              -- 번호 건너뛰기 방지 (연습용)
+/*
+등록 처리 dao..
+
+INSERT INTO LUNCH_MENU (menu_id, category, menu_name, price_tag, comment_msg)
+VALUES (LUNCH_SEQ.NEXTVAL, #{category}, #{menuName}, #{priceTag}, #{commentMsg})
+
+@Insert("")
+int insertLunchMenu(LunchMenu ins);
+
+
+	// menuId category menuName priceTag commentMsg
+	// 아이디   분뉴       메뉴명     가격태그   평가태그
+ * */
+
 -- 1번 손님: 한식
 INSERT INTO LUNCH_MENU (menu_id, category, menu_name, price_tag, comment_msg)
 VALUES (LUNCH_SEQ.NEXTVAL, '한식', '돼지국밥', '가성비', '전날 마신 술이 싹 씻겨 내려가는 국물!');
+
+
+
 
 -- 2번 손님: 중식
 INSERT INTO LUNCH_MENU (menu_id, category, menu_name, price_tag, comment_msg)

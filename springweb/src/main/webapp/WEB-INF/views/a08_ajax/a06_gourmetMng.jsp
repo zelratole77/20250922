@@ -32,16 +32,13 @@
 		$("#schBtn").click(function(){
 			ajaxList()
 		})
+		$("#regLoadBtn").click(function(){
+        	$("#frmTitle").text("맛집 등록");
+        	$("#regBtn").show();
+        	$("#uptBtn").hide();
+        	$("#delBtn").hide();
+		})
 		$("#regBtn").click(function(){
-			// 등록 타이틀 설정
-			// 등록 클릭시 기능버튼  활성..
-			// #frmTitle #regBtn #uptBtn #delBtn
-			$("#frmTitle").text("맛집 등록")
-			$("#regBtn").show()
-			$("#uptBtn").hide()
-			$("#delBtn").hide()
-			
-			
 			//alert( $("#frm02").serialize() ) // form하위에 있는 name value 기준으로 한글 encoding 요청값 처리
 			$.ajax({
 				url:"/insertGourmet",
@@ -85,17 +82,13 @@
 <body>
 <div class="jumbotron text-center">
   <h2>맛집 리스트</h2>
-
 </div>
-<%-- 
-		
---%>
 <div class="container">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	    <input placeholder="이름" name="name"  class="form-control mr-sm-2" />
 	    <input placeholder="키워드" name="keyword"  class="form-control mr-sm-2"/>
 	    <button class="btn btn-info" id="schBtn" type="button">Search</button>
-	    <button class="btn btn-success" 
+	    <button class="btn btn-success" id="regLoadBtn"
 	    	data-toggle="modal" data-target="#exampleModalCenter"
 	        type="button">등록</button>
  	</nav>

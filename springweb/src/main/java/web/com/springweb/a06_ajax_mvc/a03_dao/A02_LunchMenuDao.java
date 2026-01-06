@@ -2,6 +2,7 @@ package web.com.springweb.a06_ajax_mvc.a03_dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -14,4 +15,9 @@ public interface A02_LunchMenuDao {
 			+ "	WHERE menu_name LIKE #{menuName} AND category LIKE #{category}")
 	List<LunchMenu> lunchMenuList(LunchMenu sch);
 
+	@Insert("INSERT INTO LUNCH_MENU \r\n"
+			+ "	VALUES (LUNCH_SEQ.NEXTVAL, #{category}, #{menuName}, #{priceTag}, #{commentMsg})")
+	int insertLunchMenu(LunchMenu ins);
+	
+	
 }
