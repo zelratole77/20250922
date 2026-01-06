@@ -12,7 +12,7 @@ import web.com.springweb.a06_ajax_mvc.dto.LunchMenu;
 public interface A02_LunchMenuDao {
 
 	@Select("SELECT menu_id, category, menu_name, price_tag FROM LUNCH_MENU\r\n"
-			+ "	WHERE menu_name LIKE #{menuName} AND category LIKE #{category}"
+			+ "	WHERE menu_name LIKE #{menuName} AND category LIKE #{category}\r\n "
 			+ " ORDER BY MENU_ID DESC ")
 	List<LunchMenu> lunchMenuList(LunchMenu sch);
 

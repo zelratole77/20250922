@@ -132,11 +132,11 @@
         </button>
       </div>
       <%-- 	// menuId category menuName priceTag commentMsg
-			// 아이디   분류       메뉴명     가격태그   평가태그       좋아요(1~5) --%>
+			// 아이디   분류       메뉴명     가격태그   평가태그     --%>
       <div class="modal-body">
 		<form id="frm02" class="form"  method="post">
 	     <div class="row">
-	      <div class="col" id="menuId">
+	      <div class="col" id="menuId"><%-- 등록시는 보이지 않게 처리/상세화면에서는 처리.. --%>
 	        <input type="text" class="form-control"  name="menuId"  value="0">
 	      </div>
 	      <div class="col">
