@@ -20,9 +20,11 @@
 	td{text-align:center;}
 </style>
 <script src="${path}/com/jquery-3.7.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+
 	// id, name, category,  keyword, rating 
 		ajaxList()
 		$("[name=name], [name=keyword]").keyup(function(){
@@ -33,10 +35,12 @@
 			ajaxList()
 		})
 		$("#regLoadBtn").click(function(){
+			$("#gmId").hide()
         	$("#frmTitle").text("맛집 등록");
         	$("#regBtn").show();
         	$("#uptBtn").hide();
         	$("#delBtn").hide();
+        	$("#frm02")[0].reset(); 
 		})
 		$("#regBtn").click(function(){
 			//alert( $("#frm02").serialize() ) // form하위에 있는 name value 기준으로 한글 encoding 요청값 처리
@@ -46,10 +50,8 @@
 				data:$("#frm02").serialize(),
 				success:function(msg){
 					ajaxList() // 등록된 내용 리스트에 반영.
-					$("#frm02")[0].reset(); // 입력된값 처기화
+					$("#frm02")[0].reset(); // 입력된값 초기화
 					if( !confirm(msg+"\n계속 등록하시겠습니까?") )	{ // 취소를 눌렀을 때..
-						
-						
 						$(".close").click() // 창닫기..
 					}
 				}
@@ -57,8 +59,8 @@
 		})
 	});
 	function goDetail(idVal){
-		//alert("검색할 id:"+id)	
 		$("#regLoadBtn").click(); // 강제 이벤트 처리..
+		$("#gmId").show()
     	$("#frmTitle").text("맛집 상세");
     	$("#regBtn").hide();
     	$("#uptBtn").show();
@@ -72,6 +74,12 @@
 				// id name  category  keyword  description  rating		
 				console.log("# 전송된 객체 #")
 				console.log(gm)
+				$("#frm02 [name=id]").val(gm.id)
+				$("#frm02 [name=name]").val(gm.name)
+				$("#frm02 [name=category]").val(gm.category)
+				$("#frm02 [name=keyword]").val(gm.keyword)
+				$("#frm02 [name=description]").val(gm.description)
+				$("#frm02 [name=rating]").val(gm.rating)
 				
 			}
 		})  	
@@ -150,6 +158,12 @@
 	      <div class="col">
 	        <input type="text" class="form-control" placeholder="이름 입력" name="name">
 	      </div>
+	     </div>		
+		
+	     <div class="row">
+	      <div class="col" id="gmId">
+	        <input type="text" class="form-control" name="id" value="0" readonly>
+	      </div>
 	      <div class="col">
 	        <input type="text" class="form-control" placeholder="분류 입력" name="category">
 	      </div>
@@ -159,7 +173,12 @@
 	        <input type="text" class="form-control" placeholder="키워드 입력" name="keyword">
 	      </div>
 	      <div class="col">
-	        <input type="number" class="form-control" placeholder="좋아요 입력" name="rating">
+	        <input type="number" class="form-control" 
+	  			data-toggle="tooltip" 
+  				data-placement="top" 
+  				title="좋아요 숫자만 입력(1~5)"      
+	        
+	        placeholder="좋아요 입력" name="rating">
 	      </div>
 	     </div>
 	     <div class="row">

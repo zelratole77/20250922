@@ -89,9 +89,13 @@ controller
 view(jsp)
 
 
+@Select("SELECT * FROM LUNCH_MENU WHERE MENU_ID=#{menuId}")
+LunchMenu getLunchMenu(@Param("menuId") int menuId);
+
  * */
 
-SELECT * FROM LUNCH_MENU;
+SELECT * FROM LUNCH_MENU ;
+SELECT * FROM LUNCH_MENU WHERE MENU_ID=4;
 
 SELECT menu_id, category, menu_name FROM LUNCH_MENU
 WHERE menu_name LIKE '%%' AND category LIKE '%%';

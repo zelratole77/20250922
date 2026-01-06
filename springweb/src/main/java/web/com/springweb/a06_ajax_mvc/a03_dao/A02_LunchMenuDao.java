@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import web.com.springweb.a06_ajax_mvc.dto.LunchMenu;
@@ -19,6 +20,9 @@ public interface A02_LunchMenuDao {
 	@Insert("INSERT INTO LUNCH_MENU \r\n"
 			+ "	VALUES (LUNCH_SEQ.NEXTVAL, #{category}, #{menuName}, #{priceTag}, #{commentMsg})")
 	int insertLunchMenu(LunchMenu ins);
+	
+	@Select("SELECT * FROM LUNCH_MENU WHERE MENU_ID=#{menuId}")
+	LunchMenu getLunchMenu(@Param("menuId") int menuId);
 	
 	
 }
