@@ -56,6 +56,27 @@
 			})
 		})
 	});
+	function goDetail(idVal){
+		//alert("검색할 id:"+id)	
+		$("#regLoadBtn").click(); // 강제 이벤트 처리..
+    	$("#frmTitle").text("맛집 상세");
+    	$("#regBtn").hide();
+    	$("#uptBtn").show();
+    	$("#delBtn").show();	
+    	// getGourmet?id=1
+		$.ajax({
+			url:"/getGourmet",
+			data:{id:idVal},
+			dataType:"json",
+			success:function(gm){ 
+				// id name  category  keyword  description  rating		
+				console.log("# 전송된 객체 #")
+				console.log(gm)
+				
+			}
+		})  	
+    	
+	}
 	function ajaxList(){
 		//showList		
 		let nameVal = $("[name=name]").val()
@@ -67,7 +88,7 @@
 			success:function(gList){
 				let showList = ""
 				$(gList).each(function( idx, gm ){
-					showList+=`<tr><td>\${gm.id}</td><td>\${gm.name}</td>
+					showList+=`<tr ondblclick="goDetail(\${gm.id})"><td>\${gm.id}</td><td>\${gm.name}</td>
 							  <td>\${gm.category}</td><td>\${gm.keyword}</td>
 						      <td>\${gm.rating}</td></tr>`	
 				})
