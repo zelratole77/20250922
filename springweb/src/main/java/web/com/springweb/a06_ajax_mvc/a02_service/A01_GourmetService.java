@@ -2,6 +2,7 @@ package web.com.springweb.a06_ajax_mvc.a02_service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +24,9 @@ public class A01_GourmetService {
 	public String insertGourmet(GourmetStore ins) {
 		return dao.insertGourmet(ins)>0 ?"등록성공":"등록되지 않았습니다";
 	}
+	
+	public GourmetStore getGourmet(int id) {
+		return dao.getGourmet(id);
+	}	
+	
 }

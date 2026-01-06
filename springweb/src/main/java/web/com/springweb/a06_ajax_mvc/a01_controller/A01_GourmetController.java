@@ -33,4 +33,12 @@ public class A01_GourmetController {
 	public String insertGourmet(GourmetStore ins) {
 		return service.insertGourmet(ins);
 	}
+	// http://localhost:5050/getGourmet?id=1
+	@GetMapping("getGourmet")
+	public ResponseEntity<?> getGourmet(@RequestParam("id") int id){
+		return ResponseEntity.ok(service.getGourmet(id));
+	}
+	
+	
+	
 }

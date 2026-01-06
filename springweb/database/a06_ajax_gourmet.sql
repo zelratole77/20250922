@@ -33,11 +33,15 @@ int insertGourmet(GourmetStore ins);
 
 
 
-
-
+@Select("SELECT * FROM GOURMET_STORE WHERE ID=#{id}")
+GourmetStore getGourmet(@Param("id") int id);
 
 
  * */
+SELECT * FROM GOURMET_STORE ; 
+SELECT * FROM GOURMET_STORE WHERE ID=1; 
+
+
 
 -- 4. 제약 조건 추가 (별점 1~5점 제한)
 ALTER TABLE GOURMET_STORE ADD CONSTRAINT CHK_RATING CHECK (RATING BETWEEN 1 AND 5);

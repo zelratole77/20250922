@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import web.com.springweb.a06_ajax_mvc.dto.GourmetStore;
@@ -19,4 +20,9 @@ public interface A01_GourmetDao {
 				+ "#{category}, #{keyword}, \r\n"
 				+ "#{description}, #{rating}, SYSDATE)")	
 	int insertGourmet(GourmetStore ins);	
+
+	
+	@Select("SELECT * FROM GOURMET_STORE WHERE ID=#{id}")
+	GourmetStore getGourmet(@Param("id") int id);
+	
 }

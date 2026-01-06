@@ -163,6 +163,18 @@ view(jsp)
 		success:function(msg){}
 			등록 성공메시지와, 전체 리스트 검색 메서드 호출하여 등록된 데이터가 리스트되게 한다.
 			
+# 맛집 수정/삭제를 위한 상세 데이터 로딩 개발 순서			
+1) DB 처리
+	sql
+	dao
+2) service 단일 데이터
+3) controller
+	/getGourmet  get방식
+3) view(jsp)
+	리스트 데이터 중에 하나를 더블클릭시, 해당 key과 함께.. 모달창이 로딩되고,
+	필요한 타이틀(맛집 상세), 기능버튼(수정/삭제) 로딩 처리..
+	ajax로 controller 호출 및, form에 DB통해 가져온 데이터 mapping 처리하기..
+			
 		
 			
 
@@ -212,6 +224,9 @@ SELECT menu_id, category, menu_name FROM LUNCH_MENU WHERE menu_name LIKE '%%' AN
 		등록버튼 클릭시, $.ajax() 처리..
 		success:function(msg){}
 			등록 성공메시지와, 전체 리스트 검색 메서드 호출하여 등록된 데이터가 리스트되게 한다.
+
+
+	
 			
 	
 
