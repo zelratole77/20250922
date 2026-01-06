@@ -82,17 +82,15 @@
 			}			
 		})
 		$("#delBtn").click(function(){
-			if(confirm("등록하시겠습니까?")){
+			if(confirm("삭제하시겠습니까?")){
 				$.ajax({
-					url:"/insertGourmet",
-					type:"post",
-					data:$("#frm02").serialize(),
+					url:"/deleteGourmet",
+					type:"delete",
+					data:{id:$("[name=id]").val() },
 					success:function(msg){
 						ajaxList() // 등록된 내용 리스트에 반영.
-						$("#frm02")[0].reset(); // 입력된값 초기화
-						if( !confirm(msg+"\n계속 등록하시겠습니까?") )	{ // 취소를 눌렀을 때..
-							$(".close").click() // 창닫기..
-						}
+						alert(msg)
+						$(".close").click() // 창닫기..
 					}
 				})
 			}			
