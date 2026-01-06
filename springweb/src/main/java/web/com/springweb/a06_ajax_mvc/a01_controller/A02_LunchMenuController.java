@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import web.com.springweb.a06_ajax_mvc.a02_service.A02_LunchMenuService;
@@ -35,4 +36,10 @@ public class A02_LunchMenuController {
 	public String insertGourmet(LunchMenu ins) {
 		return service.insertLunchMenu(ins);
 	}	
+	// http://localhost:5050/getLunchMenu?menuId=1
+	@GetMapping("getLunchMenu")
+	public ResponseEntity<?> getLunchMenu(@RequestParam("menuId") int menuId){
+		return ResponseEntity.ok(service.getLunchMenu(menuId));
+	}			
+			
 }
