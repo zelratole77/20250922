@@ -156,34 +156,55 @@
 		<form id="frm02" class="form"  method="post">
 	     <div class="row">
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="이름 입력" name="name">
+	        <input type="text" class="form-control" placeholder="맛집 메뉴 입력" 
+	  			data-toggle="tooltip" 
+  				data-placement="top" 
+  				title="맛집 메뉴 입력" 	        
+	        
+	        name="name">
 	      </div>
 	     </div>		
 		
 	     <div class="row">
 	      <div class="col" id="gmId">
-	        <input type="text" class="form-control" name="id" value="0" readonly>
+	        <input type="text" class="form-control" name="id" value="0" 
+	  			data-toggle="tooltip" 
+  				data-placement="top" 
+  				title="맛집 아이디입니다(고유번호)" 	        
+	        readonly>
 	      </div>
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="분류 입력" name="category">
+	        <input type="text" class="form-control" placeholder="분류 입력" 
+	  			data-toggle="tooltip" 
+  				data-placement="top" 
+  				title="분류 입력" 
+        
+	        name="category">
 	      </div>
 	     </div>
 	     <div class="row">
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="키워드 입력" name="keyword">
+	        <input type="text" class="form-control" placeholder="키워드 입력" 
+	  			data-toggle="tooltip" 
+  				data-placement="top" 
+  				title="키워드 입력"    	        
+	        name="keyword">
 	      </div>
 	      <div class="col">
 	        <input type="number" class="form-control" 
 	  			data-toggle="tooltip" 
   				data-placement="top" 
   				title="좋아요 숫자만 입력(1~5)"      
-	        
 	        placeholder="좋아요 입력" name="rating">
 	      </div>
 	     </div>
 	     <div class="row">
 	      <div class="col">
-	      	<textarea class="form-control"  placeholder="설명 입력" name="description"></textarea>
+	      	<textarea class="form-control"  placeholder="설명 입력" 
+	  			data-toggle="tooltip" 
+  				data-placement="top" 
+  				title="맛집 설명 입력"   	      		      	
+	      	name="description"></textarea>
 	      </div>
 	     </div>	     	     
 	    </form> 
