@@ -44,19 +44,61 @@
 		})
 		$("#regBtn").click(function(){
 			//alert( $("#frm02").serialize() ) // form하위에 있는 name value 기준으로 한글 encoding 요청값 처리
-			$.ajax({
-				url:"/insertGourmet",
-				type:"post",
-				data:$("#frm02").serialize(),
-				success:function(msg){
-					ajaxList() // 등록된 내용 리스트에 반영.
-					$("#frm02")[0].reset(); // 입력된값 초기화
-					if( !confirm(msg+"\n계속 등록하시겠습니까?") )	{ // 취소를 눌렀을 때..
-						$(".close").click() // 창닫기..
+			if(confirm("등록하시겠습니까?")){
+				$.ajax({
+					url:"/insertGourmet",
+					type:"post",
+					data:$("#frm02").serialize(),
+					success:function(msg){
+						ajaxList() // 등록된 내용 리스트에 반영.
+						$("#frm02")[0].reset(); // 입력된값 초기화
+						if( !confirm(msg+"\n계속 등록하시겠습니까?") )	{ // 취소를 눌렀을 때..
+							$(".close").click() // 창닫기..
+						}
 					}
-				}
-			})
+				})
+			}
 		})
+		$("#uptBtn").click(function(){
+			if(confirm("수정하시겠습니까?")){
+				// updateGourmet(@RequestBody GourmetStore upt 
+				// form안에 있는 name, value를 json 형식으로 만드는 처리..
+				const formData={}
+				$.each($("#frm02").serializeArray(), function(){
+					formData[this.name] = this.value
+				})
+				$.ajax({
+					url:"/updateGourmet",
+					type:"put",
+					contentType:"application/json",
+					data:JSON.stringify(formData), // json객체 네트웍상 전달 문자열로 변경 JSON.stringify()객체==>문자열
+					success:function(msg){
+						ajaxList() // 수정된 내용 리스트에 반영.
+						if( !confirm(msg+"\n계속 수정하시겠습니까?") )	{ 
+							$(".close").click() // 창닫기..
+						}
+					}
+				})
+			}			
+		})
+		$("#delBtn").click(function(){
+			if(confirm("등록하시겠습니까?")){
+				$.ajax({
+					url:"/insertGourmet",
+					type:"post",
+					data:$("#frm02").serialize(),
+					success:function(msg){
+						ajaxList() // 등록된 내용 리스트에 반영.
+						$("#frm02")[0].reset(); // 입력된값 초기화
+						if( !confirm(msg+"\n계속 등록하시겠습니까?") )	{ // 취소를 눌렀을 때..
+							$(".close").click() // 창닫기..
+						}
+					}
+				})
+			}			
+		})		
+		
+		
 	});
 	function goDetail(idVal){
 		$("#regLoadBtn").click(); // 강제 이벤트 처리..
