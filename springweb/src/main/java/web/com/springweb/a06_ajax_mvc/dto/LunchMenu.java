@@ -2,7 +2,7 @@ package web.com.springweb.a06_ajax_mvc.dto;
 
 public class LunchMenu {
 	// menuId category menuName priceTag commentMsg
-	// 아이디   분뉴       메뉴명     가격태그   평가태그
+	// 아이디   분류       메뉴명     가격태그   평가태그
 	
 	private int menuId;
 	private String category;

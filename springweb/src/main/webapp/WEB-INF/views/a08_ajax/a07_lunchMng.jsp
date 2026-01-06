@@ -33,10 +33,33 @@
 		$("#schBtn").click(function(){
 			ajaxFun()
 		})
-		$("#regBtn").click(function(){
-			// frm02 
-			
+
+		$("#regLoadBtn").click(function(){
+			$("#menuId").hide()
+        	$("#frmTitle").text("점심메뉴 등록");
+        	$("#regBtn").show();
+        	$("#uptBtn").hide();
+        	$("#delBtn").hide();
 		})
+		$("#regBtn").click(function(){
+			$.ajax({
+				url:"/insertLunchMenu",
+				type:"post",
+				data:$("#frm02").serialize(),
+				success:function(msg){
+					ajaxFun() // 등록된 내용 리스트에 반영.
+					$("#frm02")[0].reset(); // 입력된값 처기화
+					if( !confirm(msg+"\n계속 등록하시겠습니까?") )	{ // 취소를 눌렀을 때..
+						
+						
+						$(".close").click() // 창닫기..
+					}
+				}
+			})
+		})
+		
+		
+		
 	});
 	function ajaxFun(){
 		let categoryVal=$("[name=category]").val()
@@ -76,7 +99,7 @@
 	    <input placeholder="분류" name="category"  class="form-control mr-sm-2" />
 	    <input placeholder="메뉴명" name="menuName"  class="form-control mr-sm-2"/>
 	    <button id="schBtn" class="btn btn-info" type="button">Search</button>
-	    <button class="btn btn-success" 
+	    <button id="regLoadBtn" class="btn btn-success" 
 	    	data-toggle="modal" data-target="#exampleModalCenter"
 	        type="button">등록</button>
  	</nav>
@@ -103,41 +126,43 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">타이틀</h5>
+        <h5 class="modal-title" id="frmTitle">타이틀</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%-- 	// 등록  name  category  keyword  description  rating		
-			//     이름     분류       키워드     설명          좋아요(1~5) --%>
+      <%-- 	// menuId category menuName priceTag commentMsg
+			// 아이디   분류       메뉴명     가격태그   평가태그       좋아요(1~5) --%>
       <div class="modal-body">
 		<form id="frm02" class="form"  method="post">
 	     <div class="row">
-	      <div class="col">
-	        <input type="text" class="form-control" placeholder="이름 입력" name="name">
+	      <div class="col" id="menuId">
+	        <input type="text" class="form-control"  name="menuId"  value="0">
 	      </div>
+	      <div class="col">
+	        <input type="text" class="form-control" placeholder="메뉴명 입력" name="menuName">
+	      </div>
+	     </div>
+	     <div class="row">
 	      <div class="col">
 	        <input type="text" class="form-control" placeholder="분류 입력" name="category">
 	      </div>
-	     </div>
-	     <div class="row">
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="키워드 입력" name="keyword">
-	      </div>
-	      <div class="col">
-	        <input type="number" class="form-control" placeholder="좋아요 입력" name="rating">
+	        <input type="text" class="form-control" placeholder="가격태그 입력" name="priceTag">
 	      </div>
 	     </div>
 	     <div class="row">
 	      <div class="col">
-	      	<textarea class="form-control"  placeholder="설명 입력" name="description"></textarea>
+	      	<textarea class="form-control"  placeholder="평가태그 입력" name="commentMsg"></textarea>
 	      </div>
 	     </div>	     	     
 	    </form> 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="regBtn" type="button" class="btn btn-primary">Save changes</button>
+        <button id="regBtn" type="button" class="btn btn-primary">등록</button>      
+        <button id="uptBtn" type="button" class="btn btn-success">수정</button>      
+        <button id="delBtn" type="button" class="btn btn-danger">삭제</button>      
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">창닫기</button>
       </div>
     </div>
   </div>

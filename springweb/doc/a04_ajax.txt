@@ -208,6 +208,7 @@ SELECT menu_id, category, menu_name FROM LUNCH_MENU WHERE menu_name LIKE '%%' AN
 	--------------------	
 	4) view(jsp)
 		모달창에 등록 form 처리 내용 구현..
+		모달창 로딩시 타이틀과 기능버튼 show/hide 처리.
 		등록버튼 클릭시, $.ajax() 처리..
 		success:function(msg){}
 			등록 성공메시지와, 전체 리스트 검색 메서드 호출하여 등록된 데이터가 리스트되게 한다.
