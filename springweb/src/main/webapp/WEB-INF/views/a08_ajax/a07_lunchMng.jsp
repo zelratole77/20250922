@@ -60,7 +60,40 @@
 			})
 		})
 		
-		
+		$("#uptBtn").click(function(){
+			if(confirm("수정하시겠습니까?")){
+				const formData={}
+				$.each($("#frm02").serializeArray(), function(){
+					formData[this.name] = this.value
+				})
+				$.ajax({
+					url:"/updateLunchMenu",
+					type:"put",
+					contentType:"application/json",
+					data:JSON.stringify(formData), // json객체 네트웍상 전달 문자열로 변경 JSON.stringify()객체==>문자열
+					success:function(msg){
+						ajaxFun() // 수정된 내용 리스트에 반영.
+						if( !confirm(msg+"\n계속 수정하시겠습니까?") )	{ 
+							$(".close").click() // 창닫기..
+						}
+					}
+				})
+			}			
+		})
+		$("#delBtn").click(function(){
+			if(confirm("삭제하시겠습니까?")){
+				$.ajax({
+					url:"/deleteLunchMenu",
+					type:"delete",
+					data:{menuId:$("[name=menuId]").val() },
+					success:function(msg){
+						ajaxFun() // 등록된 내용 리스트에 반영.
+						alert(msg)
+						$(".close").click() // 창닫기..
+					}
+				})
+			}			
+		})				
 		
 	});
 	function goDetail(menuIdVal){
