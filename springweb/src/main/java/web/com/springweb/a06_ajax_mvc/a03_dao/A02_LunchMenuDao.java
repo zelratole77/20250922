@@ -23,6 +23,6 @@ public interface A02_LunchMenuDao {
 	
 	@Select("SELECT * FROM LUNCH_MENU WHERE MENU_ID=#{menuId}")
 	LunchMenu getLunchMenu(@Param("menuId") int menuId);
-	
+
 	
 }

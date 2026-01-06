@@ -3,8 +3,11 @@ package web.com.springweb.a06_ajax_mvc.a01_controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -38,6 +41,19 @@ public class A01_GourmetController {
 	public ResponseEntity<?> getGourmet(@RequestParam("id") int id){
 		return ResponseEntity.ok(service.getGourmet(id));
 	}
+	// 	http://localhost:5050/updateGourmet
+	@PutMapping("updateGourmet")
+	@ResponseBody
+	public String updateGourmet(@RequestBody GourmetStore upt ) { // json 문자열을 요청값으로 처리할 때,
+		return service.updateGourmet(upt);
+	}
+	
+	//  http://localhost:5050/deleteGourmet
+	@DeleteMapping("deleteGourmet")
+	@ResponseBody
+	public String deleteGourmet(@RequestParam("id") int id) { // json 문자열을 요청값으로 처리할 때,
+		return service.deleteGourmet(id);
+	}	
 	
 	
 	

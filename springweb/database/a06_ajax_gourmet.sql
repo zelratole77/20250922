@@ -36,10 +36,39 @@ int insertGourmet(GourmetStore ins);
 @Select("SELECT * FROM GOURMET_STORE WHERE ID=#{id}")
 GourmetStore getGourmet(@Param("id") int id);
 
+private int id;
+private String name;
+private String category;
+private String keyword;
+private int rating;
+
+UPDATE GOURMET_STORE
+   SET NAME=#{name},
+       CATEGORY = #{category},
+       KEYWORD = #{keyword},
+       DESCRIPTION = #{description},
+       RATING = #{rating}
+ WHERE ID= #{id}
+@Update("")
+int updateGourmet(GourmetStore upt);
+
+@Delete("DELETE FROM GOURMET_STORE WHERE ID=#{id}")
+int deleteGourmet(@Param("id") int id);
 
  * */
+SELECT * FROM GOURMET_STORE WHERE ID=1; 
 SELECT * FROM GOURMET_STORE ; 
 SELECT * FROM GOURMET_STORE WHERE ID=1; 
+UPDATE GOURMET_STORE
+   SET NAME='홍짬뽕',
+       CATEGORY = '중식',
+       KEYWORD = '중식 짬뽕 맛집',
+       DESCRIPTION = '짬뽕 최고',
+       RATING = 4
+ WHERE ID= 6;
+DELETE FROM GOURMET_STORE WHERE ID=7;
+
+
 
 
 

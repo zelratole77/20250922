@@ -175,6 +175,27 @@ view(jsp)
 	필요한 타이틀(맛집 상세), 기능버튼(수정/삭제) 로딩 처리..
 	ajax로 controller 호출 및, form에 DB통해 가져온 데이터 mapping 처리하기..
 			
+# 맛집 수정/삭제 
+1) DB 처리
+	sql
+	dao
+		updateGourmet
+		deleteGourmet
+		
+	------------------------------
+2) service 
+3) controller
+	/updateGourmet   put방식
+	/deleteGourmet   delete방식 
+3) view(jsp)
+	contentType:"application/json"
+	type:"put"
+	type:"delete"
+	
+
+
+
+
 		
 # 런치메뉴 수정/삭제를 위한 상세 데이터 로딩 개발 순서			
 1) DB 처리
@@ -189,7 +210,17 @@ view(jsp)
 	필요한 타이틀(맛집 상세), 기능버튼(수정/삭제) 로딩 처리..
 	ajax로 controller 호출 및, form에 DB통해 가져온 데이터 mapping 처리하기..
 			
-				
+# 런치메뉴 수정/삭제 
+1) DB 처리
+	sql
+	dao
+	------------------------------
+2) service 
+3) controller
+	/updateLunchMenu  put방식
+	/deleteLun
+3) view(jsp)
+					
 
 
 

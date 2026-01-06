@@ -2,10 +2,12 @@ package web.com.springweb.a06_ajax_mvc.a03_dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import web.com.springweb.a06_ajax_mvc.dto.GourmetStore;
 
@@ -24,5 +26,16 @@ public interface A01_GourmetDao {
 	
 	@Select("SELECT * FROM GOURMET_STORE WHERE ID=#{id}")
 	GourmetStore getGourmet(@Param("id") int id);
-	
+
+	@Update("	UPDATE GOURMET_STORE\r\n"
+			+ "	   SET NAME=#{name},\r\n"
+			+ "	       CATEGORY = #{category},\r\n"
+			+ "	       KEYWORD = #{keyword},\r\n"
+			+ "	       DESCRIPTION = #{description},\r\n"
+			+ "	       RATING = #{rating}\r\n"
+			+ "	 WHERE ID= #{id}")
+	int updateGourmet(GourmetStore upt);
+
+	@Delete("DELETE FROM GOURMET_STORE WHERE ID=#{id}")
+	int deleteGourmet(@Param("id") int id);		
 }

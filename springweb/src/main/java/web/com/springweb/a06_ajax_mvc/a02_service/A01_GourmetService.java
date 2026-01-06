@@ -29,4 +29,11 @@ public class A01_GourmetService {
 		return dao.getGourmet(id);
 	}	
 	
+	public String updateGourmet(GourmetStore upt) {
+		return dao.updateGourmet(upt)>0?"수정 성공!":"수정하지 못 했습니다!";
+	}	
+	public String deleteGourmet(int id) {
+		return dao.deleteGourmet(id)>0?"삭제 성공!!":"삭제하지 못 했습니다!!";
+	}
+	
 }

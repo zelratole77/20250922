@@ -32,6 +32,8 @@ public class A02_LunchMenuService {
 	public LunchMenu getLunchMenu(int menuId) {
 		return dao.getLunchMenu(menuId);
 	}
+	
+
 
 	
 }
