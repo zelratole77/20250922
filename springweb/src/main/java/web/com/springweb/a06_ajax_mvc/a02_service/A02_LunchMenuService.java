@@ -23,6 +23,8 @@ public class A02_LunchMenuService {
 		
 		return dao.lunchMenuList(sch);
 	}
-	
+	public String insertLunchMenu(LunchMenu ins) {
+		return dao.insertLunchMenu(ins)>0?"등록성공":"등록이 되지 않았습니다";
+	}
 	
 }
