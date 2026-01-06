@@ -35,11 +35,13 @@
 		})
 
 		$("#regLoadBtn").click(function(){
+			
 			$("#menuId").hide()
         	$("#frmTitle").text("점심메뉴 등록");
         	$("#regBtn").show();
         	$("#uptBtn").hide();
         	$("#delBtn").hide();
+        	$("#frm02")[0].reset(); 
 		})
 		$("#regBtn").click(function(){
 			$.ajax({
@@ -61,6 +63,32 @@
 		
 		
 	});
+	function goDetail(menuIdVal){
+		$("#regLoadBtn").click(); // 강제 이벤트 처리..
+		$("#menuId").show()
+    	$("#frmTitle").text("점심 메뉴 상세");
+    	$("#regBtn").hide();
+    	$("#uptBtn").show();
+    	$("#delBtn").show();
+		$.ajax({
+			url:"/getLunchMenu",
+			data:{menuId:menuIdVal},
+			dataType:"json",
+			success:function(menu){ 
+				// menuId category menuName priceTag commentMsg
+				console.log("# 전송된 객체 #")
+				$("#frm02 [name=menuId]").val(menu.menuId)
+				$("#frm02 [name=menuName]").val(menu.menuName)
+				$("#frm02 [name=category]").val(menu.category)
+				$("#frm02 [name=priceTag]").val(menu.priceTag)
+				$("#frm02 [name=commentMsg]").val(menu.commentMsg)
+			
+			}
+		})  	
+    	
+	}
+	
+	
 	function ajaxFun(){
 		let categoryVal=$("[name=category]").val()
 		let menuNameVal=$("[name=menuName]").val()
@@ -72,7 +100,7 @@
 				let menuListView=''
 				// menuId category menuName priceTag
 				$(menuList).each(function(idx, menu){
-					menuListView+=`<tr><td>\${menu.menuId}</td><td>\${menu.category}</td>
+					menuListView+=`<tr  ondblclick="goDetail(\${menu.menuId})" ><td>\${menu.menuId}</td><td>\${menu.category}</td>
 										<td>\${menu.menuName}</td><td>\${menu.priceTag}</td></tr>`
 				})
 				$("#menuListView").html(menuListView)
@@ -137,7 +165,7 @@
 		<form id="frm02" class="form"  method="post">
 	     <div class="row">
 	      <div class="col" id="menuId"><%-- 등록시는 보이지 않게 처리/상세화면에서는 처리.. --%>
-	        <input type="text" class="form-control"  name="menuId"  value="0">
+	        <input type="text" class="form-control"  name="menuId"  value="0" readonly>
 	      </div>
 	      <div class="col">
 	        <input type="text" class="form-control" placeholder="메뉴명 입력" name="menuName">
