@@ -1,0 +1,71 @@
+# FullCalendar 스프링 연동
+1. 환경 설정 및 기본 랜더링 처리
+	- DB 연동 없이 라이브러리가 화면에 뜨는 것 확인 단계
+	- sample html 소스가 스프링 환경에서 로딩되기 위해서 필요한 내용 설정 확인
+		필요 js 라이브러리
+		기본 코드 설정
+		스프링 초기 화면에서 jsp로 호출 처리
+	- 핵심 json 데이터 확인 
+		events: 속성에 있는  [{title:"수업", start:"2026-01-07"}] 등 데이터가 화면에서 어떤 작용을 하는지
+			json 객체 데이터 추가 및 속성값에 대한 이해..
+2. DB 설계 및 개발 (Back-end 기초)
+	- 데이터를 주고 받기 위한 그룻을 만듭니다.
+	- 위 핵심 json 데이터를 통해서 사용할 DB 테이블 설계 및 설정
+	- dto 생성 : 전달할때 처리할 데이터 
+	- dao : 기본 조회 리스트 처리 선언..
+3. 일정 조회 처리 화면 구현(Back-end/front-end)
+	- ajax를 통해서 기본 데이터를 리스트 하기 위한 처리(백앤드단)
+		service
+		controller
+	- ajax를 통해서 기본 데이터를 리스트 하기 위한 처리(프런트단)
+		$.ajax({})를 통해 처리된 서버단 데이터 호출 및 화몉 구현..
+4. 일정 추가
+
+5. 일정 상세 처리
+
+6. 일정 수정/삭제 처리..
+
+
+		
+# 환경 설정 및 기본 랜더링 처리
+1. webapp에 다운로드한 압축파일을 풀어서 저장한다.
+	https://github.com/fullcalendar/fullcalendar/releases
+	fullcalendar-6.1.20.zip 다운로드
+	
+2. webapp\fullcalendar-6.1.20\examples\selectable.html
+	확인 후, 웹서버를 통해서 로딩해본다.
+	http://localhost:5050/fullcalendar-6.1.20/examples/selectable.html
+	
+3. controller/jsp를 통해서 초기화면 로딩
+	1) 필요로 하는 lib를 공통 위치에 복사해서 설정.
+		webapp\fullcalendar-6.1.20\dist
+		폴드 복사해서 
+	
+	
+		resources/static(공통img,js,css를 설정하는 위치) 하위에 복사.
+	2) controller
+		(java\web\com\springweb\a08_fullcalendar\A01_FullCalenderController.java)
+		/calendarList
+		
+		view : webapp\WEB-INF\views\a08_ajax\a09_calendar.jsp
+	3) a09_calendar.jsp
+		공통 lib js를 설정
+		selectable.html 파일에서 script 이후 부분을 복사
+		
+		http://localhost:5050/calendarList 을 통해서 최종 확인..
+		
+	ex) jquery api 환경 설정 연습
+		a08_fullcalendar/A02_CalendarController.java
+			 http://localhost:5050/fullcalendar
+		WEB-INF\views\a08_ajax\a10_calendar.jsp	 
+		
+			
+		
+		
+		
+		
+			
+	
+
+	
+	
