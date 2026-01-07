@@ -59,8 +59,100 @@
 			 http://localhost:5050/fullcalendar
 		WEB-INF\views\a08_ajax\a10_calendar.jsp	 
 		
-			
-		
+# 사용되는 json  데이터와 속성
+[] 배열 안에 {} 객체로 아래의 속성/속성값으로 일정이 로딩된다.
+1. title :    - 화면에 보일 일정 제목
+2. start: '2023-01-06'    start: '2023-01-10T09:00:00',  시작일정 날짜/시간
+3. end: '2023-01-10'       end: '2023-01-10T12:00:00'    마지막일정 날짜/시간
+4. groupId: 999  - 반복된 일정 그룹화해서 처리할 때 사용..
+5. url: 'http://google.com/' - 클릭시, 링크해서 로딩되는 페이지를 설정
+
+
+매개변수 arg를 통해서 자동으로 설정되는 속성.
+
+start: Tue Jan 03 2023 00:00:00 GMT+0900 (한국 표준시), ==> Date 형
+end: Wed Jan 04 2023 00:00:00 GMT+0900 (한국 표준시), 
+startStr: '2023-01-03', ==> 날짜만 문자열로 표현
+endStr: '2023-01-04', 
+allDay: true, …}  ==> allDay : true 전일,  allDay : false 시간일정
+
+# 등록된 일정
+allDay: true
+backgroundColor: ""
+borderColor: ""
+end: null
+endStr: ""
+extendedProps : 추가 속성을 지정할 활용..
+groupId: "" : 반복 일정시
+id: "" : 핵심 key
+start: Fri Jan 06 2023 00:00:00 GMT+0900 (한국 표준시)
+startStr: "2023-01-06"
+textColor: ""  : 글자 색상
+title: "프로젝트 시작"
+# DB 관리할 속성 정리
+id
+title
+start
+end
+backgroundColor
+textColor
+allDay
+url(내장-화면자체가 닫아지고 바로이동) ==> urllink(사용자 정의 속성,해당 url을 클릭시 따로 화면로딩)
+writer(사용자 정의-추가속성)
+content(사용자 정의-추가속성/내용)
+==> DB 처리..테이블..
+create table calender(
+	id number primary key,
+	title varchar2(100),
+	start1 varchar2(50), -- date의 ISO형식
+	end1 varchar2(50),
+	background_color varchar2(20),
+	text_color varchar2(20),
+	all_day number(1),  -- DB에서 0/1 ==> DTO false/true	
+	url_link varchar2(200),
+	writer varchar2(50),
+	content varchar2(500)
+);
+create sequence cal_seq;
+insert into calender values(cal_seq.nextval, '첫번째 일정', '2026-01-07','2026-01-08',
+	'#009933','#ffff99',1,'http://www.naver.com','홍길동','일정 등록 연습' );
+SELECT * FROM calender;
+# dto
+class Calendar{
+	private int id;
+	private String title;
+	private String start;
+	private String end;
+	private String backgroundColor;
+	private String textColor;
+	private boolean allDay;
+	private String urlLink;
+	private String writer;
+	private String content;
+	
+}
+	
+
+
+
+
+
+
+
+
+
+
+
+# 초기에 사용되는 이벤트(클릭 나타나는 내용)
+1. 등록없는 일정을 클릭시, prompt 창으로 일정 타이틀을 입력하하면, 확인시 해당 내용이 출력된다.
+2. 등록된 일정을 클릭시, 삭제하겠냐는 메시지가 뜨고, 확인시 해당 내용이 삭제되어 출력된다.
+3. 시간을  범위를 지정해서 스크롤시, prompt 창으로 해당 일정 타이틀이 입력되어 출력된다.
+
+
+
+
+
+ 
 		
 		
 		

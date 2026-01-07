@@ -37,7 +37,9 @@
       navLinks: true, // can click day/week names to navigate views
       selectable: true,
       selectMirror: true,
-      select: function(arg) {
+      select: function(arg) { // 날짜를 클릭하거나  스클롤시 처리되는 이벤트
+    	console.log("# 일정 데이터(api) 매개변수 #")
+    	console.log(arg)
         var title = prompt('Event Title:');
         if (title) {
           calendar.addEvent({
@@ -47,16 +49,37 @@
             allDay: arg.allDay
           })
         }
+    	console.log("# 메인 calendar #")        
+    	console.log(calendar)        
         calendar.unselect()
       },
       eventClick: function(arg) {
+    	  console.log("# 저장된 일정 #")
+    	  console.log(arg.event)
+    	  
         if (confirm('Are you sure you want to delete this event?')) {
           arg.event.remove()
         }
       },
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
+      // ex) 전일일정   2023-01-06   프로젝트 시작
+      //     시간일정  2023-01-10에 오전 9시부터 12시까지   프로젝트 회의 일정
+      
       events: [
+        {
+              title: '프로젝트 시작',
+              start: '2023-01-06'
+        },  
+        {
+            title: '프로젝트 회의 일정',
+            start: '2023-01-10T09:00:00',
+            end: '2023-01-10T12:00:00'
+        },        
+        {
+              title: '일정등록 처음',
+              start: '2023-01-02'
+        },    	    
         {
           title: 'All Day Event',
           start: '2023-01-01'
@@ -86,6 +109,11 @@
           start: '2023-01-12T10:30:00',
           end: '2023-01-12T12:30:00'
         },
+        {
+            title: '시간일정등록',
+            start: '2023-01-02T11:30:00',
+            end: '2023-01-02T13:30:00'
+        },        
         {
           title: 'Lunch',
           start: '2023-01-12T12:00:00'
