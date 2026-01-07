@@ -8,10 +8,37 @@ CREATE TABLE LUNCH_MENU (
     comment_msg VARCHAR2(500)           -- 추천 사유
 );
 
+DROP TABLE CALENDAR;
+
+
+	CREATE TABLE CALENDAR(
+			ID NUMBER PRIMARY KEY,
+			TITLE VARCHAR2(100),
+			WRITER VARCHAR2(50),
+			START1 DATE,
+			END1 DATE,
+			CONTENT VARCHAR2(1000),
+			BACKGROUND_COLOR VARCHAR2(50),
+			TEXT_COLOR VARCHAR2(50),
+			ALL_DAY NUMBER(1),
+			URL_LINK VARCHAR2(50)
+		);
+
+
 CREATE SEQUENCE LUNCH_SEQ
 START WITH 1          -- 1부터 시작해라!
 INCREMENT BY 1        -- 1씩 증가해라!
 NOCACHE;              -- 번호 건너뛰기 방지 (연습용)
+
+SELECT CALENDAR_SEQ.NEXTVAL FROM  dual;
+SELECT * FROM calendar;
+
+INSERT INTO CALENDAR VALUES(CALENDAR_SEQ.NEXTVAL, '첫일정',
+	'2025-07-11','2025-07-12','첫일정입니다.', 
+'#0099CC', '#CCFFFF',1,'홍길동', '', 'http://www.nanver.com');
+INSERT INTO CALENDAR VALUES(CALENDAR_SEQ.NEXTVAL, '두번일정','2025-07-14','2025-07-15','두일정입니다.','#0099CC', '#CCFFFF',1,'홍길동', '','http://www.nanver.com');
+INSERT INTO CALENDAR VALUES(CALENDAR_SEQ.NEXTVAL, '세번일정','2025-07-15','2025-07-16','세번일정입니다.','#0099CC', '#CCFFFF',1, '홍길동','','http://www.nanver.com');
+
 /*
 등록 처리 dao..
 

@@ -1,0 +1,271 @@
+Good morning QUIZ! 오늘도 좋은 하루 되시길~~ ^^
+
+## Ⅰ. 객관식 (사지선다형) - 20문항
+
+**1. Spring MVC 패턴에서 Ajax 요청을 받아 데이터(JSON 등)를 직접 반환하기 위해 컨트롤러 메서드에 사용하는 어노테이션은?**
+① `@RequestMapping`
+② `@ResponseBody`
+#③ `@RequestParam` 
+④ `@ModelAttribute`
+
+**2. `@PutMapping`이나 `@PostMapping`으로 전달된 JSON 문자열 데이터를 Java 객체로 변환하여 매개변수에 할당할 때 사용하는 어노테이션은?**
+// http://localhost:5050/board/15
+@PutMapping("board/{data}")
+public String board(@PathVariable("data") String data)
+
+① `@RequestBody`
+② `@RequestPart`
+#③ `@PathVariable`
+④ `@Data`
+
+**3. 코드에서 사용된 `ResponseEntity<?>` 객체의 주요 목적은 무엇입니까?**
+
+client(브라우저 자바스크립트) ==> server(tomcat 스프링 controller)
+1. $.ajax({data:{key:value}})    @RequestParam("key") String key,  Emp sch(모델 어트리뷰트 객체)
+2. $.ajax({data:"key=value"})
+3. $.ajax({data:$("form2").serialize()}) ==> form 데이터를 name/value 속성 key=value 변경
+
+client(브라우저 자바스크립트) <== server(tomcat 스프링 controller)
+1. $.ajax({dataType:"text/json",				1. @ResponseBody
+           success:function(msg/json형객체변수){	   public String 메서드명(){  return "전송할 문자열" }
+                                                2. public ResponseEntity<?>
+           }})                                      return ResponseEntity.ok(Vo객체/데이터)
+자바의 DTO/VO 객체 형태를 json형태의 문자열로 변경하여 client에 전달해준다..
+
+① 뷰 페이지의 경로를 지정하기 위해
+#② HTTP 응답 상태 코드와 데이터를 함께 제어하기 위해
+③ 세션에 데이터를 저장하기 위해
+④ 클라이언트의 요청 파라미터를 수집하기 위해
+
+**4. jQuery Ajax 설정 중 `JSON.stringify(formData)`를 사용하여 데이터를 보낼 때 반드시 설정해야 하는 
+	`contentType` 속성 값은?**
+	
+	formData : json형태의 객체
+	JSON.stringify() : 전송하기 위해서 객체를 문자열로 변환처리해주는 javascript 기능 메서드..
+	
+① `text/plain; charset=UTF-8`
+② `application/x-www-form-urlencoded`
+#③ `application/json`
+	client(브라우저 자바스크립트) ==> server(tomcat 스프링 controller)
+	{"name":"홍길동", "age":25}			@RequestBody Person p
+	객체를 문자열로 변환..					요청 json 문자열를 Person로 변환처리..
+	"{\"name\":\"홍길동\", \"age\":25}"
+	
+④ `multipart/form-data`
+
+**5. 다음 중 Mybatis 매퍼 인터페이스(`A01_GourmetDao`)에서 사용된 SQL 실행 어노테이션이 아닌 것은?**
+① `@Select`
+② `@Insert`
+③ `@Update`
+#④ `@Connect`
+
+**6. `A01_GourmetService`에서 `getGourmetList` 호출 시 `name`과 `keyword`에 `"%"+...+"%"` 처리를 하는 이유는?**
+① 데이터의 용량을 줄이기 위해
+#② SQL의 `LIKE` 연산자를 이용한 부분 일치 검색을 위해
+③ 특수 문자를 필터링하기 위해
+④ 데이터베이스의 인덱스를 강제로 태우기 위해
+
+**7. JSP 코드에서 사용된 `$("#frm02").serialize()` 함수의 역할은 무엇입니까?**
+① Form 내의 모든 입력 요소를 JSON 객체로 변환한다.
+#② Form 내의 입력 요소들을 쿼리 스트링 형태(key=value&key1=value2&key3=value3)의 문자열로 변환한다.
+③ Form의 데이터를 서버로 즉시 전송한다.
+④ 입력된 모든 값을 초기화(Reset)한다.
+
+**8. 맛집 리스트를 출력할 때 특정 행을 더블클릭(`ondblclick`)하면 호출되는 함수와 전달되는 인자값은?**
+① `ajaxList()`, 검색 키워드
+#② `goDetail()`, 맛집의 고유 ID
+	`<tr ondblclick="goDetail(\${gm.id})">`
+	
+	function goDetail(id){
+		ajax를 처리하여 id값을 전달하고, 그 결과 데이터를 화면 form에 출력..
+	}
+③ `insertGourmet()`, 입력 폼 데이터
+④ `reset()`, 폼 객체
+
+**9. `A01_GourmetController`에서 삭제 처리를 위해 사용하는 HTTP Method와 대응하는 어노테이션은?**
+① GET - `@GetMapping` 요청값 url key=vlue  요량제한 보안 취약
+② POST - `@PostMapping` 요청값 요청body 영역에서 key=valu  url에서는 보이지 않음. 용량제한 없음. 보안 강화.
+③ DELETE - `@DeleteMapping` ajax 보안적인 필요성과 속도
+④ PUT - `@PutMapping`
+
+**10. 모달 창에서 '등록' 버튼을 클릭했을 때, 성공 후 처리 로직(`success:function(msg)`)에 포함되어야 할 가장 적절한 작업은?**
+① 페이지 전체를 새로고침(F5) 한다.
+#② `ajaxList()`를 호출하여 비동기적으로 리스트를 갱신한다.
+	비동기적이라는 말이 다른 처리를 하면서, 현재 처리를 같이 할 수 있다는 의미이기에 등록 성공과 함께 화면에 list 등록이후 데이터로
+	리스트 한다. ex) 동기적이라는 말은 메일을 보내고, 답변을 받을 때까지 아무 일도 하지 않는 것을 말한다.
+				  비동기적이라는 말은 메일을 보내고, 답변을 받을 때까지 다른 처리도 하면서 답변이 오는 해당 내용을 처리.
+③ 데이터베이스 연결을 종료한다.
+④ 컨트롤러의 초기 뷰 호출 메서드를 다시 실행한다.
+
+**11. Mybatis의 `@Select` 쿼리 내에서 `#{id}`와 같이 작성하는 방식의 장점은?**
+#① SQL Injection을 방지하고 파라미터를 안전하게 바인딩한다.
+② 쿼리 실행 속도를 2배 이상 향상시킨다.
+③ 데이터베이스의 타입을 자동으로 변경한다.
+④ 별도의 DTO 객체 없이도 모든 데이터를 가져온다.
+
+**12. 수정 처리 시 `@PutMapping`을 사용하며 클라이언트에서 `type:"put"`으로 요청할 때, 서비스 단에서 '수정 성공' 여부를 판단하는 기준은?**
+① `dao.updateGourmet(upt)`의 반환값이 `true`일 때
+#② `dao.updateGourmet(upt)`의 반환값(영향받은 행의 수)이 0보다 클 때  
+		dao.updateGourmet(upt) dao단에 등록/수정/삭제는 일반적으로 리턴값을 해당 처리 갯수만큼 정수로 리턴..
+		dao   int updateGourmet(Gourmet upt);	
+		return dao.updateGourmet(upt)>0?"수정되었습니다":"수정실패하였습니다";
+③ 컨트롤러에서 반환하는 문자열이 "success"일 때
+④ HTTP 상태 코드가 404일 때
+
+**13. 상세 보기 기능(`goDetail`)에서 서버로부터 받은 JSON 데이터를 화면의 input 필드에 채울 때 사용하는 jQuery 메서드는?**
+	function goDetail(id){
+		$.ajax({
+			success:function(gm){  // 서버에서 검색된 단일 json형태의 객체..
+				$("#frm02 [name=id]").val(gm.id);
+			}
+		})
+	}
+① `.text()`
+② `.append()`
+#③ `.val()`
+④ `.html()`
+
+**14. `GourmetStore` DTO(또는 VO) 객체가 담당하는 역할은 무엇인가?**
+① 클라이언트의 UI 이벤트를 제어한다.
+② 비즈니스 로직을 수행한다.
+#③ 계층 간 데이터를 전달하기 위한 바구니 역할을 한다.
+	요청 json ==> controller (GourmetStore) ==> serivce(GourmetStore) ==> dao(GourmetStore) 등록/수정
+	요청 id=01 ==> controller (int id) ==> serivce(int id) ==> dao(int id) 단일데이터 검색.
+	success(gm) <== controller (GourmetStore) <== serivce(GourmetStore) <== dao(GourmetStore) 단일데이터 결과 객체(GourmetStore)
+	$("#frm02 [name=id]").val(gm.id);
+④ 데이터베이스와 직접 연결을 맺고 끊는다.
+
+**15. `A01_GourmetService`에서 `@Autowired(required=false)`의 의미는?**
+① 해당 빈(Bean)이 없으면 에러를 발생시킨다.
+#② 해당 빈(Bean)이 컨테이너에 없어도 예외를 발생시키지 않고 null로 둔다.
+	required=false 만약에 없고 객체가 컨테이너에 생성되지 않을 서버자체 프로세스가 error 코드를 발생한다.
+③ 반드시 생성자를 통해서만 주입받는다.
+④ 싱글톤이 아닌 프로토타입으로 빈을 생성한다.
+
+**16. JSP 파일 상단에 정의된 `${path}` 변수가 의미하는 것은?**
+① 서버의 절대 물리 경로
+#② 프로젝트의 Context Path (루트 경로) jsp기준을   webapp를 기본 경로로 설정 설정해서 처리해준다.
+										  html/css 기본 경로인 resource 하위는 static 설ㅈ어..
+③ 사용자의 IP 주소
+④ DB 접속 URL
+
+**17. 다음 중 Ajax 요청의 속성 설명으로 틀린 것은?**
+① `url`: 요청을 보낼 서버의 경로
+② `type`: HTTP 요청 방식 (GET, POST 등)
+③ `dataType`: 서버에서 보낼 데이터의 형식을 미리 지정 (json 등)  text (default)
+#④ `data`: 서버로부터 전달받은 결과 데이터 자체를 저장하는 변수   
+	요청값을 처리할 때 사용되는 속성..
+
+**18. 상세 화면 모달에서 '수정'과 '삭제' 버튼을 보이고 '등록' 버튼을 숨기기 위해 사용하는 jQuery 함수는?**
+#① `.show()` / `.hide()`
+② `.attr()` / `.removeAttr()`
+③ `.css()` / `.animate()`
+④ `.addClass()` / `.removeClass()`
+
+**19. Mybatis 매퍼 인터페이스에 `@Mapper` 어노테이션을 붙이는 주된 이유는?**
+#① 해당 인터페이스를 구현한 클래스를 Mybatis가 자동으로 생성하고 빈으로 등록하기 위해
+
+② 뷰 페이지의 이름을 정의하기 위해
+③ 로그를 출력하기 위해
+④ 서버의 포트 번호를 설정하기 위해
+
+**20. `A01_GourmetController`에서 `gourmetMngView` 메서드가 
+	"a08_ajax\a06_gourmetMng" 문자열을 반환할 때 작동하는 Spring MVC 구성 요소는?**
+① HandlerMapping : 요청 url 을 controller 메서드마다 매핑 내부 객체..
+#② ViewResolver	: controller의 메서드 마다 return 할 문자열을 어떤 뷰를 처리할지 결정 (기본은 jsp, 문자열로 처리-json)
+③ MultipartResolver : 파일업로드시 처리되는 뷰
+④ DataSource	: 데이터베이스 처리 객체.
+
+---
+
+## Ⅱ. 주관식 (기술형) - 5문항
+
+**1. Ajax 통신을 사용하여 데이터를 등록한 후, 사용자가 페이지 전체를 새로고침하지 않아도 리스트가 최신화되는 
+	기술적 원리와 그 구현 방법을 소스 코드를 참고하여 설명하세요.**
+	client에서 javascript로 요청하면 일반적인 submit처리(페이지 전환 처리)와 달리 현재 페이지에서
+	비동기적으로 서버단에 데이터 요청하고, 그 결과값을 함수를 받아서 화면 개별 객체(DOM - form요소, table)를 동적으로
+	구성하여 처리한다..
+	$.ajax({
+		url:"요청url",
+		data:"요청 key/value",
+		success:function(결과받은 객체..){
+		}
+	})
+	
+	
+
+**2. 수정 기능 구현 시 `const formData={}`를 선언하고 `$.each($("#frm02").serializeArray(), ...)`를 
+	사용하는 이유를 JSON 데이터 구조와 관련지어 기술하세요.**
+	<form id="frm02">
+		<input name="id" value="1">
+		<input name="name" value="짬뽕">
+		<input name="category" value="중식">
+		....
+	
+	$("#frm02").serialize() ==> id=1&name=짬뽕&category=중식...
+	$("#frm02").serializeArray() ==>[{name:id,value:1},{name:name,value:"짬뽕"}, {},{}...]
+	
+	const formData={} : json데이터를 만들기위하서 선언..
+	$.each($("#frm02").serializeArray(), ...)`
+	const formData={} : json데이터를 만들기 위해서 선언..
+	$.each($("#frm02").serializeArray(), function(){
+		{name:id,value:1}
+		javascript에서 객체 속성   let person = {name:"홍길동"}
+							   person.age = 25;
+							   person['loc'] = "수원";
+		formData[this.name] = this.value
+		formData[id] = 1   ==>  formData={id:1,}
+		formData[name] = "짬뽕"  ==>  formData={id:1,name:"짬뽕"}
+		 
+	})
+	formData = {id:1,name:"짬뽕",category:"중식",....}
+	$.ajax({
+		type:"put",
+		contentType:"application/json",
+		data:JSON.stringify(formData),  => 객체 ==> 문자열로 처리..
+		
+	서버의 controller 단...	
+	@RequestBody GourmetStore upt	
+
+**3. `A01_GourmetService`에서 `insertGourmet` 메서드가 반환하는 `dao.insertGourmet(ins) > 0` 
+		구문이 의미하는 바와, 왜 성공/실패 여부를 정수가 아닌 문자열로 컨트롤러에 반환하는지 그 편의성을 설명하세요.**
+	dao 정수 service 문자열 ==> 문자열 결과메시지는 client에 전송하기 위한 내용.. 서버단에에서 메시지를 전송하는 경수..
+	dao 정수 service controller 정수 ==> success(cnt)  클라이언트 단에서 갯수를 받아서 처리한다.
+		if(cnt>0) 성공 또는 실패..
+		1건 성공    2건 성공..  client단의 필요에 의해서 프로세스가 변환될 때, 사용된다. 
+	위 내용을 client 프로세스에 따라서 결정하여 처리한다.	
+
+**4. 상세 보기(`goDetail`) 함수 내에서 `$("#frm02")[0].reset()`을 직접 호출하거나 혹은 
+	`regLoadBtn`을 클릭하는 트리거를 사용하는 이유가 화면 제어(UI 초기화) 관점에서 왜 중요한지 기술하세요.**
+	
+	모달창이 등록 화면/상세 화면을 같이 사용하고 하고 있다.. 
+	상세화면에 로딩된 데이터 수정 처리 하거나 확인시  다시 등록화면을 로딩하면 동일한 모달창을 사용하기에 입력된 데이터를
+	볼 수 있게. 해당 form 있는 데이터 초기화(공백처리) 하여야 한다.
+
+**5. `@RestController`를 사용하지 않고 일반 `@Controller`를 사용하면서도, 
+	`gourmetList` 메서드에서 데이터를 반환할 수 있게 해주는 구조적 특징(ResponseEntity 혹은 @ResponseBody 등)에 대해 설명하세요.**
+	
+	@RestController
+	class ####Controller{
+	
+	}
+	이렇게 선언되 controller는 json/문자열만 처리하기 위한 controller로 설정하는 것이다.
+	이것 전용으로 jsp/html을 처리하지 못 하게 된다.
+	꼭 json 전용 controller가 필요할 때 사용된다.
+	
+	
+# ResponseEntity<?>  <?> 여러 객체를 모두 처리,  ResponseEntity<Person> 특정한 객체만 처리.. 
+1. http 응답의 전체 구성 요소(상태 코드, 헤더, 바디)를 개발자가 직접 제어할 수 있게 해주는 객체.
+	DTO/VO ==> json 문자열로 변환 처리..
+2. 단순히 데이터만 보내는 것이 아니라, 이 요청은 성공했다.(200 ok ==> .ok(객체..)), 찾을 수 없다(404 Not found)
+	입력갑시 잘못되었다(400 Bad Request) 같은 상태 코드를 데이터와 함께 클라이언트에 전달합니다.
+3. 사용 이유
+	1) ajax 통신 시 서버에서 에러가 발생했을 때, 단순히 에러 메시지 문자열을 보내는 것보다.
+	2) http 상태 코드를 다르게 보내면 브라우저(jquery) success 함수가 실행될지,
+	3) error 함수가 실행될지 결정할 수 있어 훨씬 정교한 예외 처리가 가능합니다.
+		
+	
+	
+	
+	
+
