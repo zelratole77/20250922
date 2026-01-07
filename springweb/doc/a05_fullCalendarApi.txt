@@ -12,6 +12,8 @@
 	- 데이터를 주고 받기 위한 그룻을 만듭니다.
 	- 위 핵심 json 데이터를 통해서 사용할 DB 테이블 설계 및 설정
 	- dto 생성 : 전달할때 처리할 데이터 
+	--------------------------------------
+	
 	- dao : 기본 조회 리스트 처리 선언..
 3. 일정 조회 처리 화면 구현(Back-end/front-end)
 	- ajax를 통해서 기본 데이터를 리스트 하기 위한 처리(백앤드단)
@@ -131,6 +133,12 @@ class Calendar{
 	private String content;
 	
 }
+
+
+ex) 위 내용에 캘린더에서 날짜별 회의실 예약이라는 처리를 할려고 한다.
+속성을 섧정하고, calendar_room 이라는 테이블과 calendarRoom Vo 객체를 만들어
+web.com.springweb.a08_fullcalendar 하위에 설정해서 처리해보세요..
+
 	
 
 
