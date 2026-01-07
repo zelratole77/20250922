@@ -65,81 +65,25 @@
       dayMaxEvents: true, // allow "more" link when too many events
       // ex) 전일일정   2023-01-06   프로젝트 시작
       //     시간일정  2023-01-10에 오전 9시부터 12시까지   프로젝트 회의 일정
+      // ajax로 데이터를 처리하여, javascript에서 다른 프로그램지원하지 않는 함수매개변수 전달하여, 
+      // 그 함수의 매개값으로 json 데이터를 넣으면, fullcalendar의 전체 데이터를 할당하여 로딩 처리한다.
       
-      events: [
-        {
-              title: '프로젝트 시작',
-              start: '2023-01-06'
-        },  
-        {
-            title: '프로젝트 회의 일정',
-            start: '2023-01-10T09:00:00',
-            end: '2023-01-10T12:00:00'
-        },        
-        {
-              title: '일정등록 처음',
-              start: '2023-01-02'
-        },    	    
-        {
-          title: 'All Day Event',
-          start: '2023-01-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2023-01-07',
-          end: '2023-01-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2023-01-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2023-01-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2023-01-11',
-          end: '2023-01-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2023-01-12T10:30:00',
-          end: '2023-01-12T12:30:00'
-        },
-        {
-            title: '시간일정등록',
-            start: '2023-01-02T11:30:00',
-            end: '2023-01-02T13:30:00'
-        },        
-        {
-          title: 'Lunch',
-          start: '2023-01-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2023-01-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2023-01-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2023-01-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2023-01-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2023-01-28'
-        }
-      ]
+      events: function(info, successCallback, failureCallback){
+    	  // 기능 코드를 통해서 특정한 데이터를 캘린더 데이터를 활용할 수 있기에 함수를 처리한다.
+    	  $.ajax({
+    		  url:"calendarList",
+    		  dataType:"json",
+    		  success:function(calenList){
+    			  console.log("#가져온 캘린더 데이터#")
+    			  console.log(calenList)
+    			  successCallback(calenList);
+    		  },
+    		  error:function(err){
+    			  console.log(err)
+    		  }
+    	  })
+    	  
+      }
     });
 
     calendar.render();
