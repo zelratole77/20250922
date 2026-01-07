@@ -139,6 +139,16 @@ ex) 위 내용에 캘린더에서 날짜별 회의실 예약이라는 처리를 
 속성을 섧정하고, calendar_room 이라는 테이블과 calendarRoom Vo 객체를 만들어
 web.com.springweb.a08_fullcalendar 하위에 설정해서 처리해보세요..
 
+ex) calendar_room 기준으로 화면을 출력 처리.
+sql
+dto
+dao
+---------------------------------
+service
+controller // http://localhost:5050/fullCalendarList
+			A01_FullCalenderController
+			
+jsp 화면..
 	
 
 

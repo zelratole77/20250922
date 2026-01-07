@@ -45,6 +45,14 @@ CREATE TABLE calendar_room (
     content VARCHAR2(500),         -- 회의 안건 및 상세 내용
     members VARCHAR2(200)          -- 참석예정자명단   
 );
+SELECT * FROM calendar_room;
+/*
+
+SELECT ID, TITLE, START1 "START", END1 "END", BACKGROUND_COLOR,
+TEXT_COLOR, ALL_DAY,ROOM_NAME, WRITER, CONTENT, MEMBERS
+FROM CALENDAR_ROOM
+			
+ * */
 
 -- 시퀀스 생성
 CREATE SEQUENCE cal_room_seq;
