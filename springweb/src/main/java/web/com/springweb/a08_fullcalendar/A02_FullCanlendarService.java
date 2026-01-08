@@ -15,7 +15,7 @@ public class A02_FullCanlendarService {
 		return dao.calendarList();
 	}
 	
-	public String insertCalendar(CalendarRoom ins) {
-		return dao.insertCalendar(ins)>0?"회의실예약성공":"회의실예약실패";
+	public String insertCalendarRoom(CalendarRoom ins) {
+		return dao.insertCalendarRoom(ins)>0?"회의실예약성공":"회의실예약실패";
 	}
 }

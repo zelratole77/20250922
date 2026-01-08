@@ -25,11 +25,11 @@ public class A01_FullCalenderController {
 		
 		return ResponseEntity.ok(service.calendarList());
 	}	
-	// http://localhost:5050/insertCalendar
-	@PostMapping("insertCalendar")
-	public ResponseEntity<?> insertCalendar(CalendarRoom ins) {
+	// http://localhost:5050/insertCalendarRoom
+	@PostMapping("insertCalendarRoom")
+	public ResponseEntity<?> insertCalendarRoom(CalendarRoom ins) {
 		
-		return ResponseEntity.ok(service.insertCalendar(ins));
+		return ResponseEntity.ok(service.insertCalendarRoom(ins));
 	}
 	
 }

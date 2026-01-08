@@ -17,5 +17,5 @@ public interface A03_FullCanlendarDao {
 
 	@Insert("insert into CALENDAR_ROOM values(cal_seq.nextval, #{title},#{start},#{end},\r\n"
 			+ "	#{backgroundColor},#{textColor},#{allDay},#{roomName},#{writer},#{content},#{members} )")
-	int insertCalendar(CalendarRoom ins);		
+	int insertCalendarRoom(CalendarRoom ins);		
 }
