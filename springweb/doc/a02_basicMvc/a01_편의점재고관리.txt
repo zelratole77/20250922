@@ -1,0 +1,37 @@
+# spring으로 하는 편의점 재고 관리 프로그램..
+1. spring을 통한 화면처리 단계별 내용.
+	1) url요청을 통해서 특정 controller 의 메서드 호출, 이 메시드가 가지고 있는 화면을 전송..
+		- client  http://localhost:5050/basic01
+		- controller  
+				@GetMapping("basic01")
+				public String basic01(){
+					return "b01_basic\a01_basic01"
+				}
+				z01_basic/basic01.jsp 를 호출
+				
+				
+				springweb\src\main\webapp\WEB-INF\views\b01_basic\a01_basic01.jsp
+				==>
+			# viewResolver 설정(jsp 경로 단축)
+			# 접두사 Refix로 파일이 위치한 포더 경로
+			spring.mvc.view.prefix=/WEB-INF/views/
+			# 접미사 suffix : 파일 확장자명
+			spring.mvc.view.suffix=.jsp
+			# return "call"  ==> "/WEB-INF/views/call.jsp" 처리와 동일..
+			# return "b01_basic\\a01_basic01"; ==> /WEB-INF/views/b01_basic/a01_basic01.jsp
+
+
+				
+				
+	2) 요청값을 처리..
+	3) 모델 결과값을 처리..
+	4) 기본 스프링에서 DB를 처리하는 핵심 구조에 대한 이해..
+		XXXController.java   XXXService.java    XXXDao.java, DTO.java
+		@@@@.jsp  
+	5) 기본 조회하기
+	6) 한개 데이터 가져오기	
+	7) 데이터 등록하기
+	8) 데이터 수정하기
+	9) 데이터 삭제하기..
+	
+					

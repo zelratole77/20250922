@@ -77,6 +77,16 @@
     	  console.log("# 저장된 일정 #")
 	      addForm(arg.event, "D") // 상세 D
       },
+      eventDrop: function(arg) {
+	      addForm(arg.event, "D") //바뀐 시간과 전일여부만 form 정보 전송
+	      callAjax("updateCalendar", "put")
+      },
+      eventResize: function(arg) {
+	      addForm(arg.event, "D") //바뀐 시간과 전일여부만 form 정보 전송
+	      callAjax("updateCalendar", "put")
+      },      
+      
+      
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
       // ex) 전일일정   2023-01-06   프로젝트 시작
@@ -109,7 +119,7 @@
   	  $("#frm02")[0].reset() // 상세화면 확인하고, 다시 볼 때 초기화면으로 처리.
   	  
   	  // 등록/수정 공통
-    	  $("[name=start]").val(event.startStr.substring(0,19))
+      $("[name=start]").val(event.startStr.substring(0,19))
   	  $("[name=end]").val(event.endStr.substring(0,19))
   	  $("[name=allDay]").val(event.allDay?1:0) // 입력시 실제 전송할 내용
   	  $("#allDay").val(event.allDay?"종일":"시간") // 화면에 보이는 레이블 내용	  
