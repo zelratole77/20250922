@@ -35,6 +35,7 @@
 				  data:$("#frm02").serialize(),
 				  success:function(msg){
 					  alert(msg)
+					  location.reload();
 					  
 				  },
 				  error:function(err){
