@@ -25,6 +25,8 @@
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
+	  
+	  var calendar =null
 	  // 등록 처리(ajax)
 	  $("#regBtn").click(function(){
 		  if(confirm("등록하시겠습니까?")){
@@ -35,7 +37,8 @@
 				  data:$("#frm02").serialize(),
 				  success:function(msg){
 					  alert(msg)
-					  location.reload();
+					  //location.reload();
+					  calendar.refetchEvents();//일정을 전체적으로 재로딩 처리..
 					  
 				  },
 				  error:function(err){
@@ -45,14 +48,8 @@
 			  
 		  }
 	  })
-	  
-	  
-	  
-	  
-	  
     var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
@@ -118,7 +115,6 @@
       //     시간일정  2023-01-10에 오전 9시부터 12시까지   프로젝트 회의 일정
       // ajax로 데이터를 처리하여, javascript에서 다른 프로그램지원하지 않는 함수매개변수 전달하여, 
       // 그 함수의 매개값으로 json 데이터를 넣으면, fullcalendar의 전체 데이터를 할당하여 로딩 처리한다.
-      
       events: function(info, successCallback, failureCallback){
     	  // 기능 코드를 통해서 특정한 데이터를 캘린더 데이터를 활용할 수 있기에 함수를 처리한다.
     	  $.ajax({
@@ -135,6 +131,7 @@
     	  })
     	  
       }
+    
     });
 
     calendar.render();
