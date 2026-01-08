@@ -16,17 +16,7 @@ create sequence cal_seq;
 insert into CALENDAR values(cal_seq.nextval, '첫번째 일정', '2026-01-07','2026-01-08',
 	'#009933','#ffff99',1,'http://www.naver.com','홍길동','일정 등록 연습' );
 SELECT * FROM CALENDAR;
-UPDATE CALENDAR 
-   SET TITLE='팀 주간 회의(수정)',
-       START1 = '2026-02-08T10:00:00',
-       END1 = '2026-02-08T12:00:00',
-       BACKGROUND_COLOR = '#3357FA',
-       TEXT_COLOR = '#FFFFFA',
-       ALL_DAY = 1,
-       URL_LINK = 'http://www.naver.com',
-       WRITER = '김영희',
-       CONTENT = '프로젝트 진행 상황 (수정)'
- WHERE ID = 2;   
+ 
 /*
 id title start end backgroundColor textColor allDay urlLink writer content
 UPDATE CALENDAR 
@@ -45,6 +35,18 @@ int updateCalendar(Calendar upt);
 @Delete("DELETE FROM CALENDAR WHERE ID = #{id}")
 int deleteCalendar(@Param("id") int id);
  * */
+UPDATE CALENDAR 
+   SET TITLE='팀 주간 회의(수정)',
+       START1 = '2026-02-08T10:00:00',
+       END1 = '2026-02-08T12:00:00',
+       BACKGROUND_COLOR = '#3357FA',
+       TEXT_COLOR = '#FFFFFA',
+       ALL_DAY = 1,
+       URL_LINK = 'http://www.naver.com',
+       WRITER = '김영희',
+       CONTENT = '프로젝트 진행 상황 (수정)'
+ WHERE ID = 2;  
+
 DELETE FROM CALENDAR WHERE ID = 3;
        
 
@@ -90,7 +92,43 @@ CREATE TABLE calendar_room (
     members VARCHAR2(200)          -- 참석예정자명단   
 );
 SELECT * FROM calendar_room;
+UPDATE calendar_room 
+   SET TITLE='첫번째 회의 주간 회의(수정)',
+       START1 = '2026-01-08T10:00:00',
+       END1 = '2026-01-08T12:00:00',
+       BACKGROUND_COLOR = '#3357FA',
+       TEXT_COLOR = '#FFFFFA',
+       ALL_DAY = 1,
+       WRITER = '홍길동',
+       CONTENT = '프로젝트 진행 상황 (수정)',
+       ROOM_NAME = '999호',
+       members = '오수정, 김수정, 박수정'
+ WHERE ID = 11;  
+
+DELETE FROM calendar_room WHERE ID = 19;
+
 /*
+UPDATE calendar_room 
+   SET TITLE=#{title},
+       START1 = #{start},
+       END1 = #{end},
+       BACKGROUND_COLOR = #{backgroundColor},
+       TEXT_COLOR = #{textColor},
+       ALL_DAY = #{allDay},
+       WRITER = #{writer},
+       CONTENT = #{content},
+       ROOM_NAME = #{roomName},
+       members = #{members}
+ WHERE ID = #{id}
+@Update("")
+int updateCalendarRoom( CalendarRoom upt);
+@Delete("DELETE FROM calendar_room WHERE ID = #{id}")
+int deleteCalendarRoom(@Param("id") int id);
+
+ 
+ DELETE FROM calendar_room WHERE ID = #{id}
+id 	title start end backgroundColor textColor allDay roomName writer content members
+
 ex) calendar_room 테이블도 수정/삭제  dao service controller 처리..
 
 

@@ -5,6 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class A01_FullCalenderController {
@@ -31,5 +34,18 @@ public class A01_FullCalenderController {
 		
 		return ResponseEntity.ok(service.insertCalendarRoom(ins));
 	}
+	// http://localhost:5050/updateCalendarRoom
+	@PutMapping("updateCalendarRoom")
+	public ResponseEntity<?> updateCalendarRoom(@RequestBody CalendarRoom upt) {
+		
+		return ResponseEntity.ok(service.updateCalendarRoom(upt));
+	}
+	// http://localhost:5050/deleteCalendarRoom
+	@PostMapping("deleteCalendarRoom")
+	public ResponseEntity<?> deleteCalendarRoom(@RequestParam("id") int id) {
+		
+		return ResponseEntity.ok(service.deleteCalendarRoom(id));
+	}	
+	
 	
 }
