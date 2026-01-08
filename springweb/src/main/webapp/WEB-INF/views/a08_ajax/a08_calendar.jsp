@@ -23,28 +23,17 @@
 <script src="${path}/com/jquery-3.7.1.js"></script>
 <script src="${path}/com/bootstrap.min.js"></script>
 <script>
-
+  var calendar =null
   document.addEventListener('DOMContentLoaded', function() {
 	  
-	  var calendar =null
+
 	  // 등록 처리(ajax)
 	  $("#regBtn").click(function(){
 		  if(confirm("등록하시겠습니까?")){
-			  //alert( $("#frm02").serialize() )
-			  $.ajax({
-				  url:"insertCalendar",
-				  type:"post",
-				  data:$("#frm02").serialize(),
-				  success:function(msg){
-					  alert(msg)
-					  calendar.refetchEvents();//일정을 전체적으로 재로딩 처리..
-					  $(".close").click() // 현재 모달창 닫기..
-					  
-				  },
-				  error:function(err){
-					  console.log(err)
-				  }
-			  })
+			  
+			  callAjax("insertCalendar", "post")
+
+
 			  
 		  }
 	  })
@@ -65,46 +54,20 @@
     	 $("#regBtn").show()
     	 $("#uptBtn").hide()
     	 $("#delBtn").hide()
-    	 $("#frm02")[0].reset() // 상세화면 확인하고, 다시 볼 때 초기화면으로 처리.
-    	  $("#regLoadBtn").click() 
+     	 $("#regLoadBtn").click() 
     	  // 강제 이벤트 처리(javascript 클릭하지 않더라도 클릭한 것 동일한 효과 코드)
-    	console.log("# 일정 데이터(api) 매개변수 #")
-    	console.log(arg.startStr)
-    	console.log(arg.endStr)
-    	console.log(arg.allDay)
-    	$("[name=start]").val(arg.startStr.substring(0,19))
-    	$("[name=end]").val(arg.endStr.substring(0,19))
-    	$("[name=allDay]").val(arg.allDay?1:0) // 입력시 실제 전송할 내용
-    	$("#allDay").val(arg.allDay?"종일":"시간") // 화면에 보이는 레이블 내용
-    	console.log("# 메인 calendar #")        
-    	console.log(calendar)        
-        calendar.unselect()
+     	 addForm(arg, "I") // 등록 I
+         calendar.unselect()
       },
       eventClick: function(arg) {
-    	  let event = arg.event
      	  $("#frmTitle").text("일정 상세")
     	  $("#regBtn").hide()
     	  $("#uptBtn").show()
     	  $("#delBtn").show()
-    	  $("#frm02")[0].reset() // 상세화면 확인하고, 다시 볼 때 초기화면으로 처리.
     	  $("#regLoadBtn").click() 
     	  //id 	title start end backgroundColor textColor allDay urlLink writer content
     	  console.log("# 저장된 일정 #")
-    	  // 고유 속성(api 지원)
-    	  $("[name=id]").val(event.id)
-    	  $("[name=title]").val(event.title)
-    	  $("[name=start]").val(event.startStr.substring(0,19))
-    	  $("[name=end]").val(event.endStr.substring(0,19))
-    	  $("[name=allDay]").val(event.allDay?1:0) // 입력시 실제 전송할 내용
-    	  $("#allDay").val(event.allDay?"종일":"시간") // 화면에 보이는 레이블 내용	  
-
-    	  $("[name=backgroundColor]").val(event.backgroundColor)
-    	  $("[name=textColor]").val(event.textColor)
- 	      // 사용자 정의 속성
-    	  $("[name=urlLink]").val(event.extendedProps.urlLink)	 	      
-    	  $("[name=writer]").val(event.extendedProps.writer)	 	      
-    	  $("[name=content]").val(event.extendedProps.content)	 	      
-	      
+	      addForm(arg.event, "D") // 상세 D
       },
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
@@ -133,6 +96,44 @@
 
     calendar.render();
   });
+  // form 데이터 로딩 공통 함수 처리
+  function addForm(event, proc){   // event 데이터와  등록/수정 처리 form 공통..
+	  
+	  $("#frm02")[0].reset() // 상세화면 확인하고, 다시 볼 때 초기화면으로 처리.
+	  
+	  // 등록/수정 공통
+  	  $("[name=start]").val(event.startStr.substring(0,19))
+	  $("[name=end]").val(event.endStr.substring(0,19))
+	  $("[name=allDay]").val(event.allDay?1:0) // 입력시 실제 전송할 내용
+	  $("#allDay").val(event.allDay?"종일":"시간") // 화면에 보이는 레이블 내용	  
+	  
+	  // 고유 속성(api 지원) 상세화면 데이터 처리..
+	  if(proc=='D'){
+		  $("[name=id]").val(event.id)
+		  $("[name=title]").val(event.title)
+		  $("[name=backgroundColor]").val(event.backgroundColor)
+		  $("[name=textColor]").val(event.textColor)
+		  $("[name=urlLink]").val(event.extendedProps.urlLink)	 	      
+		  $("[name=writer]").val(event.extendedProps.writer)	 	      
+		  $("[name=content]").val(event.extendedProps.content)	 	  
+	  }
+  }
+  // ajax 처리 공통 함수 
+  function callAjax(urlLoc, method){
+	  $.ajax({
+		  url:urlLoc,
+		  type:method,
+		  data:$("#frm02").serialize(),
+		  success:function(msg){
+			  alert(msg)
+			  calendar.refetchEvents();//일정을 전체적으로 재로딩 처리..
+			  $(".close").click() // 현재 모달창 닫기..
+		  },
+		  error:function(err){
+			  console.log(err)
+		  }
+	  })	  
+  }
 
 </script>
 <style>

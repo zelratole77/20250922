@@ -73,7 +73,7 @@
 	4) 화면처리
 		공통 기능 함수로 정리 - form데이터 처리함수, ajax처리함수..
 		수정/삭제버튼 클릭..
-		수정 - eventDrop, eventresize
+		수정 - eventDrop, eventResize
 		
 # 환경 설정 및 기본 랜더링 처리
 1. webapp에 다운로드한 압축파일을 풀어서 저장한다.
