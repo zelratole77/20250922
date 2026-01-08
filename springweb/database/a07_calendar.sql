@@ -42,7 +42,7 @@ List<Calendar> calendarList();
 
 
 
--- 테이블 생성
+-- 테이블 생성  예약명 회의실 이름  예약자 회의 안건 
 CREATE TABLE calendar_room (
     id NUMBER PRIMARY KEY,
     title VARCHAR2(100) NOT NULL, -- 예약명 (예: 주간 회의)
