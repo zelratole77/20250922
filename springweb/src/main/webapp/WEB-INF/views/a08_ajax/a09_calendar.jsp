@@ -27,6 +27,7 @@
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
+	  var calendar=null
 	  $("#regBtn").click(function(){
 		  if(confirm("등록하시겠습니까?")){
 			  $.ajax({
@@ -35,7 +36,8 @@
 				  data:$("#frm02").serialize(),
 				  success:function(msg){
 					  alert(msg)
-					  location.reload();
+					  calendar.refetchEvents();
+					  $(".close").click() // 현재 모달창 닫기..
 					  
 				  },
 				  error:function(err){
@@ -50,7 +52,7 @@
 	  
     var calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
@@ -77,8 +79,7 @@
      	$("[name=end]").val(arg.endStr.substring(0,19))
      	$("[name=allDay]").val(arg.allDay?1:0) // 입력시 실제 전송할 내용
      	$("#allDay").val(arg.allDay?"종일":"시간") // 화면에 보이는 레이블 내용
-
-     	
+    	
      	
       },
       eventClick: function(arg) {
@@ -90,7 +91,21 @@
     	  $("#regLoadBtn").click() 
     	  
     	  console.log("# 저장된 일정 #")
-    	  console.log(arg.event)
+    	  let event = arg.event
+  		  // id 	title start end backgroundColor textColor allDay roomName writer content members
+      	  $("[name=start]").val(event.startStr.substring(0,19))
+     	  $("[name=end]").val(event.endStr.substring(0,19))
+     	  $("[name=allDay]").val(event.allDay?1:0) // 입력시 실제 전송할 내용
+     	  $("#allDay").val(event.allDay?"종일":"시간") // 화면에 보이는 레이블 내용   	
+     	  $("[name=id]").val(event.id)
+     	  $("[name=title]").val(event.title)
+     	  $("[name=backgroundColor]").val(event.backgroundColor)
+     	  $("[name=textColor]").val(event.textColor)
+     	  $("[name=roomName]").val(event.extendedProps.roomName)
+     	  $("[name=writer]").val(event.extendedProps.writer)
+     	  $("[name=content]").val(event.extendedProps.content)
+     	  $("[name=members]").val(event.extendedProps.members)
+    	  
     	  
       },
       editable: true,

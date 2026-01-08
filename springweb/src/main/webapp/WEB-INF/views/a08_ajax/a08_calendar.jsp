@@ -37,8 +37,8 @@
 				  data:$("#frm02").serialize(),
 				  success:function(msg){
 					  alert(msg)
-					  //location.reload();
 					  calendar.refetchEvents();//일정을 전체적으로 재로딩 처리..
+					  $(".close").click() // 현재 모달창 닫기..
 					  
 				  },
 				  error:function(err){
