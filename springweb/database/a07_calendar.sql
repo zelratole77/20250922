@@ -83,6 +83,32 @@ INSERT INTO calendar_room VALUES(
     '신규 프로젝트 방향성 논의',
     '홍길동, 김길동, 마길동'
 );
+
+SELECT COUNT(*)
+FROM calendar_room
+WHERE room_name = 'A회의실'
+  AND (
+    -- 1. 기존 데이터의 시작/종료 시간을 표준화 (Virtual Start/End)
+    -- 시작시간: 그대로 사용
+    -- 종료시간: NULL이거나 시작일과 같으면 해당일 '23:59:59'로 간주
+    CASE 
+        WHEN end1 IS NULL OR start1 = end1 THEN start1 || ' 23:59:59'
+        ELSE end1 
+    END > '2026-01-10 10:00'  -- 새 예약 시작 시간 (예: '2026-01-10 10:00')
+    
+    AND
+    
+    start1 < (
+        -- 2. 신규 데이터가 종일 일정인 경우 처리
+        -- 새 예약도 종일이면 종료시간을 '23:59:59'로 확장해서 비교
+        CASE 
+            WHEN '2026-01-10' IS NULL OR '2026-01-10' = '2026-01-11' THEN '2026-01-10' || ' 23:59:59'
+            ELSE '2026-01-11'
+        END
+    )
+  );
+    
+
 /*
 ex) 회의 일정 등록 처리 내용.. 처리..
 dao

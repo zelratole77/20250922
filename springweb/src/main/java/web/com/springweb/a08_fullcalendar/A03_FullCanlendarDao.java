@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import web.com.springweb.a07_fullcalendar.Calendar;
+
 
 @Mapper
 public interface A03_FullCanlendarDao {
