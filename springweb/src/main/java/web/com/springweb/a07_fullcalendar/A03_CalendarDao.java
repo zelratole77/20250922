@@ -34,6 +34,7 @@ public interface A03_CalendarDao {
 			+ "	       CONTENT = #{content}\r\n"
 			+ "	 WHERE ID = #{id}")
 	int updateCalendar(Calendar upt);
+	
 	@Delete("DELETE FROM CALENDAR WHERE ID = #{id}")
 	int deleteCalendar(@Param("id") int id);	
 }

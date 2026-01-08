@@ -19,4 +19,13 @@ public class A02_CalendarService {
 		
 		return dao.insertCalendar(ins)>0?"등록 성공":"등록 실패";
 	}
+	public String updateCalendar(Calendar upt) {
+		
+		return dao.updateCalendar(upt)>0?"수정 성공":"수정 실패";
+	}
+	public String deleteCalendar(int id) {
+		
+		return dao.deleteCalendar(id)>0?"삭제 성공":"삭제 실패";
+	}
+	
 }
