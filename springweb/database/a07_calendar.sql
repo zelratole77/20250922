@@ -68,6 +68,7 @@ FROM CALENDAR_ROOM
 -- 시퀀스 생성
 CREATE SEQUENCE cal_room_seq;
 
+
 -- 샘플 데이터 입력
 INSERT INTO calendar_room VALUES(
     cal_room_seq.nextval, 
@@ -82,5 +83,19 @@ INSERT INTO calendar_room VALUES(
     '신규 프로젝트 방향성 논의',
     '홍길동, 김길동, 마길동'
 );
+/*
+ex) 회의 일정 등록 처리 내용.. 처리..
+dao
+
+
+
+--------------------
+service
+controller
+
+
+
+ * */
+
 
 SELECT * FROM calendar_room;

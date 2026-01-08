@@ -1,6 +1,7 @@
 package web.com.springweb.a08_fullcalendar;
 
 public class CalendarRoom {
+	
     private int id;
     private String title;
     private String start;           // FullCalendar의 start 속성 대응

@@ -11,7 +11,7 @@ import web.com.springweb.a07_fullcalendar.Calendar;
 public class A02_FullCanlendarService {
 	@Autowired(required=false)
 	private A03_FullCanlendarDao dao;
-	public List<Calendar> calendarList(){
+	public List<CalendarRoom> calendarList(){
 		return dao.calendarList();
 	}
 }
