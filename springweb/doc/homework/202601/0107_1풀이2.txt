@@ -1,0 +1,135 @@
+학습하신 FullCalendar와 Spring 연동 개념을 완벽하게 정리할 수 있는 일일 정리 문제의 정답 및 실제 구현 코드입니다.
+
+---
+
+## 1. 환경 설정 및 기본 렌더링
+
+1. **[개념]** - **경로:** `src/main/webapp/resources` 또는 `src/main/resources/static` 하위에 배치합니다.
+* **참조 방식:** `<script src="${pageContext.request.contextPath}/resources/dist/index.global.js"></script>`와 같이 절대 경로를 사용하여 참조합니다.
+
+
+2. **[실습]** (컨트롤러 설정)
+```java
+@GetMapping("/calendar")
+public String calendarView() {
+    return "a08_ajax/a09_calendar"; // WEB-INF/views/ 경로 제외 설정 시
+}
+
+```
+
+
+
+## 2. JSON 데이터와 속성 이해
+
+3. **[개념]** - **시간 미포함:** 'All-day(종일)' 일정으로 인식되어 날짜 칸 상단에 표시됩니다.
+* **시간 포함:** 시간별 슬롯(Time-grid)이 있는 보기 모드에서 해당 시간 위치에 배치됩니다.
+
+
+4. **[실습]**
+```json
+{
+  "title": "코딩 공부하기",
+  "start": "2026-01-07T09:00:00",
+  "end": "2026-01-07T18:00:00",
+  "url": "https://myblog.com"
+}
+
+```
+
+
+
+## 3. DB 설계 및 DTO 매핑
+
+5. **[개념]** 자바의 `boolean` 타입은 `true/false` 논리를 직관적으로 처리하며, Jackson 라이브러리가 JSON 변환 시 자동으로 `true/false`로 매핑해주어 프런트엔드(JS)에서 조건문 사용이 편리하기 때문입니다.
+6. **[실습]**
+```sql
+CREATE TABLE calendar_room (
+    id NUMBER PRIMARY KEY,
+    room_no NUMBER,
+    headcount NUMBER,
+    title VARCHAR2(100),
+    start_date VARCHAR2(50),
+    end_date VARCHAR2(50)
+);
+
+```
+
+
+```java
+public class CalendarRoomVO {
+    private int id;
+    private int roomNo;
+    private int headcount;
+    private String title;
+    private String start; // FullCalendar 대응
+    private String end;
+}
+
+```
+
+
+
+## 4. 일정 조회 처리 (Back-end)
+
+7. **[개념]** SQL 문에서 **Alias(별칭)**를 사용합니다. (예: `SELECT START1 as "start" FROM ...`)
+8. **[실습]**
+```sql
+-- MyBatis Mapper SQL
+SELECT id, room_no as roomNo, title, start_date as "start", end_date as "end"
+FROM calendar_room
+WHERE TO_DATE(start_date, 'YYYY-MM-DD') 
+BETWEEN SYSDATE AND SYSDATE + 7
+
+```
+
+
+
+## 5. AJAX를 이용한 프런트엔드 연동
+
+9. **[개념]** - 달력을 넘길 때마다 필요한 범위의 데이터만 서버에 요청할 수 있어 효율적입니다.
+* 데이터를 받기 전후에 로딩 표시를 하거나, 받은 데이터를 JS에서 동적으로 가공(`map`, `filter`)할 수 있습니다.
+
+
+10. **[실습]**
+```javascript
+success: function(calenList) {
+    const modifiedList = calenList.map(event => {
+        if(event.writer === "관리자") {
+            event.backgroundColor = "red";
+            event.borderColor = "red";
+        }
+        return event;
+    });
+    successCallback(modifiedList);
+}
+
+```
+
+
+
+## 6. 일정 추가 및 상세 이벤트 처리
+
+11. **[개념]** - **이벤트명:** `select`
+* **속성명:** `arg.startStr`, `arg.endStr`
+
+
+12. **[실습]**
+```javascript
+select: function(arg) {
+    var title = prompt('일정 제목을 입력하세요:'); // 실제로는 모달의 input 값 추출
+    if (title) {
+        calendar.addEvent({
+            title: title,
+            start: arg.start,
+            end: arg.end,
+            allDay: arg.allDay
+        });
+        // 이후 $.ajax를 통해 DB에 저장하는 로직 필요
+    }
+    calendar.unselect();
+}
+
+```
+
+
+

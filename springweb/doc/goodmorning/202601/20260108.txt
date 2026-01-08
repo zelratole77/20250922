@@ -1,0 +1,140 @@
+
+Good morning QUIZ! 오늘도 좋은 하루 되시길~~ ^^
+
+## I. 객관식 (4지 선다형)
+
+**1. FullCalendar 6버전 라이브러리를 Spring 프로젝트에 적용할 때, 정적 자원(js, css)을 관리하기 가장 적합한 경로는?**
+① `src/main/java`
+② `WEB-INF/views`
+③ `resources/static` (또는 `webapp/resources`)
+④ `WEB-INF/lib`
+
+**2. FullCalendar에서 일정을 렌더링하기 위해 가장 기본적으로 필요한 JSON 배열 내부의 필수 속성 두 가지는?**
+① `id`, `content`
+② `title`, `start`
+③ `writer`, `allDay`
+④ `groupId`, `url`
+
+**3. FullCalendar 객체 설정 중, 서버로부터 비동기(Ajax) 방식으로 데이터를 가져와 달력에 표시하기 위해 사용하는 속성은?**
+① `headerToolbar`
+② `initialView`
+③ `events`
+④ `editable`
+
+**4. 데이터베이스 테이블 설계 시 `start`와 `end` 컬럼을 `VARCHAR2(50)`로 설정한 주된 이유는 무엇인가?**
+① FullCalendar가 ISO 8601 형식의 문자열 데이터를 주로 사용하기 때문에
+② 숫자로 저장하면 날짜 계산이 불가능하기 때문에
+③ 보안상의 이유로 날짜를 암호화하기 위해
+④ 용량을 아끼기 위해
+
+**5. DB의 `all_day` 컬럼(NUMBER)값이 0 또는 1일 때, 이를 Java의 Calendar DTO에서 `boolean` 타입으로 자동 매핑하여 처리하는 Mybatis의 특징은?**
+① Type Aliases
+② Type Handler (기본 변환 처리)
+③ Result Map 설정
+④ SQL Injection 방지
+
+**6. `SELECT start1 "start"`와 같이 SQL 문에서 Alias(별칭)를 사용하는 목적은?**
+① 데이터베이스의 실제 컬럼명을 변경하기 위해
+② JSON 결과값의 Key를 FullCalendar가 인식하는 속성명과 일치시키기 위해
+③ 인덱스 성능을 높이기 위해
+④ NULL 값을 방지하기 위해
+
+**7. FullCalendar에서 특정 날짜를 클릭하거나 드래그했을 때 발생하는 이벤트 이름은?**
+① `eventClick`
+② `select`
+③ `dateClick`
+④ `drop`
+
+**8. `events: function(info, successCallback, failureCallback)` 구조를 사용하는 가장 큰 장점은?**
+① 달력의 디자인을 동적으로 변경할 수 있다.
+② Ajax 통신 전후에 사용자 정의 로직(로딩바 표시 등)을 삽입하거나 데이터를 가공할 수 있다.
+③ 서버 없이 데이터를 저장할 수 있다.
+④ 폰트 크기를 자동으로 조절해준다.
+
+**9. Spring Controller에서 JSON 데이터를 반환하기 위해 메서드 선언부에 사용하는 객체 또는 어노테이션으로 적절한 것은?**
+① `@RequestParam`
+② `ModelAndView`
+③ `ResponseEntity<?>` 또는 `@ResponseBody`
+④ `@ModelAttribute`
+
+**10. FullCalendar에서 `allDay: true`일 때 화면에 나타나는 특징은?**
+① 일정이 특정 시간에 고정된다.
+② 일정이 달력 상단의 '종일' 영역에 표시되거나 시간 표시 없이 나타난다.
+③ 일정이 보이지 않게 숨겨진다.
+④ 일정이 매달 반복된다.
+
+**11. 사용자가 등록된 일정을 클릭했을 때, 상세 정보를 보거나 삭제 처리를 하기 위해 연결해야 하는 속성은?**
+① `selectable`
+② `eventClick`
+③ `navLinks`
+④ `dayMaxEvents`
+
+**12. 회의실 예약 시스템(`calendar_room`)을 구축할 때, 기존 일반 일정 테이블과 차별화되어 추가되어야 할 핵심 데이터는?**
+① 작성자 이름
+② 회의실 번호 또는 회의실 명
+③ 배경 색상
+④ 글자 색상
+
+**13. Ajax 통신 시 `dataType: "json"`으로 설정했을 때의 의미는?**
+① 서버로 보낼 데이터 형식이 JSON이다.
+② 서버로부터 받을 응답 데이터 형식을 JSON으로 파싱하여 처리하겠다.
+③ 데이터베이스의 타입을 지정한다.
+④ HTML 태그 형태로 응답을 받는다.
+
+**14. FullCalendar에서 일정의 배경색을 동적으로 제어하기 위해 DTO와 DB에서 관리해야 하는 속성명은?**
+① `colorCode`
+② `bg`
+③ `backgroundColor`
+④ `paint`
+
+**15. `cal_seq.nextval`을 사용하여 `id`를 생성하는 이유는?**
+① 일정의 제목을 중복되지 않게 하기 위해
+② 각 일정에 고유한 식별 번호(Primary Key)를 부여하기 위해
+③ 일정을 날짜 순으로 정렬하기 위해
+④ 서버의 부하를 줄이기 위해
+
+**16. 다음 중 FullCalendar의 사용자 정의 속성(Extended Properties)에 대한 설명으로 옳은 것은?**
+① `title`, `start` 외에 `content`, `writer` 등 추가 데이터를 객체 안에 담아 활용할 수 있다.
+② 기본적으로 제공되는 속성 외에는 절대 사용할 수 없다.
+③ 사용자 정의 속성은 DB에 저장할 수 없다.
+④ 반드시 `custom`이라는 키값 안에만 넣어야 한다.
+
+**17. `$.ajax()`의 `success` 콜백 함수 내에서 `successCallback(calenList)`를 호출하는 이유는?**
+① 서버 데이터를 브라우저 쿠키에 저장하기 위해
+② 받아온 데이터를 FullCalendar 엔진에 전달하여 화면에 그리도록 하기 위해
+③ 페이지를 새로고침하기 위해
+④ 에러를 강제로 발생시키기 위해
+
+**18. 회의실 예약 시 중복 예약을 방지하기 위해 로직을 추가해야 할 가장 적절한 위치는?**
+① JSP (JavaScript)
+② Service 단 (Java)
+③ Controller 단
+④ CSS
+
+**19. FullCalendar 6 버전에서 일정을 드래그하여 이동시켰을 때 날짜 업데이트를 처리하기 위해 필요한 설정은?**
+① `editable: true`
+② `selectable: true`
+③ `unselectAuto: false`
+④ `droppable: false`
+
+**20. 아래 SQL문에서 `start1` 컬럼을 조회할 때 `\"START\"`와 같이 쌍따옴표를 사용하는 이유는?**
+`SELECT START1 \"START\" FROM CALENDAR`
+① 문자열임을 강조하기 위해
+② `START`가 SQL 예약어(Reserved word)이므로 별칭으로 사용하기 위해
+③ 대문자로만 출력하기 위해
+④ 특수문자를 포함하기 위해
+
+---
+
+## II. 주관식 (기술형)
+
+**1. FullCalendar에서 일정을 렌더링할 때 사용하는 기본 데이터 구조는 배열과 객체의 조합입니다. `{title: "수업", start: "2026-01-07"}`와 같은 데이터를 담는 Java 클래스(DTO)를 설계할 때, 필드명 설정 시 주의해야 할 점을 기술하세요.**
+
+**2. 서버(Spring)에서 DB에 저장된 일정 리스트를 가져와 JSON 형태로 리턴했습니다. 하지만 FullCalendar 화면에 아무런 일정이 표시되지 않을 때, 체크해야 할 확인 사항 2가지를 기술하세요. (데이터 형식, 속성명 등 관점에서)**
+
+**3. `calendar_room` 테이블을 설계할 때, '예약 시간의 중복'을 논리적으로 막기 위해 SQL 또는 Service 로직에서 비교해야 할 조건(필드)들에 대해 기술하세요.**
+
+**4. FullCalendar의 `events` 속성에서 `url`을 사용하는 방법과 사용자 정의 속성 `urlLink`를 사용하는 방법의 기능적 차이점을 설명하세요.**
+
+**5. 비동기 통신(Ajax)을 사용하여 일정을 추가(Insert)하는 과정을 순서대로 기술하세요. (화면 입력값 추출부터 DB 반영 및 화면 갱신까지)**
+
