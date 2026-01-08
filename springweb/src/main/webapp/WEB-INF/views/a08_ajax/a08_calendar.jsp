@@ -30,13 +30,21 @@
 	  // 등록 처리(ajax)
 	  $("#regBtn").click(function(){
 		  if(confirm("등록하시겠습니까?")){
-			  
 			  callAjax("insertCalendar", "post")
-
-
-			  
 		  }
 	  })
+	  // 수정 처리(ajax) updateCalendar
+	  $("#uptBtn").click(function(){
+		  if(confirm("수정하시겠습니까?")){
+			  callAjax("updateCalendar", "put")
+		  }
+	  })	  
+	  // 수정 처리(ajax)
+	  $("#delBtn").click(function(){
+		  if(confirm("삭제하시겠습니까?")){
+			  callAjax("deleteCalendar", "delete")
+		  }
+	  })	  
     var calendarEl = document.getElementById('calendar');
     calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
@@ -95,45 +103,49 @@
     });
 
     calendar.render();
+    // form 데이터 로딩 공통 함수 처리
+    function addForm(event, proc){   // event 데이터와  등록/수정 처리 form 공통..
+  	  
+  	  $("#frm02")[0].reset() // 상세화면 확인하고, 다시 볼 때 초기화면으로 처리.
+  	  
+  	  // 등록/수정 공통
+    	  $("[name=start]").val(event.startStr.substring(0,19))
+  	  $("[name=end]").val(event.endStr.substring(0,19))
+  	  $("[name=allDay]").val(event.allDay?1:0) // 입력시 실제 전송할 내용
+  	  $("#allDay").val(event.allDay?"종일":"시간") // 화면에 보이는 레이블 내용	  
+  	  
+  	  // 고유 속성(api 지원) 상세화면 데이터 처리..
+  	  if(proc=='D'){
+  		  $("[name=id]").val(event.id)
+  		  $("[name=title]").val(event.title)
+  		  $("[name=backgroundColor]").val(event.backgroundColor)
+  		  $("[name=textColor]").val(event.textColor)
+  		  $("[name=urlLink]").val(event.extendedProps.urlLink)	 	      
+  		  $("[name=writer]").val(event.extendedProps.writer)	 	      
+  		  $("[name=content]").val(event.extendedProps.content)	 	  
+  	  }
+    }
+    // ajax 처리 공통 함수 
+    function callAjax(urlLoc, method){
+  	  $.ajax({
+  		  url:urlLoc,
+  		  type:method,
+  		  data:$("#frm02").serialize(),
+  		  success:function(msg){
+  			  alert(msg)
+  			  calendar.refetchEvents();//일정을 전체적으로 재로딩 처리..
+  			  $(".close").click() // 현재 모달창 닫기..
+  		  },
+  		  error:function(err){
+  			  console.log(err)
+  		  }
+  	  })	  
+    }
+
+    
+    
+    
   });
-  // form 데이터 로딩 공통 함수 처리
-  function addForm(event, proc){   // event 데이터와  등록/수정 처리 form 공통..
-	  
-	  $("#frm02")[0].reset() // 상세화면 확인하고, 다시 볼 때 초기화면으로 처리.
-	  
-	  // 등록/수정 공통
-  	  $("[name=start]").val(event.startStr.substring(0,19))
-	  $("[name=end]").val(event.endStr.substring(0,19))
-	  $("[name=allDay]").val(event.allDay?1:0) // 입력시 실제 전송할 내용
-	  $("#allDay").val(event.allDay?"종일":"시간") // 화면에 보이는 레이블 내용	  
-	  
-	  // 고유 속성(api 지원) 상세화면 데이터 처리..
-	  if(proc=='D'){
-		  $("[name=id]").val(event.id)
-		  $("[name=title]").val(event.title)
-		  $("[name=backgroundColor]").val(event.backgroundColor)
-		  $("[name=textColor]").val(event.textColor)
-		  $("[name=urlLink]").val(event.extendedProps.urlLink)	 	      
-		  $("[name=writer]").val(event.extendedProps.writer)	 	      
-		  $("[name=content]").val(event.extendedProps.content)	 	  
-	  }
-  }
-  // ajax 처리 공통 함수 
-  function callAjax(urlLoc, method){
-	  $.ajax({
-		  url:urlLoc,
-		  type:method,
-		  data:$("#frm02").serialize(),
-		  success:function(msg){
-			  alert(msg)
-			  calendar.refetchEvents();//일정을 전체적으로 재로딩 처리..
-			  $(".close").click() // 현재 모달창 닫기..
-		  },
-		  error:function(err){
-			  console.log(err)
-		  }
-	  })	  
-  }
 
 </script>
 <style>
@@ -170,9 +182,9 @@
 			// 아이디 일정   시작    종료 배경색상    		글자색상	  종일    링크      작성자   내용--%>
       <div class="modal-body">
 		<form id="frm02" class="form"  method="post">
-		 <input type="hidden" id="id" value="0"/>
+		 <input type="hidden" name="id" value="0"/>
 	     <div class="row">
-	      <div class="col" id="title">
+	      <div class="col" >
 	        <input type="text" class="form-control" placeholder="일정 입력"   name="title" >
 	      </div>
 	      <div class="col">

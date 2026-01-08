@@ -33,9 +33,9 @@ public class A01_CalendarController {
 		return ResponseEntity.ok(service.insertCalendar(ins));
 	}
 	
-	// http://localhost:5050/updateCalendar
+	// http://localhost:5050/updateCalendar   RequestBody 
 	@PutMapping("updateCalendar")	
-	public ResponseEntity<?>  updateCalendar(@RequestBody Calendar upt) {
+	public ResponseEntity<?>  updateCalendar(Calendar upt) {
 		
 		return ResponseEntity.ok(service.updateCalendar(upt));
 	}
