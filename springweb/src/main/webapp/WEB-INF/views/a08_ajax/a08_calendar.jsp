@@ -76,38 +76,35 @@
     	$("[name=end]").val(arg.endStr.substring(0,19))
     	$("[name=allDay]").val(arg.allDay?1:0) // 입력시 실제 전송할 내용
     	$("#allDay").val(arg.allDay?"종일":"시간") // 화면에 보이는 레이블 내용
-    	/*
-        var title = prompt('Event Title:');
-        if (title) {
-          calendar.addEvent({
-            title: title,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
-          })
-        }
-        */
     	console.log("# 메인 calendar #")        
     	console.log(calendar)        
         calendar.unselect()
       },
       eventClick: function(arg) {
-     	 $("#frmTitle").text("일정 상세")
-    	 $("#regBtn").hide()
-    	 $("#uptBtn").show()
-    	 $("#delBtn").show()
-    	 $("#frm02")[0].reset() // 상세화면 확인하고, 다시 볼 때 초기화면으로 처리.
+    	  let event = arg.event
+     	  $("#frmTitle").text("일정 상세")
+    	  $("#regBtn").hide()
+    	  $("#uptBtn").show()
+    	  $("#delBtn").show()
+    	  $("#frm02")[0].reset() // 상세화면 확인하고, 다시 볼 때 초기화면으로 처리.
     	  $("#regLoadBtn").click() 
-    	  
+    	  //id 	title start end backgroundColor textColor allDay urlLink writer content
     	  console.log("# 저장된 일정 #")
-    	  console.log(arg.event)
-    	  
-    	/*  
-    	  
-        if (confirm('Are you sure you want to delete this event?')) {
-          arg.event.remove()
-        }
-    	*/
+    	  // 고유 속성(api 지원)
+    	  $("[name=id]").val(event.id)
+    	  $("[name=title]").val(event.title)
+    	  $("[name=start]").val(event.startStr.substring(0,19))
+    	  $("[name=end]").val(event.endStr.substring(0,19))
+    	  $("[name=allDay]").val(event.allDay?1:0) // 입력시 실제 전송할 내용
+    	  $("#allDay").val(event.allDay?"종일":"시간") // 화면에 보이는 레이블 내용	  
+
+    	  $("[name=backgroundColor]").val(event.backgroundColor)
+    	  $("[name=textColor]").val(event.textColor)
+ 	      // 사용자 정의 속성
+    	  $("[name=urlLink]").val(event.extendedProps.urlLink)	 	      
+    	  $("[name=writer]").val(event.extendedProps.writer)	 	      
+    	  $("[name=content]").val(event.extendedProps.content)	 	      
+	      
       },
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
