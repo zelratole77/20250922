@@ -15,4 +15,8 @@ public class A02_CalendarService {
 		
 		return dao.calendarList();
 	}
+	public String insertCalendar(Calendar ins) {
+		
+		return dao.insertCalendar(ins)>0?"등록 성공":"등록 실패";
+	}
 }

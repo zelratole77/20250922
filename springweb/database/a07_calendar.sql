@@ -15,6 +15,17 @@ DROP SEQUENCE cal_seq;
 create sequence cal_seq;
 insert into CALENDAR values(cal_seq.nextval, '첫번째 일정', '2026-01-07','2026-01-08',
 	'#009933','#ffff99',1,'http://www.naver.com','홍길동','일정 등록 연습' );
+/*
+// id title start end backgroundColor textColor allDay urlLink writer content
+insert into CALENDAR values(cal_seq.nextval, #{title},#{start},#{end},
+	#{backgroundColor},#{textColor},#{allDay},#{urlLink},#{writer},#{content} )
+@Insert("")
+int insertCalendar(Calendar ins);	
+
+
+ * 
+ * */
+
 
 SELECT * FROM CALENDAR;
 SELECT ID, TITLE, START1 "START", END1 "END", BACKGROUND_COLOR,

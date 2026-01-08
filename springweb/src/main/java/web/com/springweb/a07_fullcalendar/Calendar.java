@@ -1,6 +1,7 @@
 package web.com.springweb.a07_fullcalendar;
 
 public class Calendar {
+	// id title end backgroundColor textColor allDay urlLink writer content
 	private int id;
 	private String title;
 	private String start;
