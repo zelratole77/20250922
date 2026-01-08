@@ -91,6 +91,10 @@ CREATE TABLE calendar_room (
 );
 SELECT * FROM calendar_room;
 /*
+ex) calendar_room 테이블도 수정/삭제  dao service controller 처리..
+
+
+
 
 SELECT ID, TITLE, START1 "START", END1 "END", BACKGROUND_COLOR,
 TEXT_COLOR, ALL_DAY,ROOM_NAME, WRITER, CONTENT, MEMBERS
