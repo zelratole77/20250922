@@ -28,10 +28,32 @@ COMMIT;
 -- 번호 제목 작성자 작성일 조회수
 -- 작성자와 제목을 기준으로 검색..
 -- sql ==> dto 
+/*
+no refno subject... ==> Dto  하나의 행
+class Board{
+	private int no;
+	private int refno;
+	private String subject;
+	private String content;
+	private String writer;
+	private int readcnt;
+	private Date regdte;
+	private Date uptdte;
+}
+==> 여러개의 행  List
+@Select("SELECT * FROM BOARD WHERE WRITER LIKE #{writer} AND SUBJECT LIKE #{subject}")
+List<Board> boardList(Board sch);
+
+검색에 필요한 key subject, writer => Dto
+
+ * */
 -- dao
+-- 
+--------------------------------------
 -- service
 -- controller
 -- 뷰단 처리..
 SELECT * FROM BOARD WHERE WRITER LIKE '%%' AND SUBJECT LIKE '%%';
+
 
 

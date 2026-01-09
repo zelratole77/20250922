@@ -244,9 +244,30 @@
 				
 			}
 	5) jsp 처리
+	private int no;
+	private int refno;
+	private String subject;
+	private String content;
+	private String writer;
+	private int readcnt;
+	private Date regdte;
+	private Date uptdte;	
+	
 		form 
 			요청값
+			제목:[  ]   name="subject"
+			작성자:[    ]   name="subject" 
+		==> Board sch	
+			
+	
+		SELECT * FROM BOARD "
+			+ "WHERE WRITER LIKE #{writer} "
+			+ "AND SUBJECT LIKE #{subject} 
+			
 		테이블 리스트 처리.
+			<c:forEach var="board" items="${boardList}"
+			번호   제목   작성자  작성일  조회수
+		
 				
 
 
