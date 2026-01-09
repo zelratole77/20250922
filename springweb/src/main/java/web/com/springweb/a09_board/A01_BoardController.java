@@ -21,6 +21,9 @@ public class A01_BoardController {
 	// http://localhost:5050/boardInsert
 	@RequestMapping("boardInsert")
 	public String boardInsert(Board ins, Model d) {
+		if(ins.getSubject()!=null) {
+			d.addAttribute("msg", service.boardInsert(ins));
+		}
 		return "a09_board\\a02_boardInsert";
 	}
 	

@@ -23,7 +23,9 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		$("#regBtn").click(function(){
+			location.href="boardInsert"
+		})
 	});
 </script>
 </head>
@@ -42,7 +44,7 @@
 	    <input placeholder="제목" name="subject" value="${param.subject}" class="form-control mr-sm-2" />
 	    <input placeholder="작성자" name="writer"  value="${param.writer}" class="form-control mr-sm-2"/>
 	    <button class="btn btn-info" type="submit">Search</button>
-	    <button class="btn btn-success" type="button">등록</button>
+	    <button id="regBtn" class="btn btn-success" type="button">등록</button>
  	</nav>
 	</form>
 	<%--

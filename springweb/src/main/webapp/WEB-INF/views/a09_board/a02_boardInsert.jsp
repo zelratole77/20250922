@@ -23,7 +23,10 @@ td {
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		var msg = "${msg}"
+		if(msg!=""){
+			alert(msg)
+		}
 	});
 </script>
 </head>
@@ -32,26 +35,37 @@ td {
 	<div class="jumbotron text-center">
 		<h2>게시물 등록</h2>
 	</div>
+	<%-- 	// refno subject content writer --%>
 	<div class="container">
 		<form method="post">
+			<input type="hidden" name="refno" value="0"/>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<div class="form-group">
-						<label for="dateNo">번호</label> <input type="text" readonly
-							value="" class="form-control" id="dateNo" name="dateNo">
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="meetDate">만남일</label> <input type="datetime-local"
-							value="" class="form-control" id="meetDate" name="meetDate"
-							required>
+						<label for="subject">제목</label> <input type="text" 
+							value="" class="form-control" id="subject" name="subject">
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="writer">작성자</label> <input type="text" 
+							value="" class="form-control" id="writer" name="writer">
+					</div>
+				</div>
+			</div>		
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="content">내용</label> 
+						<textarea class="form-control" id="content" name="content" rows="5" ></textarea>	
+					</div>
+				</div>
+			</div>					
+
 			<div class="btn-group-custom">
-				<button id="uptBtn" type="button" class="btn btn-success btn-lg">수정</button>
-				<button id="delBtn" type="button" class="btn btn-danger btn-lg">삭제</button>
+				<button id="regBtn" type="submit" class="btn btn-success btn-lg">등록</button>
 				<button id="lstBtn" type="button" class="btn btn-info btn-lg">메인으로</button>
 			</div>
 		</form>

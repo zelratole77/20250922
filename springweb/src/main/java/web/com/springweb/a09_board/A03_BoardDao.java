@@ -14,7 +14,7 @@ public interface A03_BoardDao {
 			+ "WHERE WRITER LIKE #{writer} "
 			+ "AND SUBJECT LIKE #{subject} ")
 	List<Board> boardList(Board sch);
-	
+	// refno subject content writer
 	@Insert("insert into board values(board_seq.nextval,#{refno},#{subject},"
 			+ "#{content},#{writer},0,sysdate, sysdate)")
 	int boardInsert(Board ins);
