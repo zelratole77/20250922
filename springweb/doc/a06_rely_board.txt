@@ -267,7 +267,29 @@
 		테이블 리스트 처리.
 			<c:forEach var="board" items="${boardList}"
 			번호   제목   작성자  작성일  조회수
+
+# 2) 기본 정보 등록
+1. 처리순서
+	초기화면 로딩 @RequestMapping("boardInsert")
+				a09_board\a02_boardInsert.jsp	
+				
+
+	리스트화면에서 등록 버튼 클릭시,
+	아래 등록 화면 로딩..
+
+	
+	--------------------------------	
+
+	sql
 		
+	dao
+	service
+	controller
+		- 등록 form 화면
+		- 등록 처리 프로세스
+	view
+		입력형태의 form으로 화면 로딩..
+					
 				
 
 

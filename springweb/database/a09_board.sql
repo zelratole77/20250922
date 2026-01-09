@@ -18,7 +18,24 @@ DROP TABLE BOARD CASCADE CONSTRAINTS;
 		);
 		create sequence board_seq;
 		-- 샘플 데이터
+/*
+dao
+	insert into board values(board_seq.nextval,#{refno},#{subject},#{content},#{writer},0,sysdate, sysdate)
+	
+	@Insert("insert into board values(board_seq.nextval,#{refno},#{subject},#{content},#{writer},0,sysdate, sysdate)")
+	int boardInsert(Board ins);
+	
+
+	insert into board values(board_seq.nextval,0,'첫번째글','내용없음','himan',0,sysdate, sysdate)
+
+-------------------------------
+service
+controller
+ * */
 		insert into board values(board_seq.nextval,0,'첫번째글','내용없음','himan',0,sysdate, sysdate);
+
+
+
 		commit;
 		
 		

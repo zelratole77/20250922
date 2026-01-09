@@ -18,6 +18,10 @@ public class A02_BoardService {
 		return dao.boardList(sch);
 	}
 	
+	public String boardInsert(Board ins) {
+		return dao.boardInsert(ins)>0?"등록 성공":"등록실패";
+	}
+	
 	
 	
 }

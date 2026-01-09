@@ -18,6 +18,12 @@ public class A01_BoardController {
 		d.addAttribute("boardList", service.boardList(sch));
 		return "a09_board\\a01_boardList";
 	}
+	// http://localhost:5050/boardInsert
+	@RequestMapping("boardInsert")
+	public String boardInsert(Board ins, Model d) {
+		return "a09_board\\a02_boardInsert";
+	}
+	
 
 
 }
