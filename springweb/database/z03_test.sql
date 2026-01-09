@@ -23,3 +23,15 @@ INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL, 0, '팀 프로젝트 주제 선정 �
 
 -- 트랜잭션 확정
 COMMIT;
+
+
+-- 번호 제목 작성자 작성일 조회수
+-- 작성자와 제목을 기준으로 검색..
+-- sql ==> dto 
+-- dao
+-- service
+-- controller
+-- 뷰단 처리..
+SELECT * FROM BOARD WHERE WRITER LIKE '%%' AND SUBJECT LIKE '%%';
+
+
