@@ -1,0 +1,143 @@
+Good morning QUIZ! 오늘도 좋은 하루 되시길~~ ^^
+
+### [Part 1] 객관식 4지선다형 (20문제)
+
+**1. 다음 중 웹 브라우저의 요청을 받아 비즈니스 로직을 호출하고, 그 결과를 다시 뷰(View)나 데이터(JSON)로 반환하는 역할을 수행하는 Spring의 계층(Layer)은 무엇인가?**
+① DAO (Data Access Object)
+② DTO (Data Transfer Object)
+③ Service
+④ Controller
+
+**2. 제공된 코드의 `A01_CalendarController`에서 데이터를 조회(`calendarList`)할 때 사용된 어노테이션으로, HTTP GET 요청을 처리하는 것은?**
+① `@PostMapping`
+② `@PutMapping`
+③ `@GetMapping`
+④ `@DeleteMapping`
+
+**3. `A01_CalendarController`의 `insertCalendar` 메서드에서 반환 타입으로 사용된 `ResponseEntity<?>`의 주된 역할로 가장 적절한 것은?**
+① 데이터베이스 연결을 직접 수행한다.
+② HTTP 상태 코드(Status Code)와 응답 데이터(Body)를 함께 전송하기 위해 사용한다.
+③ HTML 파일의 경로(View Name)만을 문자열로 반환한다.
+④ 클라이언트의 요청 파라미터를 검증한다.
+
+**4. `A03_CalendarDao` 인터페이스에서 MyBatis를 사용하여 SQL 쿼리에 파라미터를 바인딩할 때 사용하는 문법은? (예: `title` 값을 넣을 때)**
+① `${title}`
+② `#{title}`
+③ `@{title}`
+④ `&{title}`
+
+**5. 다음 중 `A03_CalendarDao`의 `insertCalendar` 메서드에서 `cal_seq.nextval`이 수행하는 역할은?**
+① 캘린더의 제목을 자동으로 생성한다.
+② 현재 날짜를 자동으로 입력한다.
+③ 캘린더의 고유 ID(Primary Key) 값을 자동으로 1씩 증가시켜 생성한다.
+④ 일정이 종료되는 시간을 계산한다.
+
+**6. 프론트엔드(JSP)의 `$.ajax` 함수에서 `type: "put"`으로 설정하여 요청을 보냈을 때, 이를 처리하기 위해 Controller 메서드에 붙여야 하는 적절한 어노테이션은?**
+① `@GetMapping`
+② `@PostMapping`
+③ `@PutMapping`
+④ `@RequestMapping`
+
+**7. `A01_CalendarController`의 `deleteCalendar` 메서드에서, URL의 쿼리 스트링(예: `?id=5`)으로 넘어온 값을 변수에 매핑하기 위해 사용된 어노테이션은?**
+① `@RequestBody`
+② `@ModelAttribute`
+③ `@PathVariable`
+④ `@RequestParam`
+
+**8. jQuery에서 `<form id="frm02">` 내부에 있는 모든 입력 요소(input, select 등)의 값을 URL 인코딩된 문자열(예: `title=abc&start=2024...`)로 한 번에 변환해주는 함수는?**
+① `.val()`
+② `.text()`
+③ `.serialize()`
+④ `.submit()`
+
+**9. FullCalendar 설정 중 `select` 이벤트는 언제 발생하는가?**
+① 이미 등록된 일정을 클릭했을 때
+② 캘린더의 빈 날짜나 시간 영역을 드래그(선택)했을 때
+③ 일정을 드래그하여 다른 날짜로 옮겼을 때
+④ 캘린더가 화면에 처음 로딩되었을 때
+
+**10. FullCalendar 설정 중 `eventClick` 이벤트는 언제 발생하는가?**
+① 캘린더의 빈 날짜를 클릭했을 때
+② 캘린더의 월(Month) 보기 방식을 주(Week) 보기로 바꿨을 때
+③ 이미 등록되어 화면에 표시된 일정을 클릭했을 때
+④ 새로운 일정을 등록하는 버튼을 눌렀을 때
+
+**11. 코드 내 `addForm(arg, "I")`와 `addForm(arg.event, "D")` 함수 호출에서 두 번째 인자("I", "D")를 통해 구분하고자 하는 것은 무엇인가?**
+① 일정의 색상 변경 여부
+② 모달창을 등록 모드로 열지, 상세(수정/삭제) 모드로 열지 여부
+③ AJAX 통신 성공/실패 여부
+④ 로그인한 사용자의 권한 레벨
+
+**12. FullCalendar의 `events` 속성 함수 내부에서 `successCallback(calenList)`를 호출하는 주된 이유는?**
+① 서버로 데이터를 전송하기 위해
+② AJAX로 받아온 데이터를 캘린더 화면에 렌더링(표시)하기 위해
+③ 데이터베이스의 데이터를 삭제하기 위해
+④ 모달창을 닫기 위해
+
+**13. AJAX 요청이 성공(`success`)한 후 호출되는 `calendar.refetchEvents()` 함수의 역할로 올바른 것은?**
+① 페이지 전체를 새로고침(F5) 한다.
+② 현재 열려있는 모달창을 강제로 닫는다.
+③ 캘린더의 이벤트 소스(events 함수)를 다시 호출하여 변경된 데이터를 화면에 반영한다.
+④ 등록된 모든 일정을 삭제한다.
+
+**14. Bootstrap Modal을 자바스크립트 코드에서 강제로 띄우기 위해 코드에서 사용한 방법은?**
+① `$("#exampleModalCenter").show()`
+② `window.open("#exampleModalCenter")`
+③ `data-toggle` 속성이 있는 버튼(`regLoadBtn`)을 강제로 `.click()` 트리거 한다.
+④ `document.getElementById("modal").style.display = "block"`
+
+**15. `A02_CalendarService`의 `insertCalendar` 메서드에서 `dao.insertCalendar(ins)>0 ? "등록 성공":"등록 실패"` 구문의 의미는?**
+① DB에 삽입된 행(Row)의 개수가 0보다 크면 성공 메시지를 반환한다.
+② 삽입된 ID 값이 0보다 크면 성공 메시지를 반환한다.
+③ 데이터베이스 연결 시간이 0초 이상이면 성공이다.
+④ 쿼리 실행 결과가 NULL이 아니면 성공이다.
+
+**16. 다음 중 FullCalendar에서 일정을 드래그 앤 드롭(`eventDrop`)하거나 길이를 조절(`eventResize`)했을 때 공통적으로 수행되는 로직은?**
+① 해당 일정을 삭제한다 (`deleteCalendar`).
+② 변경된 날짜 정보를 포함하여 수정 요청을 보낸다 (`updateCalendar`).
+③ 새로운 일정을 복사하여 생성한다 (`insertCalendar`).
+④ 아무런 동작도 하지 않는다.
+
+**17. JSP 코드에서 `<c:set var="path" value="${pageContext.request.contextPath }"/>`를 사용하는 주된 이유는?**
+① DB 연결 정보를 저장하기 위해
+② 자바스크립트 변수를 선언하기 위해
+③ 웹 애플리케이션의 루트 경로(Context Path)를 변수에 담아 리소스(CSS, JS) 경로를 쉽게 설정하기 위해
+④ 현재 날짜를 구하기 위해
+
+**18. 모달창을 닫을 때 `$(".close").click()`을 사용하는 이유는?**
+① 브라우저 창을 닫기 위해
+② 모달창 내의 form 데이터를 초기화하기 위해
+③ Bootstrap 모달의 'X' 버튼이나 '닫기' 버튼에 연결된 닫기 이벤트를 프로그래밍 방식으로 실행하기 위해
+④ AJAX 요청을 취소하기 위해
+
+**19. `addForm` 함수에서 `$("#frm02")[0].reset()` 코드가 수행하는 기능은?**
+① form 태그 내의 모든 입력 필드 값을 초기화(비우기) 한다.
+② form 태그를 DOM에서 삭제한다.
+③ form 태그의 action 속성을 변경한다.
+④ form 데이터를 서버로 전송한다.
+
+**20. DB 테이블 설계상 `ALL_DAY` 컬럼은 숫자로 저장되지만, 화면의 입력 폼(`<select>`나 `<input>`)에서는 "종일" 또는 "시간"으로 표시하고 싶다. 코드에서 이를 처리하는 방식은?**
+① DB에서 가져올 때 SQL로 변환한다.
+② Controller에서 Java 코드로 변환한다.
+③ `addForm` 함수에서 삼항 연산자를 이용해 값(`1` or `0`)에 따라 텍스트를 다르게 설정한다.
+④ CSS를 이용해 1일 때는 빨간색, 0일 때는 파란색으로 보여준다.
+
+---
+
+### [Part 2] 주관식 기술형 (5문제)
+
+**1. FullCalendar에서 특정 날짜 구간을 드래그하여 '새로운 일정'을 등록하려고 한다. 이때 (1) FullCalendar에서 감지하는 이벤트 이름과, (2) 이 이벤트가 발생했을 때 모달창을 띄우기 위해 코드상에서 어떤 조치를 취했는지 서술하시오.**
+
+**2. 사용자가 모달창에서 데이터를 입력하고 '등록' 버튼을 눌렀을 때, 화면이 깜빡이지(새로고침 되지) 않고 데이터가 저장되는 과정을 'AJAX'와 'form 데이터 처리' 관점에서 설명하시오.**
+
+**3. 일정 수정(Update) 기능을 구현할 때, 사용자가 수정한 내용(제목, 색상 등) 뿐만 아니라 드래그를 통해 변경된 시간 정보까지 DB에 반영되어야 한다. 이를 위해 `eventDrop` 이벤트 핸들러 내부에서 호출하고 있는 두 가지 핵심 함수의 이름과 그 역할을 각각 설명하시오.**
+
+**4. `A03_CalendarDao` 인터페이스의 `updateCalendar` 메서드에 작성된 SQL 쿼리를 보면 `WHERE ID = #{id}` 조건이 있다. 여기서 `#{id}` 값은 프론트엔드(JSP)의 어떤 과정(어느 시점, 어떤 함수)을 통해 form 태그에 세팅되는지 설명하시오.**
+
+**5. 다음은 Controller, Service, DAO, DB 간의 데이터 흐름이다. 빈칸 (A)와 (B)에 들어갈 알맞은 데이터의 형태(타입 혹은 객체)를 서술하시오.**
+
+> 요청(Request) 흐름:
+> 클라이언트(JSON 문자열/Form Data) → Controller( (A) 객체로 매핑 ) → Service → DAO → DB(Table Row)
+> 응답(Response) 흐름:
+> DB → DAO( (A) 객체 ) → Service(성공/실패 메시지 문자열) → Controller( (B) 객체 ) → 클라이언트(AJAX success 콜백)
+

@@ -1,0 +1,181 @@
+### 1. [개념] 정답 및 해설
+
+**Q1. 데이터 흐름 파악하기**
+
+* **정답:** **2번 (JSP(Ajax) → Controller → Service → DAO → DB)**
+* **해설:**
+1. **JSP(Ajax):** 사용자가 버튼을 누르면 화면(브라우저)에서 요청을 보냅니다.
+2. **Controller:** 웨이터처럼 요청을 가장 먼저 받습니다.
+3. **Service:** 받은 주문으로 요리(비즈니스 로직)를 합니다.
+4. **DAO:** 창고(DB)에 가서 재료를 꺼내거나 넣습니다.
+5. **DB:** 실제 데이터가 저장된 곳입니다.
+
+
+
+**Q2. FullCalendar API 이벤트 핸들러**
+
+* **정답:**
+1. **(D) events:** (데이터 로딩) 캘린더에 일정을 뿌려주는 역할.
+2. **(B) eventClick:** (상세 보기) 이미 있는 막대를 클릭했을 때.
+3. **(A) select:** (등록) 빈 날짜를 드래그하거나 클릭했을 때.
+4. **(C) eventDrop:** (수정) 일정을 드래그해서 날짜를 옮길 때.
+
+
+
+**Q3. Spring MVC 어노테이션**
+
+* **정답:** **ResponseEntity** (또는 `@ResponseBody`)
+* **해설:** 화면(HTML)을 보여주는 게 아니라, 데이터(JSON, 문자열 등) 그 자체를 결과물로 줄 때 사용하는 객체입니다. 문제의 힌트인 `public ResponseEntity<?> ...`를 참고하면 됩니다.
+
+**Q4. Ajax와 화면 갱신**
+
+* **정답:** **refetchEvents**
+* **해설:** `calendar.refetchEvents()`는 "새로고침 하지 말고, DB에 가서 일정 데이터만 다시 가져와서 그려줘!"라는 명령입니다.
+
+---
+
+### 2. [실습] 시나리오별 코드 완성
+
+#### Scenario 1: "빈 제목은 곤란해!" (유효성 검사)
+
+```javascript
+$("#regBtn").click(function(){
+    // [미션] 유효성 검사 코드
+    var titleVal = $("[name=title]").val(); // 1. 값 가져오기
+
+    if(titleVal == ""){ // 2. 비어있는지 확인
+        alert("일정 제목을 입력하세요!"); // 3. 경고창
+        $("[name=title]").focus(); // (센스) 입력창으로 포커스 이동
+        return; // 함수 종료 (아래 ajax 실행 안 됨)
+    }
+    
+    if(confirm("등록하시겠습니까?")){
+        callAjax("insertCalendar", "post")
+    }
+})
+
+```
+
+#### Scenario 2: "등록인가 수정인가?" (모달 UI/UX)
+
+* **[답변]** `eventClick` (기존 일정 클릭) 시에는 **등록 버튼은 숨기고, 수정/삭제 버튼은 보여줘야 합니다.**
+* `$("#regBtn").hide()`
+* `$("#uptBtn").show()`
+* `$("#delBtn").show()`
+
+
+
+#### Scenario 3: "드래그로 일정 바꾸기" (동적 업데이트)
+
+FullCalendar V5 이상 기준, 날짜 문자열은 `startStr`, `endStr`을 사용합니다.
+
+```javascript
+// addForm 함수 내부
+// FullCalendar에서 제공하는 ISO 형태의 날짜 문자열(startStr)을 사용합니다.
+$("[name=start]").val(event.startStr.substring(0,19)); 
+$("[name=end]").val(event.endStr.substring(0,19));    
+$("[name=allDay]").val(event.allDay ? 1 : 0);
+
+```
+
+#### Scenario 4: "나만의 색상 처리" (심화)
+
+```javascript
+// addForm 함수 내, 혹은 등록 버튼 클릭 직전
+var isAllDay = $("[name=allDay]").val();
+
+if(isAllDay == "1"){
+    // 종일 일정이면 빨간색
+    $("[name=backgroundColor]").val("#ff0000");
+} else {
+    // 시간 일정이면 파란색
+    $("[name=backgroundColor]").val("#0000ff");
+}
+
+```
+
+---
+
+### 3. [종합 실습 프로젝트] 정답 코드
+
+#### 1. [DB/SQL] 통계 데이터 추출 (인사팀 요청)
+
+```sql
+SELECT WRITER, COUNT(*) AS CNT
+FROM CALENDAR
+GROUP BY WRITER
+ORDER BY CNT DESC;
+
+```
+
+* **해설:** `GROUP BY WRITER`로 작성자끼리 묶고, `COUNT(*)`로 개수를 셉니다. `ORDER BY ... DESC`로 많은 순서대로 정렬합니다.
+
+#### 2. [Back-End] 비즈니스 로직 고도화 (서비스 수정)
+
+```java
+// A02_CalendarService.java
+
+public String insertCalendar(Calendar ins) {
+    // [미션] 비즈니스 로직 추가
+    
+    // 1. 제목 가져오기 (Null 방지를 위해 빈문자열 처리 권장)
+    String title = ins.getTitle();
+    if(title == null) title = "";
+
+    // 2. "휴가"가 포함되어 있으면 빨간색
+    if(title.contains("휴가")){
+        ins.setBackgroundColor("#FF0000");
+    }
+    // 3. "회의"가 포함되어 있으면 파란색 (휴가보다 뒤에 있으므로 둘 다 있으면 파란색 됨)
+    else if(title.contains("회의")){
+        ins.setBackgroundColor("#0000FF");
+    }
+
+    // 기존 로직 수행
+    return dao.insertCalendar(ins) > 0 ? "등록 성공" : "등록 실패";
+}
+
+```
+
+#### 3. [Front-End/JS] 날짜 유효성 검사
+
+```javascript
+$("#regBtn").click(function(){
+    var startVal = $("[name=start]").val();
+    var endVal = $("[name=end]").val();
+
+    // 날짜 문자열끼리도 부등호 비교가 가능합니다.
+    if(startVal > endVal){
+        alert("종료일은 시작일보다 빠를 수 없습니다!");
+        return; // 전송 막기
+    }
+
+    if(confirm("등록하시겠습니까?")){
+        callAjax("insertCalendar", "post")
+    }
+})
+
+```
+
+#### 4. [종합/심화] MyBatis 동적 SQL (작성자 검색)
+
+가장 핵심인 **Mapper.xml** 부분입니다. `<if>` 태그를 사용하여 조건부로 SQL을 조립합니다.
+
+```xml
+<select id="calendarList" parameterType="calendar" resultType="calendar">
+    SELECT ID, TITLE, START1 "START", END1 "END", 
+           BACKGROUND_COLOR, TEXT_COLOR, ALL_DAY, 
+           URL_LINK, WRITER, CONTENT
+      FROM CALENDAR
+     WHERE 1=1
+     <if test="writer != null and writer != ''">
+       AND WRITER LIKE '%' || #{writer} || '%'
+     </if>
+</select>
+
+```
+
+* **설명:**
+* `WHERE 1=1`: 뒤에 `AND` 조건을 편하게 붙이기 위한 관습적인 코드입니다. (참인 조건)
+* `<if test="...">`: 자바에서 넘겨준 `writer` 변수에 값이 있을 때만 `AND WRITER LIKE ...` 구문이 SQL에 포함되어 실행됩니다. 이것이 **동적 SQL**입니다.
+
