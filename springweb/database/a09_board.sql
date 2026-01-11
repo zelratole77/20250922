@@ -1,3 +1,5 @@
+
+
 DROP TABLE BOARD CASCADE CONSTRAINTS;
 		create table board(
 			no number primary key,
@@ -39,4 +41,26 @@ controller
 		commit;
 		
 		
-SELECT * FROM BOARD;		
+SELECT * FROM BOARD WHERE SUBJECT LIKE '%공%' AND WRITER LIKE '%%';	
+
+SELECT * FROM BOARD WHERE NO = 1;
+/*
+입력 값 ?  1 ==> int no  ==> 매개변수 선언
+출력 값 ? 1 0 첫번째글 내용없음 홍길동...==> 객체가 필요
+class Board{
+	int no;
+	int refno;
+	String subject;
+	String content;
+}
+Dao 만드는 방법
+@Select("SELECT * FROM BOARD WHERE NO = #{no}")
+Board selectBoard(@Param("no") int no);
+
+ * */
+
+
+
+
+
+

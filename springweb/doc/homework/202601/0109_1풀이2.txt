@@ -1,0 +1,108 @@
+
+### 1. [개념] 핵심 구조 및 프로세스 이해
+
+**Q1. Spring MVC 구성 요소의 역할**
+
+> **정답: 2번**
+> (`Controller`: 요청(URL)을 받음 → `Service`: 비즈니스 로직 처리 → `DAO`: DB 접근 및 SQL 실행)
+
+* **해설:**
+* **Controller:** 사용자(브라우저)의 요청 URL(`/boardList`)을 가장 먼저 받아 분석하고, 적절한 Service를 호출한 뒤 결과 데이터를 Model에 담아 View(JSP)로 전달합니다.
+* **Service:** Controller와 DAO 사이에서 데이터 가공, 트랜잭션 처리 등 실질적인 업무(비즈니스 로직)를 수행합니다.
+* **DAO (Repository):** DB 연결 및 SQL 실행만을 전담합니다.
+
+
+
+**Q2. MyBatis와 SQL 처리**
+
+> **정답: `#{variable}` (또는 `#{subject}`, `#{writer}`)**
+
+* **해설:**
+* MyBatis에서 `#{변수명}`은 PreparedStatement 방식(Binding Variable)으로 동작하여 값을 안전하게 매핑합니다.
+* 예: `WHERE WRITER LIKE #{writer}`
+
+
+
+**Q3. Command Object (요청 객체) 처리**
+
+> **정답: 1. 멤버 변수(필드) 이름**
+
+* **해설:**
+* Spring은 요청 파라미터(Parameter)의 이름과 Java Bean(DTO/VO)의 **멤버 변수명(Setter 메서드)**이 일치하면 자동으로 데이터를 담아줍니다.
+* 예: `<input name="subject">`의 값은 `public void setSubject(...)`를 통해 `subject` 변수에 저장됩니다.
+
+
+
+---
+
+### 2. [실습] 시나리오 기반 코드 트러블 슈팅 (Bug Busters)
+
+**Mission 1: "검색이 안 돼요, 사수님!" (Service 로직)**
+
+> **해설:** DB의 `LIKE` 검색을 위해서는 검색어 앞뒤에 와일드카드(`%`)가 필요합니다.
+
+```java
+// [정답 코드]
+public List<Board> boardList(Board sch){
+    if(sch.getSubject() == null) sch.setSubject("");
+    if(sch.getWriter() == null) sch.setWriter("");
+    
+    // (A): "%"
+    sch.setSubject( "%" + sch.getSubject() + "%" ); 
+    
+    // (B): "%" + sch.getWriter() + "%"
+    sch.setWriter( "%" + sch.getWriter() + "%" ); 
+    
+    return dao.boardList(sch);
+}
+
+```
+
+**Mission 2: "등록했는데 값이 텅 비었어요!" (Form 태그 매핑)**
+
+> **정답:** `<input>` 태그에 **`name`** 속성이 빠져있습니다.
+> **수정:** `<input ... name="subject" ... >`
+
+* **원인 분석:** 서버(Controller)는 `<input>` 태그의 `id`나 `class`가 아닌, 오직 **`name` 속성값**을 기준으로 데이터를 식별하여 DTO에 바인딩합니다. `name="subject"`가 없으면 제목 데이터는 전송되지 않습니다.
+
+**Mission 3: "답글인데 왜 새 글이 되나요?" (Hidden 필드)**
+
+> **정답:** `<input type="hidden" name="refno" value="0"/>`
+
+* **원인 분석:**
+* 화면에 보이지 않지만 서버로 전송해야 하는 데이터(부모 글 번호, 모드 구분값 등)는 `type="hidden"`을 사용합니다.
+* **새 글**일 경우 `refno`는 0 (또는 DB 설계에 따라 null), **답글**일 경우 부모글의 `no`가 `refno`로 전송되어야 합니다.
+
+
+
+```jsp
+<form method="post">
+    <input type="hidden" name="refno" value="0"/>
+    
+    <div class="form-group"> ... </div>
+</form>
+
+```
+
+**Mission 4: "죽음의 404 에러" (View Resolver)**
+
+> **정답:** `return "a09_board/a01_boardList";`
+
+* **원인 분석:**
+* `application.properties`나 `servlet-context.xml` 설정을 보면 보통 prefix가 `/WEB-INF/views/`, suffix가 `.jsp`로 설정되어 있습니다.
+* 따라서 파일이 `views` 폴더 바로 아래가 아니라 `a09_board`라는 하위 폴더에 있다면, 리턴값에 **폴더 경로를 포함**시켜야 정확한 파일을 찾을 수 있습니다.
+
+
+
+---
+
+### 핵심 요약표
+
+| 구분 | 역할/기능 | 핵심 포인트 |
+| --- | --- | --- |
+| **Controller** | 요청 수신 및 화면 제어 | URL 매핑(`@RequestMapping`), Model 데이터 저장 |
+| **Service** | 업무 로직 처리 | `setSubject("%"+val+"%")` 와 같은 데이터 가공 |
+| **DAO/MyBatis** | DB SQL 실행 | `#{변수}` 바인딩을 통한 쿼리 실행 |
+| **JSP (View)** | 데이터 입력 및 출력 | `<input name="변수명">` 과 DTO 필드명 일치 필수 |
+
+---

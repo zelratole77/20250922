@@ -19,11 +19,12 @@
 			spring.mvc.view.suffix=.jsp
 			# return "call"  ==> "/WEB-INF/views/call.jsp" 처리와 동일..
 			# return "b01_basic\\a01_basic01"; ==> /WEB-INF/views/b01_basic/a01_basic01.jsp
-
-
-				
 				
 	2) 요청값을 처리..
+		단일 데이터
+		객체형 데이터
+	
+	
 	3) 모델 결과값을 처리..
 	4) 기본 스프링에서 DB를 처리하는 핵심 구조에 대한 이해..
 		XXXController.java   XXXService.java    XXXDao.java, DTO.java
@@ -33,5 +34,59 @@
 	7) 데이터 등록하기
 	8) 데이터 수정하기
 	9) 데이터 삭제하기..
+	
+# 보강 범위
+1. 요청값의 객체형 처리
+2. sql에 따른 입력값과  결과에 따른 dao 처리
+	- 입력값
+	- 출력결과 
+	
+	
+http://localhost:5050/req1000?pname=사과&price=3000
+http://localhost:5050/req1001?pname=사과&price=3000
+http://localhost:5050/req1002?name=홍길동&age=25&loc=수원
+물건명:<input name="pname" value="사과">    [사과]
+가격:<input name="price" value="3000">    [3000]
+submit ==> 클릭..
+
+controller
+	// http://localhost:5050/req1002?name=홍길동&age=25&loc=수원
+	@GetMapping("req1002")
+	public String req1002(Person p01){  }
+
+class Person{   -- 클래스명 선언 반드시 대문로 시작..
+	private String name;
+	private int age;
+	private String loc;
+	setName
+	setAge
+	setLoc
+}
+
+
+	@GetMapping("req1000")
+	public String req1000(@RequstParam("pname") String pname,
+	                      @RequstParam("price") int price)
+	                      
+	@GetMapping("req1001")
+	public String req1000( Product sch){ }
+	
+class Product{
+	private String pname;
+	private int price;
+	set/get..
+	setPname
+	setPrice
+	
+	
+	
+
+}	
+	
+
+
+
+
+	
 	
 					

@@ -12,10 +12,10 @@ public class A01_BoardController {
 	
 	
 	
-	// http://localhost:5050/boardList
+	// http://localhost:5050/boardList?writer=홍&subject=공지
 	@RequestMapping("boardList")   // get/post
-	public String boardList(Board sch, Model d) {
-		d.addAttribute("boardList", service.boardList(sch));
+	public String boardList(Board b01, Model d) {
+		d.addAttribute("boardList", service.boardList(b01));
 		return "a09_board\\a01_boardList";
 	}
 	// http://localhost:5050/boardInsert

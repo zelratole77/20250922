@@ -1,0 +1,116 @@
+### [정리문제]
+
+#### 1. [개념] 핵심 구조 및 프로세스 이해
+
+*다음 질문을 읽고 올바른 답을 서술하거나 고르세요.*
+
+**Q1. Spring MVC 구성 요소의 역할**
+
+> 사용자가 게시판 목록 페이지(`/boardList`)를 요청했을 때, 내부에서 처리되는 순서와 역할이 올바르게 짝지어진 것은?
+
+1. **Controller**: DB에서 데이터를 가져옴 → **Service**: 화면 결정 → **DAO**: 비즈니스 로직 처리
+2. **Controller**: 요청(URL)을 받음 → **Service**: 비즈니스 로직(데이터 가공) 처리 → **DAO**: DB 접근 및 SQL 실행
+3. **DAO**: 요청을 받음 → **Controller**: DB 연결 → **Service**: 결과 화면(JSP) 출력
+4. **Service**: 요청을 받음 → **Controller**: DB 접근 → **DAO**: 데이터 가공
+
+**Q2. MyBatis와 SQL 처리**
+
+> `A03_BoardDao` 인터페이스와 매핑된 SQL에서, 검색 조건(제목, 작성자)을 처리하기 위해 사용된 MyBatis의 동적 바인딩 기호는 무엇인가요?
+> (힌트: `LIKE '%%'` 구문 사이에 들어가는 변수 표현식)
+
+* 답: `#{_______}`
+
+**Q3. Command Object (요청 객체) 처리**
+
+> 사용자가 폼(Form)에 데이터를 입력하고 '등록' 버튼을 눌렀을 때(`POST /boardInsert`), Spring은 사용자가 입력한 값들을 **자동으로 DTO(VO) 객체에 담아줍니다.** 이 기능이 정상적으로 작동하기 위해 JSP의 `<input>` 태그의 `name` 속성값과 DTO(Java Bean)의 **이것**이 반드시 일치해야 합니다. **이것**은 무엇인가요?
+
+1. 멤버 변수(필드) 이름
+2. 데이터베이스 컬럼 이름
+3. JSP 파일 이름
+4. `id` 속성값
+
+---
+
+#### 2. [실습] 시나리오 기반 코드 트러블 슈팅 (Bug Busters)
+
+*여러분은 IT 스타트업 '판교 탕후루'의 신입 개발자입니다. 사수님이 작성하다 만 게시판 코드에 몇 가지 버그가 숨어있습니다. 다음 상황을 보고 코드를 수정하거나 원인을 찾아보세요.*
+
+**Mission 1: "검색이 안 돼요, 사수님!" (Service 로직)**
+
+> **상황:** 게시판 리스트에서 '공지'라고 검색했는데, 분명 DB에 있는 '공지사항' 글이 나오지 않습니다. 코드를 보니 검색어 앞뒤에 `%`를 붙여주는 로직이 빠져있는 것 같습니다.
+> **미션:** `A02_BoardService.java`의 `boardList` 메서드에서 검색어 처리를 위한 **빈칸(A), (B)**를 채워주세요.
+
+```java
+public List<Board> boardList(Board sch){
+    // 1. null 방지 처리
+    if(sch.getSubject() == null) sch.setSubject("");
+    if(sch.getWriter() == null) sch.setWriter("");
+    
+    // 2. LIKE 검색을 위한 와일드카드(%) 처리 [미션]
+    sch.setSubject( __(A)__ + sch.getSubject() + __(A)__ ); 
+    sch.setWriter( __(B)__ ); // 작성자도 앞뒤로 % 처리
+    
+    return dao.boardList(sch);
+}
+
+```
+
+**Mission 2: "등록했는데 값이 텅 비었어요!" (Form 태그 매핑)**
+
+> **상황:** 게시물 등록 화면(`a02_boardInsert.jsp`)에서 제목과 작성자를 열심히 적고 [등록] 버튼을 눌렀는데, DB에는 `null` 값만 들어갑니다. Controller는 정상인데 JSP가 범인인 것 같습니다.
+> **미션:** 아래 JSP 코드를 보고, **데이터가 서버(DTO)로 전달되지 않는 치명적인 원인** 한 가지를 찾아 고쳐주세요.
+
+```jsp
+<form method="post" action="boardInsert">
+    <div class="form-group">
+        <label>제목</label>
+        <input type="text" class="form-control" id="subject" value="" placeholder="제목을 입력하세요"> 
+    </div>
+    <div class="form-group">
+        <label>작성자</label>
+        <input type="text" class="form-control" name="writer" value="">
+    </div>
+    <button type="submit">등록</button>
+</form>
+
+```
+
+* **정답:** `<input>` 태그에 `_______="subject"` 속성이 빠져있습니다.
+
+**Mission 3: "답글인데 왜 새 글이 되나요?" (Hidden 필드)**
+
+> **상황:** 우리 게시판은 **'답글(Reply)'** 기능이 있습니다. 답글을 달면 원본 글의 밑에 달려야 하는데, 자꾸 생뚱맞은 '새 글(New Post)'로 등록됩니다.
+> **미션:** `boardInsert` 메서드가 호출될 때, 이것이 '새 글'인지 '답글'인지 구분하는 기준이 되는 컬럼인 `refno`의 값을 넘겨주는 코드가 폼 안에 있어야 합니다. 아래 코드에서 **빠진 한 줄**을 작성하세요.
+> (조건: 답글이 아닌 새 글 등록일 경우 기본값은 0입니다.)
+
+```jsp
+<form method="post">
+    ___________________________________________________________
+    
+    <div class="form-group">
+       <label>제목</label> <input type="text" name="subject" ...>
+    </div>
+    ...
+</form>
+
+```
+
+**Mission 4: "죽음의 404 에러" (View Resolver)**
+
+> **상황:** `A01_BoardController.java`를 작성하고 서버를 켰는데, `/boardList`로 접속하자마자 하얀 화면에 `404 Not Found`가 뜹니다. 파일 경로가 문제인 것 같습니다.
+> **미션:** 실제 JSP 파일의 위치는 `/WEB-INF/views/a09_board/a01_boardList.jsp` 입니다. 컨트롤러의 리턴값을 어떻게 수정해야 할까요?
+
+```java
+// Controller
+@RequestMapping("boardList")
+public String boardList(Board sch, Model d) {
+    d.addAttribute("boardList", service.boardList(sch));
+    
+    // [현재 코드] return "boardList";  <-- 에러 발생!
+    
+    // [수정 코드]
+    return "_____________________"; 
+}
+
+```
+
