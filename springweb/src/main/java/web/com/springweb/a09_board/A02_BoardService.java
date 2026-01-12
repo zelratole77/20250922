@@ -22,6 +22,21 @@ public class A02_BoardService {
 		return dao.boardInsert(ins)>0?"등록 성공":"등록실패";
 	}
 	
-	
+	public Board boardDetail(int no) {
+		// 상세조회시, 조회수 카운트 업
+		dao.uptReadCnt(no);
+		return dao.getBoard(no);
+	}		
+	public Board getBoard(int no) {
+		// 상세조회시, 조회수 카운트 업
+		return dao.getBoard(no);
+	}		
+
+	public String boardUpdate(Board upt) {
+		return dao.boardUpdate(upt)>0?"수정성공":"수정실패";
+	}
+	public String boardDelete(int no) {
+		return dao.boardDelete(no)>0?"삭제성공":"삭제실패";
+	}	
 	
 }

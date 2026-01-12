@@ -33,11 +33,15 @@ public class A01_Idol_Controller {
 	public String idolGrpInsertGet() {
 		return "a05_idol\\a02_groupInsert";
 	}
+	// name=groupName=그룹1&debutDate=20261212&fandomName=팬명2
+	// groupName=그룹1&debutDate=20261212&fandomName=팬명2
+	// int    no1 = 25
+	// A04Group ins = new A04Group();
 	
 	@PostMapping("idolGrpInsert")
-	public String idolGrpInsertPost(A04Group ins, Model d) {
+	public String idolGrpInsertPost(A04Group ins1, Model d) {
 		
-		d.addAttribute("msg", service.insertIdoGrp(ins));
+		d.addAttribute("msg", service.insertIdoGrp(ins1));
 		
 		return "a05_idol\\a02_groupInsert";
 	}	

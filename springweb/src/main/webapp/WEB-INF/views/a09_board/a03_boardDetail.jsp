@@ -23,38 +23,112 @@ td {
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		let msg = "${msg}"
+		if(msg!=""){
+			alert(msg)
+			if(msg.indexOf("삭제")>=0){ // 삭제라는 키워드가 시작되는 index리턴, 즉, 삭제 성공/삭제 실패일 시, 리스트로 바로 이동
+				location.href="boardList"
+			}
+		}
+		$("#uptBtn").click(function(){ 
+			if(confirm("수정하시겠습니까?")){
+				$("form").attr("action","boardUpdate")
+				$("form").submit()
+			}
+		})
+		$("#delBtn").click(function(){ 
+			if(confirm("삭제하시겠습니까?")){
+				$("form").attr("action","boardDelete")
+				$("form").submit()
+			}
+		})
+		$("#lstBtn").click(function(){ 
+			location.href="boardList"
+		})  	
 	});
-</script>
-</head>
+	</script>
+	</head>
 
-<body>
+	<body>
 	<div class="jumbotron text-center">
-		<h2>게시물 상세폼</h2>
+	  <h2>게시물 상세</h2>
 	</div>
-	<div class="container">
-		<form method="post">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="dateNo">번호</label> <input type="text" readonly
-							value="" class="form-control" id="dateNo" name="dateNo">
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="meetDate">만남일</label> <input type="datetime-local"
-							value="" class="form-control" id="meetDate" name="meetDate"
-							required>
-					</div>
-				</div>
-			</div>
-			<div class="btn-group-custom">
-				<button id="uptBtn" type="button" class="btn btn-success btn-lg">수정</button>
-				<button id="delBtn" type="button" class="btn btn-danger btn-lg">삭제</button>
-				<button id="lstBtn" type="button" class="btn btn-info btn-lg">메인으로</button>
-			</div>
-		</form>
+	<%--
+
+	
+	 --%>
+	 <div class="container">
+	    <form  method="post">
+	    	<div class="row">
+		        <div class="col-md-6">
+		            <div class="form-group">
+		                <label for="no">번호</label>
+		                <input type="text" readonly class="form-control" id="no" name="no" value="${board.no}" required>
+		            </div>
+		        </div>    
+		        <div class="col-md-6">
+		            <div class="form-group">
+		                <label for="refno">상위번호</label>
+		                <input type="text" readonly class="form-control" id="refno" name="refno" value="${board.refno}" required>
+		            </div>
+		        </div>
+		   </div>
+		   <div class="row">         
+		        <div class="col-md-6">	
+		            <div class="form-group">
+		                <label for="subject">제목</label>
+		                <input type="text" class="form-control" id="subject" name="subject" value="${board.subject}" required>
+		            </div>	
+		        </div>
+		    	<div class="col-md-6">	    	        	            
+		            <div class="form-group">
+		                <label for="writer">작성자</label>
+		                <input type="text" class="form-control" id="writer" name="writer" value="${board.writer}" required>
+		            </div>              
+		        </div>
+	     	</div>   
+	     	<div class="row">       
+		        <div class="col-md-6">
+
+		            <div class="form-group">
+		                <label for="regdte">등록일</label>
+		                <input type="text" class="form-control" readonly
+		                 value="<fmt:formatDate type="both" value='${board.regdte}'/>">
+		            </div>  
+		       	</div>
+		    	<div class="col-md-6">	     
+		            <div class="form-group">
+		                <label for="uptdte">수정일</label>
+		                <input type="text" class="form-control" readonly value="<fmt:formatDate  type="both" value='${board.uptdte}'/>">
+		            </div>		            
+		        </div>
+		   </div>
+		   <div class="row">     
+		        <div class="col-md-6">        
+		            <div class="form-group">
+		                <label for="">첨부파일</label><br>
+		            </div>	
+		        </div>    
+				<div class="col-md-6">	
+		            <div class="form-group">
+		                <label for="readcnt">조회수</label>
+		                <input type="text" class="form-control" readonly id="readcnt" value="${board.readcnt}">
+		            </div>  
+		        </div>
+		    </div>  
+		    <div class="row">  
+		        <div class="col-md-12">
+		            <div class="form-group">
+		            <label for="content">내용</label>
+		            <textarea class="form-control" name="content" rows="5" placeholder="내용을 입력하세요">${board.content}</textarea>
+		            </div>
+		        </div>
+		    </div>    
+		    <button id="uptBtn" type="button" class="btn btn-primary">수정</button>
+		    <button id="delBtn"  type="button" class="btn btn-danger">삭제</button>
+		    <button id="repBtn" type="button" class="btn btn-warning">답글</button>
+		    <button id="lstBtn" type="button" class="btn btn-info">메인</button>        
+	   </form>	
 	</div>
-</body>
-</html>
+	</body>
+	</html>

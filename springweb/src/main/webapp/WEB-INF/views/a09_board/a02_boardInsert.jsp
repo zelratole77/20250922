@@ -25,8 +25,20 @@ td {
 	$(document).ready(function() {
 		var msg = "${msg}"
 		if(msg!=""){
-			alert(msg)
+			if(!confirm(msg+"\n계속 등록하시겠습니까?")){
+				location.href="boardList"
+			}
 		}
+		$("#regBtn").click(function(){
+			if(confirm("게시물 등록하시겠습니까?")){
+				$("form").attr("action","boardInsert")
+				$("form").submit();
+			}
+		})
+		$("#lstBtn").click(function(){ 
+			location.href="boardList"
+		})
+			
 	});
 </script>
 </head>
@@ -65,7 +77,7 @@ td {
 			</div>					
 
 			<div class="btn-group-custom">
-				<button id="regBtn" type="submit" class="btn btn-success btn-lg">등록</button>
+				<button id="regBtn" type="button" class="btn btn-success btn-lg">등록</button>
 				<button id="lstBtn" type="button" class="btn btn-info btn-lg">메인으로</button>
 			</div>
 		</form>
