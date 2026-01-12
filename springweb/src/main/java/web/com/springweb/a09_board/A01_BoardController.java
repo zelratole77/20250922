@@ -12,6 +12,10 @@ public class A01_BoardController {
 	
 	
 	
+
+	
+	
+	
 	// http://localhost:5050/boardList?writer=홍&subject=공지
 	@RequestMapping("boardList")   // get/post
 	public String boardList(Board b01, Model d) {
@@ -27,6 +31,9 @@ public class A01_BoardController {
 		return "a09_board\\a02_boardInsert";
 	}
 	
-
+	// http://localhost:5050/boardListAjax?writer=홍&subject=공지
+	
+	
+	// http://localhost:5050/boardDetailAjax?writer=홍&subject=공지
 
 }

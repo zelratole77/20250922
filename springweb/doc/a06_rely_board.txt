@@ -40,8 +40,14 @@
 	
 		/views/a09_board/a00_login.jsp  로그인 처리를 위한 view
 		/views/a09_board/a01_boardList.jsp 초기 게시물 리스트 화면
+		
 		/views/a09_board/a02_boardInsert.jsp 게시물 등록 및 답글 화면
 		/views/a09_board/a03_boardDetail.jsp 게시물 상세 화면
+		/views/a09_board/a03_boardDetail.jsp 게시물 상세 화면
+		/views/a09_board/b01_boardMng.jsp ajax 처리화면
+
+	
+
 		
 5. 프로세스에 대한 이해(처리되는 파일과 data 확인)
 	1) 전반적인 흐름//관리 데이터
@@ -291,7 +297,15 @@
 		입력형태의 form으로 화면 로딩..
 					
 				
+# 기초 파트 : jsp 조회리스트/등록/상세화면/수정/삭제..
 
+
+# 중급 파트 : ajax 통해서 조회리스트/등록/상세/수정/삭제
+	a09_board/b01_boardMng.jsp
+	controller  ajax를 위한 리스트, 상세
+	
+		/boardListAjax
+		/boardDetailAjax
 
 
 
