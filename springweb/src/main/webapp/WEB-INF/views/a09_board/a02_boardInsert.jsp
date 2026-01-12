@@ -31,7 +31,7 @@ td {
 		}
 		$("#regBtn").click(function(){
 			if(confirm("게시물 등록하시겠습니까?")){
-				$("form").attr("action","boardInsert")
+				//$("form").attr("action","boardInsert")
 				$("form").submit();
 			}
 		})
@@ -47,7 +47,87 @@ td {
 	<div class="jumbotron text-center">
 		<h2>게시물 등록</h2>
 	</div>
-	<%-- 	// refno subject content writer --%>
+	<%-- 	// refno subject content writer
+	
+	 name="subject" value="게시물 등록"
+ 	 name="writer"  value="마길동"
+	 name="content"  value="내용"
+	 $("form").submit(); type="submit" 클릭한 것과 동일..
+	 ==> 
+	 post /boardInsert
+	 ?subject=게시물 등록&writer=마길동&content=내용
+	 
+	 controller
+	 @PostMapping("boardInsert")
+	 public boardInsert(@RequestParam("subject") String  subject ){
+	 public boardInsert(Board ins ){
+	 
+	 }
+	 post /insertRecord
+	 ?name=홍길동&kor=70&eng=80
+	 
+	 controller
+	 @PostMapping("insertRecord")
+	 public insertRecord(@RequestParam("name") String name,
+	                     @RequestParam("kor") int kor, 
+	                     @RequestParam("eng") int eng 
+	                     
+	 public insertRecord(Record ins)
+	 	 
+	 class Record{
+	 	private String name;
+	 	private int kor;
+	 	private int eng;
+	 }      
+	 
+	 
+	 get /callFruits
+	 ?fruit=사과&price=3000&cnt=5
+	 @GetMapping("callFruits")
+	 public callFruits(@RequestParam("fruit") String fruit,
+	 				   @RequestParam("price") int price,
+	 				   @RequestParam("cnt") int cnt
+	 				   
+	 public callFruits(	Fruits ins){} 				   
+	 				   
+	 class Fruits{
+	 	private String fruit;
+	 	private int price;
+	 	privaet int cntg;
+	 
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	               
+	                     
+	                     
+	                      
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 class Board{
+	 	private String subject;
+	 	private String writer;
+	 	private String content;
+	 
+	 }
+	 
+	 --%>
 	<div class="container">
 		<form method="post">
 			<input type="hidden" name="refno" value="0"/>

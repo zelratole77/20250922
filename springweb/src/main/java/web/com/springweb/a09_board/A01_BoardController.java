@@ -30,9 +30,10 @@ public class A01_BoardController {
 		return "a09_board\\a01_boardList";
 	}
 	// http://localhost:5050/boardInsert
+	// refno=0&subject=게시물등록&content=내용&writer=홍길동
 	@RequestMapping("boardInsert")
 	public String boardInsert(Board ins, Model d) {
-		if(ins.getSubject()!=null) {
+		if(ins.getSubject()!=null) { // 초기화면에서는 해당 프로세스 x
 			d.addAttribute("msg", service.boardInsert(ins));
 		}
 		return "a09_board\\a02_boardInsert";
