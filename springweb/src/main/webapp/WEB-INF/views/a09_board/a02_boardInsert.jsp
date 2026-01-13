@@ -135,7 +135,7 @@ td {
 		refno=0&subject=게시물등록&content=내용&writer=홍길동
 		
 		 --%>
-		<form method="post">
+		<form method="post"  enctype="multipart/form-data">
 			<input type="hidden" name="refno" value="0"/>
 			<%-- 답글시는 처리가 필요하기에.. 답글과 등록글은 동일 화면에서 처리 --%>
 			<div class="row">
@@ -154,6 +154,16 @@ td {
 					</div>
 				</div>
 			</div>		
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="reports">첨부파일</label> 
+						<input type="file" class="form-control" id="reports" 
+							name="reports" placeholder="파일을 선택하세요"
+							multiple="multiple">
+					</div>
+				</div>
+			</div>				
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">

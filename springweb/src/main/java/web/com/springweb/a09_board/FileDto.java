@@ -13,7 +13,8 @@ public class FileDto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public FileDto(String fname, String etc) {
+	public FileDto(int no, String fname, String etc) {
+		this.no = no;
 		this.fname = fname;
 		this.etc = etc;
 	}

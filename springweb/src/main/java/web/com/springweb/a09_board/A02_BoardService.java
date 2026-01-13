@@ -28,7 +28,7 @@ public class A02_BoardService {
 	public String boardInsert(Board ins) {
 		// 1. 기본 정보 저장
 		String msg = "";
-		msg = "[기본정보]"+(dao.boardInsert(ins)>0?"등록 성공\\n":"등록실패\\n");
+		msg = "[기본정보]"+(dao.boardInsert(ins)>0?"등록 성공\\n":"등록실패\\n"); // ins에 no값이 할당처리..
 		// 2. 파일 업로드
 		try {
 			int cnt = 0; //등록한 파일 갯수..
@@ -40,7 +40,7 @@ public class A02_BoardService {
 					// 3. 파일 정보 저장.
 					mf.transferTo(file); // 물리적 파일 서버에 업로그..
 					// 등록된 파일 갯수를 반복문에 의해서 누적 처리..		
-					cnt+=dao.boardInsertFile(new FileDto(fname,"게시판 파일업로드:"+ins.getSubject()));
+					cnt+=dao.boardInsertFile(new FileDto(ins.getNo(), fname,"게시판 파일업로드:"+ins.getSubject()));
 				}
 			}
 			msg+="[파일정보]"+cnt+"건 파일 등록 성공";

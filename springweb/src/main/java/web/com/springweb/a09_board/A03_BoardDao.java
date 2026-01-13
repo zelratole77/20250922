@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 // a09_board.A03_BoardDao
@@ -19,11 +20,16 @@ public interface A03_BoardDao {
 			+ "ORDER BY NO DESC ")
 	List<Board> boardList(Board sch);
 	// refno subject content writer
-	@Insert("insert into board values(board_seq.nextval,#{refno},#{subject},"
-			+ "#{content},#{writer},0,sysdate, sysdate)")
+	//Insert("insert into board values(board_seq.nextval,#{refno},#{subject},#{content},#{writer},0,sysdate, sysdate)")
+	@Insert("insert into board values(#{no},#{refno},#{subject},#{content},#{writer},0,sysdate, sysdate)")
+	@SelectKey(statement="SELECT BOARD_SEQ.NEXTVAL FROM DUAL",
+				keyProperty = "no",  // Board의 no 값 설정
+				before=true,  // boardInsert가 실행되기 직전에 nextval을 먼저 조회합니다.
+				resultType=int.class)
 	int boardInsert(Board ins);
 
-	@Insert("INSERT INTO boardfile values(board_seq.currval, #{fname}, #{etc}, sysdate, sysdate)")
+	//Insert("INSERT INTO boardfile values(board_seq.currval, #{fname}, #{etc}, sysdate, sysdate)")
+	@Insert("INSERT INTO boardfile values(#{no}, #{fname}, #{etc}, sysdate, sysdate)")
 	int boardInsertFile(FileDto ins);
 	
 	
