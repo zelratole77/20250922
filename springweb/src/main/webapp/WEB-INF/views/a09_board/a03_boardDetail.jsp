@@ -23,6 +23,12 @@ td {
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		let sessCk = "${mem.name}"===""  
+		if(sessCk){ //세션이 없을 때..- 로그인 처리가 되지 않을 때..
+			alert("로그인 하셔야 합니다.")
+			location.href="login"
+		}		
+		
 		let msg = "${msg}"
 		if(msg!=""){
 			alert(msg)
@@ -58,6 +64,7 @@ td {
 	
 	 --%>
 	 <div class="container">
+	 	<h6 class="text-right" >${mem.name}님 로그인중</h6>
 	    <form  method="post">
 	    	<div class="row">
 		        <div class="col-md-6">

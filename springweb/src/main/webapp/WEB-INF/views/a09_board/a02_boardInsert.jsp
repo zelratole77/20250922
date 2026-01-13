@@ -23,6 +23,12 @@ td {
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		let sessCk = "${mem.name}"===""  
+		if(sessCk){ //세션이 없을 때..- 로그인 처리가 되지 않을 때..
+			alert("로그인 하셔야 합니다.")
+			location.href="login"
+		}		
+		
 		var msg = "${msg}"
 		if(msg!=""){
 			if(!confirm(msg+"\n계속 등록하시겠습니까?")){
@@ -129,6 +135,7 @@ td {
 	 
 	 --%>
 	<div class="container">
+		<h6 class="text-right" >${mem.name}님 로그인중</h6>
 		<%--
 		아래 form 하위에 있는 name=""  value=""
 		submit를 클릭시, method="post"과 action="이동할 url"로 호출되어 controller 메서드.. 
@@ -149,8 +156,14 @@ td {
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">
-						<label for="writer">작성자</label> <input type="text" 
-							value="" class="form-control" id="writer" name="writer">
+						<label for="writer">작성자</label> 
+							<input type="hidden" value="${mem.id}" name="writer"> 
+							<%-- 실제 등록되는 사용자는 세션 id --%>
+							<input type="text" value="${mem.name}[ ${mem.id} ]" class="form-control" readonly>
+							<%-- 보이는 것은 세션 이름과 세션아이디 
+							세션값을 등록했기에 권한별 처리가 각 화면과 기능 버튼에 처리가 가능하다..
+							--%>
+							
 					</div>
 				</div>
 			</div>		

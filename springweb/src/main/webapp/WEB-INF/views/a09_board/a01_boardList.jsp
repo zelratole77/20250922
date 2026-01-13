@@ -23,6 +23,17 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		// session값이 설정되어 있을 때만, 현재 화면을 사용할 수 있고,
+		// session값이 없을 때는 로그인 메시지가 뜨고, 로그인 화면으로 이동 처리.
+		let sessCk = "${mem.name}"===""  
+		if(sessCk){ //세션이 없을 때..- 로그인 처리가 되지 않을 때..
+			alert("로그인 하셔야 합니다.")
+			location.href="login"
+		}
+		
+		
+		
+		
 		$("#regBtn").click(function(){
 			location.href="boardInsert"
 		})
@@ -30,6 +41,11 @@
 	function goDetail(no){
 		location.href="boardDetail?no="+no
 	}	
+	function logout(){
+		if(confirm("로그 아웃 하시겠습니까?")){
+			location.href="login"  // get방식으로 이동..
+		}
+	}
 </script>
 </head>
 
@@ -42,6 +58,7 @@
 		
 --%>
 <div class="container">
+	<h6 class="text-right" onclick="logout()">${mem.name}님 로그인중</h6>
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	    <input placeholder="제목" name="subject" value="${param.subject}" class="form-control mr-sm-2" />

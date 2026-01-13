@@ -23,6 +23,13 @@ public class A01_BoardController {
 	// http://localhost:5050/login
 	@RequestMapping("login")
 	public String login(Member mem, HttpSession session, Model d) {
+		
+		// 로그아웃에서 오면..
+		if(session.getAttribute("mem")!=null) {
+			session.removeAttribute("mem");
+		}
+		
+		
 		// 1. 초기화면 아닐 때..(입력으로 id, pwd 값이 들어 왔을 때..
 		if(mem.getId()!=null) {
 			Member dbMem = service.login(mem);
