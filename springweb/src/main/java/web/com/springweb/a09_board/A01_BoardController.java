@@ -17,7 +17,7 @@ public class A01_BoardController {
 	@Autowired(required=false)
 	private A02_BoardService service;
 	
-	
+	// http://localhost:5050/login
 	@GetMapping("login")
 	public String login() {
 		return "a09_board\\a00_login";
