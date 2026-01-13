@@ -23,6 +23,11 @@ public interface A03_BoardDao {
 			+ "#{content},#{writer},0,sysdate, sysdate)")
 	int boardInsert(Board ins);
 
+	@Insert("INSERT INTO boardfile values(board_seq.currval, #{fname}, #{etc}, sysdate, sysdate)")
+	int boardInsertFile(FileDto ins);
+	
+	
+	
 	@Select("SELECT * FROM BOARD WHERE NO = #{no}")
 	Board getBoard(@Param("no") int no);
 

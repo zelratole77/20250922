@@ -23,9 +23,28 @@ DROP TABLE BOARD CASCADE CONSTRAINTS;
 		create sequence board_seq;
 		--insert into board values(board_seq.nextval  게시물 등록시 바로 처리하기에  board_seq.currval 로 설정 처리)
 		insert into board values(board_seq.nextval,0,'첨부파일 게시물','내용','첨부자',0,sysdate, sysdate);
+
 		INSERT INTO boardfile values(board_seq.currval, '파일명.txt', '게시물 정보 간단하게 정리', sysdate, sysdate);
+
 		INSERT INTO boardfile values(41, '파일명.txt', '게시물 정보 간단하게 정리', sysdate, sysdate);
 		SELECT * FROM boardfile;
+/*
+@Insert("INSERT INTO boardfile values(board_seq.currval, #{fname}, #{etc}, sysdate, sysdate)")
+int boardInsertFile(FileDto ins);
+
+class FileDto{
+	private int no;
+	private String fname;
+	private String etc;
+	private Date regdte;
+	private Date uptdte;
+	
+
+}
+
+
+ * */
+		
 		
 		
 		-- 샘플 데이터
