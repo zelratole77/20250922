@@ -31,6 +31,7 @@ public class A01_BoardController {
 	}
 	// http://localhost:5050/boardInsert
 	// refno=0&subject=게시물등록&content=내용&writer=홍길동
+	// RequestMapping : GET/POST
 	@RequestMapping("boardInsert")
 	public String boardInsert(Board ins, Model d) {
 		if(ins.getSubject()!=null) { // 초기화면에서는 해당 프로세스 x

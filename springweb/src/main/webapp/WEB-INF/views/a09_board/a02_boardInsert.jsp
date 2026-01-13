@@ -129,6 +129,12 @@ td {
 	 
 	 --%>
 	<div class="container">
+		<%--
+		아래 form 하위에 있는 name=""  value=""
+		submit를 클릭시, method="post"과 action="이동할 url"로 호출되어 controller 메서드.. 
+		refno=0&subject=게시물등록&content=내용&writer=홍길동
+		
+		 --%>
 		<form method="post">
 			<input type="hidden" name="refno" value="0"/>
 			<div class="row">

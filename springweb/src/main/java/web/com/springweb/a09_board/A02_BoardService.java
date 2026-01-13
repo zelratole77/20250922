@@ -26,9 +26,10 @@ public class A02_BoardService {
 		// 상세조회시, 조회수 카운트 업
 		dao.uptReadCnt(no);
 		return dao.getBoard(no);
-	}		
+	}
+	
 	public Board getBoard(int no) {
-		// 상세조회시, 조회수 카운트 업
+		// 수정시는 해당 상세 데이터만 가져오게 처리
 		return dao.getBoard(no);
 	}		
 
