@@ -49,7 +49,7 @@
 				$.ajax({
 					url:"/boardInsertAjax", // boardInsertAjax
 					type:"post",
-					data:$("#frm02").serialize(),
+					data:$("#frm02").serialize(), // key=value...
 					success:function(msg){
 						ajaxList() // 등록된 내용 리스트에 반영.
 						$("#frm02")[0].reset(); // 입력된값 초기화
@@ -150,10 +150,10 @@
 		let writerVal = $("[name=writer]").val()
 		$.ajax({
 			url:"/boardListAjax",
-			type:"post",
-			data:{subject: subjectVal , writer: writerVal },
+			type:"get",
+			data:{subject: subjectVal , writer: writerVal }, //jquery api ==> key=value 변경으로 전달..
 			dataType:"json",
-			success:function(bList){
+			success:function(bList){   // List  return ResponseEntity.ok(service.boardList(sch));
 				let showList = ""
 				$(bList).each(function( idx, bd ){
 					console.log(bd.regdte)
@@ -276,7 +276,7 @@
 	     <div class="row g-3 mb-3">
 	      <div class="col">
 	      	<label for="content" class="form-label fw-bold">내용</label> 
-	      	<textarea class="form-control"  id="content" title="내용 입력"  id="content"  name="content"></textarea>
+	      	<textarea class="form-control" rows="5"  id="content" title="내용 입력"  id="content"  name="content"></textarea>
 	      </div>
 	     </div>	     	     
 	    </form> 

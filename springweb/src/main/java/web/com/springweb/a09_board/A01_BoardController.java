@@ -67,7 +67,7 @@ public class A01_BoardController {
 		return "a09_board\\b01_boardMng";
 	}
 	// http://localhost:5050/boardListAjax  ?writer=홍&subject=공지
-	@PostMapping("/boardListAjax")   // get/post
+	@GetMapping("/boardListAjax")   // get/post
 	public ResponseEntity<?> boardListAjax(Board sch) {
 		
 		return ResponseEntity.ok(service.boardList(sch));
@@ -75,7 +75,7 @@ public class A01_BoardController {
 	// http://localhost:5050/boardInsertAjax
 	@PostMapping("/boardInsertAjax")
 	public ResponseEntity<?> boardInsertAjax(Board ins) {
-		return ResponseEntity.ok(service.boardInsert(ins));
+		return ResponseEntity.ok(service.boardInsert(ins)); // 
 	}
 	// http://localhost:5050/boardDetailAjax?no=82
 	@GetMapping("/boardDetailAjax")
@@ -87,7 +87,7 @@ public class A01_BoardController {
 	@PutMapping("boardUpdateAjax")
 	public ResponseEntity<?>  boardUpdateAjax(@RequestBody Board upt) {
 
-		return ResponseEntity.ok(service.boardUpdate(upt));
+		return ResponseEntity.ok(service.boardUpdate(upt));  // Board => json
 	}	
 	// http://localhost:5050/boardDeleteAjax
 	@DeleteMapping("boardDeleteAjax")
