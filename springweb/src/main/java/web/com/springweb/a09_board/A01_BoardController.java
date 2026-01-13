@@ -62,7 +62,7 @@ public class A01_BoardController {
 		return "a09_board\\a03_boardDetail";
 	}		
 	// http://localhost:5050/boardMng
-	@GetMapping("boardMng")   // get/post
+	@GetMapping("boardMng")   // get
 	public String boardMng() {
 		return "a09_board\\b01_boardMng";
 	}
@@ -77,7 +77,7 @@ public class A01_BoardController {
 	public ResponseEntity<?> boardInsertAjax(Board ins) {
 		return ResponseEntity.ok(service.boardInsert(ins));
 	}
-	// http://localhost:5050/boardDetail?no=8
+	// http://localhost:5050/boardDetailAjax?no=82
 	@GetMapping("/boardDetailAjax")
 	public ResponseEntity<?> boardDetailAjax(@RequestParam("no") int no) {
 		
