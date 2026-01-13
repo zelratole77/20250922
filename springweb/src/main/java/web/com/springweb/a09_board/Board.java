@@ -2,6 +2,8 @@ package web.com.springweb.a09_board;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 // a09_board.Board   리스트를 위한 DTO
 public class Board {
 	private int no;
@@ -12,6 +14,8 @@ public class Board {
 	private int readcnt;
 	private Date regdte;
 	private Date uptdte;
+	
+	private MultipartFile[] reports;
 	
 	
 	public Board(int no, int refno, String subject, String content, String writer, int readcnt, Date regdte,
@@ -75,6 +79,12 @@ public class Board {
 	}
 	public void setUptdte(Date uptdte) {
 		this.uptdte = uptdte;
+	}
+	public MultipartFile[] getReports() {
+		return reports;
+	}
+	public void setReports(MultipartFile[] reports) {
+		this.reports = reports;
 	}
 	
 	
