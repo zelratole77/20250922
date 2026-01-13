@@ -18,7 +18,10 @@ public class A01_BoardController {
 	private A02_BoardService service;
 	
 	
-	
+	@GetMapping("login")
+	public String login() {
+		return "a09_board\\a00_login";
+	}
 
 	
 	
