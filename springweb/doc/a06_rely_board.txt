@@ -303,7 +303,60 @@
 		/boardListAjax
 		/boardDetailAjax
 
-
+# ajax CRUD 처리 패턴
+1. backend(controller)
+	1) 요청처리는 동일.. front단에서 ajax 속성으로
+		$.ajax({
+			url:"url"
+			type:"get/post/put/delete"
+			data:"key=value&key=value&key=value..."/$("form").serialize()   "key=value" 형식
+			get방식..
+			http:..../key=value&key=value&key=value
+			post방식
+			http:..../
+				요청 body에서 전달.
+				key=value&key=value&key=value
+		})
+		주의 !!!! json형식 문자열을 요청값으로 전달할 필요성이 있을 때..(리스트형 객체형 배열)
+		
+				const formData={}
+				$.each($("#frm02").serializeArray(), function(){
+					formData[this.name] = this.value
+				})
+				"[{key:value, key:value},{key:value, key:value},{key:value, key:value},]" 형식의 문자열을 보낼..
+				contentType:"application/json",   -- 요청값을 json형식 문자열을 보내는 처리..
+				data:JSON.stringify(formData), 
+							
+		==>
+		@Get/Post/Put/DeleteMapping("url")
+		public ResponseEntity<?> XXXX(요청값 받은 처리.@RequestParam("")
+					                  Emp sch (객체)
+					                  
+					                 (@RequestBody Board upt ) 
+					                 
+		결과값 
+		jsp ==> html 화면을 만들고 controller 선언한 d.addAttribute("key", value)
+					${key}
+		ajax ==> 모든 결과값을 문자열로 처리
+			단일  25 ==> "25", "성공" ==> "성공"
+			다중속성 다중 객체   DTO  Person("홍길동", 25, "수원") ==> ResponseEntity.ok(	Person("홍길동", 25, "수원") )
+				==> {"name","홍길동", "age":25, "loc":"수원"} 전달할 때 문자열 형태로 전달....
+				==> [{"name","홍길동", "age":25, "loc":"수원"},{},{}] 전달할 때 문자열 형태로 전달....
+			$.ajax({
+				dataType:"json",
+				success:function(p01){   문자열 json이 위 속성에 의해서 javascript 객체로 변환되어
+					p01 = {"name","홍길동", "age":25, "loc":"수원"} 로 서버단에서 받은 데이터를 사용할 수 있다..
+					p01.name....
+				}
+				success:function(list){   문자열 json이 위 속성에 의해서 javascript 객체로 변환되어
+					list =[{"name","홍길동", "age":25, "loc":"수원"},{},{}]로 서버단에서 받은 데이터를 사용할 수 있다..
+					$(list).each(function(idx, p01){
+						
+					})
+				}				
+			})			
+						                 
+					                  
 
 
 

@@ -71,6 +71,8 @@
 				$.each($("#frm02").serializeArray(), function(){
 					formData[this.name] = this.value
 				})
+
+				
 				$.ajax({
 					url:"/boardUpdateAjax",
 					type:"put",
