@@ -27,8 +27,18 @@ DROP TABLE BOARD CASCADE CONSTRAINTS;
 		INSERT INTO boardfile values(board_seq.currval, '파일명.txt', '게시물 정보 간단하게 정리', sysdate, sysdate);
 
 		INSERT INTO boardfile values(41, '파일명.txt', '게시물 정보 간단하게 정리', sysdate, sysdate);
+		
 		SELECT * FROM boardfile;
+		SELECT * FROM boardfile WHERE NO = 84;
+		
 /*
+@Select("SELECT * FROM boardfile WHERE NO = #{no}")
+List<FileDto> getFile(@Param("no") int no);
+
+
+
+
+
 @Insert("INSERT INTO boardfile values(board_seq.currval, #{fname}, #{etc}, sysdate, sysdate)")
 int boardInsertFile(FileDto ins);
 

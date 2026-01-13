@@ -109,7 +109,20 @@ td {
 		        <div class="col-md-6">        
 		            <div class="form-group">
 		                <label for="">첨부파일</label><br>
+		                
+		                <c:forEach var="bfile" items="${bfiles}">
+		                <button type="button"  class="btn btn-success"
+		                	ondblclick="download('${bfile.fname}')">${bfile.fname}</button>
+		                </c:forEach>
+		                
 		            </div>	
+		           	<script type="text/javascript">
+		           	function download(fname){
+		           		if(confirm(fname+"을 다운로드하시겠습니까?")){
+		           			location.href="/download?fname="+fname
+		           		}
+		           	}
+		           	</script>
 		        </div>    
 				<div class="col-md-6">	
 		            <div class="form-group">

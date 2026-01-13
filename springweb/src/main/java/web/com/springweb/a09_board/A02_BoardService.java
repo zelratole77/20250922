@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -71,5 +72,8 @@ public class A02_BoardService {
 	public String boardDelete(int no) {
 		return dao.boardDelete(no)>0?"삭제성공":"삭제실패";
 	}	
+	public List<FileDto> getFile(int no){
+		return dao.getFile(no);
+	}
 	
 }

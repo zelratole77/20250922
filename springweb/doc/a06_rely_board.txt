@@ -388,7 +388,6 @@
 		<form encType="multipart/form-data" 선언..
 		type="file" name="reports"  multiple="multiple"  설정  여러개의 파일도 업로드 할 수 있게 처리.
 
-
 	6) 상세 처리에서 파일 정보를 가져올 sql/dao 메서드 작성
 	7) 상세 처리시 서비스단에서 파일 정보도 처리할 수 있도록 로딩 처리..
 	8) 상세 처리시 파일 정보 리스트로 보일 수 있도록 모델 데이터 처리..

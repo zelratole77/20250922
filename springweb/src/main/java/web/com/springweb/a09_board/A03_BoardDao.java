@@ -51,4 +51,9 @@ public interface A03_BoardDao {
 	
 	@Delete("DELETE FROM BOARD WHERE NO = #{no}")
 	int boardDelete(@Param("no") int no);	
+	// 상세화면에서 첨부파일 정보 리스트 처리.
+	@Select("SELECT * FROM boardfile WHERE NO = #{no}")
+	List<FileDto> getFile(@Param("no") int no);
+
+	
 }

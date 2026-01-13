@@ -44,6 +44,8 @@ public class A01_BoardController {
 	public String boardDetail(@RequestParam("no") int no, Model d) {
 		// 기본 정보	
 		d.addAttribute("board", service.boardDetail(no));
+		d.addAttribute("bfiles", service.getFile(no));
+		
 		
 		return "a09_board\\a03_boardDetail";
 	}		
