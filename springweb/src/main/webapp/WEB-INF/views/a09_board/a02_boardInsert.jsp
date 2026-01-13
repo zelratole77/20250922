@@ -137,6 +137,7 @@ td {
 		 --%>
 		<form method="post">
 			<input type="hidden" name="refno" value="0"/>
+			<%-- 답글시는 처리가 필요하기에.. 답글과 등록글은 동일 화면에서 처리 --%>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">

@@ -92,6 +92,7 @@ td {
 
 		            <div class="form-group">
 		                <label for="regdte">등록일</label>
+		                <%-- 등록일 수정일은 DB에서 처리하는 name 속성 반드시 빼야 한다. --%>
 		                <input type="text" class="form-control" readonly
 		                 value="<fmt:formatDate type="both" value='${board.regdte}'/>">
 		            </div>  
@@ -99,7 +100,8 @@ td {
 		    	<div class="col-md-6">	     
 		            <div class="form-group">
 		                <label for="uptdte">수정일</label>
-		                <input type="text" class="form-control" readonly value="<fmt:formatDate  type="both" value='${board.uptdte}'/>">
+		                <input type="text" class="form-control" readonly 
+		                value="<fmt:formatDate  type="both" value='${board.uptdte}'/>">
 		            </div>		            
 		        </div>
 		   </div>
