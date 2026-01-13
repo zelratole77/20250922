@@ -9,11 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import web.com.springweb.z01_dto.Member;
 // a09_board.A02_BoardService
 @Service
 public class A02_BoardService {
 	@Autowired(required=false)
 	private A03_BoardDao dao;
+	
+	public Member login(Member sch) {
+		return dao.login(sch);
+	}
 	
 	public List<Board> boardList(Board sch){
 		if(sch.getSubject()==null) sch.setSubject("");
