@@ -10,9 +10,15 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
+import web.com.springweb.z01_dto.Member;
+
 // a09_board.A03_BoardDao
 @Mapper
 public interface A03_BoardDao {
+	
+	@Select("SELECT * FROM MEMBER WHERE id=#{id} AND pwd=#{pwd}")
+	Member login(Member sch);
+	
 
 	@Select("SELECT * FROM BOARD "
 			+ "WHERE WRITER LIKE #{writer} "

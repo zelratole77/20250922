@@ -18,8 +18,10 @@ public class A01_BoardController {
 	private A02_BoardService service;
 	
 	// http://localhost:5050/login
-	@GetMapping("login")
+	@RequestMapping("login")
 	public String login() {
+		
+		
 		return "a09_board\\a00_login";
 	}
 

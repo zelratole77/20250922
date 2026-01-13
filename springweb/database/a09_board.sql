@@ -96,7 +96,11 @@ Dao 만드는 방법
 Board selectBoard(@Param("no") int no);
 
  * */
-
+SELECT * FROM MEMBER WHERE id='himan' AND pwd='7777';
+/*
+@Select("SELECT * FROM MEMBER WHERE id=#{id} AND pwd=#{pwd}")
+Member login(Member sch);
+ * */
 
 
 
