@@ -33,6 +33,18 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		// 1. 메시지 값을 없을 때
+		// 2. 메시지 값이 로그인 성공
+		// 3. 메시지 값이 로그인 실패
+		let msg = "${msg}"
+		if(msg!=""){
+			alert(msg)
+			if(msg === "로그인 성공"){
+				location.href="boardList"				
+			}
+		}
+		
+		
 	
 	});
 </script>
@@ -62,7 +74,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="post">
                                         <div class="form-group">
                                             <input type="email" name="id" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"

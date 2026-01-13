@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.servlet.http.HttpSession;
+import web.com.springweb.z01_dto.Member;
 @Controller
 public class A01_BoardController {
 	
@@ -19,7 +22,18 @@ public class A01_BoardController {
 	
 	// http://localhost:5050/login
 	@RequestMapping("login")
-	public String login() {
+	public String login(Member mem, HttpSession session, Model d) {
+		// 1. 초기화면 아닐 때..(입력으로 id, pwd 값이 들어 왔을 때..
+		if(mem.getId()!=null) {
+			Member dbMem = service.login(mem);
+			// DB에 데이터가 없을 때, 있을 때 구분
+			if(dbMem!=null) {
+				session.setAttribute("mem", dbMem); // 세션 처리
+				d.addAttribute("msg", "로그인 성공");
+			}else {
+				d.addAttribute("msg", "로그인 실패");
+			}
+		}
 		
 		
 		return "a09_board\\a00_login";
