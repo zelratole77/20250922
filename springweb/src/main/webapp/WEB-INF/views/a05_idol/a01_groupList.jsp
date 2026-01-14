@@ -46,8 +46,14 @@
 <div class="container">
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  		<%--
+	     public String idolGrpList(A04Group sch, Model d) {
+  									private String groupName
+  									private String fandomName
+  		 --%>
 	    <input placeholder="그룹명입력" name="groupName"  value="${param.groupName}" class="form-control mr-sm-2" />
 	    <input placeholder="팬그룹이름입력" name="fandomName"   value="${param.fandomName}"   class="form-control mr-sm-2"/>
+	    											<%-- 검색 후 다음 페이지에 ${param.XXX} 출력.. --%>
 	    <button class="btn btn-info" type="submit">Search</button>
 	    <button class="btn btn-success" id="regBtn" type="button">등록</button>
  	</nav>
@@ -66,7 +72,9 @@
       </tr>
     </thead>	
     <tbody>
-    	<%-- // groupNo groupName debutDate fandomName --%>
+    	<%-- 
+		d.addAttribute("grpList", service.getIdolGrpList(sch));
+    	// groupNo groupName debutDate fandomName --%>
     	<c:forEach var="grp" items="${grpList}">
     	<tr ondblclick="goDetail(${grp.groupNo})"><td>${grp.groupNo}</td><td>${grp.groupName}</td>
     		<td><fmt:formatDate value="${grp.debutDate}"/></td>

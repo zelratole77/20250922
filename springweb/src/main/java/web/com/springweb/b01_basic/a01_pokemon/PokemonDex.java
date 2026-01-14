@@ -1,21 +1,18 @@
 package web.com.springweb.b01_basic.a01_pokemon;
 
+import java.util.Date;
+
 public class PokemonDex {
+	// id name type pokeLevel capuredAt
 	private int id;
 	private String name;
 	private String type;
 	private String pokeLevel; // poke_level
-	private String capuredAt; // capured_at
+	private Date capturedAt; // capured_at   capturedAt
 	public PokemonDex() {
 		// TODO Auto-generated constructor stub
 	}
-	public PokemonDex(int id, String name, String type, String pokeLevel, String capuredAt) {
-		this.id = id;
-		this.name = name;
-		this.type = type;
-		this.pokeLevel = pokeLevel;
-		this.capuredAt = capuredAt;
-	}
+
 	public int getId() {
 		return id;
 	}
@@ -40,11 +37,15 @@ public class PokemonDex {
 	public void setPokeLevel(String pokeLevel) {
 		this.pokeLevel = pokeLevel;
 	}
-	public String getCapuredAt() {
-		return capuredAt;
+
+	public Date getCapturedAt() {
+		return capturedAt;
 	}
-	public void setCapuredAt(String capuredAt) {
-		this.capuredAt = capuredAt;
+
+	public void setCapturedAt(Date capturedAt) {
+		this.capturedAt = capturedAt;
 	}
+
+
 	
 }

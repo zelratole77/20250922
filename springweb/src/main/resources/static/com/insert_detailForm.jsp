@@ -37,8 +37,8 @@ td {
 	<div class="container">
 		<form method="post">
 			<div class="form-group">
-				<label for="subject">제목</label> <input type="text" value=""
-					class="form-control" id="subject" name="subject"
+				<label for="subject">제목</label> 
+				<input type="text" value="" class="form-control" id="subject" name="subject"
 					placeholder="제목을 입력하세요" required>
 			</div>
 			<button id="regBtn" type="button" class="btn btn-primary">등록</button>

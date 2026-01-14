@@ -33,7 +33,9 @@ public class A01_Idol_Controller {
 	public String idolGrpInsertGet() {
 		return "a05_idol\\a02_groupInsert";
 	}
-	// name=groupName=그룹1&debutDate=20261212&fandomName=팬명2
+	// name="name" value="홍길동" 
+	// name="groupName" 
+	// name=홍길동&groupName=그룹1&debutDate=20261212&fandomName=팬명2
 	// groupName=그룹1&debutDate=20261212&fandomName=팬명2
 	// int    no1 = 25
 	// A04Group ins = new A04Group();

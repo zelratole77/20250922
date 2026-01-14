@@ -23,7 +23,9 @@
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		$("#regBtn").click(function(){
+			location.href="pokemonInsert"
+		})
 	});
 </script>
 </head>
@@ -34,39 +36,42 @@
 
 </div>
 <%-- 
-		
+			name="name"  name="type"
+			
+	
 --%>
 <div class="container">
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="제목" name=""  class="form-control mr-sm-2" />
-	    <input placeholder="내용" name=""  class="form-control mr-sm-2"/>
+	    <input placeholder="이름" name="name" value="${param.name}" class="form-control mr-sm-2" />
+	    <input placeholder="종류" name="type" value="${param.type}"   class="form-control mr-sm-2"/>
 	    <button class="btn btn-info" type="submit">Search</button>
-	    <button class="btn btn-success" 
-	    	data-toggle="modal" data-target="#exampleModalCenter"
-	        type="button">등록</button>
+	    <button id="regBtn" class="btn btn-success" type="button">등록</button>
  	</nav>
 	</form>
    <table class="table table-hover table-striped">
-   	<col width="10%">
-   	<col width="50%">
-   	<col width="15%">
-   	<col width="15%">
-   	<col width="10%">
+   	<col width="20%">
+   	<col width="20%">
+   	<col width="20%">
+   	<col width="20%">
+   	<col width="20%">
     <thead>
-    
       <tr class="table-success text-center">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회</th>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>유형</th>
+        <th>레벨</th>
+        <th>획득시간</th>
       </tr>
     </thead>	
     <tbody>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<c:forEach var="pk" items="${ pokeList }">
+    	<tr><td>${pk.id}</td>
+    		<td>${pk.name}</td>
+    		<td>${pk.type}</td>
+    		<td>${pk.pokeLevel}</td>
+    		<td><fmt:formatDate value="${pk.capturedAt}"/></td></tr>
+    	</c:forEach>
     </tbody>
 	</table>    
     
