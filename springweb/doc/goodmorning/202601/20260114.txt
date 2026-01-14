@@ -4,134 +4,203 @@ Good morning QUIZ! 오늘도 좋은 하루 되시길~~ ^^
 
 **1. HTML에서 여러 개의 파일을 한 번에 서버로 전송하기 위해 `<input type="file">` 태그에 반드시 설정해야 하는 속성은?**
 ① `single="false"`
-② `multiple="multiple"`
+#② `multiple="multiple"`
 ③ `type="files"`
 ④ `action="upload"`
 
 **2. 파일 업로드가 포함된 `<form>` 태그에서 데이터를 바이너리 형태로 전송하기 위해 지정해야 하는 `enctype` 속성값은?**
 ① `application/x-www-form-urlencoded`
 ② `text/plain`
-③ `multipart/form-data`
+#③ `multipart/form-data`
 ④ `application/json`
 
 **3. Spring 프레임워크에서 업로드된 파일 데이터를 컨트롤러나 DTO에서 받기 위해 사용하는 객체 타입은?**
 ① `java.io.File`
 ② `java.nio.file.Path`
-③ `org.springframework.web.multipart.MultipartFile`
+#③ `org.springframework.web.multipart.MultipartFile`
+
+	<input type="file" name="report">
+	public String insert( @RequestParam("report") MultipartFile mf )
+	
+	public String insertOb(Board ins)
+	
+	class Board{
+		private MultipartFile report;
+	}	
+	
 ④ `javax.servlet.http.Part`
 
 **4. MyBatis의 `@SelectKey` 어노테이션에 대한 설명으로 가장 적절하지 않은 것은?**
+Board  (게시물 기본 정보) - 
+BoardFile (게시물 관련 첨부 파일 정보)
+게시물 기본 정보, 게시물 관련 첨부 파일 정보 연결하기 위해 연결키 1:다..
+ex) 첨부파일 게시물(제목)이 있으면  첨부파일 3개..
+두개를 연결한 key  no
+Board( 74, 첨부파일 게시물 ....  )
+BoardFile( 74, 파일1
+           74, 파일2
+           74, 파일3
+
+insert into board value(board_seq.nextval  ==> 변경되는 sequence 74
+insert into BoardFile value(board_seq.currval  ==> 현재되는 sequence 74
+DB에서 트랜잭션 기준으로 처리..(DB 부하 , 트래픽문제시는 에러가 발생할 가망성이 있음.).
+
+@SelectKey은   SELECT board_seq.nextval FROM DUAL; 키를 만들어어서
+Dto인 Board의 no에 할당 처리하고, 그 내용을 insert into board value(#{no} 처리하고,
+다시 service단에서 FileDto 객체에 속성 no를 위 no로 설정.. dto.setNo(board.getNo())
+해서 insert into BoardFile value(#{no}를 처리하는 것을 말한다. 
+           
+
+
 ① 데이터 삽입 전후에 특정 키 값을 생성하거나 조회할 때 사용한다.
 ② `before=true` 설정 시 메인 쿼리 실행 전에 키 값을 먼저 가져온다.
 ③ `keyProperty`는 조회한 키 값을 담을 DTO의 필드명을 지정한다.
-④ 시퀀스 값을 사용할 때는 반드시 `resultType`을 `String.class`로 설정해야 한다.
+#④ 시퀀스 값을 사용할 때는 반드시 `resultType`을 `String.class`로 설정해야 한다. int.class
 
 **5. 파일 업로드 서비스 로직 중 `mf.transferTo(file)` 코드가 수행하는 역할은?**
 ① DB에 파일 정보를 저장한다.
-② 메모리에 있는 파일 스트림을 실제 서버의 물리적 경로로 저장한다.
+#② 메모리에 있는 파일 스트림을 실제 서버의 물리적 경로로 저장한다. IO발생으로 try{}catch(){} 문 처리가 필요
 ③ 파일의 확장자를 검사하여 유효성을 판단한다.
 ④ 파일 다운로드를 위한 URL을 생성한다.
 
 **6. 게시물 정보와 파일 정보를 분리하여 저장(1:N 관계)하는 주된 이유로 가장 적절한 것은?**
 ① 보안을 강화하기 위해서
-② 하나의 게시물에 여러 개의 첨부파일을 관리하기 위해서
+#② 하나의 게시물에 여러 개의 첨부파일을 관리하기 위해서
 ③ 데이터베이스의 용량을 절약하기 위해서
 ④ Java에서 배열 처리를 하지 않기 위해서
 
-**7. 설정 파일(properties/yml)에 정의된 파일 업로드 경로(`${user.upload}`)를 자바 클래스 필드에 주입하기 위해 사용하는 어노테이션은?**
+**7. 설정 파일(properties/yml)에 정의된 파일 업로드 경로(`${user.upload}`)를 
+	자바 클래스 필드에 주입하기 위해 사용하는 어노테이션은?**
 ① `@Autowired`
 ② `@Resource`
-③ `@Value`
+#③ `@Value`  - 공통으로 설정된 내용을 모든 코드에서 호출해서 사용할 때, 활용한다.
 ④ `@Path`
 
 **8. 로그인 여부를 판단하기 위해 주로 사용하는 서버 측 저장소는?**
 ① RequestScope
 ② ApplicationScope
-③ HttpSession
+#③ HttpSession : servlet에서 지원하는 내용을 session값을 주로 서버단에 로그인 인증에 따라 설정한다.
+	setAttribute("키", 세션 객체) : 세션 설정시 db를 통해 가져온 객체 단위
+	removeAttribute("키") : 로그 아웃으로 세션 강제 종료 처리..
 ④ Cookie
 
 **9. 게시판 리스트 화면에서 비로그인 사용자의 접근을 차단하는 자바스크립트 로직으로 가장 적절한 것은?**
 ① `if(loginId == null) { alert("로그인 하세요"); }`
-② `if(loginId == "") { alert("로그인 하세요"); location.href="login"; }`
+#② `if(loginId == "") { alert("로그인 하세요"); location.href="login"; }`
 ③ `while(loginId == "") { location.reload(); }`
 ④ `window.close();`
 
-**10. MyBatis에서 파일 정보를 등록할 때, 방금 등록된 게시물의 번호(`no`)를 파일 테이블의 외래키로 사용하기 위해 활용하는 기능은?**
+**10. MyBatis에서 파일 정보를 등록할 때, 방금 등록된 게시물의 번호(`no`)를 파일 테이블의 외래키로 
+	사용하기 위해 활용하는 기능은?**
 ① `@Update`
 ② `resultMap`
-③ `@SelectKey`
+#③ `@SelectKey`
 ④ `dynamic sql`
 
-**11. 로그인 성공 시 세션에 회원 정보를 저장하는 컨트롤러의 코드로 올바른 것은? (세션 객체명은 `session`, 회원 객체명은 `mem`으로 가정)**
+**11. 로그인 성공 시 세션에 회원 정보를 저장하는 컨트롤러의 코드로 올바른 것은? 
+	(세션 객체명은 `session`, 회원 객체명은 `mem`으로 가정)**
 ① `session.getAttribute("mem", mem);`
-② `session.setAttribute("mem", mem);`
+#② `session.setAttribute("mem", mem);`
 ③ `session.save("mem", mem);`
 ④ `session.add("mem", mem);`
 
 **12. 상세 화면에서 본인의 게시물일 때만 '수정' 및 '삭제' 버튼이 보이게 처리하는 로직의 핵심 비교 대상은?**
 ① 현재 세션의 ID와 게시물의 제목
 ② 게시물의 번호와 파일의 이름
-③ 현재 세션의 ID와 게시물의 작성자 ID
+#③ 현재 세션의 ID와 게시물의 작성자 ID
 ④ 게시물의 작성 날짜와 현재 날짜
 
 **13. 파일 업로드 처리 중 발생할 수 있는 `IOException`에 대한 설명으로 옳은 것은?**
+	예외는 최하위 계층에 있는 예외부터 처리하고,
+	마지막에는 최상위 계층(Exception)을 처리하는게 효율적,
+	그 예외 내용을 msg로 저장했다가 화면단에서 확인하게끔 한다.
+
+
 ① SQL 문법이 틀렸을 때 발생한다.
 ② 세션이 만료되었을 때 발생한다.
-③ 파일을 물리적으로 읽거나 쓰는 과정에서 문제가 생겼을 때 발생한다.
+#③ 파일을 물리적으로 읽거나 쓰는 과정에서 문제가 생겼을 때 발생한다.
 ④ 사용자가 파일을 선택하지 않았을 때 발생한다.
 
 **14. MyBatis 쿼리문 내에서 `#{no}`와 같은 파라미터 바인딩이 참조하는 곳은?**
 ① 클라이언트의 IP 주소
 ② 브라우저의 쿠키 값
-③ 전달받은 DTO 객체의 필드(멤버 변수)
+#③ 전달받은 DTO 객체의 필드(멤버 변수)
 ④ 서버의 환경 변수
 
 **15. 파일 다운로드 요청 시 컨트롤러에서 주로 사용하는 방식은?**
 ① 해당 경로로 리다이렉트(redirect)한다.
-② 파일의 바이너리 데이터를 스트림으로 읽어 응답 헤더와 함께 출력한다.
+#② 파일의 바이너리 데이터를 스트림으로 읽어 응답 헤더와 함께 출력한다.
 ③ `<a>` 태그의 `href` 경로만 제공하고 서버 로직은 작성하지 않는다.
 ④ DB의 파일 정보를 JSON으로 반환한다.
 
 **16. 서비스 단에서 파일 업로드 반복문을 수행할 때 `if(!fname.equals(""))` 조건을 체크하는 이유는?**
 ① 파일 이름이 너무 길어지는 것을 방지하기 위해
-② 첨부파일이 선택되지 않은 빈 입력란이 전송되었을 때의 오류를 방지하기 위해
+#② 첨부파일이 선택되지 않은 빈 입력란이 전송되었을 때의 오류를 방지하기 위해
 ③ 파일 이름에 특수문자가 있는지 확인하기 위해
 ④ 중복된 파일 이름을 체크하기 위해
 
 **17. 로그인 처리 과정에서 `service` 단의 결과가 `null`인 경우 컨트롤러가 취해야 할 행동은?**
+	해당 id, pwd로 DB 데이터가 없을 때를 말한다..
 ① 메인 페이지로 이동시킨다.
 ② 세션에 강제로 아이디를 저장한다.
-③ 다시 로그인 화면으로 이동하거나 경고 메시지를 띄운다.
+#③ 다시 로그인 화면으로 이동하거나 경고 메시지를 띄운다.
 ④ DB에서 회원 가입 쿼리를 실행한다.
 
 **18. JSP에서 세션에 저장된 회원 객체 `mem`의 이름을 출력하기 위한 EL(Expression Language) 표기법은?**
 ① `#{mem.name}`
-② `${mem.name}`
+#② `${mem.name}`  javascript, html 태그 안에서도 사용 가능..
 ③ `[mem.name]`
 ④ `<mem.name>`
 
 **19. 게시판 테이블과 파일 테이블이 1:N 관계일 때, 파일 테이블의 `no` 컬럼이 의미하는 것은?**
 ① 파일의 순차적인 일련번호
 ② 파일의 용량
-③ 해당 파일이 속한 게시물의 번호 (외래키)
+#③ 해당 파일이 속한 게시물의 번호 (외래키)
 ④ 파일을 업로드한 사용자의 나이
 
 **20. `MultipartFile[] reports`를 처리할 때, 파일이 3개 업로드되었다면 서비스 단의 반복문은 몇 번 실행되는가?**
 ① 1번
 ② 2번
-③ 3번
+#③ 3번
 ④ 무한 반복
 
 ---
 
 ## Ⅱ. 주관식 기술형 (5문항)
 
-**1. 게시물 등록 시 메인 게시글 정보가 DB에 입력되기 전에 시퀀스 번호를 미리 채번하여 DTO에 할당해야 하는 이유를 파일 업로드 로직과 연관 지어 기술하세요.**
+**1. 게시물 등록 시 메인 게시글 정보가 DB에 입력되기 전에 시퀀스 번호를 미리 채번하여 DTO에 할당해야 하는 이유를
+	 파일 업로드 로직과 연관 지어 기술하세요.**
+	 기본 정보(board)와 파일정보(boardfile)의 no가 동일하게 처리하여야 하기때문
+	 
 
-**2. JSP 상세 화면에서 파일명을 더블 클릭했을 때 실행되는 `download(fname)` 함수가 `location.href`를 사용하는 이유와, 이때 서버로 전달되는 데이터가 무엇인지 기술하세요.**
+**2. JSP 상세 화면에서 파일명을 더블 클릭했을 때 실행되는 `download(fname)` 함수가 `location.href`를 사용하는 이유와,
+	 이때 서버로 전달되는 데이터가 무엇인지 기술하세요.**
+	 다운로드하는 controller를 따로 공통만들어 파일명과 함께 호출하기 위해서
+	 function download(fname){
+	 	location.href="download?fname="+fname
+	 	              
+	 }
 
-**3. 로그인 세션 처리 시, `session.getAttribute("mem") == null` 인 상태에서 사용자가 글쓰기 페이지 URL을 직접 입력하여 접근할 경우 발생할 수 있는 문제점과 이를 방지하기 위한 로직을 설명하세요.**
+**3. 로그인 세션 처리 시, `session.getAttribute("mem") == null` 인 상태에서 사용자가 글쓰기 페이지 
+	URL을 직접 입력하여 접근할 경우 발생할 수 있는 문제점과 이를 방지하기 위한 로직을 설명하세요.**
+	비권한자가 여러 정보를 확인 및 변경하는 문제점이 있어서,
+	업무사이트에서 로그인 후, session 처리를 통해서 해당 페이지를 접근하게 하고, 권한에 따라서 기능처리 여부를 수행하게 한다.
 
-**4. 파일 업로드 서비스 로직에서 `try-catch`문을 사용하여 `IllegalStateException`과 `IOException`을 처리해야 하는 이유를 기술하세요.**
+**4. 파일 업로드 서비스 로직에서 `try-catch`문을 사용하여 `IllegalStateException`과 
+	`IOException`을 처리해야 하는 이유를 기술하세요.**
+	물리적 경로가 없거나, 권한 부족, 용량 초과 등 외부 요인에 의해 실패할 가능성이 높은 작업이므로
+	예외 처리가 강제되는 체크 예외를 설정한다.
+	
+	
 
-**5. 사용자가 게시물을 수정할 때, 다른 사람의 아이디로 저장되지 않도록 '작성자(writer)' 정보를 클라이언트의 입력값이 아닌 서버의 어떤 정보를 활용하여 등록해야 하는지 기술하세요.**
+**5. 사용자가 게시물을 수정할 때, 다른 사람의 아이디로 저장되지 않도록 '작성자(writer)' 
+	정보를 클라이언트의 입력값이 아닌 서버의 어떤 정보를 활용하여 등록해야 하는지 기술하세요.**
+	실제 요청값을 전달할 내용 <input type="hidden" name="writer" value="${mem.id}"
+	화면에 보이는 내용 <input type="text" value="${mem.name} [${mem.id}]"
+	
+	
+	
+	
+	
+	
+	
