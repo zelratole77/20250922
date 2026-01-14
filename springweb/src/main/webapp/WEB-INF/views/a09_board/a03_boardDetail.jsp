@@ -39,10 +39,12 @@ td {
 			$("#uptBtn, #delBtn").hide()
 		}
 		
-		
-		
-		
-		
+		$("#repBtn").click(function(){
+			if(confirm("답글을 처리하겠습니까?")){
+				$("form").attr("action","boardReply")
+				$("form").submit()
+			}
+		})
 		
 		let msg = "${msg}"
 		if(msg!=""){

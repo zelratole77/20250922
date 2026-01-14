@@ -88,7 +88,20 @@ public class A01_BoardController {
 		d.addAttribute("msg", service.boardDelete(no)); // 세션을 통해 일회성으로 msg 전달
 
 		return "a09_board\\a03_boardDetail";
-	}		
+	}	
+	// 	http://localhost:5050/boardReply
+	@PostMapping("boardReply")
+	public String boardReply(Board board) { // 요청값 + 모델 (모델 어트리뷰터) ${board.no}으로 처리가 가능..
+		// 답글은 기본 데이터 설정.
+		// 1. 답글 번호는 현재 상세화면의 글번호
+		board.setRefno(board.getNo());
+		board.setSubject("RE:"+board.getSubject());
+		board.setContent("\n\n\n\n\n=========== 이전글 ==========\n"+board.getContent());
+		
+		return "a09_board\\a02_boardInsert";
+	}
+	
+	
 	// http://localhost:5050/boardMng
 	@GetMapping("boardMng")   // get
 	public String boardMng() {
@@ -124,4 +137,7 @@ public class A01_BoardController {
 		return ResponseEntity.ok(service.boardDelete(no));
 	}		
 
+
+	
+	
 }
