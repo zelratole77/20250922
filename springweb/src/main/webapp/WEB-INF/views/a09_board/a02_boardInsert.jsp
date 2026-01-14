@@ -142,14 +142,14 @@ td {
 		refno=0&subject=게시물등록&content=내용&writer=홍길동
 		
 		 --%>
-		<form method="post"  enctype="multipart/form-data">
-			<input type="hidden" name="refno" value="0"/>
+		<form method="post" action="boardInsert"  enctype="multipart/form-data">
+			<input type="hidden" name="refno" value="${(empty board.refno)?0:board.refno}"/>
 			<%-- 답글시는 처리가 필요하기에.. 답글과 등록글은 동일 화면에서 처리 --%>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">
 						<label for="subject">제목</label> <input type="text" 
-							value="" class="form-control" id="subject" name="subject">
+							class="form-control" id="subject" value="${board.subject}" name="subject">
 					</div>
 				</div>
 			</div>
@@ -181,7 +181,7 @@ td {
 				<div class="col-md-12">
 					<div class="form-group">
 						<label for="content">내용</label> 
-						<textarea class="form-control" id="content" name="content" rows="5" ></textarea>	
+						<textarea class="form-control" id="content" name="content" rows="5" >${board.content}</textarea>	
 					</div>
 				</div>
 			</div>					
