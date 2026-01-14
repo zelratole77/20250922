@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 // a09_board.Board   리스트를 위한 DTO
 public class Board {
+	private int level;
 	private int no;
 	private int refno;
 	private String subject;
@@ -31,6 +32,13 @@ public class Board {
 	}
 	public Board() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
 	}
 	public int getNo() {
 		return no;

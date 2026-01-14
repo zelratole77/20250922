@@ -91,7 +91,20 @@
     </thead>	
     <tbody>
     	<c:forEach var="board" items="${boardList}">
-    	<tr ondblclick="goDetail(${board.no})"><td>${board.no}</td><td>${board.subject}</td>
+    	<tr ondblclick="goDetail(${board.no})"><td>${board.no}</td>
+    		<td class="text-left"
+    			style="padding-left:${(board.level-1)*20}px;" >${board.subject}</td>
+    			<%--
+    			padding-left :왼쪽에 공간을 설정해주는 처리
+    			padding-left:20px  글자와 border사이가 왼쪽에 공백을 20px
+    			padding-left:40px  글자와 border사이가 왼쪽에 공백을 40px
+    			board.level : 계층에 따라서 기본 1(1-1*20==0), 
+    						답글 2(2-1*20=20), 
+    						답글의 답글 3(3-1*20=40)
+    				level 속성에 따라서 공백이 처리된다..		
+    			
+    			
+    			 --%>
     		<td>${board.writer}</td>
     		<td><fmt:formatDate value="${board.regdte}"/></td><td>${board.readcnt}</td></tr>
     	</c:forEach>

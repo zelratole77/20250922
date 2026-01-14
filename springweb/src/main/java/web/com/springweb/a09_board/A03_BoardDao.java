@@ -20,10 +20,13 @@ public interface A03_BoardDao {
 	Member login(Member sch);
 	
 
-	@Select("SELECT * FROM BOARD "
-			+ "WHERE WRITER LIKE #{writer} "
-			+ "AND SUBJECT LIKE #{subject} "
-			+ "ORDER BY NO DESC ")
+	@Select(" SELECT LEVEL, B.*\r\n"
+			+ "  FROM BOARD B\r\n"
+			+ "WHERE SUBJECT LIKE #{subject} \r\n"
+			+ "AND WRITER LIKE  #{writer} \r\n"
+			+ "START WITH REFNO = 0\r\n"
+			+ "CONNECT BY PRIOR NO = REFNO\r\n"
+			+ "ORDER SIBLINGS BY NO DESC  ")
 	List<Board> boardList(Board sch);
 	// refno subject content writer
 	//Insert("insert into board values(board_seq.nextval,#{refno},#{subject},#{content},#{writer},0,sysdate, sysdate)")
