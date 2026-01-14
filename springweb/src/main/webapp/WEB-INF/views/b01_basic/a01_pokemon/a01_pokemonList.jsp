@@ -30,7 +30,7 @@
 
 <body>
 <div class="jumbotron text-center">
-  <h2>조회</h2>
+  <h2>포켓몬 리스트</h2>
 
 </div>
 <%-- 

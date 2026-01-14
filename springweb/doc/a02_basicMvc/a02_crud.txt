@@ -1,0 +1,23 @@
+# 아이돌 그룹..
+SELECT * FROM TBL_GROUP
+WHERE GROUP_NAME LIKE '%%' 
+AND FANDOM_NAME LIKE '%%';
+
+@Select("SELECT * FROM TBL_GROUP \r\n"
+		+ "	WHERE GROUP_NAME LIKE #{groupName} \r\n"
+		+ "	AND FANDOM_NAME LIKE #{fandomName}")
+List<A04Group> getIdolGrpList(A04Group sch);
+
+
+# 포켓몬 데이터 조회리스트 처리.
+1. 리스트 조회 처리..
+   sql 작성
+   
+   dao
+   ----------------------
+   service 처리
+   controller 처리
+   jsp 처리..
+   
+
+

@@ -30,7 +30,7 @@
 
 <body>
 <div class="jumbotron text-center">
-  <h2>타이틀</h2>
+  <h2>포켓몬 데이터 등록</h2>
 
 </div>
 <%-- 

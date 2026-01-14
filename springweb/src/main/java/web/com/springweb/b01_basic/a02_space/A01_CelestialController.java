@@ -12,6 +12,15 @@ public class A01_CelestialController {
 	
 	@RequestMapping("celestialList")
 	public String celestialList() {
-		return "";
+		return "b01_basic\\a02_space\\a01_celestialList";
 	}
+	@RequestMapping("celestialInsert")
+	public String celestialInsert() {
+		return "b01_basic\\a02_space\\a02_celestialInsert";
+	}
+	
+	@RequestMapping("celestialDatail")
+	public String celestialDatail() {
+		return "b01_basic\\a02_space\\a03_ceestaiDetail";
+	}	
 }

@@ -1,16 +1,27 @@
-/* 1. 그룹 데이터 생성 (3개 그룹) */
-INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
-VALUES (10, '방탄조끼소년단', '2013-06-13', '아미');
-
-INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
-VALUES (20, '뉴진스', '2022-07-22', '버니즈');
-
-INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
-VALUES (30, '아이브', '2021-12-01', '다이브');
+CREATE TABLE TBL_GROUP (
+    GROUP_NO     NUMBER(10)          NOT NULL, -- 그룹 식별 번호
+    GROUP_NAME   VARCHAR2(100)       NOT NULL, -- 그룹 이름
+    DEBUT_DATE   DATE                NOT NULL, -- 데뷔 일자
+    FANDOM_NAME  VARCHAR2(100),                -- 팬덤 이름
+    
+    -- 기본키(Primary Key) 설정
+    CONSTRAINT PK_TBL_GROUP PRIMARY KEY (GROUP_NO)
+);
 
 CREATE SEQUENCE idolgrp_seq
 	START WITH 40
 	INCREMENT BY 10;
+/* 1. 그룹 데이터 생성 (3개 그룹) */
+INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
+VALUES (idolgrp_seq.nextval, '방탄조끼소년단', '2013-06-13', '아미');
+
+INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
+VALUES (idolgrp_seq.nextval, '뉴진스', '2022-07-22', '버니즈');
+
+INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
+VALUES (idolgrp_seq.nextval, '아이브', '2021-12-01', '다이브');
+
+
 INSERT INTO TBL_GROUP (GROUP_NO, GROUP_NAME, DEBUT_DATE, FANDOM_NAME) 
 VALUES (idolgrp_seq.nextval, '아이브2', '2021-12-01', '다이브2');
 
