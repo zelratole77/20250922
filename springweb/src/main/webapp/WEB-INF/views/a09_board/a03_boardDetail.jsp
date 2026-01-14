@@ -28,6 +28,21 @@ td {
 			alert("로그인 하셔야 합니다.")
 			location.href="login"
 		}		
+		// 기능 버튼 권한별로 설정. uptBtn delBtn
+		let sessId = "${mem.id}"
+		let sessAuth = "${mem.auth}"
+		let writer = $("[name=writer]").val()
+		// 1. 수정, 삭제 버튼이 보일 조건(수정/삭제 처리가능)
+		if( sessId === writer || sessAuth === "admin" ){
+			$("#uptBtn, #delBtn").show()
+		}else{
+			$("#uptBtn, #delBtn").hide()
+		}
+		
+		
+		
+		
+		
 		
 		let msg = "${msg}"
 		if(msg!=""){
@@ -64,7 +79,7 @@ td {
 	
 	 --%>
 	 <div class="container">
-	 	<h6 class="text-right" >${mem.name}님 로그인중</h6>
+	 	<h6 class="text-right" >${mem.name}님 [${mem.auth}]로그인중</h6>
 	    <form  method="post">
 	    	<div class="row">
 		        <div class="col-md-6">
@@ -90,7 +105,7 @@ td {
 		    	<div class="col-md-6">	    	        	            
 		            <div class="form-group">
 		                <label for="writer">작성자</label>
-		                <input type="text" class="form-control" id="writer" name="writer" value="${board.writer}" required>
+		                <input type="text" class="form-control" id="writer" name="writer" value="${board.writer}" readonly>
 		            </div>              
 		        </div>
 	     	</div>   

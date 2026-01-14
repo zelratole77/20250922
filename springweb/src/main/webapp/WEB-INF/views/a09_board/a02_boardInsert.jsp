@@ -135,7 +135,7 @@ td {
 	 
 	 --%>
 	<div class="container">
-		<h6 class="text-right" >${mem.name}님 로그인중</h6>
+		<h6 class="text-right" >${mem.name}님 [${mem.auth}]로그인중</h6>
 		<%--
 		아래 form 하위에 있는 name=""  value=""
 		submit를 클릭시, method="post"과 action="이동할 url"로 호출되어 controller 메서드.. 

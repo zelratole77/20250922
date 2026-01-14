@@ -101,6 +101,8 @@ SELECT * FROM MEMBER WHERE id='himan' AND pwd='7777';
 @Select("SELECT * FROM MEMBER WHERE id=#{id} AND pwd=#{pwd}")
 Member login(Member sch);
  * */
+SELECT * FROM MEMBER;
+INSERT INTO MEMBER values('higirl','7777','김정희',1000,'user1');
 
 
 
