@@ -127,7 +127,11 @@
       </tr>
     </thead>	
     <tbody>
+    	<%-- 마지막 페이지에 리스트가 없더라도 동일한 행크기 처리 --%>
+    	<c:set var="restCnt" value="${sch.pageSize}"/>
+    	
     	<c:forEach var="board" items="${boardList}">
+    		<c:set var="restCnt" value="${restCnt-1}"/>
     	<tr ondblclick="goDetail(${board.no})"><td>${board.cnt}</td>
     		<td class="text-left"
     			style="padding-left:${(board.level-1)*20}px;" >${board.subject}</td>
@@ -145,6 +149,11 @@
     		<td>${board.writer}</td>
     		<td><fmt:formatDate value="${board.regdte}"/></td><td>${board.readcnt}</td></tr>
     	</c:forEach>
+    	<c:if test="${restCnt>0}">
+    	<c:forEach begin="1" end="${restCnt}">
+    		<tr ><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+    	</c:forEach>
+    	</c:if>
     </tbody>
 	</table>  
 	<ul class="pagination">
