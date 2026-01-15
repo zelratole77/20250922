@@ -37,6 +37,15 @@
 		$("#regBtn").click(function(){
 			location.href="boardInsert"
 		})
+		$("#pageSize").change(function(){
+			$("[name=pageSize]").val($(this).val())
+			// 페이지 사이즈에 따라 현재 페이지 번호가 변경되기 때문에 페이지 사이즈 처리시에는
+			// 현재 페이번호를 1로 설정
+			$("[name=curPage]").val(1)
+			$("form").submit()
+		})
+		// 화면 로딩시  페이지 사이즈는 model데이터 넘겨온 값으로 설정
+		$("#pageSize").val(${sch.pageSize})
 	});
 	function goDetail(no){
 		location.href="boardDetail?no="+no
@@ -61,6 +70,7 @@
 	<h6 class="text-right" onclick="logout()">${mem.name}님[${mem.auth}] 로그인중</h6>
 	<form id="frm01" class="form"  method="post">
 		<input type="hidden" name="curPage" value="${sch.curPage}"/><%-- 현재페이지를 요청값을 전달.. --%>
+		<input type="hidden" name="pageSize" value="${sch.pageSize}"/><%-- 페이지 크기를 요청값을 전달.. --%>
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	    <input placeholder="제목" name="subject" value="${param.subject}" class="form-control mr-sm-2" />
 	    <input placeholder="작성자" name="writer"  value="${param.writer}" class="form-control mr-sm-2"/>
@@ -75,6 +85,32 @@
 												setSubject, setWriter
 	
 	 --%>
+	<%-- 총데이터 건수와 페이지 크기 설정하는 내용 처리 --%> 
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-1" style="padding-left:0px;">
+				<button class="btn btn-primary" type="button">
+					총 <span class="badge badge-light">${sch.count}</span>건
+				</button>
+			</div>
+			<div class="col-sm-10">
+			
+			</div>
+			<div class="col-sm-1"   style="padding-right: 0px;">
+				<select class="form-control custom-select" id="pageSize" 
+					style="padding-right:0px;">
+					<option>3</option>
+					<option>5</option>
+					<option>10</option>
+					<option>20</option>
+					<option>30</option>
+				</select>
+			</div>
+
+					
+		</div>
+	</div>
+	 
    <table class="table table-hover table-striped">
    	<col width="10%">
    	<col width="50%">
