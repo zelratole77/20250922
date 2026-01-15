@@ -162,6 +162,7 @@
 	<script type="text/javascript">
 		// 해당 현재 페이지가 curPage로 설정이 되고, 서버 controller단에 post방식으로 요청을 처리한다.
 		function goPage(pcnt){
+
 			$("[name=curPage]").val(pcnt)
 			$("#frm01").submit()
 		}

@@ -51,7 +51,7 @@ public class A02_BoardService {
 			sch.setCurPage(1);
 		//  블럭단위 next를 누르더라도 총페이지보다는 더 이상 증가되지 않게..
 		if(sch.getCurPage()>sch.getPageCount()) { 
-			sch.setCurPage(sch.getCurPage());
+			sch.setCurPage(sch.getPageCount());
 		}
 		
 		// 5. 시작번호 : 시작번호..알고리즘 생각
@@ -89,6 +89,7 @@ public class A02_BoardService {
 		// 10. 마지막 블럭 번호.
 		sch.setEndBlock(blockNum*sch.getBlockSize());
 		*/
+		
 		// 블럭 번호 없이 처리한 로직 ..
 		sch.setStartBlock(((sch.getCurPage()-1)/sch.getBlockSize())*sch.getBlockSize() + 1);
 		sch.setEndBlock(((sch.getCurPage()-1)/sch.getBlockSize()+1)*sch.getBlockSize());
@@ -96,6 +97,8 @@ public class A02_BoardService {
 		// 11. 마지막 블럭 번호는 전체 페이지 크기보다 크지 못하다.
 		if(sch.getEndBlock()>sch.getPageCount())
 			sch.setEndBlock(sch.getPageCount());
+		
+		
 		
 		
 		
