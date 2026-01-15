@@ -148,16 +148,16 @@
     </tbody>
 	</table>  
 	<ul class="pagination">
-	  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+	  <li class="page-item"><a class="page-link" href="javascript:goPage(${sch.startBlock-1})">Previous</a></li>
 	  <%-- sch.pageCount sch.curPage  --%>
-	  <c:forEach var="pcnt" begin="1" end="${sch.pageCount}">
+	  <c:forEach var="pcnt" begin="${sch.startBlock}" end="${sch.endBlock}">
 	  <li class="page-item ${sch.curPage==pcnt?'active':''}">
 	  	<a class="page-link" href="javascript:goPage(${pcnt})">${pcnt}</a></li>
 	  					<%-- 페이지 리스트중에서 현재페이지와 페이지번호가 같을때만 active 즉 색상이 있는 배경색이 나타난다. --%>
 	  </c:forEach>
 	  
 	  
-	  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+	  <li class="page-item"><a class="page-link" href="javascript:goPage(${sch.endBlock+1})">Next</a></li>
 	</ul>
 	<script type="text/javascript">
 		// 해당 현재 페이지가 curPage로 설정이 되고, 서버 controller단에 post방식으로 요청을 처리한다.
