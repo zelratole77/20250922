@@ -18,15 +18,28 @@ public interface A03_BoardDao {
 	
 	@Select("SELECT * FROM MEMBER WHERE id=#{id} AND pwd=#{pwd}")
 	Member login(Member sch);
+
 	
 
-	@Select(" SELECT LEVEL, B.*\r\n"
+	@Select("	SELECT count(*) \r\n"
+			+ "FROM BOARD \r\n"
+			+ "WHERE SUBJECT LIKE #{subject} \r\n"
+			+ "AND WRITER LIKE  #{writer}\r\n"
+			+ "START WITH REFNO = 0\r\n"
+			+ "CONNECT BY PRIOR NO = REFNO")
+	int boardTot(BoardSch sch);
+
+	
+
+	@Select(" SELECT *\r\n"
+			+ "FROM (SELECT ROWNUM CNT, LEVEL, B.*\r\n"
 			+ "  FROM BOARD B\r\n"
 			+ "WHERE SUBJECT LIKE #{subject} \r\n"
-			+ "AND WRITER LIKE  #{writer} \r\n"
+			+ "AND WRITER LIKE #{writer}  \r\n"
 			+ "START WITH REFNO = 0\r\n"
 			+ "CONNECT BY PRIOR NO = REFNO\r\n"
-			+ "ORDER SIBLINGS BY NO DESC  ")
+			+ "ORDER SIBLINGS BY NO DESC )\r\n"
+			+ "WHERE CNT BETWEEN 1 AND 5 ")
 	List<Board> boardList(Board sch);
 	// refno subject content writer
 	//Insert("insert into board values(board_seq.nextval,#{refno},#{subject},#{content},#{writer},0,sysdate, sysdate)")

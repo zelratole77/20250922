@@ -6,7 +6,7 @@ public class BoardSch {
 	private String subject;
 	private String writer;
 	// 페이징 처리를 위한 속성
-	private int count; // 건색된 데이터의 총건수.
+	private int count; // 검색된 데이터의 총건수.[DB처리]
 	private int pageSize; // 한번에 보일 데이터 건수[요청값]
 	private int curPage; // 클릭한 현재 페이지 번호[요청값]
 	private int pageCount; // 전체 페이지 건수[계산 알고리즘]

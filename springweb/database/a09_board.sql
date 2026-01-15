@@ -127,6 +127,52 @@ START WITH REFNO = 0
 CONNECT BY PRIOR NO = REFNO
 ORDER SIBLINGS BY NO DESC
  * */
+-- 총 페이지 수를 위한 sql
+SELECT count(*) 
+FROM BOARD 
+WHERE SUBJECT LIKE '%%' 
+AND WRITER LIKE '%%';
+/*
+SELECT count(*) 
+FROM BOARD 
+WHERE SUBJECT LIKE #{subject} 
+AND WRITER LIKE  #{writer}
+START WITH REFNO = 0
+CONNECT BY PRIOR NO = REFNO
+@Select("")
+int boardTot(BoardSch sch);
+
+
+START WITH REFNO = 0
+CONNECT BY PRIOR NO = REFNO
+강제로 삭제된 경우에 계층형에서 포함되지 않지만 기본 sql로는 데이터가 나타나는 경우가
+있기에 일관성 유지를 유해 계층형 포함 처리..
+
+
+ * */
+-- 시작번호와 마지번호에 의해 나타날 페이지 마다 나타날 sql,
+-- ROWNUM 고유 행별 카운트 처리
+/*
+SELECT *
+FROM (SELECT ROWNUM CNT, LEVEL, B.*
+  FROM BOARD B
+WHERE SUBJECT LIKE #{subject} 
+AND WRITER LIKE #{writer}  
+START WITH REFNO = 0
+CONNECT BY PRIOR NO = REFNO
+ORDER SIBLINGS BY NO DESC )
+WHERE CNT BETWEEN 1 AND 5
+ * */
+
+SELECT *
+FROM (SELECT ROWNUM CNT, LEVEL, B.*
+  FROM BOARD B
+WHERE SUBJECT LIKE '%%' 
+AND WRITER LIKE '%%' 
+START WITH REFNO = 0
+CONNECT BY PRIOR NO = REFNO
+ORDER SIBLINGS BY NO DESC )
+WHERE CNT BETWEEN 1 AND 5;
 
 
 
