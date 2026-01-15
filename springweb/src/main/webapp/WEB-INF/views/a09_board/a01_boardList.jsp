@@ -92,7 +92,7 @@
     </thead>	
     <tbody>
     	<c:forEach var="board" items="${boardList}">
-    	<tr ondblclick="goDetail(${board.no})"><td>${board.no}</td>
+    	<tr ondblclick="goDetail(${board.no})"><td>${board.cnt}</td>
     		<td class="text-left"
     			style="padding-left:${(board.level-1)*20}px;" >${board.subject}</td>
     			<%--
