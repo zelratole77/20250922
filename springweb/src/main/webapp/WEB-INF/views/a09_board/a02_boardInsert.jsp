@@ -32,17 +32,26 @@ td {
 		var msg = "${msg}"
 		if(msg!=""){
 			if(!confirm(msg+"\n계속 등록하시겠습니까?")){
-				location.href="boardList"
+				$("form").attr("action", "boardList");
+		        $("form").submit();	
 			}
 		}
 		$("#regBtn").click(function(){
 			if(confirm("게시물 등록하시겠습니까?")){
+				let replyCk = $("[name=refno]").val()=="0"
+				//alert("답글 여부:"+replyCk)
+				//alert($("[name=curPage]").val())
+				
+				if(replyCk) 
+					$("[name=curPage]").val(1);
+				
 				//$("form").attr("action","boardInsert")
 				$("form").submit();
 			}
 		})
 		$("#lstBtn").click(function(){ 
-			location.href="boardList"
+			$("form").attr("action", "boardList");
+	        $("form").submit();	
 		})
 			
 	});
@@ -141,8 +150,17 @@ td {
 		submit를 클릭시, method="post"과 action="이동할 url"로 호출되어 controller 메서드.. 
 		refno=0&subject=게시물등록&content=내용&writer=홍길동
 		
+		
+		
+		
 		 --%>
 		<form method="post" action="boardInsert"  enctype="multipart/form-data">
+			<input type="hidden" name="curPage" value="${sch.curPage}" />
+		    <input type="hidden" name="pageSize" value="${sch.pageSize}" />
+		    <input type="hidden" name="schSubject" value="${sch.schSubject}" />
+		    <input type="hidden" name="schWriter" value="${sch.schWriter}" />
+   
+   		
 			<input type="hidden" name="refno" value="${(empty board.refno)?0:board.refno}"/>
 			<%-- 답글시는 처리가 필요하기에.. 답글과 등록글은 동일 화면에서 처리 --%>
 			<div class="row">

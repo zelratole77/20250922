@@ -2,9 +2,10 @@ package web.com.springweb.a09_board;
 
 // a09_board.BoardSch 페이징 처리 및 검색을 위한 DTO
 public class BoardSch {
+	
 	// 기본 검색 조건
-	private String subject;
-	private String writer;
+	private String schSubject;
+	private String schWriter;
 	// 페이징 처리를 위한 속성
 	private int count; // 검색된 데이터의 총건수.[DB처리]
 	private int pageSize; // 한번에 보일 데이터 건수[요청값]
@@ -20,33 +21,36 @@ public class BoardSch {
 	private int endBlock;   // 페이지 블럭의 마지막번호 [계산 알고리즘]
 	public BoardSch() {
 		// TODO Auto-generated constructor stub
+		schSubject="";
+		schWriter="";
 	}
-	public BoardSch(String subject, String writer, int count, int pageSize, int curPage, int pageCount, int start,
-			int end, int blockSize, int startBlock, int endBlock) {
-		this.subject = subject;
-		this.writer = writer;
-		this.count = count;
-		this.pageSize = pageSize;
-		this.curPage = curPage;
-		this.pageCount = pageCount;
-		this.start = start;
-		this.end = end;
-		this.blockSize = blockSize;
-		this.startBlock = startBlock;
-		this.endBlock = endBlock;
+
+	
+
+	public String getSchSubject() {
+		return schSubject;
 	}
-	public String getSubject() {
-		return subject;
+
+
+
+	public void setSchSubject(String schSubject) {
+		this.schSubject = schSubject;
 	}
-	public void setSubject(String subject) {
-		this.subject = subject;
+
+
+
+	public String getSchWriter() {
+		return schWriter;
 	}
-	public String getWriter() {
-		return writer;
+
+
+
+	public void setSchWriter(String schWriter) {
+		this.schWriter = schWriter;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
+
+
+
 	public int getCount() {
 		return count;
 	}

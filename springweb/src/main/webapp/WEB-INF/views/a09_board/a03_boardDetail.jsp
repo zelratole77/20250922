@@ -38,6 +38,16 @@ td {
 		}else{
 			$("#uptBtn, #delBtn").hide()
 		}
+		let msg = "${msg}"
+		if(msg!=""){
+			alert(msg)
+			if(msg.indexOf("삭제")>=0){ // 삭제라는 키워드가 시작되는 index리턴, 즉, 삭제 성공/삭제 실패일 시, 리스트로 바로 이동
+				$("form").attr("action", "boardList");
+		        $("form").submit();	
+			}
+		}
+		
+		
 		
 		$("#repBtn").click(function(){
 			if(confirm("답글을 처리하겠습니까?")){
@@ -46,13 +56,7 @@ td {
 			}
 		})
 		
-		let msg = "${msg}"
-		if(msg!=""){
-			alert(msg)
-			if(msg.indexOf("삭제")>=0){ // 삭제라는 키워드가 시작되는 index리턴, 즉, 삭제 성공/삭제 실패일 시, 리스트로 바로 이동
-				location.href="boardList"
-			}
-		}
+
 		$("#uptBtn").click(function(){ 
 			if(confirm("수정하시겠습니까?")){
 				$("form").attr("action","boardUpdate")
@@ -66,7 +70,9 @@ td {
 			}
 		})
 		$("#lstBtn").click(function(){ 
-			location.href="boardList"
+			$("form").attr("action", "boardList");
+	        $("form").submit();			
+			
 		})  	
 	});
 	</script>
@@ -83,6 +89,11 @@ td {
 	 <div class="container">
 	 	<h6 class="text-right" >${mem.name}님 [${mem.auth}]로그인중</h6>
 	    <form  method="post">
+			<input type="hidden" name="curPage" value="${sch.curPage}" />
+		    <input type="hidden" name="pageSize" value="${sch.pageSize}" />
+		    <input type="hidden" name="schSubject" value="${sch.schSubject}" />
+		    <input type="hidden" name="schWriter" value="${sch.schWriter}" />
+    	    
 	    	<div class="row">
 		        <div class="col-md-6">
 		            <div class="form-group">

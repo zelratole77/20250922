@@ -31,7 +31,7 @@
 			location.href="login"
 		}
 		
-		
+
 		
 		
 		$("#regBtn").click(function(){
@@ -48,7 +48,15 @@
 		$("#pageSize").val(${sch.pageSize})
 	});
 	function goDetail(no){
-		location.href="boardDetail?no="+no
+		//location.href="boardDetail?no="+no
+		// 상세 번호 설정
+	    $("[name=no]").val(no);
+	    
+	    // 폼의 목적지를 상세페이지로 변경
+	    $("#frm01").attr("action", "boardDetail");
+	    $("#frm01").attr("method", "post");		
+	    $("#frm01").submit()
+				
 	}	
 	function logout(){
 		if(confirm("로그 아웃 하시겠습니까?")){
@@ -69,11 +77,12 @@
 <div class="container">
 	<h6 class="text-right" onclick="logout()">${mem.name}님[${mem.auth}] 로그인중</h6>
 	<form id="frm01" class="form"  method="post">
+		<input type="hidden" name="no" value="0"/><%-- 현재페이지를 요청값을 전달.. --%>
 		<input type="hidden" name="curPage" value="${sch.curPage}"/><%-- 현재페이지를 요청값을 전달.. --%>
 		<input type="hidden" name="pageSize" value="${sch.pageSize}"/><%-- 페이지 크기를 요청값을 전달.. --%>
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input placeholder="제목" name="subject" value="${param.subject}" class="form-control mr-sm-2" />
-	    <input placeholder="작성자" name="writer"  value="${param.writer}" class="form-control mr-sm-2"/>
+	    <input placeholder="제목" name="schSubject" value="${param.schSubject}" class="form-control mr-sm-2" />
+	    <input placeholder="작성자" name="schWriter"  value="${param.schWriter}" class="form-control mr-sm-2"/>
 	    <button class="btn btn-info" type="submit">Search</button>
 	    <button id="regBtn" class="btn btn-success" type="button">등록</button>
  	</nav>
@@ -89,7 +98,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-1" style="padding-left:0px;">
-				<button class="btn btn-primary  btn-sm" type="button">
+				<button class="btn btn-primary " type="button">
 					총 <span class="badge badge-light">${sch.count}</span>건
 				</button>
 			</div>
@@ -97,7 +106,7 @@
 			
 			</div>
 			<div class="col-sm-1"   style="padding-right: 0px;">
-				<select class="form-control custom-select custom-select-sm" id="pageSize" 
+				<select class="form-control custom-select" id="pageSize" 
 					style="padding-right:0px;">
 					<option>3</option>
 					<option>5</option>

@@ -23,10 +23,9 @@ public class A02_BoardService {
 	
 	public List<Board> boardList(BoardSch sch){
 		// 1. 기본 검색 내용
-		if(sch.getSubject()==null) sch.setSubject("");
-		if(sch.getWriter()==null) sch.setWriter("");
-		sch.setSubject("%"+sch.getSubject()+"%");
-		sch.setWriter("%"+sch.getWriter()+"%");
+
+		sch.setSchSubject("%"+sch.getSchSubject()+"%");
+		sch.setSchWriter("%"+sch.getSchWriter()+"%");
 		// 1. 총건수 설정[DB]
 		sch.setCount(dao.boardTot(sch));
 		

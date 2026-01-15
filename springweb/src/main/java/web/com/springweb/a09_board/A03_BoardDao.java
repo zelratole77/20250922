@@ -23,8 +23,8 @@ public interface A03_BoardDao {
 
 	@Select("	SELECT count(*) \r\n"
 			+ "FROM BOARD \r\n"
-			+ "WHERE SUBJECT LIKE #{subject} \r\n"
-			+ "AND WRITER LIKE  #{writer}\r\n"
+			+ "WHERE SUBJECT LIKE #{schSubject} \r\n"
+			+ "AND WRITER LIKE  #{schWriter}\r\n"
 			+ "START WITH REFNO = 0\r\n"
 			+ "CONNECT BY PRIOR NO = REFNO")
 	int boardTot(BoardSch sch);
@@ -34,8 +34,8 @@ public interface A03_BoardDao {
 	@Select(" SELECT *\r\n"
 			+ "FROM (SELECT ROWNUM CNT, LEVEL, B.*\r\n"
 			+ "  FROM BOARD B\r\n"
-			+ "WHERE SUBJECT LIKE #{subject} \r\n"
-			+ "AND WRITER LIKE #{writer}  \r\n"
+			+ "WHERE SUBJECT LIKE #{schSubject} \r\n"
+			+ "AND WRITER LIKE #{schWriter}  \r\n"
 			+ "START WITH REFNO = 0\r\n"
 			+ "CONNECT BY PRIOR NO = REFNO\r\n"
 			+ "ORDER SIBLINGS BY NO DESC )\r\n"

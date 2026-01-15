@@ -12,11 +12,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import web.com.springweb.z01_dto.Member;
 @Controller
 public class A01_BoardController {
+	@ModelAttribute("sch")
+	public BoardSch setCommonBoardSch(BoardSch sch) {
+	    return sch; // 여기서 바인딩된 객체가 모델에 "sch"라는 이름으로 자동 저장됨
+	}	
+	
+	
 	
 	@Autowired(required=false)
 	private A02_BoardService service;
@@ -48,7 +55,7 @@ public class A01_BoardController {
 	
 	// http://localhost:5050/boardList
 	@RequestMapping("boardList")   // get/post
-	public String boardList(@ModelAttribute("sch") BoardSch sch, Model d) { //boardSch ==> sch
+	public String boardList(BoardSch sch, Model d) { //boardSch ==> sch
 		// BoardSch 요청데이터로 처리 모델속성을 가지고 있기에 service 단에서 처리된 내용이 화단에서 영향받아 처리할 수 있다.
 		d.addAttribute("boardList", service.boardList(sch));
 		return "a09_board\\a01_boardList";
@@ -64,7 +71,7 @@ public class A01_BoardController {
 		return "a09_board\\a02_boardInsert";
 	}
 	// http://localhost:5050/boardDetail?no=8
-	@GetMapping("boardDetail")
+	@PostMapping("boardDetail")
 	public String boardDetail(@RequestParam("no") int no, Model d) {
 		// 기본 정보	
 		d.addAttribute("board", service.boardDetail(no));
@@ -84,7 +91,7 @@ public class A01_BoardController {
 	@PostMapping("boardDelete")
 	public String boardDelete(@RequestParam("no") int no, Model d) {
 		d.addAttribute("msg", service.boardDelete(no)); // 세션을 통해 일회성으로 msg 전달
-
+	    // 삭제 후에는 상세화면이 없으므로 리스트로 이동
 		return "a09_board\\a03_boardDetail";
 	}	
 	// 	http://localhost:5050/boardReply
