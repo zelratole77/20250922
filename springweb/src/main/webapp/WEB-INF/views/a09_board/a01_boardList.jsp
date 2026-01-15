@@ -89,7 +89,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-1" style="padding-left:0px;">
-				<button class="btn btn-primary" type="button">
+				<button class="btn btn-primary  btn-sm" type="button">
 					총 <span class="badge badge-light">${sch.count}</span>건
 				</button>
 			</div>
@@ -97,7 +97,7 @@
 			
 			</div>
 			<div class="col-sm-1"   style="padding-right: 0px;">
-				<select class="form-control custom-select" id="pageSize" 
+				<select class="form-control custom-select custom-select-sm" id="pageSize" 
 					style="padding-right:0px;">
 					<option>3</option>
 					<option>5</option>

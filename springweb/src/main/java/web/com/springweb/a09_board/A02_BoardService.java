@@ -72,9 +72,30 @@ public class A02_BoardService {
 			sch.setEnd(sch.getCount());
 		// -------------------
 		// 7. 페이지 블럭(한번에 보일 블럭의 크기)
-		// 8. 시작 블럭 번호
-		// 9. 마지막 블럭 번호.
+		sch.setBlockSize(5); 
+		// 8. 블럭의 번호
+		/*	페이지블럭크기	현재페이지			블럭의 번호		
+		 * 		5		1 2 3 4 5		1
+		 *      5       6 7 8 9 10      2
+		 *      5       1112131415      3
+		 *      5       1617181920      4
+		 *      
+		 *      + - /
+		 * */	
+		/*
+		int blockNum = (sch.getCurPage()+sch.getBlockSize()-1)/sch.getBlockSize();
+		// 9. 시작 블럭 번호
+		sch.setStartBlock((blockNum-1)*sch.getBlockSize()+1);
+		// 10. 마지막 블럭 번호.
+		sch.setEndBlock(blockNum*sch.getBlockSize());
+		*/
+		// 블럭 번호 없이 처리한 로직 ..
+		sch.setStartBlock(((sch.getCurPage()-1)/sch.getBlockSize())*sch.getBlockSize() + 1);
+		sch.setEndBlock(((sch.getCurPage()-1)/sch.getBlockSize()+1)*sch.getBlockSize());
 		
+		// 11. 마지막 블럭 번호는 전체 페이지 크기보다 크지 못하다.
+		if(sch.getEndBlock()>sch.getPageCount())
+			sch.setEndBlock(sch.getPageCount());
 		
 		
 		
