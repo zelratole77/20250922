@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 // a09_board.Board   리스트를 위한 DTO
 public class Board {
+	private int cnt;  // 행별 데이터 numbering(rownum)
 	private int level;
 	private int no;
 	private int refno;
@@ -15,10 +16,7 @@ public class Board {
 	private int readcnt;
 	private Date regdte;
 	private Date uptdte;
-	
 	private MultipartFile[] reports;
-	
-	
 	public Board(int no, int refno, String subject, String content, String writer, int readcnt, Date regdte,
 			Date uptdte) {
 		this.no = no;
@@ -34,6 +32,13 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 	
+
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getLevel() {
 		return level;
 	}

@@ -28,8 +28,6 @@ public class A01_BoardController {
 		if(session.getAttribute("mem")!=null) {
 			session.removeAttribute("mem");
 		}
-		
-		
 		// 1. 초기화면 아닐 때..(입력으로 id, pwd 값이 들어 왔을 때..
 		if(mem.getId()!=null) {
 			Member dbMem = service.login(mem);
@@ -41,8 +39,6 @@ public class A01_BoardController {
 				d.addAttribute("msg", "로그인 실패");
 			}
 		}
-		
-		
 		return "a09_board\\a00_login";
 	}
 
@@ -51,8 +47,8 @@ public class A01_BoardController {
 	
 	// http://localhost:5050/boardList
 	@RequestMapping("boardList")   // get/post
-	public String boardList(Board b01, Model d) {
-		d.addAttribute("boardList", service.boardList(b01));
+	public String boardList(BoardSch sch, Model d) {
+		d.addAttribute("boardList", service.boardList(sch));
 		return "a09_board\\a01_boardList";
 	}
 	// http://localhost:5050/boardInsert
@@ -109,7 +105,7 @@ public class A01_BoardController {
 	}
 	// http://localhost:5050/boardListAjax  ?writer=홍&subject=공지
 	@GetMapping("/boardListAjax")   // get/post
-	public ResponseEntity<?> boardListAjax(Board sch) {
+	public ResponseEntity<?> boardListAjax(BoardSch sch) {
 		
 		return ResponseEntity.ok(service.boardList(sch));
 	}	

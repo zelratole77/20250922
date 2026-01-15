@@ -21,11 +21,29 @@ public class A02_BoardService {
 		return dao.login(sch);
 	}
 	
-	public List<Board> boardList(Board sch){
+	public List<Board> boardList(BoardSch sch){
+		// 1. 기본 검색 내용
 		if(sch.getSubject()==null) sch.setSubject("");
 		if(sch.getWriter()==null) sch.setWriter("");
 		sch.setSubject("%"+sch.getSubject()+"%");
 		sch.setWriter("%"+sch.getWriter()+"%");
+		// 1. 총건수 설정
+		
+		
+		
+		// 2. 한번에 보일 페이지
+		// 3. 총페이지 수
+		// 4. 현재페이지 기본 설정
+		// 5. 시작번호
+		// 6. 마지막번호
+		// -------------------
+		// 7. 페이지 블럭(한번에 보일 블럭의 크기)
+		// 8. 시작 블럭 번호
+		// 9. 마지막 블럭 번호.
+		
+		
+		
+		
 		return dao.boardList(sch);
 	}
 	// 공통 업로드할 경로명..
