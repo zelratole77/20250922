@@ -60,6 +60,7 @@
 <div class="container">
 	<h6 class="text-right" onclick="logout()">${mem.name}님[${mem.auth}] 로그인중</h6>
 	<form id="frm01" class="form"  method="post">
+		<input type="hidden" name="curPage" value="${sch.curPage}"/><%-- 현재페이지를 요청값을 전달.. --%>
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	    <input placeholder="제목" name="subject" value="${param.subject}" class="form-control mr-sm-2" />
 	    <input placeholder="작성자" name="writer"  value="${param.writer}" class="form-control mr-sm-2"/>
@@ -109,7 +110,28 @@
     		<td><fmt:formatDate value="${board.regdte}"/></td><td>${board.readcnt}</td></tr>
     	</c:forEach>
     </tbody>
-	</table>    
+	</table>  
+	<ul class="pagination">
+	  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+	  <%-- sch.pageCount sch.curPage  --%>
+	  <c:forEach var="pcnt" begin="1" end="${sch.pageCount}">
+	  <li class="page-item ${sch.curPage==pcnt?'active':''}">
+	  	<a class="page-link" href="javascript:goPage(${pcnt})">${pcnt}</a></li>
+	  					<%-- 페이지 리스트중에서 현재페이지와 페이지번호가 같을때만 active 즉 색상이 있는 배경색이 나타난다. --%>
+	  </c:forEach>
+	  
+	  
+	  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+	</ul>
+	<script type="text/javascript">
+		// 해당 현재 페이지가 curPage로 설정이 되고, 서버 controller단에 post방식으로 요청을 처리한다.
+		function goPage(pcnt){
+			$("[name=curPage]").val(pcnt)
+			$("#frm01").submit()
+		}
+	
+	</script>
+	  
 </div>
 </body>
 </html>

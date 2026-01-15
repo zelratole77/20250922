@@ -39,7 +39,7 @@ public interface A03_BoardDao {
 			+ "START WITH REFNO = 0\r\n"
 			+ "CONNECT BY PRIOR NO = REFNO\r\n"
 			+ "ORDER SIBLINGS BY NO DESC )\r\n"
-			+ "WHERE CNT BETWEEN 1 AND 5 ")
+			+ "WHERE CNT BETWEEN #{start} AND #{end} ")
 	List<Board> boardList(BoardSch sch);
 	// refno subject content writer
 	//Insert("insert into board values(board_seq.nextval,#{refno},#{subject},#{content},#{writer},0,sysdate, sysdate)")
