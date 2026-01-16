@@ -52,12 +52,13 @@ public class A01_BoardController {
 
 	
 	
-	
+	// [   ] 
 	// http://localhost:5050/boardList
 	@RequestMapping("boardList")   // get/post
 	public String boardList(BoardSch sch, Model d) { //boardSch ==> sch
 		// BoardSch 요청데이터로 처리 모델속성을 가지고 있기에 service 단에서 처리된 내용이 화단에서 영향받아 처리할 수 있다.
 		d.addAttribute("boardList", service.boardList(sch));
+		
 		return "a09_board\\a01_boardList";
 	}
 	// http://localhost:5050/boardInsert
