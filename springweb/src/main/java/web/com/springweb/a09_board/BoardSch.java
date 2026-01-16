@@ -5,7 +5,8 @@ public class BoardSch {
 	
 	// 기본 검색 조건
 	private String schSubject;
-	private String schWriter;
+	private String schWriter;  
+	// 검색을 위한 데이터와  상세화면에 나타나는 데이터 동일하면 충돌
 	// 페이징 처리를 위한 속성
 	private int count; // 검색된 데이터의 총건수.[DB처리]
 	private int pageSize; // 한번에 보일 데이터 건수[요청값]
@@ -20,7 +21,7 @@ public class BoardSch {
 	private int startBlock; // 페이지 블럭의 시작번호 [계산알고리즘]
 	private int endBlock;   // 페이지 블럭의 마지막번호 [계산 알고리즘]
 	public BoardSch() {
-		// TODO Auto-generated constructor stub
+		// service단에서 if null 에 대한 조건을 아래 생성자를 통해서 처리하면 생략 가능..
 		schSubject="";
 		schWriter="";
 	}

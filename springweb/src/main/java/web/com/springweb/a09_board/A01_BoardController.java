@@ -18,6 +18,11 @@ import jakarta.servlet.http.HttpSession;
 import web.com.springweb.z01_dto.Member;
 @Controller
 public class A01_BoardController {
+	
+	// ModelAttribute("sch") BoardSch sch
+	// 공통적 모든 메서드 매개변수에 위 내용이 필요한 경우,
+	// 어떻게 상단에 선언하면 이 controller을 사용한 모든 메서드들은 위 모델 어트리뷰트를 ${sch...}이름으로
+	// 사용이 가능하다.
 	@ModelAttribute("sch")
 	public BoardSch setCommonBoardSch(BoardSch sch) {
 	    return sch; // 여기서 바인딩된 객체가 모델에 "sch"라는 이름으로 자동 저장됨

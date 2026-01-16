@@ -28,9 +28,6 @@ public interface A03_BoardDao {
 			+ "START WITH REFNO = 0\r\n"
 			+ "CONNECT BY PRIOR NO = REFNO")
 	int boardTot(BoardSch sch);
-
-	
-
 	@Select(" SELECT *\r\n"
 			+ "FROM (SELECT ROWNUM CNT, LEVEL, B.*\r\n"
 			+ "  FROM BOARD B\r\n"
