@@ -1,5 +1,7 @@
 package web.com.springweb.a10_mail.a01_lostPass;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -26,18 +28,25 @@ public class A02_LostPassService {
 	}
 	// 비밀번호 분실시, 처리할 메서드 처리 내용..
 	public String lostPass(String id) {
+		String msg = "임시비번 발송 처리합니다.\n";
 		// 1. 보낼 메일 호출
-		
-		// 2. 임시비번호 생성.
-		
-		// 3. DB에 임시비번호로 해당 게정의 데이터 수정
-		
+		String email = dao.getEmailById(id);
+		// 2. 임시비번호 생성.(8자리 랜덤 문자열
+		String tmpPass =  UUID.randomUUID().toString().substring(0,8);		
+		// 3. DB에 임시비번호로 해당 계정의 데이터 수정
+		dao.updateTempPass(new Member(id, tmpPass) );		
 		// 4. 메일로 해당 메일에 발송..
+		
 		//    id 님 새로 발급된 임시비밀번호는 @@@ 입니다.
 		//    로그인 하세요..
-		
-		
-		return "";
+		String title = id+"님 새로운 임시비번호 입니다.";
+		String receiver = email;
+		String content = "###  임시 비밀번호 발송 ###\n "
+				+ id+"님 비번호를 분실해서 임시비번호 ["+tmpPass+"] 발송합니다.\n"
+				+ "로그인 하셔서 비밀번호 변경하시길!!";
+		// MailDto(String receiver, String sender, String title, String content) 
+		msg += sendMail(new MailDto(receiver, null, title,content) );
+		return msg;
 	}
 	
 	

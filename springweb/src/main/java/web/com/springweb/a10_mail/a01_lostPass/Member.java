@@ -10,6 +10,14 @@ public class Member {
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Member(String id, String pwd) {
+		this.id = id;
+		this.pwd = pwd;
+	}
+
+
+
 	public Member(String id, String pwd, String name, String auth, int point, String email) {
 		this.id = id;
 		this.pwd = pwd;
