@@ -56,6 +56,7 @@
 		}else{
 			alert("메시지 입력시 전송")
 		}
+		$("#msg").val("").focus()
 		
 	}
 	
@@ -107,7 +108,7 @@
 							,$("#chatArea").width()-20)
 		
 		$("#chatMessageArea").append(alignedMsg)
-		$("#msg").val("").focus()
+		
 		let height = parseInt($("#chatMessageArea").height())
 		mx += height + 20
 		// 데이터가 입력시 마다, 스크롤의 크기를 자동 올라가게 한다.

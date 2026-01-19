@@ -1,0 +1,139 @@
+Good morning QUIZ! 오늘도 좋은 하루 되시길~~ ^^
+
+
+## Ⅰ. 객관식 문제 (4지선다형 20문항)
+
+**Q1. 스프링 웹소켓 설정 시, `WebSocketConfigurer` 인터페이스를 상속받아 반드시 재정의(Override)해야 하는 메서드는?**
+① `afterConnectionEstablished`
+② `registerWebSocketHandlers`
+③ `handleTextMessage`
+④ `configureMessageBroker`
+
+**Q2. 웹소켓 핸들러에서 여러 클라이언트의 세션을 관리하기 위해 주로 사용하는 컬렉션 객체와 가장 적절한 이유는?**
+① `ArrayList`: 순차적인 메시지 전송에 최적화되어 있어서
+② `HashSet`: 중복된 세션을 방지하기 위해
+③ `ConcurrentHashMap`: 멀티스레드 환경에서 안전하게 세션을 관리하기 위해
+④ `Stack`: 가장 나중에 접속한 사용자에게 먼저 메시지를 보내기 위해
+
+**Q3. 다음 중 클라이언트(JS)에서 서버로 메시지를 보낼 때 호출하는 함수는?**
+① `wsocket.onmessage()`
+② `wsocket.connect()`
+③ `wsocket.send()`
+④ `wsocket.open()`
+
+**Q4. `TextWebSocketHandler`를 상속받은 클래스에서 연결이 성공적으로 이루어진 직후 호출되는 메서드는?**
+① `handleTextMessage`
+② `afterConnectionEstablished`
+③ `afterConnectionClosed`
+④ `handleTransportError`
+
+**Q5. 클라이언트가 `wsocket.close()`를 실행했을 때, 서버의 핸들러에서 실행되는 메서드는?**
+① `handleTransportError`
+② `afterConnectionEstablished`
+③ `afterConnectionClosed`
+④ `handleTextMessage`
+
+**Q6. `WebSocketConfig`에서 특정 핸들러를 URL과 매핑할 때 사용하는 메서드는?**
+① `registry.addHandler(handler, "/url")`
+② `registry.setHandler(handler, "/url")`
+③ `registry.mapping(handler, "/url")`
+④ `registry.listen(handler, "/url")`
+
+**Q7. 자바스크립트의 웹소켓 이벤트 중, 서버로부터 데이터가 도착했을 때 발생하는 이벤트는?**
+① `onopen`
+② `onclose`
+③ `onmessage`
+④ `onerror`
+
+**Q8. 채팅창 구현 시 메시지가 누적되어 영역을 벗어날 때, 최신 메시지가 보이도록 스크롤을 하단으로 이동시키는 속성은?**
+① `scrollBottom`
+② `scrollTop`
+③ `scrollAuto`
+④ `scrollPosition`
+
+**Q9. 파이썬의 `print()` 함수에서 여러 줄의 문자열을 한꺼번에 출력하기 위해 사용하는 기호는?**
+① `" "` (큰따옴표 한 개)
+② `' '` (작은따옴표 한 개)
+③ `""" """` (큰따옴표 세 개)
+④ `/n /n /n` (이스케이프 문자 세 개)
+
+**Q10. 파이썬 `print()` 함수 사용 시, 다음 줄로 넘어가지 않고 이어서 출력하게 만드는 옵션은?**
+① `sep`
+② `end`
+④ `continue`
+④ `join`
+
+**Q11. 파이썬에서 문자열과 숫자를 `+` 연산자로 연결하려고 할 때 발생하는 현상은?**
+① 문자열 뒤에 숫자가 붙어서 출력된다.
+② 숫자가 문자열로 자동 변환되어 연산된다.
+③ TypeError(에러)가 발생한다.
+④ 숫자의 값만큼 문자열이 반복된다.
+
+**Q12. 파이썬의 f-string 포맷팅을 사용하여 `num = 12345`를 `12,345`와 같이 천단위 콤마를 넣어 출력하는 형식은?**
+① `f'{num:,}'`
+② `f'{num:c}'`
+③ `f'{num:format}'`
+④ `f'{num:comma}'`
+
+**Q13. 파이썬에서 `print("Hello" * 3)`을 실행했을 때의 결과는?**
+① Hello 3
+② HelloHelloHello
+③ 에러 발생
+④ Hello (3번 줄바꿈)
+
+**Q14. 파이썬에서 `val1, val2 = 10, 20`과 같이 한 줄에 여러 변수를 할당하는 방식의 이름은?**
+① 리스트 할당
+② 딕셔너리 할당
+③ 튜플 언패킹(할당)
+④ 세트 할당
+
+**Q15. 파이썬의 나눗셈 연산자 중 결과값을 '정수(몫)'로만 반환하는 연산자는?**
+① `/`
+② `%`
+③ `//`
+④ `**`
+
+**Q16. 웹소켓 설정 클래스(`WebSocketConfig`) 위에 반드시 선언해야 하는 어노테이션 두 가지는?**
+① `@Controller`, `@Service`
+② `@Configuration`, `@EnableWebSocket`
+③ `@Component`, `@Repository`
+④ `@EnableWebMvc`, `@ResponseBody`
+
+**Q17. 스프링 부트에서 웹소켓 기능을 사용하기 위해 `pom.xml`에 추가해야 할 의존성(ArtifactId)은?**
+① `spring-boot-starter-web`
+② `spring-boot-starter-websocket`
+③ `spring-boot-starter-socketio`
+④ `spring-boot-starter-chat`
+
+**Q18. 자바스크립트에서 서버로 메시지를 보낼 때, `id:message` 형태로 데이터를 구성하는 주된 이유는?**
+① 웹소켓이 원래 콜론(:)만 인식하기 때문에
+② 서버의 `handleTextMessage`에서 송신자를 구분하여 처리하기 위해
+③ 데이터 보안을 높이기 위해
+④ 브라우저의 성능을 최적화하기 위해
+
+**Q19. 파이썬 f-string에서 소수점 둘째 자리까지 반올림하여 표시하는 형식 지정자는?**
+① `:.2f`
+② `:2p`
+③ `:.2s`
+④ `:round2`
+
+**Q20. 웹소켓 핸들러 객체를 `WebSocketConfig`에 주입할 때 '생성자 주입 방식'을 권장하는 이유로 틀린 것은?**
+① 객체의 불변성을 보장할 수 있다.
+② 필수 객체의 누락을 컴파일 시점에 방지할 수 있다.
+③ 단위 테스트 작성이 용이하다.
+④ 주입받는 객체의 메모리 사용량을 줄여주기 때문이다.
+
+---
+
+## Ⅱ. 주관식 기술형 문제 (5문항)
+
+**Q1. [개념] 웹소켓(WebSocket) 통신과 일반적인 HTTP 통신의 가장 큰 차이점을 '양방향성'과 '연결 유지'의 관점에서 서술하세요.**
+
+**Q2. [기능] 스프링의 `TextWebSocketHandler` 클래스 내 `handleTextMessage` 메서드에서 `for`문을 사용하여 `session.sendMessage()`를 반복 호출하는 목적이 무엇인지 기술하세요.**
+
+**Q3. [코드] 파이썬에서 f-string을 활용하여, 변수 `name="홍길동"`, `score=95.5`를 사용하여 "홍길동의 점수는 95.5점입니다."라고 출력하는 코드를 작성하세요.**
+
+**Q4. [로직] 채팅 화면 구현 시, 서버에서 받은 메시지가 내가 보낸 것인지 타인이 보낸 것인지 판별하여 '오른쪽 정렬' 또는 '왼쪽 정렬'을 결정하는 로직의 핵심 원리를 기술하세요.**
+
+**Q5. [환경설정] 스프링 웹소켓 설정(`WebSocketConfigurer`) 시 `.setAllowedOriginPatterns("*")`를 설정하는 이유를 보안 및 통신 허용의 관점에서 기술하세요.**
+

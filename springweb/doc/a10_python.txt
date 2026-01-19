@@ -1,0 +1,41 @@
+# 개발 환경 준비
+
+## 1. 개발 환경 준비 가이드
+
+본 과정의 실습은 Windows 11 환경애서 Python 실행 환경과 IDE를 설정해야 합니다. 여기서는 **Miniconda**, **conda 가상환경**, 그리고 **VS Code**를 활용하여 AI 도구까지 사용할 수 있는 개발 환경을 구축하는 방법을 설명합니다.
+
+### Miniconda 설치 및 conda-forge 설정
+
+**Miniconda**는 Python과 패키지 관리자(conda)를 손쉽게 설치할 수 있는 경량 배포판입니다. 다음은 Windows 11에 Miniconda를 설치하는 단계입니다:
+
+1. **Miniconda 다운로드 및 설치:** [Installing Miniconda 페이지]
+(https://www.anaconda.com/docs/getting-started/miniconda/install#quick-command-line-install)에서 Quick install instructions 아래 Windows Command Prompt 탭에 있는 명령을 복사해 명령창에서 아래와 같이 실행합니다.
+   ```
+   curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe -o .\miniconda.exe
+   start /wait "" .\miniconda.exe /S
+   del .\miniconda.exe
+   ```
+2. **설치 완료 후:** 설치를 마치면, Windows 시작 메뉴의 "Anaconda (miniconda3) / Anaconda Prompt" 를 실행합니다. 이를 이용해 conda 명령어를 실행할 수 있습니다.
+
+### Python 3.12용 conda 가상환경 생성
+
+이제 파이썬 개발을 위한 가상환경을 만들어 보겠습니다. 가상환경을 사용하면 프로젝트마다 별도의 패키지 구성을 유지할 수 있어 충돌을 막고 관리가 쉬워집니다. Python 3.12 버전을 사용하고, AI 도구들을 함께 설치할 것이므로 환경 이름을 예시로 **pythonai**라고 하겠습니다.
+
+1. **가상환경 생성:** Anaconda Prompt에서 다음 명령을 실행합니다.  
+   ```
+   conda create -n pythonai python=3.12
+   ```  
+   `-n pythonai` 옵션은 환경 이름을 지정하는 것이고, `python=3.12`는 해당 버전의 파이썬을 설치하라는 뜻입니다. 앞서 설정한 conda-forge 채널로부터 Python 3.12 및 기본 패키지들이 설치됩니다.
+
+2. **환경 활성화:** 환경을 생성한 후 아래 명령으로 해당 환경을 활성화합니다.  
+   ```
+   conda activate pythonai
+   ```  
+   프롬프트에 (pythonai) 이 표시되면 이제 이 가상환경에서 파이썬을 실행하게 됩니다. 이 상태에서 `python --version`을 입력해보면 Python 3.12.xx 형태로 버전이 출력될 것입니다.
+
+3. **필요 패키지 설치:** 이 환경에 개발에 필요한 패키지를 추가로 설치합니다:  
+   ```
+   pip install python-dotenv notebook langgraph langchain-openai langchain-community tavily-python
+   ```  
+   
+   
