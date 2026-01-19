@@ -37,7 +37,7 @@
 		- 필드 : Set<WebSocketSession>을 통해서 접속한 사용자들의 세션을 저장.
 		- 메서드 :
 			연결이 성공적으로 이루어졌을 때 설정하는 메서드 :afterConnectionEstablished()
-			메시지를 전송할 때 호출되는 메서드 : handleTextMessage()
+			메시지를 front단에서 받아서 전송할 때 호출되는 메서드 : handleTextMessage()
 			연결이 종료되었을 때 호출되는 메서드 : afterConnectionClose()
 			에러 발생 시 호출되는 메서드 : handleTransportError()
 4. 프런트앤트 개발(html/jsp/javascript)
