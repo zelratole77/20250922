@@ -35,49 +35,85 @@
 			connect()
 		})
 		$("#id").keyup(function(){
-			let idValCk = $(this).val().length > 0 
-			if(idValCk && event.keyCode==13){
+			if(event.keyCode==13){
 				connect()
 			}
 		})
 		$("#msg").keyup(function(){
-			let mgValCk = $(this).val().length > 0 
-			if(mgValCk && event.keyCode==13){
-				sendMsg()
+			if( event.keyCode==13){
+				sendMsg($("#id").val(),$("#msg").val())
 			}			
-			
 		})
 		$("#sndBtn").click(function(){
-			sendMsg()
-			
+			sendMsg($("#id").val(),$("#msg").val())
 		})
-	
 	});
-	function sendMsg(){
+	function sendMsg(id, msg){
+		 
 		// 메시지 발송..
-		wsocket.send($("#id").val()+":"+$("#msg").val())
-		$("#msg").val("").focus()
+		if(msg.length > 0 ){
+			wsocket.send(id+":"+msg)
+		}else{
+			alert("메시지 입력시 전송")
+		}
+		
 	}
 	
 	
 	function connect(){
-		wsocket = new WebSocket(socketServer)
-		// 접속시 처리할 내용(핸들러 메서드 선언)
-		wsocket.onopen=function(evt){
-			console.log(evt)
-			// 접속시 입장했다는 메시지 서버에 전달..
-			wsocket.send($("#id").val()+"님:입장합니다.")
-		}
-		// 메시지를 받았을 때(핸들러 메서드 선언) 서버에서 ==> 클라이언트에 전송한 메시지
-		wsocket.onmessage=function(evt){
-			console.log(evt)
-			revMsg(evt.data)
-			
+		if($("#id").val().length>0){
+			wsocket = new WebSocket(socketServer)
+			// 접속시 처리할 내용(핸들러 메서드 선언)
+			wsocket.onopen=function(evt){
+				console.log(evt)
+				// 접속시 입장했다는 메시지 서버에 전달..
+				sendMsg($("#id").val()+"", "입장합니다")
+			}
+			// 메시지를 받았을 때(핸들러 메서드 선언) 서버에서 ==> 클라이언트에 전송한 메시지
+			wsocket.onmessage=function(evt){
+				console.log(evt)
+				revMsg(evt.data)
+				
+			}
+		}else{
+			alert("아이디 입력시 접속")
 		}
 		
 	}
+	
+	// 자동 스크롤을 위해서 최대 크기 전역변수로 설정
+	let mx = 0
 	function revMsg(msg){
-		$("#chatMessageArea").append(msg+"<br>")
+		console.log(msg)
+		// 1. 보내는 메시지 오른쪽 정렬, 받는 메시지 왼쪽 정렬 처리
+		let alignOpt = "left"
+		let msgArr = msg.split(":") // 사용자명:메시지    구분하여 처리된 것을 ==> ["사용자아이디","메시지"]
+		let revId = msgArr[0] // 서버로 부터 받은 메시지의 아이디
+		if(revId == $("#id").val()){
+			console.log(msg)
+			alignOpt = "right" // 오른쪽 정렬
+			msg =  msgArr[1] // 아이디른 빼고 메시지 표시
+		}
+		console.log("## 정렬 전 ##")
+		console.log(msg)
+		// 정렬 처리되 메시지
+		/*
+		<div style="text-align:정렬옵션">
+			메시지내용...
+		<div>
+		
+		*/
+		let alignedMsg = $("<div></div>").text(msg).attr("align",alignOpt).css("width"
+							,$("#chatArea").width()-20)
+		
+		$("#chatMessageArea").append(alignedMsg)
+		$("#msg").val("").focus()
+		let height = parseInt($("#chatMessageArea").height())
+		mx += height + 20
+		// 데이터가 입력시 마다, 스크롤의 크기를 자동 올라가게 한다.
+		$("#chatArea").scrollTop(mx)
+		
+		
 		
 	}
 </script>
