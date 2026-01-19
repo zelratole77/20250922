@@ -40,8 +40,26 @@
 				connect()
 			}
 		})
+		$("#msg").keyup(function(){
+			let mgValCk = $(this).val().length > 0 
+			if(mgValCk && event.keyCode==13){
+				sendMsg()
+			}			
+			
+		})
+		$("#sndBtn").click(function(){
+			sendMsg()
+			
+		})
 	
 	});
+	function sendMsg(){
+		// 메시지 발송..
+		wsocket.send($("#id").val()+":"+$("#msg").val())
+		$("#msg").val("").focus()
+	}
+	
+	
 	function connect(){
 		wsocket = new WebSocket(socketServer)
 		// 접속시 처리할 내용(핸들러 메서드 선언)
@@ -50,7 +68,17 @@
 			// 접속시 입장했다는 메시지 서버에 전달..
 			wsocket.send($("#id").val()+"님:입장합니다.")
 		}
-		// 메시지를 받았을 때(핸들러 메서드 선언)
+		// 메시지를 받았을 때(핸들러 메서드 선언) 서버에서 ==> 클라이언트에 전송한 메시지
+		wsocket.onmessage=function(evt){
+			console.log(evt)
+			revMsg(evt.data)
+			
+		}
+		
+	}
+	function revMsg(msg){
+		$("#chatMessageArea").append(msg+"<br>")
+		
 	}
 </script>
 </head>
