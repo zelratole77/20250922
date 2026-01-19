@@ -18,11 +18,52 @@
 <link rel="stylesheet" href="${path}/com/bootstrap.min.css" >
 <style>
 	td{text-align:center;}
+
+/* 기존 style 태그 수정
 	#chatArea{
 		width:100%;height:200px;overflow-y:scroll;text-align:left;
 		border:1px solid green;
 		padding-right:15px;
 	}	
+ */
+#chatArea {
+    width: 100%;
+    height: 400px; /* 고정값보다는 적절히 큰 값 혹은 vh 단위 권장 */
+    max-height: 60vh; /* 브라우저 높이의 60%까지만 차지하도록 */
+    overflow-y: auto;
+    border: 1px solid #28a745;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+#chatMessageArea {
+    display: flex;
+    flex-direction: column; /* 메시지를 위에서 아래로 쌓음 */
+}
+
+/* 개별 메시지 말풍선 스타일 */
+.msg-bubble {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 100%; /* 너무 넓어지지 않게 방지 */
+    word-wrap: break-word; /* 긴 텍스트 자동 줄바꿈 */
+}
+
+.align-left {
+    align-self: flex-start;
+    background-color: #e9ecef;
+    text-align: left;
+}
+
+.align-right {
+    align-self: flex-end;
+    background-color: #d1ecf1;
+    text-align: right;
+}
+	
+	
 </style>
 <script src="${path}/com/jquery-3.7.1.js"></script>
 <script src="${path}/com/bootstrap.min.js"></script>
@@ -83,6 +124,7 @@
 	}
 	
 	// 자동 스크롤을 위해서 최대 크기 전역변수로 설정
+	/*
 	let mx = 0
 	function revMsg(msg){
 		console.log(msg)
@@ -98,12 +140,7 @@
 		console.log("## 정렬 전 ##")
 		console.log(msg)
 		// 정렬 처리되 메시지
-		/*
-		<div style="text-align:정렬옵션">
-			메시지내용...
-		<div>
-		
-		*/
+
 		let alignedMsg = $("<div></div>").text(msg).attr("align",alignOpt).css("width"
 							,$("#chatArea").width()-20)
 		
@@ -117,6 +154,32 @@
 		
 		
 	}
+	*/
+	function revMsg(msg) {
+	    let msgArr = msg.split(":"); 
+	    let revId = msgArr[0]; 
+	    let content = msgArr[1];
+	    
+	    let isMine = (revId == $("#id").val());
+	    let alignClass = isMine ? "align-right" : "align-left";
+	    console.log(alignClass)
+	    // 1. 메시지 HTML 생성 (아이디와 메시지 구분 표시 가능)
+	    let displayMsg = isMine ? content : revId + ": " + content;
+	    
+	    let $msgDiv = $("<div></div>")
+	                    .addClass("msg-bubble")
+	                    .addClass(alignClass)
+	                    .text(displayMsg).css("width"
+								,$("#chatArea").width()-20);
+	    
+	    // 2. 화면 추가
+	    $("#chatMessageArea").append($msgDiv);
+	    
+	    // 3. 자동 스크롤 처리 (항상 최하단으로)
+	    let chatArea = $("#chatArea");
+	    chatArea.scrollTop(chatArea.prop("scrollHeight"));
+	}	
+	
 </script>
 </head>
 
