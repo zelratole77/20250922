@@ -40,6 +40,31 @@
 			메시지를 전송할 때 호출되는 메서드 : handleTextMessage()
 			연결이 종료되었을 때 호출되는 메서드 : afterConnectionClose()
 			에러 발생 시 호출되는 메서드 : handleTransportError()
+4. 프런트앤트 개발(html/jsp/javascript)
+	1) 소켓통신 객체 생성
+		let socket = new WebSocket()
+	2) 접속시 처리 - 백앤드의 핸들러 안에 메서드 afterConnectionEstablished()와 연동
+		socket.onopen=function(){}
+	3) 메시지 받기/전송 - 백앤드 핸들러 안에 메서드 handleTextMessage()와 연동
+		socket.onmessage = function(){} // 메시지 받기.
+		socket.send("전송할 메시지 내용)
+	4) 연결 끊기(메시지 전송 중지) - 백앤드 핸들러 안에 메서드 afterConnectionClose() 연동
+		scoket.close()
+5. 개발 순서
+	1) pom.xml을 통해 사용할 lib 및 스프링안에 컨테이너 객체 생성 준비
+	2) WebHandler.java : 실제 접속/메시지전송 처리해주는 핸들러 객체
+	3) WebSocketConfig.java : 클라이언트(js)와 서버단 핸들러 객체를 연동해주는 내용을
+		설정하는 객체
+	4) application.properties : 설정한 웹소켓서버 주소를 선언
+		socketServers=ws:localhost:5050/chat
+		                 원격서버주소		
+    5) ChattingController 기본 view단 화면 호출하는 controller
+    6) chatting.jsp : 구체적인 화면을 통해서 메시지를 전송하고 전달받는 처리하는 view 구현
+    	위 백앤드단 핸들러 객체와 연동하는 javascript 핸들러 메서드 선언 및 동적 처리내용
+    	구현..
+    	 			
+		
+					
 					
 		
 		
