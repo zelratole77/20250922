@@ -25,10 +25,8 @@ public class A01_BoardController {
 	// 사용이 가능하다.
 	@ModelAttribute("sch")
 	public BoardSch setCommonBoardSch(BoardSch sch) {
-	    return sch; // 여기서 바인딩된 객체가 모델에 "sch"라는 이름으로 자동 저장됨
+		return sch; // 여기서 바인딩된 객체가 모델에 "sch"라는 이름으로 자동 저장됨
 	}	
-	
-	
 	
 	@Autowired(required=false)
 	private A02_BoardService service;
