@@ -51,8 +51,29 @@ ex) Knight 클래스와 함께  필드(name, hp) 가사 이름, 체력을 생성
     get_hit()메서드를 통해서 현재 체력이 -10 감소되게 처리하고,
         윽!   @@@님이 공격받았습니다. 님의 체력은 @@@(hp)라고 표현되게 처리하세요.
     선언후, 객체 생성, 메서드호출()    
-
 '''
+class Knight:
+    def __init__(self, name, hp=100):
+        self.name = name  # 상단선언하지 않더라도 self.속성 : 전역변수 선언이나 활용
+        self.hp = hp
+    # 행동1 : 자기 소개
+    def hello(self):
+        print(f"나는 기사 {self.name}이다! (체력:{self.hp})")
+    # 행동2 : 데미지 입력
+    def get_hit(self):
+        self.hp -= 10
+        print(f"윽!! {self.name}님이 공격받았습니다. 남은 체력:{self.hp}")
+
+p1 = Knight("아서스") 
+p1.hello()
+p1.get_hit()
+p1.get_hit()
+p2 = Knight("이순신장군", 1200)
+p2.hello()
+p2.get_hit()
+p2.get_hit()
+p2.get_hit()
+
 
 
 
