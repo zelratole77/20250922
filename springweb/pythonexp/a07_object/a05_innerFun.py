@@ -33,7 +33,7 @@ print(bot.name, bot.menus)
 print(bot) # 참조 변수 ==> __str__ 정의된 내용 호출..
 print([bot]) # def __repr__(self): ==>  [ChefBot[name='고든램지', menu=['스테이크', '파스타', '샐러드']]]
 print("메뉴의 갯수:",len(bot)) # def __len__(self): 처리..
-bot("라면")
+bot("라면")  # def __call__(self, food):  참조변수(매개데이터전달) ==> __call()__ 호출 처리.
     
 
 class Book:
