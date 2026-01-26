@@ -35,4 +35,22 @@ happyMart.show_all()
 # ex) Passenger 승객  name 속성,   
 #     Bus  number(버스번호), passenger_list(승객 태울 리스트)
 #          ride() 승객체를 태운다.    show_info() 버스 번호와 버스에 태운 승객 명단.
-#                
+#
+class Passenger:
+    def __init__(self, name):
+        self.name = name
+class Bus:
+    def __init__(self, number):
+        self.number = number
+        self.passenger_list = [] # 승객에 한 명도 없는 빈 의자
+    def ride(self, passenger):
+        self.passenger_list.append(passenger) # 하나씩 승격을 태움
+        print(f'{passenger.name}님이 {self.number}번 버스에 탔습니다!!')      
+    def show_info(self):
+        print(f"# {self.number}번 버스 탑승 명단 #")    
+        for p in self.passenger_list:
+            print("승객 이름 :", p.name)
+tayo = Bus(1004)
+tayo.ride(Passenger("짱구"))            
+tayo.ride(Passenger("철수"))            
+tayo.ride(Passenger("영희"))            
