@@ -138,9 +138,9 @@ class GuildDTO:
     guild_name:str
     server:str
     # 다중 내용 처리
-    members:List[MemberDTO] = field(default_factory=list)
+    members:list
 
-my_guild = GuildDTO("전설의 기사단", "아시아_1서버")
+my_guild = GuildDTO("전설의 기사단", "아시아_1서버",[])
 
 my_guild.members.append(MemberDTO("지존검사", "Warrior"))
 my_guild.members.append(MemberDTO("힐러요청", "Cleric"))
