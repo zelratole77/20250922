@@ -92,3 +92,7 @@ int pokeInsert(PokemonDex ins);
 
  * */
 
+SELECT STUDENT_SEQ.NEXTVAL FROM dual;
+CREATE SEQUENCE student_seq;
+SELECT * FROM STUDENTS;
+

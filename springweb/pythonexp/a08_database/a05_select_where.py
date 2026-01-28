@@ -52,6 +52,7 @@ for deptDup in deptList:
     print(deptDup[1], end=" ")
     print(deptDup[2])
 '''
+'''
 # 사원의 급여의 범위를 지정해서 데이터 조회 검색..
 print("# 급여의 범위를 통한 사원정보 검색 #")
 salFr = int(input("검색할 사원 급여 시작범위 : "))
@@ -63,4 +64,60 @@ for empDup in empList:
     print(empDup[0], end=" ")
     print(empDup[1], end=" ")
     print(empDup[5])
+'''
+# ex) HERO_LIST 의 이름(NAME)과 도시(CITY)를 조회조건으로 입력받아 KEYWORD 검색결과를
+#    리스트로 출력처리.
+'''
+print("# 히로우리스트 검색(이름,도시로 검색)")
+schName = input("검색할 히로우의 이름 입력 : ")
+schCity = input("검색할 히로우 사는 도시 입력 : ")
+schDic = {"name":f'%{schName}%', "city":f'%{schCity}%'}
+sql = "SELECT * FROM HERO_LIST WHERE NAME LIKE :name AND CITY LIKE :city ORDER BY NAME, CITY"
+heroList = select_dataPreAll(sql, schDic)
+for heroDup in heroList:
+    for hero in heroDup:
+        print(hero, end=" ")
+    print()    
 
+'''
+from dataclasses import dataclass
+import datetime
+@dataclass
+class PokenMonDTO:
+    #id : int    
+    name : str
+    type : str
+    #poke_level : int
+    #captured_at : datetime
+'''
+# ex POKEMON_DEX 를 위 형식 dictionary형식으로 name, type으로 키워드 검색해보세요.
+print("# 포켓몬스터 검색 #")
+schName = input("몬스터 이름 입력 : ")
+schType = input("몬스터 타입 입력 : ")
+schDic = {"name":f"%{schName}%", "type":f"%{schType}%"}
+
+sch = PokenMonDTO(f"%{schName}%",f"%{schType}%")
+#print(sch.__dict__) # dto객체를 사용할 때는 __dict__를 이용해서 딕션너리형태로 
+# 변환 후 처리한다.
+sql = "SELECT * FROM POKEMON_DEX WHERE NAME LIKE :name AND TYPE LIKE :type "
+pokemonList = select_dataPreAll(sql, sch.__dict__)
+for pokenMonDup in pokemonList:
+    for pokenMon in pokenMonDup:
+        print(pokenMon, end = " ")
+    print()    
+'''
+# ex) tbl_member    real_name, position기준으로 검색 dto 객체 생성 후, 검색 조건 처리.
+@dataclass
+class TblMemberDTO:
+    real_name:str
+    position:str
+print("# 아이돌 검색 #")
+sch = TblMemberDTO(f'%{input("실제이름입력:")}%', f'%{input("역할입력:")}%')
+#print(sch.__dict__)
+sql = "SELECT * FROM TBL_MEMBER WHERE REAL_NAME LIKE :real_name AND POSITION LIKE :position"
+memList = select_dataPreAll(sql, sch.__dict__)
+for memDup in memList:
+    for mem in memDup:
+        print(mem, end = " ")
+    print()
+        
