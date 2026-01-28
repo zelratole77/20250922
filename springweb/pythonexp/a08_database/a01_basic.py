@@ -32,6 +32,41 @@ cursor.execute(sql)
 print(cursor.fetchall())
 # 3. 접속종료
 con.close()
+'''
+# DB 처리 상세 내용
+1. 파이썬은 oracledb 라이브러리를 사용하여 오라클 데이터베이스 서버에 접속하고,
+    접속된 상태에서 cursor객체를 생성하고 sql을 이용하여 결과내용을 처리하고 자원을 해제하는
+    형태로 DB 처리를 한다.
+2. oracledb의 Thick모드를 사용하여 데이터를 연결하는 방식이 있는데, 이는 스크립트가
+    실행하는 환경에 oracle instant client가 설치되어 있어야 하며, 코드에서 해당 클라이언트
+    경로를 직접 지정하여 초기화하여야 한다.
+3. 데이터를 가져오는 방식으로 한 행씩 가져오는 fetchone()과 모든행을 가져오는 fetchall()이 
+    cusor객체에 메서드로 지원을 하고 있다.
+4. 단계별 핵심 코드에 대한 이해..
+    1) Thick모드 초기화
+        lib_dir_path = r'c:\\instantclient_21_20'
+        oci.ini_oracle_client(lib_dir=lib_dir_path) : lib_dir_path에 설정된 경로(윈도우용
+        oracle 클라이언트)로 초기화하고 있다.
+        oracledb가 instant client라이브러리(oci.dll등) 찾을 수 있도록 폴드 경로를 설정하고
+        명시적으로 지정한다.(자바로 비유하면 jdbc 드라이버를 말한다. 윈도우 환경에 필요한 dll
+        파일 설정)
+    2) 데이터베이스 서버 접속
+        con = oci.connect("scott/tiger@localhost:1521/xepdb1) 계정/비번@서버주소:포트/DB명
+    3) Connect객체를 통해 커서 생성
+        cursor = con.cursor()
+        생성된 연결 객체로부터 sql을 실행하고 결과를 처리할 수 있는 커서(cursor)객체를 생성
+    4) sql 실행
+        cursor.execute("select * from emp")
+        커서sql 실행 : sql 문자열을 해석하여 DB서버에 전송 및 그 결과값을 cursor의 메모리제
+        저장한다.
+        
+
+
+'''
+
+
+
+
 
 
 
