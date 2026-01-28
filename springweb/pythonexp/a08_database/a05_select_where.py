@@ -5,10 +5,62 @@ a08_database.a05_select_where의 Docstring
 2. 조회 형식
     1) keyword 검색  : 컬럼 like '%%' 형식으로 데이터를 조회할 때 사용한다.
     2) 범위 검색 : 컬럼 between 시작범위 and 마지막범위
-                   컬럼 >= 시작범위
-                   
-    3) 특정 데이터 정확하게 검색 : 컬럼 = 데이터
-    4) 
+                   컬럼 >= 시작범위   비교 연산식/논리 연산식 처리
+    3) 특정 데이터 정확하게 검색 : 컬럼 = 데이터.
+3. 처리 프로세스
+    1) 조건으로 처리해야 항목을 지정
+    2) sql 구문으로 해당 내용을 매개변수로 전달
+    3) sql 내용 실행..
+4. sql injection 형식의 보안적인 문제가 없이 prepared statement형식 처리할 기본 형식    
+    1) sql   where 컬럼명  = :keyword1
+    2) 입력한 데이터 설정  data = 데이터
+    3) execute(sql구문, keyword1=data)
+5. 여러개의 조건검색시 사용되는 tuple형식 처리..
+    1) 입력할 매개변수 내용이 여러 개일 때는 순서별로 :1, :2, :3..  형식으로 처리가 가능하다.
+        sql 구문에 위 내용을 넣고,
+    2) 전달할 내용을 tuple 형식(데이터1, 데이터2) 로 전송하면 해당 갯수와 데이터에 따라서
+        검색되는 내용을 확인 할 수 있다.
+        sql 처리
+        where sal between :1 and :2
+        execute(sql, (1000, 3000))
+
+
 
 '''
+from a00_dbComm import *
+'''
+print("# 사원정보(사원명기준으로 키워드 검색) #")
+ename = input("검색할 사원명(keyword)를 입력하세요 : ")
+sql = "SELECT * FROM EMP WHERE ENAME LIKE :keyword"
+schEname = f'%{ename}%'
+empList = select_dataPreOne(sql,schEname)
+#print(empList)
+for empDup in empList:
+    print(empDup[0],end=" ")
+    print(empDup[1],end=" ")
+    print(empDup[2])
+'''
+'''
+# ex) 부서정보를 dname으로 키워드 검색해서 출력하세요.
+print("# 부서정보(부서명기준 키워드) #")
+dname = input("검색할 부서명을 입력하세요 : ")
+sql = "SELECT * FROM DEPT WHERE DNAME LIKE :keyword"
+schDname = f"%{dname}%"
+deptList =  select_dataPreOne(sql,schDname)
+for deptDup in deptList:
+    print(deptDup[0], end=" ")
+    print(deptDup[1], end=" ")
+    print(deptDup[2])
+'''
+# 사원의 급여의 범위를 지정해서 데이터 조회 검색..
+print("# 급여의 범위를 통한 사원정보 검색 #")
+salFr = int(input("검색할 사원 급여 시작범위 : "))
+salTo = int(input("검색할 사원 급여 마지막범위 : "))
+schTup = (salFr,salTo)
+sql = 'SELECT * FROM EMP WHERE SAL BETWEEN :1 AND :2 ORDER BY SAL'
+empList = select_dataPreAll(sql, schTup)
+for empDup in empList:
+    print(empDup[0], end=" ")
+    print(empDup[1], end=" ")
+    print(empDup[5])
 

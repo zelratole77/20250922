@@ -37,9 +37,9 @@ def select_data(sql):
         cursor.execute(sql)
         # 4. 결과 가져오기
         result = cursor.fetchall()
+    # from oracledb import DatabaseError  : 상단 선언
     except DatabaseError as e:
         print(f"[DB 에러] 데이터 처리 중 오류가 발생했습니다: {e}")
-
     except Exception as e:
         print(f"[일반 에러]예외발생 {e}")
         # 에러발생시 list데이터 초기화 처리.
@@ -54,6 +54,68 @@ def select_data(sql):
             except:pass
     return result
 
+
+def select_dataPreOne(sql, schData):
+    result = [] # 결과리스트 데이터
+    con = None
+    cursor = None
+    
+    try:
+        # 1. 연결
+        con = dbCon()
+        # 2. 커서객체 생성
+        cursor = con.cursor()
+        # 3. 실행   where  컬럼 := keyword
+        cursor.execute(sql, keyword=schData)
+        # 4. 결과 가져오기
+        result = cursor.fetchall()
+    # from oracledb import DatabaseError  : 상단 선언
+    except DatabaseError as e:
+        print(f"[DB 에러] 데이터 처리 중 오류가 발생했습니다: {e}")
+    except Exception as e:
+        print(f"[일반 에러]예외발생 {e}")
+        # 에러발생시 list데이터 초기화 처리.
+        result = [] 
+    finally:
+        # 5. 예외 상관없이 무조건 실행
+        if cursor:
+            try:cursor.close()  # 자원해제 처리(자체가 예외 처리 필요)
+            except:pass  # pass :특정한 블럭에 처리할 내용이 없을 때..
+        if con:
+            try:con.close()
+            except:pass
+    return result
+
+def select_dataPreAll(sql, schTup):
+    result = [] # 결과리스트 데이터
+    con = None
+    cursor = None
+    
+    try:
+        # 1. 연결
+        con = dbCon()
+        # 2. 커서객체 생성
+        cursor = con.cursor()
+        # 3. 실행   where  컬럼 := keyword
+        cursor.execute(sql, schTup)
+        # 4. 결과 가져오기
+        result = cursor.fetchall()
+    # from oracledb import DatabaseError  : 상단 선언
+    except DatabaseError as e:
+        print(f"[DB 에러] 데이터 처리 중 오류가 발생했습니다: {e}")
+    except Exception as e:
+        print(f"[일반 에러]예외발생 {e}")
+        # 에러발생시 list데이터 초기화 처리.
+        result = [] 
+    finally:
+        # 5. 예외 상관없이 무조건 실행
+        if cursor:
+            try:cursor.close()  # 자원해제 처리(자체가 예외 처리 필요)
+            except:pass  # pass :특정한 블럭에 처리할 내용이 없을 때..
+        if con:
+            try:con.close()
+            except:pass
+    return result
 '''
 # 파이썬에서의 예외 처리 
 1. 파이썬에서도 try 안에서 처리되는 프로그램에서 에러가 발생하면, 프로세스를
