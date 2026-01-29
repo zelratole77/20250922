@@ -57,3 +57,17 @@ def create_char(**info):
         print(val)
 create_char(name="전사", level=5, weapon="검")
 create_char(name="궁수", hp=3000, weapon="사냥활", mp=200)
+
+# ex1) 이름과 나이는 필수(고정 매개변수)로 받고, 취미나 특기 같은 추가 정보를 선택(**kwargs)으로
+# 받아 자기 소개하는 introduce 함수를 만드세요.
+def introduce(name, age, **details):
+    print("# 자기 소개서 #")
+    print(f"이름:{name}, 나이:{age}")
+    # 추가 정보(딕션너리)가 비어있지 않다면 출력
+    if details:
+        print("# 특이 사항 #")
+        for key, val in details.items():
+            print(f'{key}:{val}')
+introduce("영희",25, 취미="코딩", MBTI="INFJ")
+introduce("철수",27, 취미="컴퓨터게임", 주소="수원",키="178cm")
+

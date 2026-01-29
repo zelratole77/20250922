@@ -1,7 +1,6 @@
 # 조회하는 공통 모듈 만들어서 처리하기(DB연결, 예외처리)
 import sys
 import os
-from oracledb import DatabaseError
 
 
 # vscode 코드 외부모듈 사용시 default 경로로 프로젝트명기준으로 설정하기 위한 내용
@@ -129,7 +128,7 @@ def dataProc(sql, inputObj, outObj, proc):
         # 2. 커서객체 생성
         cursor = con.cursor()
         # 3. 실행   where  컬럼 = :1 and 컬럼 = :2....
-        cursor.execute(sql, inputObj)
+        cursor.execute(sql, inputObj )
         # 4. 결과 가져오기// 확정
         if proc == "SELECT":
             rows = cursor.fetchall()  # default 튜플리스트
@@ -141,7 +140,7 @@ def dataProc(sql, inputObj, outObj, proc):
                 # row  (7601,'홍길동','사원', ....)
                 # DTO가 위 순서대로 속성값이 선언되어 있으면 객체생성하면서 하나의 
                 #   행에 객체가 생성된다..
-                # 컴프레리핸션 개념에 의해서 여러 행이 처리되어 결국은
+                # 컴프리핸션 개념에 의해서 여러 행이 처리되어 결국은
                 # [DTO, DTO, DTO, ......]   : dto 객체가 있는 리스트가 만들어져서
                 # 리턴해준다.
 
@@ -150,6 +149,8 @@ def dataProc(sql, inputObj, outObj, proc):
     # from oracledb import DatabaseError  : 상단 선언
     except DatabaseError as e:
         print(f"[DB 에러] 데이터 처리 중 오류가 발생했습니다: {e}")
+        if proc != "SELECT":
+            con.rollback()
     except Exception as e:
         print(f"[일반 에러]예외발생 {e}")
         # 에러발생시 list데이터 초기화 처리.

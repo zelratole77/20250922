@@ -11,7 +11,7 @@
 # 0부터 4까지 리스트 만들기
 nums = [x+1 for x in range(5)] # 1 2 3 4 5 리스트배열 생성
 print("컴프리핸션에 의해 만들어진 배열:", nums)
-nums = [x for x in range(10) if x%2 == 0] # 0 1 2 3 4 리스트배열 생성
+nums = [x for x in range(10) if x%2 == 0] # 0 2 4 6 8 10 리스트배열 생성
 print("조건 컴프리핸션에 의해 만들어진 배열:", nums)
 # ex1) 10~50까지 5의 배수로 된 리스트 컴프리핸션을 만들고 출력하세요..
 arry = [y for y in range(10,51,5) if y%5==0]
@@ -21,7 +21,7 @@ print(arry)
 str_nums = [f'NO.{x}' for x in range(1,6)]
 print(str_nums)
 # ex) 1000~5000까지 가격을 위 for in 구문을 통해서 출력하되 문자열 
-#  물건1:1000  물건2:2000, 물건3:3000.. ...
+#  물건1:1000원  물건2:2000원, 물건3:3000원.. ...
 price_info = [f'물건{cnt} : {cnt*1000:,}원' for cnt in range(1,6)]
 print(price_info)
 
@@ -39,6 +39,11 @@ fruits = ['사과','포도','딸기','자두','망고포도']
 # if '포함되는 문자열' in 변수  : 변수에 포함되는 문자열이 있으면 True
 sales_items = ['세일!!'+ f for f in fruits if '포' in f]
 print(sales_items)
+'''
+
+'''
+
+
 
 
 
