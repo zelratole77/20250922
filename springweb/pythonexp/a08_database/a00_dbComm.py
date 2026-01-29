@@ -1,7 +1,7 @@
 # 조회하는 공통 모듈 만들어서 처리하기(DB연결, 예외처리)
 import sys
 import os
-
+from oracledb import DatabaseError
 
 # vscode 코드 외부모듈 사용시 default 경로로 프로젝트명기준으로 설정하기 위한 내용
 # [마법의 경로 설정 코드]
@@ -116,7 +116,7 @@ def select_dataPreAll(sql, schObj):
             except:pass
     return result
 
-
+# 전달할 sql, 입력할 dict형 데이터, 출력할 List의 단위객체, 조회/등록,수정,삭제
 def dataProc(sql, inputObj, outObj, proc):
     result = [] # 결과리스트 데이터
     con = None
@@ -127,7 +127,7 @@ def dataProc(sql, inputObj, outObj, proc):
         con = dbCon()
         # 2. 커서객체 생성
         cursor = con.cursor()
-        # 3. 실행   where  컬럼 = :1 and 컬럼 = :2....
+        # 3. 실행   where  컬럼 = :key1 and 컬럼 = :key2....
         cursor.execute(sql, inputObj )
         # 4. 결과 가져오기// 확정
         if proc == "SELECT":
@@ -146,6 +146,13 @@ def dataProc(sql, inputObj, outObj, proc):
 
         else:
             con.commit()    
+            if proc == 'INSERT':
+                print("등록 성공!!")
+            if proc == 'UPDATE':
+                print("수정 성공!!")
+            if proc == 'DELETE':
+                print("삭제 성공!!")
+
     # from oracledb import DatabaseError  : 상단 선언
     except DatabaseError as e:
         print(f"[DB 에러] 데이터 처리 중 오류가 발생했습니다: {e}")

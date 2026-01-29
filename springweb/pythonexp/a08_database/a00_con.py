@@ -11,5 +11,5 @@ def dbCon():
     # thin 모드
     #con = oracledb.connect("scott/tiger@localhost:1521/xepdb1")
     
-    print("연결확인:", "성공" if con else "실패")
+    # print("연결확인:", "성공" if con else "실패")
     return con
