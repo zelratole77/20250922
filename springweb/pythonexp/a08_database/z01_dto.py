@@ -45,3 +45,26 @@ class ZombieItemDTO:
     durability:int
     description:str
 
+# SECRET_GADGETS SecretGadgetDTO gadget_id code_name danger_level status function
+@dataclass
+class SecretGadgetDTO:
+    gadget_id:int
+    code_name:str
+    danger_level:int
+    status:str
+    function:str
+# MAGIC_VENDING MagicVendingSchDTO MagicVendingDTO
+# id product_name price effect
+@dataclass
+class MagicVendingSchDTO:
+    product_name:str
+    effect:str
+
+@dataclass
+class MagicVendingDTO:
+    id:int
+    product_name:str
+    price:int
+    effect:str
+
+
