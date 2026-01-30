@@ -33,6 +33,15 @@ class GalaxyPlanetDTO:
     planet_id:int
     planet_name:str
     galaxy_name:str
-    distance:int
+    distance:float
     population:int
-    has_oxygen:str        
+    has_oxygen:str
+
+# ZOMBIE_ITEMS item_id item_id item_name durability description
+@dataclass
+class ZombieItemDTO:
+    item_id:int
+    item_name:str
+    durability:int
+    description:str
+
