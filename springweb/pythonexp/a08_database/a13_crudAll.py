@@ -45,6 +45,7 @@ DELETE FROM MAGIC_VENDING WHERE ID = :id
 '''
 from z01_dto import *
 from a00_dbComm import *
+# 등록할 데이터를 입력받아서 DTO에할당 후, dataProc() 공통 등록 함수 호출 
 def insertProc():
     print("# MAGIC_VENDING 등록 처리 #")
     product_name = input("물건명을 입력:")
@@ -76,6 +77,30 @@ def deleteProc(del_id):
     del_sql = "DELETE FROM MAGIC_VENDING WHERE ID = :id"
     dataProc(del_sql, (del_id,), None, "DELETE")
 
+'''
+# 상세 함수
+1. 매개변수 없는 경우(전체화면에서 로딩된 상세화면)
+	상세 아이디(키) 입력 및 프로세스 처리(dataProc())
+		데이터가 있는 경우
+			단일 retObj 리턴(  retOb =  schList[0] )		
+			출력 처리(상세)
+			아래 선택에 따른 처리
+			1. 수정
+				위 상세결과 retObj를 
+				updateProc(retObj) 수정 함수에 매개변수로 넘겨주면서
+					항목별로 수정 여부를 확인해서 수정할 DTO객체를 만들어서..dataProc()에 매개변수로
+					넘겨주어 수정처리를 완료하게 한다.
+			2. 삭제
+				dataProc() ==> 전체 화면 이동 
+			3. 전체화면이동	
+		데이터가 없는 경우
+			None으로 retOb 리턴
+			다시 검색 여부를 확인해서 입력 id를 전송() ; detail(None)
+2. 매개변수전달 되는 경우(수정처리 후)
+
+'''
+
+
 def detail(sch_id):
     if sch_id==None:
         sch_id = int(input("상세 아이디 입력:"))
@@ -104,9 +129,29 @@ def detail(sch_id):
             detail(None)
     return retOb
 
+'''
+1. 메인 핵심 프로세스.. (전체 조회/입력값을 통한 조회)
+	메개변수'A' 전체 조회( seachAll('A') ), 그 외는 입력값 받아 키워드 검색( seachAll('S'))
+	1) 전체조회/입력값에 의한 조회
+	
+	2) 등록
+		insertProc() : 등록함수 호출
+			등록할 데이터를 입력받아서 DTO에할당 후, dataProc() 공통 등록 함수 호출 
+		seachAll('A') : 등록처리 후에는 전체 조회 처리
+	3) 상세화면
+		detail(None) : 상세화면 기본 프로세스
+					
+		seachAll('A') : 상세화면 처리 후에는 전체 조회 처리
+	4) 종료처리
+		break 처리.
+		
+
+
+	
+	
+'''
 def seachAll(s_status) :
-    is_search = True
-    while is_search :
+    while True :
         print("# MAGIC_VENDING 전체 검색 #")
         product_nameSch =""
         effectSch = ""
@@ -115,15 +160,21 @@ def seachAll(s_status) :
             effectSch = input("검색할 효과입력(전체검색시 enter):")
         product_nameSch = f'%{product_nameSch}%'
         effectSch = f'%{effectSch}%'
-        sql = "SELECT * FROM MAGIC_VENDING WHERE PRODUCT_NAME LIKE :product_name AND EFFECT LIKE :effect ORDER BY ID"
-        sch = MagicVendingSchDTO(product_nameSch, effectSch)
-        magicList = dataProc(sql, sch.__dict__, MagicVendingDTO, "SELECT")
+        sql = '''SELECT * 
+        		 FROM MAGIC_VENDING 
+        		 WHERE PRODUCT_NAME LIKE :product_name 
+        		 AND EFFECT LIKE :effect ORDER BY ID'''
+        #sch = MagicVendingSchDTO(product_nameSch, effectSch)
+        sch2 = {"product_name":product_nameSch,"effect":effectSch}
+        #magicList = dataProc(sql, sch.__dict__, MagicVendingDTO, "SELECT")
+        magicList = dataProc(sql, sch2, MagicVendingDTO, "SELECT")
         for magic in magicList :
             print(magic.id, end="  ")
             print(magic.product_name, end="  ")
             print(magic.price, end="  ")
             print(magic.effect)
         chProc = input("1. 조회 2.등록 3.상세조회 4. 전체종료 (번호입력) : ")
+		s_status = "A"
         if chProc == "1" :
             s_status = "S"
         if chProc == "4" :
@@ -131,10 +182,8 @@ def seachAll(s_status) :
             break
         if chProc == "2" :
             insertProc()
-            s_status = "A"
         if chProc == "3" :
             detail(None)
-            s_status = "A"
 seachAll("A")
 
 
