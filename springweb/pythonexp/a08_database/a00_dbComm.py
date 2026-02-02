@@ -157,7 +157,7 @@ def dataProc(sql, inputObj, outObj, proc):
     except DatabaseError as e:
         print(f"[DB 에러] 데이터 처리 중 오류가 발생했습니다: {e}")
         if proc != "SELECT":
-            con.rollback()   # CUD가 처리시 에러발생시 원복처리..
+            con.rollback()
     except Exception as e:
         print(f"[일반 에러]예외발생 {e}")
         # 에러발생시 list데이터 초기화 처리.

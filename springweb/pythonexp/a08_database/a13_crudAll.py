@@ -35,20 +35,87 @@
 
 
 
-
+UPDATE MAGIC_VENDING
+   SET PRODUCT_NAME = :product_name,
+       PRICE = : price
+       EFFECT = : effect
+WHERE ID = :id
+DELETE FROM MAGIC_VENDING WHERE ID = :id
 
 '''
 from z01_dto import *
 from a00_dbComm import *
-def seachAll() :
+def insertProc():
+    print("# MAGIC_VENDING 등록 처리 #")
+    product_name = input("물건명을 입력:")
+    price = int(input("가격 입력(숫자):"))
+    effect = input("효과 입력:")
+    inMagin = MagicVendingInsDTO(product_name,price,effect)
+    ins_sql = "INSERT INTO MAGIC_VENDING (PRODUCT_NAME, PRICE, EFFECT) VALUES (:product_name, :price, :effect)"
+    #print(inMagin.__dict__)
+    dataProc(ins_sql, inMagin.__dict__, None, "INSERT")
+def updateProc(uptOb):
+    upt_sql = '''
+              UPDATE MAGIC_VENDING
+              SET PRODUCT_NAME = :product_name,
+                  PRICE = : price,
+                  EFFECT = : effect
+              WHERE ID = :id
+              '''
+    #id product_name price effect
+    product_name = input(f'현재 물건명:{uptOb.product_name} 변경할 물건명 입력(기존유지enter):')
+    if product_name:
+        uptOb.product_name=product_name
+    price = input(f'현재 가격:{uptOb.price} 변경할 가격 입력(기존유지enter):')
+    if price:
+        uptOb.price=int(price)
+    effect = input(f'현재 효과:{uptOb.effect} 변경할 효과 입력(기존유지enter):')
+    dataProc(upt_sql, uptOb.__dict__, None, "UPDATE")
+
+def deleteProc(del_id):
+    del_sql = "DELETE FROM MAGIC_VENDING WHERE ID = :id"
+    dataProc(del_sql, (del_id,), None, "DELETE")
+
+def detail(sch_id):
+    if sch_id==None:
+        sch_id = int(input("상세 아이디 입력:"))
+    det_sql = "SELECT * FROM MAGIC_VENDING WHERE ID=:1"
+    schList =  dataProc(det_sql, (sch_id,), MagicVendingDTO, "SELECT")
+    # key를 잘못 입력했을 때를 대비해서 처리..
+    # 리스안에 한개 객체 리턴해주어야 한다. schList[0]
+    retOb =  schList[0] if schList else None
+
+    if retOb:
+        print("# 상세 객체 #")
+        print(f"물건아이디: {retOb.id}")
+        print(f"물건명: {retOb.product_name}")
+        print(f"가격: {retOb.price}")
+        print(f"효과: {retOb.effect}")
+        ch_proc = input("1. 수정, 2.삭제, 3. 전체조회 - 처리할 번호 선택:")
+        if ch_proc == "1":
+            updateProc(retOb)
+            detail(retOb.id)
+        if ch_proc == "2":
+            deleteProc(retOb.id)
+    else:
+        print(f"id :{sch_id}에 해당 상세 데이터 없음")
+        reDetail = input("다시 검색하시겠습니까?(y/n)")
+        if reDetail == "y":
+            detail(None)
+    return retOb
+
+def seachAll(s_status) :
     is_search = True
     while is_search :
         print("# MAGIC_VENDING 전체 검색 #")
-        product_nameSch = input("검색할 물건명입력(전체검색시 enter):")
-        effectSch = input("검색할 효과입력(전체검색시 enter):")
+        product_nameSch =""
+        effectSch = ""
+        if s_status != "A":
+            product_nameSch = input("검색할 물건명입력(전체검색시 enter):")
+            effectSch = input("검색할 효과입력(전체검색시 enter):")
         product_nameSch = f'%{product_nameSch}%'
         effectSch = f'%{effectSch}%'
-        sql = "SELECT * FROM MAGIC_VENDING WHERE PRODUCT_NAME LIKE :product_name AND EFFECT LIKE :effect"
+        sql = "SELECT * FROM MAGIC_VENDING WHERE PRODUCT_NAME LIKE :product_name AND EFFECT LIKE :effect ORDER BY ID"
         sch = MagicVendingSchDTO(product_nameSch, effectSch)
         magicList = dataProc(sql, sch.__dict__, MagicVendingDTO, "SELECT")
         for magic in magicList :
@@ -56,11 +123,19 @@ def seachAll() :
             print(magic.product_name, end="  ")
             print(magic.price, end="  ")
             print(magic.effect)
-        chProc = input("1. 다시조회 2.등록 3.상세조회 4. 전체종료 (번호입력) : ")
+        chProc = input("1. 조회 2.등록 3.상세조회 4. 전체종료 (번호입력) : ")
+        if chProc == "1" :
+            s_status = "S"
         if chProc == "4" :
             print("!! MAGIC_VENDING 관리프로그램 종료 !!!")
             break
-seachAll()
+        if chProc == "2" :
+            insertProc()
+            s_status = "A"
+        if chProc == "3" :
+            detail(None)
+            s_status = "A"
+seachAll("A")
 
 
 

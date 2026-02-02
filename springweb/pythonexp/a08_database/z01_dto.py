@@ -68,3 +68,9 @@ class MagicVendingDTO:
     effect:str
 
 
+@dataclass
+class MagicVendingInsDTO:
+    product_name:str
+    price:int
+    effect:str
+
