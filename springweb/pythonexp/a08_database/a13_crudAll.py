@@ -130,7 +130,7 @@ def detail(sch_id):
     return retOb
 
 '''
-1. 메인 핵심 프로세스.. (전체 조회/입력값을 통한 조회)
+1. 메인 핵심 프로세스.. (전체 조회/입력값을 통한 조회) -- while True 통해서 반복 프로세스 안에서 처리..
 	메개변수'A' 전체 조회( seachAll('A') ), 그 외는 입력값 받아 키워드 검색( seachAll('S'))
 	1) 전체조회/입력값에 의한 조회
 	
@@ -144,10 +144,6 @@ def detail(sch_id):
 		seachAll('A') : 상세화면 처리 후에는 전체 조회 처리
 	4) 종료처리
 		break 처리.
-		
-
-
-	
 	
 '''
 def seachAll(s_status) :
