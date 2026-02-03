@@ -11,7 +11,11 @@ def model01():
 
 # http://localhost:8888/model02
 #     좋아하는 물건명, 가격을 a04_model.html 화면에 출력하세요..
+@app.route("/model02")
+def model02():
 
+    return render_template("a01_basic/a04_model.html",
+                           pname="바나나", price=3000)
 
 app.run(port=8888,debug=True)
 

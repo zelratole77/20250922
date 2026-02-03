@@ -1,3 +1,12 @@
+# 파이썬 ai 쿼리
+1. Pandas, NumPy (데이터 전처리용).
+2. Scikit-learn을 활용한 분류/회귀 (기본 원리 이해).
+3. Hugging Face의 사전 학습된 모델(Pre-trained Model)을 가져와서 로드하고 추론(Inference)하는 과정
+4. Computer Vision: OpenCV 및 YOLO를 활용한 객체 탐지 실습 (웹캠 스트리밍 연동).
+	OpenCV, YOLOv8, WebSocket(실시간 영상 전송), Spring Boot/FastAPI.	
+5. GenAI & LLM: OpenAI API, LangChain, Vector DB (ChromaDB, Pinecone)를 활용한 RAG(검색 증강 생성) 구현.
+6. AI-Web 통합 및 배포
+
 # 개발 환경 준비
 
 ## 1. 개발 환경 준비 가이드
