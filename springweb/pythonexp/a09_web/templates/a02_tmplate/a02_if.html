@@ -6,5 +6,36 @@
 </head>
 <body>
     <h2>jinja2를 통한 조건문 처리!!</h2>
+    {#
+    # 기본 조건문 형식
+    if 변수명
+        처리할 내용
+    end if
+    if 변수명
+        True일 때, 처리할 내용
+    else
+        False일 때, 처리할 내용
+    endif
+    #}
+    {%  set point = 70 %}
+    <h3>점수:{{point}}</h3>
+    {%if point>=70 %}
+        <h4>합격</h4>
+    {% else %}
+        <h4>불합격</h4>
+    {% endif %}
+    {#
+    ex) id와 pwd로 데이터를 설정하고, 해당 id와 pwd가 맞을 때(himan/7777), 로그인 성공  그외는 로그인 실패..
+    #}
+    {% set id = 'himan' %}
+    {% set pwd = '7778' %}
+    <h2>id:{{id}}, pwd:{{pwd}}</h2>
+    {%if id=='himan' and pwd =='7777' %}
+        <h2>로그인 성공</h2>
+    {%else%}
+        <h3>로그인 실패</h3>
+    {%endif%}
+
+
 </body>
 </html>

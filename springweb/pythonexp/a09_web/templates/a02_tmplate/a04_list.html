@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>리스트형태 반복처리</title>
+    <style>
+        td{text-align: center;}
+
+    </style>
+</head>
+<body>
+    <h2>리스트 형태 반복 구문</h2>
+    {#
+    2. 리스트형태의 반복 구문처리와 내장된 속성 활용
+        1) 리스트 선언
+            set fruits = ['사과','바나나','딸기']
+        2) for 문처리
+            for fruit in fruits
+                fruit
+        3) 내장된 추가 속성
+            loop.index : 내장된 속성으로 반복구문의 index를 처리..(#주의 1부터시작)
+            loop.index0 : 현재 반복 횟수(0부터 시작)
+            loop.revindex :반복이 끝날 때까지 남은 횟수(현재포함, 1로 끝남)
+            loop.first : 첫번째 반복이면 True
+            loop.last : 마지막 반복이면 True
+            loop.length  : 반복되는 전체 아이템의 총 개수
+    # ex)  학생의 국어 영어 수학 점수를 points로 선언해서 출력 하세요..
+    #}
+    <h3>과일 리스트</h3>
+    {% set fruits = ['사과','바나나','딸기'] %}
+    {% for fruit in fruits %}
+    <h4>{{loop.index}} - {{fruit}}</h4>
+    {% endfor %}
+    <h3>학생 점수</h3>
+    {% set points = [80,90,100] %}
+    {% for point in points %}
+        <h4>{{point}}</h4>
+    {% endfor %}
+    <h3>딕션너리형 리스트 처리</h3>
+    {% set persons = [{'name':'홍길동','age':25,'loc':'수원'},
+                      {'name':'김길동','age':27,'loc':'서울'},
+                      {'name':'신길동','age':28,'loc':'제주도'}] %}
+    <table border="1">
+        <tr><th>이름</th><th>나이</th><th>사는 곳</th></tr>
+        {% for person in persons %}
+        <tr><td>{{person.name}}</td><td>{{person.age}}</td><td>{{person.loc}}</td></tr>
+        {% endfor %}
+    </table>
+    {#
+    ex) 구매물품 3개( 물건명, 가격, 갯수  속성)를 리스트로 테이블로 출력하세요..  테이블리스트에는 계도 출력..
+    #}
+    <h3>구매물품(계)</h3>
+    {% set products = [{'name':'사과','price':3000,'cnt':5},
+                       {'name':'바나나','price':4000,'cnt':7},
+                       {'name':'딸기','price':12000,'cnt':3}] %}
+    {% set ns = namespace(tot = 0) %} {# 전역변수 설정 : set namespace이름 = namespace(변수=초기값) #}
+    <table border="1" width="50%">
+        <tr><th>번호</th><th>물건명</th><th>가격</th><th>갯수</th><th>계</th></tr>
+        {% for product in products%}
+        {% set subtotal = product.price*product.cnt %}
+        <tr>
+            <td style="text-align: center">{{loop.index}}</td>
+            <td style="text-align: center">{{product.name}}</td>
+            <td style="text-align: right">{{"{:,}".format(subtotal)}}</td>
+            {# 천단위 콤마 처리 설정 "{:,}".format(product.price) #}
+            <td style="text-align: right">{{product.cnt}}</td>
+            <td style="text-align: right">{{"{:,}".format(subtotal)}}</td>
+            {% set ns.tot = ns.tot + subtotal %}
+        </tr>
+        {% endfor %}
+        <tr><th style="text-align: center" colspan="4">총계</th>
+            <th style="text-align: right">{{"{:,}".format(ns.tot)}}</th></tr>
+    </table>
+    {#
+    ex) 학생의 점수를 리스트로 할당하고  번호  점수  형태로 테이블로 출력하되,
+        총점을 하단에 계 @@로 표시, 바로 밑에 평균까지 표시 하세요..
+        번호    점수
+        1      70
+        2      80
+        3      70
+        4      80
+        총점    300
+        평균    75
+    #}
+    {% set ns2 =namespace(tot = 0) %}
+    {#
+        하나의 namespace에 여러 변수 담기
+        set 네임스페이스명 = namespace(변수명=초기값, 변수2명=초기값 ...)
+        반복문이나 블럭안에서도 set 네임스페이스명.변수 = 네임스페이스명.변수 + 추가변수
+        로 처리하여야 한다.
+    #}
+    {% set points = [80,90,100,70] %}
+    <h2>학생 성적</h2>
+    <table border="1" width="30%">
+        <tr><th>번호</th><th>성적</th></tr>
+        {% for pt in points %}
+        <tr><td>{{loop.index}}</td>
+            <td style="text-align:right">{{pt}}</td></tr>
+        {% set ns2.tot = ns2.tot + pt%}
+        {% endfor %}
+        <tr><th>총계</th><th  style="text-align:right">{{ns2.tot}}</th></tr>
+
+    </table>
+
+
+
+
+
+
+</body>
+</html>
