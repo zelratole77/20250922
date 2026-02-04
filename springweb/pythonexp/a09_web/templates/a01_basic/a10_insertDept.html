@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>부서정보 등록</h2>
+    <form method="post" >
+        부서번호 : <input type="number" name="deptno"><br>
+        부서명 : <input type="text" name="dname"><br>
+        부서위치 : <input type="text" name="loc"><br>
+        <input type="submit" value="등록"/>
+    </form>
+    <h3>등록된 부서 정보</h3>
+    <h4>부서번호:{{dept.deptno}}</h4>
+    <h4>부서명:{{dept.dname}}</h4>
+    <h4>부서위치:{{dept.loc}}</h4>
+</body>
+</html>
+
