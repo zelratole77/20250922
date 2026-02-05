@@ -12,4 +12,19 @@ def dateList():
                            partner_name=partner_nameSch, location=locationSch,
                            dateList=dateList)
 
+# http://localhost:7070/dateInsert
+@app.route('/dateInsert', methods=['GET','POST'])
+def dateInsert():
+    insDto = None
+    msg = ""
+    if request.method == 'POST':
+        insDto = BlindDateCU(**request.form)
+        print(insDto)
+
+        msg = service.dateInsert(insDto)
+    return render_template("a04_date/a02_dateInsert.html", msg = msg)
+
+
+
+
 app.run(port=7070,debug=True)

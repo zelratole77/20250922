@@ -6,3 +6,7 @@ def dateList( schOb ):
     schOb.location="%"+schOb.location+"%"
 
     return dao.dateList(schOb)
+
+def dateInsert( insOb):
+    return dao.dateInsert( insOb)
+

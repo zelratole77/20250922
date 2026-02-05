@@ -1,0 +1,122 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="/static/com/bootstrap.min.css">
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+    <script src="/static/com/jquery-3.7.1.js"></script>
+    <script src="/static/com/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#lstBtn").click(function () {
+                location.href = "dateList"
+            })
+            let msg = "{{msg}}"
+            if(msg != "")
+                alert(msg)
+
+            $("#insBtn").click(function(){
+                if(confirm("등록하시겠습니까?"))
+                    $("form").submit()
+            })
+        });
+    </script>
+</head>
+
+<body>
+<div class="jumbotron text-center">
+    <h2>사원등록</h2>
+</div>
+<div class="container">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="date_no">번호</label>
+                    <input type="number" value="" class="form-control" id="date_no" name="date_no">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="partner_name">파트너이름</label>
+                    <input type="text" value="" class="form-control" id="partner_name" name="partner_name">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="partner_age">파트너나이</label>
+                    <input type="number" value="" class="form-control" id="partner_age" name="partner_age">
+                </div>
+            </div>
+            {#
+            date_no:int
+            partner_name:str
+            partner_age:int
+            job:str
+            location:str
+            meet_date:str
+            status:str
+            score:float
+            review:str
+            #}
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="job">파트너 직업</label>
+                    <input type="text" value="" class="form-control" id="job" name="job">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="location">파트너 사는 곳</label>
+                    <input type="text" value="" class="form-control" id="location" name="location">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="meet_date">미팅날짜</label>
+                    <input type="date" value="" class="form-control" id="meet_date" name="meet_date">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="status">현재상태</label>
+                    <input type="text" value="" class="form-control" id="status" name="status">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="score">만족도</label>
+                    <input type="number" value="" class="form-control" id="score" name="score">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="review">남기고 싶은 말</label>
+                    <textarea class="form-control" id="review" name="review" rows="5"></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="btn-group-custom">
+            <button id="insBtn" type="button" class="btn btn-primary btn-lg">등록</button>
+            <button id="lstBtn" type="button" class="btn btn-info btn-lg">메인으로</button>
+        </div>
+</div>
+</form>
+</div>
+</body>

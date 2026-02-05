@@ -48,3 +48,5 @@ select * from BLIND_DATE  partner_name과 location으로 키워드 검색 처리
 a03_3dateDao.py
 a02_2dateService.py
 a01_1dateController.py
+
+a02_dateInsert.html

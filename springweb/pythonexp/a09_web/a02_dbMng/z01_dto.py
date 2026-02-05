@@ -33,6 +33,19 @@ class BlindDateSch:
     partner_name:str
     location:str
 
+@dataclass
+class BlindDateCU:
+    date_no:int
+    partner_name:str
+    partner_age:int
+    job:str
+    location:str
+    meet_date:str
+    status:str
+    score:float
+    review:str
+
+
 
 @dataclass
 class BlindDate:
