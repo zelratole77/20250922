@@ -8,3 +8,13 @@ def empList( schOb ):
             order by empno desc
             '''
     return dataProc(sql, schOb.__dict__, Emp, "SELECT")
+def empInsert( insOb):
+    print("등록 직전")
+    print(insOb.__dict__)
+    sql = '''
+          insert into emp01 
+          values (:empno, :ename, :job, :mgr, 
+                  to_date(:hiredate, 'YYYY-MM-DD'), :sal, :comm, :deptno) 
+          '''
+    return dataProc(sql, insOb.__dict__, None, "INSERT")
+

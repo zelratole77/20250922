@@ -1,4 +1,7 @@
+SELECT to_date('2025-12-12','YYYY-MM-DD') FROM DUAL;
 
+
+SELECT * FROM emp01 ORDER BY empno DESC;
 -- 미식 테이블 생성
 CREATE TABLE LUNCH_MENU (
     menu_id    NUMBER PRIMARY KEY,      -- 메뉴 번호

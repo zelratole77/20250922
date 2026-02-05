@@ -6,6 +6,18 @@ class EmpSch:
     job:str
 
 @dataclass
+class EmpCU:
+    empno:int
+    ename:str
+    job:str
+    mgr:int
+    hiredate:str
+    sal:float
+    comm:float
+    deptno:int
+
+
+@dataclass
 class Emp:
     empno:int
     ename:str
@@ -13,7 +25,7 @@ class Emp:
     mgr:int
     hiredate:datetime
     sal:float
-    com:float
+    comm:float
     deptno:int
 
 @dataclass

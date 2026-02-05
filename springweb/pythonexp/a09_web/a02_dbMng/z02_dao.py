@@ -2,7 +2,7 @@ from a08_database.a00_con import dbCon
 from oracledb import DatabaseError
 
 def dataProc(sql, inputObj, outObj, proc):
-    result = []  # 결과리스트 데이터
+    result = None  # 결과리스트 데이터
     con = None
     cursor = None
 
@@ -32,14 +32,18 @@ def dataProc(sql, inputObj, outObj, proc):
             con.commit()
             if proc == 'INSERT':
                 print("등록 성공!!")
+                result = "등록 성공!!"
             if proc == 'UPDATE':
                 print("수정 성공!!")
+                result = "수정 성공!!"
             if proc == 'DELETE':
                 print("삭제 성공!!")
+                result = "삭제 성공!!"
 
     # from oracledb import DatabaseError  : 상단 선언
     except DatabaseError as e:
         print(f"[DB 에러] 데이터 처리 중 오류가 발생했습니다: {e}")
+        result = "에러발생!!"
         if proc != "SELECT":
             con.rollback()
     except Exception as e:

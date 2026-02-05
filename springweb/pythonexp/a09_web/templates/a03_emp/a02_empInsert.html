@@ -15,6 +15,14 @@
             $("#lstBtn").click(function () {
                 location.href = "empList"
             })
+            let msg = "{{msg}}"
+            if(msg != "")
+                alert(msg)
+
+            $("#insBtn").click(function(){
+                if(confirm("등록하시겠습니까?"))
+                    $("form").submit()
+            })
         });
     </script>
 </head>
@@ -29,7 +37,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="empno">번호</label>
-                    <input type="text" value="" class="form-control" id="empno" name="empno">
+                    <input type="number" value="" class="form-control" id="empno" name="empno">
                 </div>
             </div>
             <div class="col-md-6">
@@ -50,7 +58,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="mgr">관리자번호</label>
-                    <input type="text" value="" class="form-control" id="mgr" name="mgr">
+                    <input type="number" value="" class="form-control" id="mgr" name="mgr">
                 </div>
             </div>
         </div>
