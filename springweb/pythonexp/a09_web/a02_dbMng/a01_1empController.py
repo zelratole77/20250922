@@ -7,10 +7,11 @@ app = Flask(__name__, template_folder='../templates', static_folder='../static')
 def empList():
     enameSch = request.values.get('ename',"") # None 일 때 공백처리 요청
     jobSch = request.values.get('job',"") # None 일 때 공백처리 요청
-    schOb = EmpSch(enameSch, jobSch)
-    empList = service.empList(schOb)
+
+    empList = service.empList(EmpSch(enameSch, jobSch))
+
     return render_template("a03_emp/a01_empList.html",
-                           sch=enameSch, job=jobSch, empList=empList)
+                           ename=enameSch, job=jobSch, empList=empList)
 
 # http://localhost:7070/empInsert
 @app.route('/empInsert', methods=['GET','POST'])

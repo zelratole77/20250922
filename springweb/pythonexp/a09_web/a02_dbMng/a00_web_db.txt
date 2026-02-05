@@ -44,4 +44,7 @@ select * from BLIND_DATE  partner_name과 location으로 키워드 검색 처리
 	dto 점검
 	dao
 	controller단 요청시 처리
-	
+# MVC 패턴 만들기
+a03_3dateDao.py
+a02_2dateService.py
+a01_1dateController.py

@@ -17,6 +17,12 @@ class Emp:
     deptno:int
 
 @dataclass
+class BlindDateSch:
+    partner_name:str
+    location:str
+
+
+@dataclass
 class BlindDate:
     date_no:int
     partner_name:str

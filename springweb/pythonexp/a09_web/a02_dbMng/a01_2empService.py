@@ -1,4 +1,3 @@
-from z01_dto import *
 import a01_3empDao as dao
 
 def empList( schOb ):
