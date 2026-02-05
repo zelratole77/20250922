@@ -24,3 +24,5 @@
     3) DB처리 : sql 확인/dto 설정/dao 메서드 호출/controller 호출
     4) controller : 요청값 처리 및 모델 처리
     5) view단 : a01_empList.html 호출..
+    
+    

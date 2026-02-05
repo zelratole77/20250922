@@ -24,11 +24,11 @@
     <form id="frm01" class="form"  method="post">
 
         {#
-        ename=enameSch, job=jobSch, empList=empList
+        partner_name=partner_nameSch, location=locationSch, dateList=dateList
         #}
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <input placeholder="이름" name="ename"  value="{{ename}}" class="form-control mr-sm-2" />
-            <input placeholder="직책명" name="job"  value="{{job}}" class="form-control mr-sm-2"/>
+            <input placeholder="파트너 이름" name="partner_name"  value="{{partner_name}}" class="form-control mr-sm-2" />
+            <input placeholder="파트너 사는 곳" name="location"  value="{{location}}" class="form-control mr-sm-2"/>
             <button class="btn btn-info" type="submit">Search</button>
             <button class="btn btn-success"
                     data-toggle="modal" data-target="#exampleModalCenter"
@@ -44,17 +44,18 @@
         <thead>
 
         <tr class="table-success text-center">
-            <th>사원번호</th>
-            <th>사원명</th>
-            <th>직책명</th>
-            <th>급여</th>
-            <th>부서번호</th>
+            <th>번호</th>
+            <th>이름</th>
+            <th>나이</th>
+            <th>직책</th>
+            <th>위치</th>
         </tr>
         </thead>
         <tbody>
-        {% for emp in empList %}
-        <tr><td>{{emp.empno}}</td><td>{{emp.ename}}</td><td>{{emp.job}}</td>
-            <td>{{emp.sal}}</td><td>{{emp.deptno}}</td></tr>
+        {# date_no partner_name partner_age job location#}
+        {% for date in dateList %}
+        <tr><td>{{date.date_no}}</td><td>{{date.partner_name}}</td><td>{{date.partner_age}}</td>
+            <td>{{date.job}}</td><td>{{date.location}}</td></tr>
         {% endfor %}
         </tbody>
     </table>
