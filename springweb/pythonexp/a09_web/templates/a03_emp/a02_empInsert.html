@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="/static/com/bootstrap.min.css">
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+    <script src="/static/com/jquery-3.7.1.js"></script>
+    <script src="/static/com/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#lstBtn").click(function () {
+                location.href = "empList"
+            })
+        });
+    </script>
+</head>
+
+<body>
+<div class="jumbotron text-center">
+    <h2>사원등록</h2>
+</div>
+<div class="container">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="empno">번호</label>
+                    <input type="text" value="" class="form-control" id="empno" name="empno">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ename">사원명</label>
+                    <input type="text" value="" class="form-control" id="ename" name="ename">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="job">직책명</label>
+                    <input type="text" value="" class="form-control" id="job" name="job">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="mgr">관리자번호</label>
+                    <input type="text" value="" class="form-control" id="mgr" name="mgr">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="hiredate">입사일</label>
+                    <input type="date" value="" class="form-control" id="hiredate" name="hiredate">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="sal">급여</label>
+                    <input type="number" value="" class="form-control" id="sal" name="sal">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="comm">보너스</label>
+                    <input type="number" value="" class="form-control" id="comm" name="comm">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="deptno">부서번호</label>
+                    <input type="number" value="" class="form-control" id="deptno" name="deptno">
+
+                </div>
+            </div>
+        </div>
+        <div class="btn-group-custom">
+            <button id="insBtn" type="button" class="btn btn-primary btn-lg">등록</button>
+            <button id="lstBtn" type="button" class="btn btn-info btn-lg">메인으로</button>
+        </div>
+</div>
+</form>
+</div>
+</body>

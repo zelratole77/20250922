@@ -10,7 +10,9 @@
     <script src="/static/com/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-
+            $("#regBtn").click(function(){
+                location.href="empInsert"
+            })
         });
     </script>
 </head>
@@ -30,9 +32,7 @@
             <input placeholder="이름" name="ename"  value="{{ename}}" class="form-control mr-sm-2" />
             <input placeholder="직책명" name="job"  value="{{job}}" class="form-control mr-sm-2"/>
             <button class="btn btn-info" type="submit">Search</button>
-            <button class="btn btn-success"
-                    data-toggle="modal" data-target="#exampleModalCenter"
-                    type="button">등록</button>
+            <button class="btn btn-primary" id="regBtn"  type="button">등록</button>
         </nav>
     </form>
     <table class="table table-hover table-striped">
