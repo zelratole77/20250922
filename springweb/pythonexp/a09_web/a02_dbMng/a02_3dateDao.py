@@ -24,3 +24,10 @@ def dateInsert( insOb):
     # meet_date='2026-02-06', status='SUCCESS', score='7', review='정말 좋은 만남있었다...'
 
     return dataProc(sql, insOb.__dict__, None, "INSERT")
+
+def dateDetail( date_no ):
+    sql = ''' SELECT *
+              FROM BLIND_DATE
+              WHERE DATE_NO = :date_no '''
+    return dataProc(sql, (date_no,), BlindDate, "SELECT")[0]
+

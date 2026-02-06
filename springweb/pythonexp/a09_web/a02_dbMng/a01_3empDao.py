@@ -18,3 +18,24 @@ def empInsert( insOb):
           '''
     return dataProc(sql, insOb.__dict__, None, "INSERT")
 
+def empDetail( empno ):
+    sql = ''' select * 
+              from emp01 
+              WHERE EMPNO = :empno '''
+    return dataProc(sql, (empno,), Emp, "SELECT")[0]
+
+def empUpdate( updateOb ):
+    sql = ''' UPDATE EMP01
+              SET ENAME = :ename,
+                  JOB = :job,
+                  MGR = :mgr,
+                  HIREDATE = TO_DATE(:hiredate,'YYYY-MM-DD'),
+                  SAL = :sal,
+                  COMM = :comm,
+                  DEPTNO = :deptno
+              WHERE EMPNO = :empno '''
+    return dataProc(sql, updateOb.__dict__, None, "UPDATE")
+
+def empDelete( empno ):
+    sql = '''DELETE EMP01 WHERE EMPNO = :empno'''
+    return dataProc(sql, (empno,), None, "DELETE")

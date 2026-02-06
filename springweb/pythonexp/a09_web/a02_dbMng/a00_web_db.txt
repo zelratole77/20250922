@@ -50,3 +50,8 @@ a02_2dateService.py
 a01_1dateController.py
 
 a02_dateInsert.html
+
+ex) 미팅 상세화면 처리
+1. 초기화면 로딩
+2. sql ==> dao ==> service ==> controller ==> 모델데이터 value값 설정..
+

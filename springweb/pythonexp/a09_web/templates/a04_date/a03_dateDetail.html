@@ -29,7 +29,7 @@
 
 <body>
 <div class="jumbotron text-center">
-    <h2>미팅상세 : {{date_no}}</h2>
+    <h2>미팅상세 : {{date.partner_name}} [ {{date.date_no}} ]</h2>
 </div>
 <div class="container">
     <form method="post">
@@ -37,13 +37,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="date_no">번호</label>
-                    <input type="number" value="" class="form-control" id="date_no" name="date_no">
+                    <input type="number" value="{{date.date_no}}" class="form-control" id="date_no" name="date_no">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="partner_name">파트너이름</label>
-                    <input type="text" value="" class="form-control" id="partner_name" name="partner_name">
+                    <input type="text" value="{{date.partner_name}}" class="form-control" id="partner_name" name="partner_name">
 
                 </div>
             </div>
@@ -52,24 +52,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="partner_age">파트너나이</label>
-                    <input type="number" value="" class="form-control" id="partner_age" name="partner_age">
+                    <input type="number" value="{{date.partner_age}}" class="form-control" id="partner_age" name="partner_age">
                 </div>
             </div>
-            {#
-            date_no:int
-            partner_name:str
-            partner_age:int
-            job:str
-            location:str
-            meet_date:str
-            status:str
-            score:float
-            review:str
-            #}
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="job">파트너 직업</label>
-                    <input type="text" value="" class="form-control" id="job" name="job">
+                    <input type="text" value="{{date.job}}" class="form-control" id="job" name="job">
                 </div>
             </div>
         </div>
@@ -77,13 +66,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="location">파트너 사는 곳</label>
-                    <input type="text" value="" class="form-control" id="location" name="location">
+                    <input type="text" value="{{date.location}}" class="form-control" id="location" name="location">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="meet_date">미팅날짜</label>
-                    <input type="date" value="" class="form-control" id="meet_date" name="meet_date">
+
+                    <input type="date" value='{{date.meet_date.strftime("%Y-%m-%d")}}' class="form-control" id="meet_date" name="meet_date">
                 </div>
             </div>
         </div>
@@ -91,13 +81,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="status">현재상태</label>
-                    <input type="text" value="" class="form-control" id="status" name="status">
+                    <input type="text" value="{{date.status}}" class="form-control" id="status" name="status">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="score">만족도</label>
-                    <input type="number" value="" class="form-control" id="score" name="score">
+                    <input type="number" value="{{date.score}}" class="form-control" id="score" name="score">
 
                 </div>
             </div>
@@ -106,7 +96,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="review">남기고 싶은 말</label>
-                    <textarea class="form-control" id="review" name="review" rows="5"></textarea>
+                    <textarea class="form-control" id="review" name="review" rows="5">{{date.review}}</textarea>
                 </div>
             </div>
 

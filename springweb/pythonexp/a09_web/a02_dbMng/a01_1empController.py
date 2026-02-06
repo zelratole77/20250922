@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from z01_dto import *
 import a01_2empService as service
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
@@ -15,8 +15,10 @@ def empList():
 # http://localhost:7070/empDetail/7369
 @app.route('/empDetail/<int:empno>', methods=['GET'])
 def empDetail(empno):
-
-    return render_template("a03_emp/a03_empDetail.html",empno=empno)
+    empDto = service.empDetail(empno)
+    print("# 상세 사원 정보 #")
+    print(empDto)
+    return render_template("a03_emp/a03_empDetail.html",emp=empDto)
 
 
 
@@ -41,6 +43,26 @@ def empInsert():
 
         msg = service.empInsert(insDto)
     return render_template("a03_emp/a02_empInsert.html", msg = msg)
+
+# http://localhost:7070/empUpdate
+@app.route('/empUpdate', methods=['POST'])
+def empUpdate():
+    uptDto = EmpCU(**request.form)
+    print(uptDto)
+    msg = service.empUpdate(uptDto)
+    empDto = service.empDetail(uptDto.empno)
+    return render_template("a03_emp/a03_empDetail.html",msg=msg,emp=empDto)
+# http://localhost:7070/empDelete
+@app.route('/empDelete/<int:empno>', methods=['GET'])
+def empDelete(empno):
+    msg =service.empDelete(empno)
+    return redirect("/empList")
+
+
+
+
+
+
 
 
 app.run(port=7070,debug=True)

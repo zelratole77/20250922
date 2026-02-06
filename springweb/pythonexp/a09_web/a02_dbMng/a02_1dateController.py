@@ -15,7 +15,10 @@ def dateList():
 # http://localhost:7070/dateDetail/1
 @app.route('/dateDetail/<int:date_no>')
 def dateDetail(date_no):
-    return render_template("a04_date/a03_dateDetail.html",date_no=date_no)
+    dateDto = service.dateDetail(date_no)
+    print("#데이트 상세#")
+    print(dateDto)
+    return render_template("a04_date/a03_dateDetail.html",date=dateDto)
 
 
 

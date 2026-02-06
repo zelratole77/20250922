@@ -45,6 +45,7 @@ class BlindDateCU:
     score:float
     review:str
 
+# {{date.date_no}}  partner_name partner_age job location meet_date status score review
 
 
 @dataclass

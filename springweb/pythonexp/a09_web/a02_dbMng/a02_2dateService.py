@@ -10,3 +10,6 @@ def dateList( schOb ):
 def dateInsert( insOb):
     return dao.dateInsert( insOb)
 
+def dateDetail( date_no ):
+    return dao.dateDetail( date_no )
+

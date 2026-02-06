@@ -11,39 +11,51 @@
     <script src="/static/com/jquery-3.7.1.js"></script>
     <script src="/static/com/bootstrap.min.js"></script>
     <script type="text/javascript">
+        let msg = "{{msg}}"
+        if(msg != "")
+            alert(msg)
         $(document).ready(function () {
             $("#lstBtn").click(function () {
                 location.href = "/empList"
             })
-            let msg = "{{msg}}"
-            if(msg != "")
-                alert(msg)
+
 
             $("#insBtn").click(function(){
                 if(confirm("등록하시겠습니까?"))
                     $("form").submit()
             })
+            $("#uptBtn").click(function(){
+                if(confirm("수정하시겠습니까?")) {
+                    $("form").attr("action", "/empUpdate")
+                    $("form").submit()
+                }
+            })
+            $("#delBtn").click(function(){
+                if(confirm("삭제하시겠습니까?"))
+                    location.href = "/empDelete/"+$("#empno").val()
+            })
+
         });
     </script>
 </head>
 
 <body>
 <div class="jumbotron text-center">
-    <h2>사원상세 : {{empno}}</h2>
+    <h2>사원상세 : {{emp.ename}} [ {{emp.empno}} ]</h2>
 </div>
 <div class="container">
     <form method="post">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="empno">번호</label>
-                    <input type="number" value="" class="form-control" id="empno" name="empno">
+                    <label for="empno">사원번호</label>
+                    <input type="number" value="{{emp.empno}}" class="form-control" id="empno" name="empno">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="ename">사원명</label>
-                    <input type="text" value="" class="form-control" id="ename" name="ename">
+                    <input type="text" value="{{emp.ename}}" class="form-control" id="ename" name="ename">
 
                 </div>
             </div>
@@ -52,13 +64,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="job">직책명</label>
-                    <input type="text" value="" class="form-control" id="job" name="job">
+                    <input type="text" value="{{emp.job}}" class="form-control" id="job" name="job">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="mgr">관리자번호</label>
-                    <input type="number" value="" class="form-control" id="mgr" name="mgr">
+                    <input type="number" value="{{emp.mgr}}" class="form-control" id="mgr" name="mgr">
                 </div>
             </div>
         </div>
@@ -66,13 +78,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="hiredate">입사일</label>
-                    <input type="date" value="" class="form-control" id="hiredate" name="hiredate">
+                    <input type="date" value='{{emp.hiredate.strftime("%Y-%m-%d")}}' class="form-control" id="hiredate" name="hiredate">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="sal">급여</label>
-                    <input type="number" value="" class="form-control" id="sal" name="sal">
+                    <input type="number" value="{{emp.sal}}" class="form-control" id="sal" name="sal">
                 </div>
             </div>
         </div>
@@ -80,13 +92,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="comm">보너스</label>
-                    <input type="number" value="" class="form-control" id="comm" name="comm">
+                    <input type="number" value="{{emp.comm}}" class="form-control" id="comm" name="comm">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="deptno">부서번호</label>
-                    <input type="number" value="" class="form-control" id="deptno" name="deptno">
+                    <input type="number" value="{{emp.deptno}}" class="form-control" id="deptno" name="deptno">
 
                 </div>
             </div>
