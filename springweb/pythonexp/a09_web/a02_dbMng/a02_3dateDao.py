@@ -12,6 +12,7 @@ def dateList( schOb ):
     return dataProc(sql, schOb.__dict__, BlindDate, "SELECT")
 
 def dateInsert( insOb):
+    print(insOb)
     sql = '''
           insert into BLIND_DATE values (:date_no,:partner_name,
                                          :partner_age,:job,

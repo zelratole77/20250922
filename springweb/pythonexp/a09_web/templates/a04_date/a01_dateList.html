@@ -14,6 +14,11 @@
                 location.href="dateInsert"
             })
         });
+        function goPage(date_no){
+            // /empDetail/7369
+            location.href="dateDetail/"+date_no
+
+        }
     </script>
 </head>
 
@@ -54,7 +59,7 @@
         <tbody>
         {# date_no partner_name partner_age job location#}
         {% for date in dateList %}
-        <tr><td>{{date.date_no}}</td><td>{{date.partner_name}}</td><td>{{date.partner_age}}</td>
+        <tr ondblclick="goPage({{date.date_no}})"><td>{{date.date_no}}</td><td>{{date.partner_name}}</td><td>{{date.partner_age}}</td>
             <td>{{date.job}}</td><td>{{date.location}}</td></tr>
         {% endfor %}
         </tbody>

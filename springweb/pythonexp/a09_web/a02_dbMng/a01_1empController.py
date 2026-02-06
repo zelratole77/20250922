@@ -12,6 +12,13 @@ def empList():
 
     return render_template("a03_emp/a01_empList.html",
                            ename=enameSch, job=jobSch, empList=empList)
+# http://localhost:7070/empDetail/7369
+@app.route('/empDetail/<int:empno>', methods=['GET'])
+def empDetail(empno):
+
+    return render_template("a03_emp/a03_empDetail.html",empno=empno)
+
+
 
 # http://localhost:7070/empInsert
 @app.route('/empInsert', methods=['GET','POST'])

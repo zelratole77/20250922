@@ -14,6 +14,11 @@
                 location.href="empInsert"
             })
         });
+        function goPage(empno){
+            // /empDetail/7369
+            location.href="empDetail/"+empno
+
+        }
     </script>
 </head>
 
@@ -53,12 +58,11 @@
         </thead>
         <tbody>
         {% for emp in empList %}
-        <tr><td>{{emp.empno}}</td><td>{{emp.ename}}</td><td>{{emp.job}}</td>
+        <tr ondblclick="goPage({{emp.empno}})"><td>{{emp.empno}}</td><td>{{emp.ename}}</td><td>{{emp.job}}</td>
             <td>{{emp.sal}}</td><td>{{emp.deptno}}</td></tr>
         {% endfor %}
         </tbody>
     </table>
-
 </div>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

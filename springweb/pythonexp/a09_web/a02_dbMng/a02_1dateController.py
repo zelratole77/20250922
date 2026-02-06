@@ -12,6 +12,13 @@ def dateList():
                            partner_name=partner_nameSch, location=locationSch,
                            dateList=dateList)
 
+# http://localhost:7070/dateDetail/1
+@app.route('/dateDetail/<int:date_no>')
+def dateDetail(date_no):
+    return render_template("a04_date/a03_dateDetail.html",date_no=date_no)
+
+
+
 # http://localhost:7070/dateInsert
 @app.route('/dateInsert', methods=['GET','POST'])
 def dateInsert():

@@ -13,7 +13,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#lstBtn").click(function () {
-                location.href = "dateList"
+                location.href = "/dateList"
             })
             let msg = "{{msg}}"
             if(msg != "")
@@ -29,7 +29,7 @@
 
 <body>
 <div class="jumbotron text-center">
-    <h2>미팅 정보 등록</h2>
+    <h2>미팅상세 : {{date_no}}</h2>
 </div>
 <div class="container">
     <form method="post">
@@ -113,7 +113,8 @@
         </div>
 
         <div class="btn-group-custom">
-            <button id="insBtn" type="button" class="btn btn-primary btn-lg">등록</button>
+            <button id="uptBtn" type="button" class="btn btn-success btn-lg">수정</button>
+            <button id="delBtn" type="button" class="btn btn-danger btn-lg">삭제</button>
             <button id="lstBtn" type="button" class="btn btn-info btn-lg">메인으로</button>
         </div>
 </div>
