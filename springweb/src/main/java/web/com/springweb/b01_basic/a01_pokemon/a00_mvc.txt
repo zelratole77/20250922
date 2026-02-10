@@ -1,0 +1,38 @@
+# 포켓몬스트 CRUD
+1. 파일 구조
+	A01_PokenmonController.java 
+	A02_PokenmonService.java 
+	A03_PokenmonDao.java
+	
+	a01_pokenmonList.jsp
+	a02_pokenmonInsert.jsp
+	a03_pokenmonDetail.jsp
+		 
+2. 진행 순서
+	1) 포켓몬 상세 처리
+	2) 포켓몬 수정 처리
+	3) 포켓몬 삭제 처리
+	
+# 포켓몬 상세 처리 순서
+1. 포켓몬 상세 controller url 및 출력할 view단 처리
+	url 호출 시 등록된 데이터를 처리하기 위한 form 데이터 처리
+	A01_PokenmonController
+	
+	// http://localhost:5050/pokemonDetail
+	@RequestMapping("pokemonDetail")
+	public String pokemonDetail() {
+		return "b01_basic\\a01_pokemon\\a03_pokemonDetail";
+	}		
+	
+	a03_pokenmonDetail.jsp : 입력 데이터 처리
+2. 리스트에서 해당 화면 호출 처리..
+	1) tr ondblclick 시, 매개변수로 key를 넘겨주소, 해당 데이터의 화면을 로딩처리
+3. DB 처리
+	1) sql 작성  select * from 테이블 where 컬럼 = 키
+	2) dao 작성  getDetail(int XXX)
+	3) serivce
+	3) controller : public String pokemonDetail() {에서 서비스단 호출
+		d.addAttribute("poken", service.getDetail(key));
+4. 결과 테스트 처리..		
+	
+			
