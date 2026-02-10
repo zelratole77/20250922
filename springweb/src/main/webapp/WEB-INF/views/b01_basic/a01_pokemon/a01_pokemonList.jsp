@@ -66,7 +66,7 @@
     </thead>	
     <tbody>
     	<c:forEach var="pk" items="${ pokeList }">
-    	<tr><td>${pk.id}</td>
+    	<tr ondblclick="goDetail(${pk.id})"><td>${pk.id}</td>
     		<td>${pk.name}</td>
     		<td>${pk.type}</td>
     		<td>${pk.pokeLevel}</td>
@@ -74,6 +74,12 @@
     	</c:forEach>
     </tbody>
 	</table>    
+	<script type="text/javascript">
+		function goDetail(pkId){
+			location.href="pokemonDetail?id="+pkId
+					
+		}
+	</script> 
     
 </div>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
