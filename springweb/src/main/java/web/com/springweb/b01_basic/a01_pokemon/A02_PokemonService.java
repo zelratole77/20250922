@@ -2,6 +2,7 @@ package web.com.springweb.b01_basic.a01_pokemon;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,8 @@ public class A02_PokemonService {
 	public String pokeInsert(PokemonDex ins) {
 		return dao.pokeInsert(ins)>0?"등록성공":"등록실패";
 		
+	}
+	public PokemonDex getDetail(int id) {
+		return dao.getDetail(id);
 	}
 }

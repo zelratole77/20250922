@@ -25,10 +25,12 @@ UPDATE GALAXY_PLANET
        POPULATION = 10000000000,
        HAS_OXYGEN = 'NO'
  WHERE PLANET_ID = 101;   
-'''
-planet_id planet_name galaxy_name distance population has_oxygen
 
-'''
-       
+SELECT * FROM pokemon_dex WHERE id = 1;
+/*
+@Select("SELECT * FROM pokemon_dex WHERE id = #{id}")
+PokemonDex getDetail(@Param("id") int id);
+
+ * */
         
 

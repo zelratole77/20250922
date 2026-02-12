@@ -23,7 +23,10 @@ td {
 <script src="${path}/com/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$("#lstBtn").click(tunction(){
 
+			location.href="pokemonList"
+		})
 	});
 </script>
 </head>
@@ -39,27 +42,30 @@ td {
 		<form method="post">
 			<div class="form-group">
 				<label for="id">아이디</label> 
-				<input type="text" value="" class="form-control" id="id" name="id"
+				<input type="text" value="${pk.id}" class="form-control" id="id" name="id"
 					readonly required>
 			</div>
 			<div class="form-group">
 				<label for="name">이름</label> 
-				<input type="text" value="" class="form-control" id="name" name="name"
+				<input type="text" value="${pk.name}" class="form-control" id="name" name="name"
 					placeholder="이름을 입력하세요" required>
 			</div>
 			<div class="form-group">
 				<label for="type">타입</label> 
-				<input type="text" value="" class="form-control" id="type" name="type"
+				<input type="text" value="${pk.type}" class="form-control" id="type" name="type"
 					placeholder="타입을 입력하세요" required>
 			</div>
 			<div class="form-group">
 				<label for="pokeLevel">레벨</label> 
-				<input type="text" value="" class="form-control" id="pokeLevel" name="pokeLevel"
+				<input type="text" value="${pk.pokeLevel}" class="form-control" id="pokeLevel" name="pokeLevel"
 					placeholder="포켓몬 레벨을 입력하세요" required>
 			</div>
+
 			<div class="form-group">
 				<label for="capuredAt">잡힌시간</label> 
-				<input type="datetime-local" value="" class="form-control" id="capuredAt" name="capuredAt"
+				<fmt:formatDate value="${pk.capturedAt}" pattern="yyyy-MM-dd'T'HH:mm" 
+					var="formattedDate" />				
+				<input type="datetime-local" value="${formattedDate}" class="form-control" id="capuredAt" name="capuredAt"
 					placeholder="잡힌시간을 입력하세요" required>
 			</div>
 			<button id="uptBtn" type="button" class="btn btn-success">수정</button>

@@ -29,6 +29,8 @@
 	1) tr ondblclick 시, 매개변수로 key를 넘겨주소, 해당 데이터의 화면을 로딩처리
 3. DB 처리
 	1) sql 작성  select * from 테이블 where 컬럼 = 키
+		
+	
 	2) dao 작성  getDetail(int XXX)
 	3) serivce
 	3) controller : public String pokemonDetail() {에서 서비스단 호출

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class A01_PokemonController {
@@ -41,9 +42,13 @@ public class A01_PokemonController {
 		}
 		return "b01_basic\\a01_pokemon\\a02_pokemonInsert";
 	}
-	// http://localhost:5050/pokemonDetail
+	// http://localhost:5050/pokemonDetail?id=1
 	@RequestMapping("pokemonDetail")
-	public String pokemonDetail() {
+	public String pokemonDetail(@RequestParam("id") int id, Model d) {
+		d.addAttribute("pk", service.getDetail(id));
+		
+		
+		
 		return "b01_basic\\a01_pokemon\\a03_pokemonDetail";
 	}	
 	
