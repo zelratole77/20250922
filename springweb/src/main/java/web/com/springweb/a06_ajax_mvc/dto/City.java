@@ -5,26 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class City {
-	/*
-area
-: 
-"3000"
-cityId
-: 
-0
-cityName
-: 
-"수원"
-country
-: 
-"대한민국"
-foundedDate
-: 
-"2026-03-12"
-population
-: 
-"30000"
-	 * */
+
 	
 	// cityName country
 	// cityId cityName country population area foundedDate

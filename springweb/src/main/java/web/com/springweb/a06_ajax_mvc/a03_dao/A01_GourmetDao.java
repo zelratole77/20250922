@@ -20,7 +20,7 @@ public interface A01_GourmetDao {
 
 	@Insert("	INSERT INTO GOURMET_STORE VALUES (GOURMET_SEQ.NEXTVAL, #{name}, "
 				+ "#{category}, #{keyword}, \r\n"
-				+ "#{description}, #{rating}, SYSDATE)")	
+				+ "#{description}, #{rating}, #{createdAt})")	
 	int insertGourmet(GourmetStore ins);	
 
 	
@@ -32,7 +32,8 @@ public interface A01_GourmetDao {
 			+ "	       CATEGORY = #{category},\r\n"
 			+ "	       KEYWORD = #{keyword},\r\n"
 			+ "	       DESCRIPTION = #{description},\r\n"
-			+ "	       RATING = #{rating}\r\n"
+			+ "	       RATING = #{rating},\r\n"
+			+ "	       CREATED_AT = #{createdAt}\r\n"			
 			+ "	 WHERE ID= #{id}")
 	int updateGourmet(GourmetStore upt);
 
