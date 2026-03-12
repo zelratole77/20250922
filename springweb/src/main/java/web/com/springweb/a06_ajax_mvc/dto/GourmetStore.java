@@ -3,8 +3,8 @@ package web.com.springweb.a06_ajax_mvc.dto;
 import java.util.Date;
 
 public class GourmetStore {
-	// 등록  name  category  keyword  description  rating		
-	//     이름     분류       키워드     설명          좋아요(1~5)
+	// 등록 id  name  category  keyword  description  rating	  createdAt	
+	//     아이디   이름     분류       키워드     설명          좋아요(1~5)  등록일
 	private int id;
 	private String name;
 	private String category;

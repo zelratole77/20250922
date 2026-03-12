@@ -25,6 +25,12 @@ public class A01_GourmetController {
 		return "a08_ajax\\a06_gourmetMng";
 	}
 	
+	//	http://localhost:5050/gourmetMngVue (초기view단 호출)
+	@GetMapping("gourmetMngVue")
+	public String gourmetMngVue() {
+		return "forward:/vue02/a18_gourmetMng.html";
+	}	
+	
 	//	http://localhost:5050/gourmetList  (ajax)
 	@GetMapping("gourmetList")
 	public ResponseEntity<?> gourmetList(GourmetStore sch){
@@ -33,7 +39,7 @@ public class A01_GourmetController {
 	// http://localhost:5050/insertGourmet
 	@PostMapping("insertGourmet")
 	@ResponseBody
-	public String insertGourmet(GourmetStore ins) {
+	public String insertGourmet(@RequestBody GourmetStore ins) {
 		return service.insertGourmet(ins);
 	}
 	// http://localhost:5050/getGourmet?id=1

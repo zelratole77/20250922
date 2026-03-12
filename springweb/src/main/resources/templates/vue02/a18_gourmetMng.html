@@ -77,7 +77,49 @@
                             console.log(err)
                         })
 
+                    },
+                    registerFrm() {
+                        $("#modalTitle").text("맛집 정보 등록")
+                        $("#regBtn").show()
+                        $("#uptBtn").hide()
+                        $("#delBtn").hide()
+                        // 모달창의 데이터 초기와
+                        this.gourmet = {id: 0}
+                    },
+                    /// 데이터 입력 후, 처리할 내용...
+                    insertGourmet() {
+                        if (confirm("맛집 정보 등록 하시겠습니까?")) {
+                            console.log("# 맞집 정보 #")
+                            console.log(this.gourmet)
+                            let vm = this
+                            axios.post("/insertGourmet",this.gourmet )
+                                .then(function (response) {
+                                    // 등록 결과 메시지
+                                    alert(response.data)
+                                    // 등록된 모델창 데이터 초기화
+                                    vm.gourmet = {id: 0}
+                                    // 등록 결과 리스트 반영한 리스트 처리..
+                                    vm.search()
+                                })
+                                .catch(function (err) {
+                                    console.log("# 에러 발생 #")
+                                    console.log(err)
+                                })
+
+                        }
+
+                    },
+                    // 상세화면 로딩시 필요
+                    getGourmet(cityId) {
+
+                    },
+                    updateGourmet() {
+
+                    },
+                    deleteGourmet() {
+
                     }
+
 
                 }
             })
@@ -99,7 +141,7 @@
             <input class="form-control mr-sm-2" name="" placeholder="제목"/>
             <input class="form-control mr-sm-2" name="" placeholder="내용"/>
             <button class="btn btn-info" type="submit">Search</button>
-            <button class="btn btn-success"
+            <button class="btn btn-success" @click="registerFrm"
                     data-target="#exampleModalCenter" data-toggle="modal"
                     type="button">등록
             </button>
@@ -135,36 +177,79 @@
         </tbody>
     </table>
 
-</div>
-<div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade" id="exampleModalCenter" role="dialog"
-     tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">타이틀</h5>
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="form" id="frm02" method="post">
-                    <div class="row">
-                        <div class="col">
-                            <input class="form-control" name="ename" placeholder="사원명 입력" type="text">
+    <div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade" id="exampleModalCenter"
+         role="dialog"
+         tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">타이틀</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <!-- 
+                	// 등록 id  name  category  keyword  description  rating	  createdAt	
+	//     아이디   이름     분류       키워드     설명          좋아요(1~5)  등록일
+                gourmet
+                
+                 -->
+                <div class="modal-body">
+                    <form class="form" id="frm02" method="post">
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">ID</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" readonly type="text" v-model="gourmet.id" value="0">
+                            </div>
                         </div>
-                        <div class="col">
-                            <input class="form-control" name="job" placeholder="직책명 입력" type="text">
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">맛집명</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" placeholder="맛집명 입력" type="text" v-model="gourmet.name">
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
-                <button class="btn btn-primary" type="button">Save changes</button>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">분류</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" placeholder="분류 입력" type="text" v-model="gourmet.category">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">키워드</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" placeholder="키워드 입력" type="text" v-model="gourmet.keyword">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">좋아요(1~5)</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" placeholder="좋아요 입력" type="text" v-model="gourmet.rating">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">등록일</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" placeholder="등록일 입력" type="date" v-model="gourmet.createdAt">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">설명</label>
+                            <div class="col-sm-9">
+                                <textarea v-model="gourmet.description" class="form-control" placeholder="설명 입력"  rows="5" cols="100%"></textarea>
+                                
+                            </div>
+                        </div>
+                                                
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button @click="insertGourmet" class="btn btn-success" id="regBtn" type="button">등 록</button>
+                    <button @click="updateGourmet" class="btn btn-primary" id="uptBtn" type="button">수 정</button>
+                    <button @click="deleteGourmet" class="btn btn-warning" id="delBtn" type="button">삭 제</button>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">창닫기</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-</body>
-    
