@@ -44,7 +44,7 @@ public class A21_CityController {
 	public ResponseEntity<?> updateCity(City upt) {
 		return ResponseEntity.ok(service.updateCity(upt)) ;
 	}
-	// http://localhost:5050/updateCity
+	// http://localhost:5050/updateCityVue
 	@PutMapping("updateCityVue")
 	public ResponseEntity<?> updateCityVue(@RequestBody City upt) {
 		return ResponseEntity.ok(service.updateCity(upt)) ;
