@@ -97,7 +97,25 @@
 
                     },
                     // 상세화면 로딩시 필요
-                    getCity(cityId) {
+                    getCity(cityIdVal) {
+						// 모달창 강제 로딩..
+						$("#loadFrm").click()
+                        $("#modalTitle").text("도시 정보 상세")
+                        $("#regBtn").hide()
+                        $("#uptBtn").show()
+                        $("#delBtn").show()
+                        let vm = this
+                        axios.get("/getCity",{params:{cityId:cityIdVal}
+							}).then(function(response){
+								// 서버에서 받은 json데이터를 모델 데이터에 mapping
+								vm.city = response.data
+								var dte = new Date(vm.city.foundedDate)
+								vm.city.foundedDate = formatDate(dte)
+									
+							}).catch(function(err){
+								console.log(err)
+							})
+                        
 
                     },
 
@@ -115,6 +133,14 @@
 
             app.mount(".container")
         });
+        // 날짜형식 데이터 ==> 화면에 date 요소 폼데이터에 맞게 처리..
+    	function formatDate(date) {
+    	    let year = date.getFullYear();
+    	    let month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    	    let day = String(date.getDate()).padStart(2, '0');       // 일자를 2자리로 보장
+
+    	    return `${year}-${month}-${day}`;
+    	}       
     </script>
 </head>
 
@@ -152,7 +178,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr @ondblclick="getCity(city.cityId)" v-for="city in cityList">
+        <tr @dblclick="getCity(city.cityId)" v-for="city in cityList">
             <td>{{city.cityId}}</td>
             <td>{{city.cityName}}</td>
             <td>{{city.country}}</td>
