@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="/com/bootstrap.min.css" rel="stylesheet">
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+    <script src="/com/jquery-3.7.1.js"></script>
+    <script src="/com/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // http://localhost:5050/vue02/a17_axios.html
+            /*
+# 
+        
+        */
+            const app = Vue.createApp({
+                name: "App",
+                data() {
+                    return {msg: "사원정보가져오기(사원번호)",
+                        empId: '',        // 입력창과 연결될 사원 번호
+                        employee: null,   // 서버에서 받아온 사원 정보 객체
+                        errorMessage: ''  // 오류 발생 시 보여줄 메시지
+                    }
+                },
+                methods: {
+                    async searchEmployee() {
+
+                        // 1. 빈 값 검사 (아무것도 입력하지 않고 누른 경우)
+                        if (!this.empId) {
+                            this.errorMessage = '사원 ID를 입력해주세요.';
+                            this.employee = null; // 기존 데이터 초기화
+                            return;
+                        }
+
+                        try {
+                            // 검색 시작 전 에러 메시지 초기화
+                            this.errorMessage = '';
+
+                            // 2. Axios GET 요청 (백틱 ` 을 사용하여 변수를 URL에 포함)
+                            const response = await axios.get(`https://jsonplaceholder.typicode.com/users/${this.empId}`);
+
+                            // 3. 받아온 데이터를 화면에 연결된 employee 변수에 저장
+                            this.employee = response.data;
+
+                        } catch (error) {
+                            // 4. 요청 실패 시 처리 (예: 존재하지 않는 ID 입력)
+                            this.employee = null;
+                            this.errorMessage = '해당 ID의 사원을 찾을 수 없습니다. (1~10 사이의 숫자를 입력해 보세요)';
+                        }
+                    }
+                }
+            })
+
+            app.mount(".container")
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2>{{msg}}</h2>
+        <h2>🔍 사원 정보 검색 시스템</h2>
+
+        <div>
+            <label>사원 ID 입력: </label>
+            <input placeholder="예: 1~10" type="number" v-model="empId">
+            <button @click="searchEmployee">검색</button>
+        </div>
+
+        <p style="color: red; font-weight: bold;" v-if="errorMessage">
+            {{ errorMessage }}
+        </p>
+
+        <div style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 8px;" v-if="employee">
+            <h3>👤 사원 상세 정보</h3>
+            <p><strong>이름:</strong> {{ employee.name }}</p>
+            <p><strong>이메일:</strong> {{ employee.email }}</p>
+            <p><strong>전화번호:</strong> {{ employee.phone }}</p>
+            <p><strong>소속 회사:</strong> {{ employee.company.name }}</p>
+        </div>
+    </div>
+    <form class="form" id="frm01" method="post">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <input class="form-control mr-sm-2" name="" placeholder="제목"/>
+            <input class="form-control mr-sm-2" name="" placeholder="내용"/>
+            <button class="btn btn-info" type="submit">Search</button>
+            <button class="btn btn-success"
+                    data-target="#exampleModalCenter" data-toggle="modal"
+                    type="button">등록
+            </button>
+        </nav>
+    </form>
+    <table class="table table-hover table-striped">
+        <col width="10%">
+        <col width="50%">
+        <col width="15%">
+        <col width="15%">
+        <col width="10%">
+        <thead>
+
+        <tr class="table-success text-center">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade" id="exampleModalCenter" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">타이틀</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="frm02" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-control" name="ename" placeholder="사원명 입력" type="text">
+                        </div>
+                        <div class="col">
+                            <input class="form-control" name="job" placeholder="직책명 입력" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+    

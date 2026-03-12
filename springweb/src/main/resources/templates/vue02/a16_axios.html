@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="/com/bootstrap.min.css" rel="stylesheet">
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+    <script src="/com/jquery-3.7.1.js"></script>
+    <script src="/com/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            /*
+# axios를 통한 서버단 연동 처리
+Vue.js와 데이터베이스(DB)를 연동할 때 필수적인 도구인 axios에 대해, 쉽게 이해하고
+오래 기억할 수 있도록 확인해 봅시다.
+1. Vue - Axios - DB 연동의 핵심 개념
+    1) Vue.js는 브라우저(화면)에서 동작하는 프론트앤트 프레임워크입니다. 보안과 구조적인
+    이유로 Vue에서 데이터베이스(MySQL, Oracle등)로 직접 연결하는 것을 불가능하며, 매우
+    위헙합니다.
+    2) 따라서 중간에 백앤드 서버가 필요합니다. Vue는 Axios를 이용해 백앤드 서버에
+    데이터를 달라고(또는 저장하라고) 요청하고, 백엔드가 DB에서 데이터를 꺼내와 Vue에게
+    돌려주는 구조입니다.
+    3) 핵심 키워드와 속성
+    Axios : 프런트앤드와 백엔드가 통신할 수 있도록 해주는 http 클라이언트 라이브러리
+        (우체부 역할)
+    REST API : 서로 통신하기 위해 정해둔 규칙과 주소(URL)
+    비동기 처리(async/await):서버에 요청을 보낸 후 응답이 올 때까지 브라우저가 멈추지 않고
+        기다리게 하는 문법
+    response.data : 서버에 돌려준 실제 알맹이 데이터가 들어 있는 속성
+2. 비동기 http통신이라?
+    1) 웹 애플리케이션은 종종 화면을 로딩한 후에도 서버와 데이터를 주고받아야 합니다.
+    예를 들어, 최신 뉴스 기사를 불러오거나, 새로운 댓글을 등록하는 경우가 그렇습니다. 이 때 웹
+    페이지 전체를 새로고침하지 않고, 필요한 데이터만 서버에 요청하고 받아오는 방식을 비동기 http
+    통신이라고 합니다.
+    - 동기(Synchronous) : 한 작업이 끝날 때까지 다른 작업은 멈춰서 기다립니다. 만약 서버에서
+    데이터를 가져오는데 5초가 걸린다면, 사용자는 5동 동안 아무것도 클릭할 수 없는 먹통 상태를 경험
+    하게 됩니다.
+    - 비동기(Asynchronous) : 작업을 요청한 후, 응답을 기다리지 않고 바로 다음 작업을 수행합니다.
+    서버에 데이터를 요청해 놓고, 응답이 오면 그 때 약속한 처리를 하는 방식입니다. 이 덕분에 사용자는
+    데이터를 불러오는 중에도 다른 UI를 조작할 수 있어 더 나은 사용자 경험을 제공합니다.
+3. Promise 기반의 Axios
+    1) 과거에는 비동기 처리를 위해 콜백 함수를 중첩해서 사용하는 콜백 지옥 문제가 있었습니다.
+    이를 해결하기 위해 등장한 것이 promise 객체입니다. promise은 언젠가 완료될 작업을 나타내는 객체로,
+    세 가지 상태를 가집니다.
+        - pending(대기) : 아직 결과가 나오지 않는 상태
+        - fullfilled(이행) : 작업이 성공적으로 완료된 상태(데이터를 받아 왔음)
+        - rejected(거부) : 작업이 실패한 상태(에러 발생)
+    2) Axios는 바로 이 Promise를 기반으로 만들어진 http 통신 라이브러리입니다. axios로 api를
+        호출하면 즉시 promise 객체가 반환됩니다. 우리는 이 promise 객체에 .then()과 .catch()를
+        연결하여 성공했을 때의 자리를 각각 정의할 수 있습니다.
+    3) 기본형식
+        axios.get("API 주소")
+            .then(function(response){
+                //성공했을 때 실행할 코드
+                response 객체 안에 서버가 보낸 데이터가 들어가 있습니다.
+            })
+            .catch(function(err){
+                실패(에러)가 발생했을 때, 실행될 코드
+            })
+            // http://localhost:5050/vue02/a16_axios.html
+        */
+
+            const app = Vue.createApp({
+                name: "App",
+                data() {
+                    return {msg: "axios 처리!", diary:null } // 처음엔 빈 일기장
+                },
+                methods:{
+                    async fetchData(){
+                        // 1번 일기장을 가져오라고 시킴.
+                        const response = await  axios.get("https://jsonplaceholder.typicode.com/posts/2")
+                        this.diary = response.data;
+                        alert("일기를 성공적으로 가져왔습니다.")
+                    }
+                }
+            })
+
+            app.mount(".container")
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2>{{msg}}</h2>
+        <h3 @click="fetchData">오늘의 일기 가져오기(클릭)</h3>
+        <div v-if="diary">
+            <h3>제목 : {{diary.title}}</h3>
+            <p>내용 : {{diary.title}}</p>
+
+        </div>
+
+    </div>
+    <form class="form" id="frm01" method="post">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <input class="form-control mr-sm-2" name="" placeholder="제목"/>
+            <input class="form-control mr-sm-2" name="" placeholder="내용"/>
+            <button class="btn btn-info" type="submit">Search</button>
+            <button class="btn btn-success"
+                    data-target="#exampleModalCenter" data-toggle="modal"
+                    type="button">등록
+            </button>
+        </nav>
+    </form>
+    <table class="table table-hover table-striped">
+        <col width="10%">
+        <col width="50%">
+        <col width="15%">
+        <col width="15%">
+        <col width="10%">
+        <thead>
+
+        <tr class="table-success text-center">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade" id="exampleModalCenter" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">타이틀</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="frm02" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-control" name="ename" placeholder="사원명 입력" type="text">
+                        </div>
+                        <div class="col">
+                            <input class="form-control" name="job" placeholder="직책명 입력" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+    

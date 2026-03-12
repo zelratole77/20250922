@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="/com/bootstrap.min.css" rel="stylesheet">
+    <style>
+        td {
+            text-align: center;
+        }
+
+        #loadBtn {
+            position: fixed; /* 화면에 고정 */
+            top: 40%; /*화면의 아래위로 중간*/
+            left: 50%; /*화면의 좌우로 중간*/
+        }
+
+    </style>
+    <script src="/com/jquery-3.7.1.js"></script>
+    <script src="/com/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // http://localhost:5050/vue02/a19_cityView.html
+            /*
+# 
+        
+        */
+            const app = Vue.createApp({
+                name: "App",
+                data() {
+                    return {
+                        msg: "도시관리!",
+                        sch: {cityName: "", country: ""}, // 요청값 설정 부분..
+                        cityList: [],    // 검색결과 모델 데이터 (리스트)
+                        city: {
+                            cityId: 0, cityName: "", country: "", poplulation: 0, area: 0.0,
+                            foundedDate: '2026-03-10'
+                        },// 상세화면 사용할 단일 row 데이터
+                        isLoading: false  // v-show를 통해서 로딩 중/로딩완료 표시..
+                    }
+                },
+                // 초기화면 로딩시, 처리하는 함수(vue 라이프 라클 시작함수)
+                created() {
+                    this.search()
+                },
+                methods: {
+                    search() {
+                        this.isLoading = true;
+                        let vm = this
+                        axios.get("/getCityList", {params: vm.sch})
+                            .then(function (response) {
+                                console.log("# 서버에서 받아온 데이터 #")
+
+                                // 리스트 모델 데이터에 할당.
+                                vm.cityList = response.data
+                                console.log(vm.cityList)
+                                vm.isLoading = false;
+
+                            }).catch(function (err) {
+                            console.log("# 조회시 에러 발생 #")
+                            console.log(err)
+                        })
+
+                    },
+                    registerFrm() {
+                        $("#modalTitle").text("도시 정보 등록")
+                        $("#regBtn").show()
+                        $("#uptBtn").hide()
+                        $("#delBtn").hide()
+                        // 모달창의 데이터 초기와
+                        this.city = {cityId: 0}
+                    },
+                    //  insertCity updateCity deleteCity registerFrm  regBtn uptBtn delBtn
+                    /// 데이터 입력 후, 처리할 내용...
+                    insertCity() {
+                        if (confirm("도시 정보 등록 하시겠습니까?")) {
+                            console.log("# 등록할 도시 정보 #")
+                            console.log(this.city)
+                            let vm = this
+                            axios.post("/insertCity",this.city )
+                                .then(function (response) {
+                                    // 등록 결과 메시지
+                                    alert(response.data)
+                                    // 등록된 모델창 데이터 초기화
+                                    vm.city = {cityId: 0}
+                                    // 등록 결과 리스트 반영한 리스트 처리..
+                                    vm.search()
+                                })
+                                .catch(function (err) {
+                                    console.log("# 에러 발생 #")
+                                    console.log(err)
+                                })
+
+                        }
+
+                    },
+                    // 상세화면 로딩시 필요
+                    getCity(cityId) {
+
+                    },
+
+
+                    updateCity() {
+
+                    },
+                    deleteCity() {
+
+                    }
+
+
+                }
+            })
+
+            app.mount(".container")
+        });
+    </script>
+</head>
+
+
+<body>
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2>{{msg}}</h2>
+
+    </div>
+    <!--ctrl + alt + l -->
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <input @keyup.enter="search" class="form-control mr-sm-2" placeholder="도시명" v-model="sch.cityName"/>
+        <input @keyup.enter="search" class="form-control mr-sm-2" placeholder="나라명" v-model="sch.country"/>
+        <button @click="search" class="btn btn-info" type="button">Search</button>
+        <button @click="registerFrm" class="btn btn-success" data-target="#exampleModalCenter"
+                data-toggle="modal" id="loadFrm"
+                type="button">등록
+        </button>
+    </nav>
+
+    <table class="table table-hover table-striped">
+        <col width="25%">
+        <col width="25%">
+        <col width="25%">
+        <col width="25%">
+        <thead>
+        <tr class="table-success text-center">
+            <th>아이디</th>
+            <th>도시명</th>
+            <th>국가</th>
+            <th>인구수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr @ondblclick="getCity(city.cityId)" v-for="city in cityList">
+            <td>{{city.cityId}}</td>
+            <td>{{city.cityName}}</td>
+            <td>{{city.country}}</td>
+            <td>{{city.population.toLocaleString()}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- 서버에서 데이터 가져올 때, 로딩되기 전에 화면 표시.. -->
+    <button class="btn btn-primary" disabled id="loadBtn" v-show="isLoading">
+        <span class="spinner-border spinner-border-sm"></span>
+        Loading..
+    </button>
+
+    <div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade" id="exampleModalCenter"
+         role="dialog"
+         tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">타이틀</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form" id="frm02" method="post">
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">도시 ID</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" readonly type="text" v-model="city.cityId" value="0">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">도시명</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" placeholder="도시명 입력" type="text" v-model="city.cityName">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">나라명</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" placeholder="나라명 입력" type="text" v-model="city.country">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">인구</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" placeholder="인구 입력" type="text" v-model="city.population">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">면적</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" placeholder="면적 입력" type="text" v-model="city.area">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-3 col-form-label">건설일</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" placeholder="건설일 입력" type="date" v-model="city.foundedDate">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button @click="insertCity" class="btn btn-success" id="regBtn" type="button">등 록</button>
+                    <button @click="updateCity" class="btn btn-primary" id="uptBtn" type="button">수 정</button>
+                    <button @click="deleteCity" class="btn btn-warning" id="delBtn" type="button">삭 제</button>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">창닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+    

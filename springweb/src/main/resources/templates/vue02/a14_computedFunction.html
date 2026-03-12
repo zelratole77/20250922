@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="/com/bootstrap.min.css" rel="stylesheet">
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+    <script src="/com/jquery-3.7.1.js"></script>
+    <script src="/com/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // http://localhost:5050/vue02/a14_computedFunction.html
+            /*
+# Computed 함수
+1. computed 속성은 종속된 데이터가 변경될 때만 결과를 다시 계산하여 캐싱하는
+아주 똑똑한 기능입니다.
+ex) 할인율 자동 적용기
+쇼핑몰에서 상품 가격(price)과 할인율(discountRate) 데이터를 가지고 있습니다.
+이 두 데이터가 주어졌을 때, 최종적으로 고객체 결제할 금액을 자동을 계산해 주는 finalPirce를 computed 속성으로
+작성해 보세요..
+
+        */
+            const app = Vue.createApp({
+                name: "App",
+                data() {
+                    return {msg: "computed 속성 처리!", lastName:"김",firstName:"철수"}
+                },
+                computed:{
+                    // 성이나 이름이 바뀔 때만 이 함수가 실행됨
+                    fullName(){
+                        console.log("이름 계산 중...") // 캐싱확인용
+                        return this.lastName +" " +this.firstName
+                    }
+                }
+            })
+
+            app.mount(".container")
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2>{{msg}}</h2>
+        성:<input v-model="lastName"/><br>
+        이름:<input v-model="firstName"/><br>
+        <hr>
+        <h3>전체 이름: {{fullName}}</h3>
+        <div class="input-group">
+            <label>원가: </label>
+            <input step="1000" type="number" v-model.number="price"> 원
+        </div>
+
+        <div class="input-group">
+            <label>할인율: </label>
+            <input max="1" min="0" step="0.1" type="number" v-model.number="discountRate">
+            <span>(현재: {{ discountRate * 100 }}%)</span>
+        </div>
+
+        <hr>
+
+        <div class="result">
+            <p>기존 가격: <s>{{ price }}원</s></p>
+            <h3>최종 할인 금액: <span style="color: red;">{{ finalPrice }}</span>원</h3>
+        </div>
+    </div>
+    <form class="form" id="frm01" method="post">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <input class="form-control mr-sm-2" name="" placeholder="제목"/>
+            <input class="form-control mr-sm-2" name="" placeholder="내용"/>
+            <button class="btn btn-info" type="submit">Search</button>
+            <button class="btn btn-success"
+                    data-target="#exampleModalCenter" data-toggle="modal"
+                    type="button">등록
+            </button>
+        </nav>
+    </form>
+    <table class="table table-hover table-striped">
+        <col width="10%">
+        <col width="50%">
+        <col width="15%">
+        <col width="15%">
+        <col width="10%">
+        <thead>
+
+        <tr class="table-success text-center">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade" id="exampleModalCenter" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">타이틀</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="frm02" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-control" name="ename" placeholder="사원명 입력" type="text">
+                        </div>
+                        <div class="col">
+                            <input class="form-control" name="job" placeholder="직책명 입력" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+    

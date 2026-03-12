@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="/com/bootstrap.min.css" rel="stylesheet">
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+    <script src="/com/jquery-3.7.1.js"></script>
+    <script src="/com/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // http://localhost:5050/vue02/a13_function.html
+            /*
+# Vue에서 사용하는 기능함수
+1. vue에서 사용되는 세가지 기능 함수들이 어떻게 작동하고 언제 쓰여야 하는지 확인해 봅시다.
+2. 기능 함수들
+    1) methods(행동 대장 : 명시적 호출과 실행)
+        - 컴포넌트 내에서 사용할 모든 함수(function)를 정의하는 공간입니다. 사용자가 이벤트를
+        발생시키거나 템플릿 내에서 명시적으로 호출해야만 동작합니다.
+        - 작동 방식
+            메서드의 가장 큰 특징을 개시(저장)을 하지 않는다는 점입니다.
+            화면(DOM)이 다시 랜더링될 때마다, 데이터에 변화가 없더라도 템플릿에 바인딩된 메서드는
+            무조건 처음부터 끝까지 다시 실행됩니다. 따라서 복잡한 계산을 메서드에 넣으면 애플리케이션
+            성능 저하의 주범이 됩니다.
+        - 주요 쓰임새
+            버튼 클릭(@click), 폼 제출(@submit) 등의 이벤트 핸들러
+            함수에 매개변수(Parameter)를 전달해서 처리해야 하는 로직
+            데이터를 변경하거나 상태를 업데이터하는 능동적인 작업
+    2) computed :(계산 비서 : 반응형 종속성과 캐싱)
+        - 기존의 데이터(state)들을 조합하거나 가공하여 새로운 값을 계산해 내는 속성입니다. 함수 형태로
+            정의하지만, 템플릿에서는 괄호() 없이 일반 데이터처럼 취급됩니다.
+        - 작동 방식(caching)
+            computed의 핵심을 캐싱입니다. 자신이 참고하고 있는 원본 데이터(종속성)가 변하지 않는 한,
+            아무리 여러 번 호출해도 다시 계산하지 않고 기억해 둔(캐싱된) 결과값을 즉시 반환합니다.
+            반드시 결과값을 반환해야 하면, 기본적으로 읽기 전용입니다.
+        - 주요 쓰임새
+            원본 배열을 훼손하지 않고 화면에 필터링이나 정렬된 결과를 보여줄 때(예:완료된 할 일만 걸러서 보여주기)
+            여러 데이터를 조합해 하나의 문자열을 만들 때 (예: firstName + lastName = fullName)
+            동기적인 계산 작업(비동기 처리 불가)
+    3) watch(CCTV 경비원:변화 감지와 사이트 이펙트)
+        - 특정 데이터나 computed 속성 하나를 지정하여 그 값이 변하는지 지속적으로 감시합니다. 값이 변하면
+            지정된 콜백 함수를 실행합니다.
+        - 작동 방식
+            새로운 값을 계산해서 화면에 뿌려주는 것이 목적이 아닙니다. 데이터가 변했을 때 파생되는 외부 작업을
+            수행하는 데  특화되어 있습니다.
+            함수의 매개변수로 변경된 후의 값과 변경되기 전의 값을 모두 받아 볼 수 있습니다.
+        - 주요 쓰임새
+            비동기 처리 및 api 호출 : 검색어 입력란을 감시하다가, 사용자가 타이핑을 멈추면 서버에 검색 api를
+            요청할 때(디바운싱)
+            브라우저의 local storage에 변경된 데이터를 자동 저장할 때
+            데이터 변경에 따라 화면의 스크롤 위치를 조정하거나 외부 라이브러리(차트, 지도)를 조작해야 할 때
+
+        
+        */
+            const app = Vue.createApp({
+                name: "App",
+                data() {
+                    return {msg: "vue에서 사용되는 기능함수!", level:1, fullness:0}
+                },
+                methods:{
+                    sayHi(){
+                        alert("반갑습니다!! 버튼을 누르셨군요")
+                    },
+                    levelUp(){
+                        // this를 통해 data 객체에 접근
+                        this.level++;
+                    },
+                    giveSnack(){
+                        // this를 통해 data에 접근하고 값을 변경합니다.
+                        this.fullness +=10  // 기존 포만감 수치에10을 더함
+
+                    }
+                }
+            })
+            app.mount(".container")
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2>{{msg}}</h2>
+        <h3 @click="sayHi">인사하기(클릭하세요!!-기본 methods에 있는 함수 호출)</h3>
+        <h2>현재 레벨:{{level}}</h2>
+        <h3 @click="levelUp">레벨업</h3>
+        <!--
+ex) 다마고치 밥 주기
+귀여운 가상 펫을 키우는 게임입니다. 현재 우리 펫은 배가 고파서 포만감(fullness) 수치가 0인 상태입니다.
+간식주기 버튼을 클릭할 때마다 포만감이 10씩 쑥쑥 올라가도록 처리하세요..
+
+         -->
+        <h2>내 펫 키우기</h2>
+        <p>현재 포만감:{{fullness}}</p>
+        <h3 @click="giveSnack">간식 주기</h3>
+
+    </div>
+    <form class="form" id="frm01" method="post">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <input class="form-control mr-sm-2" name="" placeholder="제목"/>
+            <input class="form-control mr-sm-2" name="" placeholder="내용"/>
+            <button class="btn btn-info" type="submit">Search</button>
+            <button class="btn btn-success"
+                    data-target="#exampleModalCenter" data-toggle="modal"
+                    type="button">등록
+            </button>
+        </nav>
+    </form>
+    <table class="table table-hover table-striped">
+        <col width="10%">
+        <col width="50%">
+        <col width="15%">
+        <col width="15%">
+        <col width="10%">
+        <thead>
+
+        <tr class="table-success text-center">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade" id="exampleModalCenter" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">타이틀</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="frm02" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-control" name="ename" placeholder="사원명 입력" type="text">
+                        </div>
+                        <div class="col">
+                            <input class="form-control" name="job" placeholder="직책명 입력" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+    

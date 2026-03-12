@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="/com/bootstrap.min.css" rel="stylesheet">
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+    <script src="/com/jquery-3.7.1.js"></script>
+    <script src="/com/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // http://localhost:5050/vue02/a18_gourmetMng.html
+            /*
+# axios 속성과 메서드
+1. axios는 다양한 설정과 메서드를 제공하여 유연한 통신을 가능하게 합니다.
+    1) 요청 메서드
+        axios.get(url, [config]) : 서버로부터 데이터를 조회할 때 사용합니다.(게시글 목록 보기)
+        axios.post(url, data, [config]) : 서버에 새로운 데이터를 생성할 때 사용합니다.
+            data 부분에 보낼 데이터를 객체형태(json)
+        axios.put(url, data, [config]) : 서버의 데이터를 전체 수정할 때 사용합니다.
+        axios.delete(url, [config]) : 서버의 데이터를 삭제할 때 사용합니다.
+    2) 응답 처리
+        .then(callback) : 정상적으로 처리될었을 처리하는 내용 콜백메서드에 선언
+        .catch(callback) : 에러나 비정상적인 처리시 처리하는 내용 콜백메서드에 선언
+        .finally(callback) : 정상/비정상 상관없이 처리해아 하는 내용 콜백메서드에 선언
+    3) 설정 (config)
+        baseURL : 모든 url 앞에 공통으로 붙일 주소를 설정합니다.
+        headers : 모든 요청에 포함될 공통 헤더를 설정합니다.(인증 토컨)
+        params : get요청시 url에 붙일 쿼리 스트링을 객체형태로 설정합니다.
+2. response 객체 구조
+    axios가 성공적으로 응답을 받으면  .then() 으로 response 객체를 절달합니다. 이 중 우리가 실제
+    필요한 데이터는 보통 response.data안에 들어있습니다.
+    1) 속성
+        data : 서버가 실제로 보낸 데이터
+        status : 200, http 상태 코드(200 - 성공)
+        statusText : OK, 상태 메시지
+        headers : 응답헤더
+        config : 요청시 axios에 전달했던 설정..
+
+
+//gourmetList
+        */
+            const app = Vue.createApp({
+                name: "App",
+                data() {
+                    return {msg: "axios 맛집 관리자!!",
+                        sch:{ name:"", keyword:""},
+                        gourmetList:[],
+                        gourmet:{id:0, name:'', category:'', keyword:'', description:'',
+                                rating:0, createdAt:'2026-03-11'},
+                        isLoading:false
+                    }
+                },
+                created(){
+                    this.search()
+                },
+                methods:{
+                    search(){
+                        let vm = this  // axios 안에 메서드에서는 this가 axios로 사용되므로
+                        // 변수 설정...
+                        axios.get("/gourmetList",{params:this.sch})
+                            .then(function(response){
+                                console.log("# 서버에서 받아온 데이터 #")
+
+                                // 리스트 모델 데이터에 할당.
+                                vm.gourmetList = response.data
+                                console.log(vm.gourmetList)
+
+                            }).catch(function(err){
+                            console.log("# 조회시 에러 발생 #")
+                            console.log(err)
+                        })
+
+                    }
+
+                }
+            })
+
+            app.mount(".container")
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2>{{msg}}</h2>
+
+    </div>
+    <form class="form" id="frm01" method="post">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <input class="form-control mr-sm-2" name="" placeholder="제목"/>
+            <input class="form-control mr-sm-2" name="" placeholder="내용"/>
+            <button class="btn btn-info" type="submit">Search</button>
+            <button class="btn btn-success"
+                    data-target="#exampleModalCenter" data-toggle="modal"
+                    type="button">등록
+            </button>
+        </nav>
+    </form>
+    <table class="table table-hover table-striped">
+        <col width="20%">
+        <col width="20%">
+        <col width="20%">
+        <col width="20%">
+        <col width="20%">
+        <thead>
+        <!--아이디, 이름     분류       키워드     설명          좋아요(1~5), 생성일
+        id:0, name:'', category:'', keyword:'', description;'', rating:0, createdAt
+         -->
+        <tr class="table-success text-center">
+            <th>아이디</th>
+            <th>이름</th>
+            <th>분류</th>
+            <th>키워드</th>
+            <th>좋아요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr :key="gourmet.id" v-for="gourmet in gourmetList">
+            <td>{{gourmet.id}}</td>
+            <td>{{gourmet.name}}</td>
+            <td>{{gourmet.category}}</td>
+            <td>{{gourmet.keyword}}</td>
+            <td>{{gourmet.rating}}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+<div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade" id="exampleModalCenter" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">타이틀</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="frm02" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-control" name="ename" placeholder="사원명 입력" type="text">
+                        </div>
+                        <div class="col">
+                            <input class="form-control" name="job" placeholder="직책명 입력" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+    

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="/com/bootstrap.min.css" rel="stylesheet">
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+    <script src="/com/jquery-3.7.1.js"></script>
+    <script src="/com/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // http://localhost:5050/vue02/a15_watch.html
+            /*
+# watch(감시자)
+1. 하나의 특정 데이터가 변경되는 것을 지켜보다가, 변경이 감지되면 특정 작업(api 요청,
+경고창 띄우기 등)을 수행합니다.
+2. 데이터를 가공해서 화면에 뿌리기보다 부수효과(side effect)를 처리할 때 씁니다.
+3. 데이터 변화감지, 새로운값, 이전 값, 부수 효과
+        */
+            const app = Vue.createApp({
+                name: "App",
+                data() {
+                    return {msg: "watch 함수", volumn:5,password:'',securityLevel:"위험"}
+                },
+                computed:{
+                  //보안 보급에 따라 글자 색상을 반환하는 로직
+                  getLevelColor(){
+                      if(this.securityLevel==='위험') return "red";
+                      if(this.securityLevel==='경고') return "orange";
+                      return 'green'
+                  }
+                },
+                watch:{
+                    // password의 변화를 감지하여 아래 로직을 구현
+                    password(newVal, oldVal){
+                        if(newVal.length<5){
+                            this.securityLevel="위험"
+                        }else if(newVal.length<8) {
+                            this.securityLevel = "경고"
+                        }else{
+                            this.securityLevel='안전'
+                        }
+                    },
+                    // volumn 데이터가 변할 때마다 실행됨
+                    volumn(newValue, oldValue){
+                        if(newValue > 10){
+                            alert("소리가 너무 큽니다! 청력이 손상될 수 있습니다.")
+                        }
+                    }
+                }
+            })
+
+            app.mount(".container")
+
+        });
+/*
+ex) 암호 보안 등급 측정기
+사용자가 비밀번호를 입력할 때마다 실시간으로 길이을 감지하여 보안 등급을 업데이터하고,
+너무 뻔한 비밀번호는 강제로 차단하는 시스템
+1. 모델데이터 : password(비밀번호)와 secutrityLevel (보안등급)데이터를 관리합니다.
+2. 보안 등급 업데이터  : password가 변경할 때마다 길이를 체크하여 secutrityLevel값을
+    변경합니다.
+    1) 글자 수 5자 미만 : 위험
+    2) 글자 수 5자 이상 8자 미만 : 경공
+    3) 글자 수 8자 이상 : 안전
+3. 위 비밀번호를 입력시마다 글자수를 확인하여 보안 등급을 표시하세요..
+
+* */
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2>{{msg}}</h2>
+        <h2>극비 문서 접근 시스템</h2>
+        <level>암호 입력:
+            <input placeholder="암호를 입력하세요" type="password" v-model="password">
+        </level>
+        <p>현재 보안 등급:
+            <strong :style="{color:getLevelColor}">{{securityLevel}}</strong>
+        </p>
+        <h2>볼륨 설정</h2>
+        <input max="15" min="1" type="range" v-model.number="volumn">
+        <p>현재 볼륨:<strong>{{volumn}}</strong></p>
+
+    </div>
+    <form class="form" id="frm01" method="post">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <input class="form-control mr-sm-2" name="" placeholder="제목"/>
+            <input class="form-control mr-sm-2" name="" placeholder="내용"/>
+            <button class="btn btn-info" type="submit">Search</button>
+            <button class="btn btn-success"
+                    data-target="#exampleModalCenter" data-toggle="modal"
+                    type="button">등록
+            </button>
+        </nav>
+    </form>
+    <table class="table table-hover table-striped">
+        <col width="10%">
+        <col width="50%">
+        <col width="15%">
+        <col width="15%">
+        <col width="10%">
+        <thead>
+
+        <tr class="table-success text-center">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div aria-hidden="true" aria-labelledby="exampleModalCenterTitle" class="modal fade" id="exampleModalCenter" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">타이틀</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="frm02" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-control" name="ename" placeholder="사원명 입력" type="text">
+                        </div>
+                        <div class="col">
+                            <input class="form-control" name="job" placeholder="직책명 입력" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+    
