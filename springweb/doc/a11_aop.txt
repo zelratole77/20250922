@@ -1,0 +1,8 @@
+# spring AOP
+1. 스프링 AOP(Aspect Oriented Programming, 관점 지향 프로그래밍)는 공통적인 부가긴으(로깅, 트랜잭션, 보안 등)을
+핵심 비지니스 로직과 분리하여 모듈화하는 방식입니다. 스프링의 aop를 통해 관심사의 분리(Separation of Concerns, Soc)를
+실현할 수 있게 합니다.
+2. 개요
+	1) AOP : 횡당 관심사(cross-cutting concern)를 모듈화하기 위한 프로그래밍 패러다임
+	2) 목표 : 중복 제거, 코드 간결화, 유지보수성 향상
+	
