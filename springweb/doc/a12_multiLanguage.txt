@@ -6,6 +6,7 @@
 	1) 다국어 메시지 파일 생성
 		src/main/resources
 			message.properties # 기본(영어)
+			message_en.properties # 영어
 			message_kor.properties # 한국어
 			message_ja.properties # 일본어
 		구체적인 파일 내용
