@@ -1,8 +1,73 @@
 # spring AOP
-1. 스프링 AOP(Aspect Oriented Programming, 관점 지향 프로그래밍)는 공통적인 부가긴으(로깅, 트랜잭션, 보안 등)을
+1. 스프링 AOP(Aspect Oriented Programming, 관점 지향 프로그래밍)는 공통적인 부가기능(로깅, 트랜잭션, 보안 등)을
 핵심 비지니스 로직과 분리하여 모듈화하는 방식입니다. 스프링의 aop를 통해 관심사의 분리(Separation of Concerns, Soc)를
 실현할 수 있게 합니다.
 2. 개요
-	1) AOP : 횡당 관심사(cross-cutting concern)를 모듈화하기 위한 프로그래밍 패러다임
+	1) AOP : 횡단 관심사(cross-cutting concern)를 모듈화하기 위한 프로그래밍 패러다임
 	2) 목표 : 중복 제거, 코드 간결화, 유지보수성 향상
-	
+	3) 주요 용도 : 로깅, 보안, 트랜잭션, 성능 모니터링 등
+	4) 스프링 AOP 특징 : 프록시 기반 AOP(jdk proxy, CGLIB 사용), 런타임 기반 사용
+3. 핵심 개념 키워드
+	1) Aspect : 공통 기능 모듈(Advice + Pointcut)
+	2) Advice : 실행할 코드(before, after, around 등)
+	3) Pointcut : Adivce가 적용될 JoinPoint를 지정하는 표현식
+	4) JoinPoint : 실제 실행 지점(메서드 실행 등)
+	5) Weaving : Advice를 실제 코드에 연결하는 작업(스프링에서는 프록시 생성으로 처리됨)
+4. Spring AOP 구성 단계 및 핵심 코드
+	1) 의존성 추가(lib 다운로드 및 컨테이너에 할당)
+		pom.xml : org.springframework.boot:spring-boot-starter-aop
+	2) Aspect 클래스 작성
+		class : LogAspect
+		// 실행전
+		@Before("execution(* 패키지..클래스.메서드**(**)")
+			* 해당 내용 상관없이 공통으로 - 특정한 패키지와 객체, 메서드 및 매개변수를 기준으로 이전에
+		public void 메서드명(JointPoint joinPoint){
+			// 수행 처리할 내용
+		}
+		// 실행후
+		@After("execution(* 패키지...클래스.메서드**(**)")
+			* 해당 내용 상관없이 공통으로 
+		public void 메서드명(JoinPoint joinPoint){
+			// 수행 처리할 내용
+		}
+		// 실행 전 후 전체 감싸기
+		@Around("execution(*  패키지 ... 클래스.메서드**(**)")
+			* 해당 내용 상관없이 공통으로
+		public void 메서드명(JointPoint joinPoint){
+			// 수행 처리할 내용	
+		}
+		// 예이가 발생시
+		@AfterThrowing("execution(* 패키지...클래스.메서드**(**)")
+			* 해당 내용 상관없이 공통으로
+		public void 메서드명(JoinPoint joinPoint){
+			// 수행 처리할 내용
+		}
+		# PointCut 표현식
+		1. execution(* *..*Service.*(..)) : 접근제어자 상관없이(*), 모든 Service키워드가 붙은 객체 실행시
+		2. execution(* com.example..*.*(..)) : 접근제어자 상관없이 com.example 패키지 이하 전체 메서드
+		3. within(com.example.Service..*) : 특정 패키지 내부 클래스 처리리
+# 에러가 발생했을 때, 에러 페이지 지정 및 에러 정보 출력
+1. 에러에 대한 정보를 간략하게 표시하면서, 실무상에서는 담당자 연락처리, 에럴ㄹ 언제까지 처리하 것인지에 대한 내용을
+표현함으로 개발자/사용자 모두에게 해당 페이지에 대한 에러내용 파악과 신뢰도를 향상시킬 수 있다.
+	- errorPage.jsp 지정
+	- GlobalExceptionHandeler 클래스를 선언하여 예외가 발생시 지정된 에러 페이지가 나오게 처리한다.
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			
+			
