@@ -8,14 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class LoggingAspect {
-	// 특정 시점에 수행할 Advice 객체 선언 내용
-	// 특정한 서버스패키지하위 수행되는 객체의 메서드가 수행되면 수행될 시간을 출력
-	// * 접근 제어자 상관없이
-	// web.com.springweb.a06_ajax_mvc.a02_service : 해당 패키지
-	// .*.*(..) : 하위있는 객체만 있는 메서드 - 해당 이름 상관없이
-	// (..) : 매개변수 상관없이..  --시점을 지정 Pointcut
-	@Around("execution(* web.com.springweb.a06_ajax_mvc.a02_service.*.*(..))")
+public class LoggingAspect2 {
+	@Around("execution(* web.com.springweb.a07_fullcalendar.*Controller.*(..))")
 	public Object loginTimming(ProceedingJoinPoint joinPoint) throws Throwable{
 		long start = System.currentTimeMillis();// 해당 시간의 1/1000초 단위 시간
 		
