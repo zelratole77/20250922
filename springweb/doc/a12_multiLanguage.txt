@@ -1,0 +1,52 @@
+# 다국어 처리
+1. 다국어처리는 하나의 웹사이트에서 언어 설정에 따라 다르게 보이도록 언어로 반영된 메시지를 제공하는 기능입니다.
+2. 스프링부트에서는 ResourceBundleMessageSource를 활용하여 다국어 메시지를 자동으로 선택할 수 있습니다.
+3. 사용자의 브라우저 언어 설정 또는 사용자 선택 언어에 따라 자동으로 해당 언어의 메시지를 출력합니다.
+4. 처리 내용
+	1) 다국어 메시지 파일 생성
+		src/main/resources
+			message.properties # 기본(영어)
+			message_kor.properties # 한국어
+			message_ja.properties # 일본어
+		구체적인 파일 내용
+			(message_kor.properties)
+			greeting = 안녕하세요(자동으로 uni 코드가 만들어짐)
+			farewell = 안녕히 가세요
+			(message.properties)
+			greeing=Hello
+			farewell=Good bye!!
+	2) application.properties 설정
+		메시지 파일 설정
+		spring.messages.basename=messages
+		utf-8 인코딩 설정
+		spring.message.encoding=utf-8
+	3) 언어 변경 처리 - LocaleResolver 설정
+		@Configuration
+		public class LocaleConfig{
+			// 기본 언어 설정
+			@Bean
+			public LocaleResolver localeResolver(){
+				SessionLocaleResolver resolver = new SessionLocaleResolver();
+				resolver.setDefaultLocale(locale.KOREAN); // 기본 언어
+				return resolver;
+			}
+			// URL로 언어 변경 가능하도록 인터셉터 등록
+			@Bean
+			public LocaleChangeInterceptor localeChangeIntercepter(){
+				LocaleChangeIntercepor interceptor = new LocaleChangeInterceptor();
+				interceptor.setParamName("lang"); // ?lang=en, /lang=kor
+				return interceptor;
+			}
+			// 인터셉터 등록
+			public void addInterceptors(InterceptorReistry resistry){
+				registry.addInterceptor(localeChangeInterceptor());
+			}
+		}
+	4) controller 을 통해 view 화면 호출
+		jsp(view)에서 처리할 내용
+		<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+		<spring:message code="greeting" />
+		<a href="?lang=kor">한국어</a>
+		<a href="?lang=eng">영어</a>	
+			
+			

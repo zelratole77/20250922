@@ -34,6 +34,7 @@ public class A01_GourmetController {
 	//	http://localhost:5050/gourmetList  (ajax)
 	@GetMapping("gourmetList")
 	public ResponseEntity<?> gourmetList(GourmetStore sch){
+		//System.out.println(1/0);
 		return ResponseEntity.ok(service.getGourmetList(sch));
 	}	
 	// http://localhost:5050/insertGourmet
