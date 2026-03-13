@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface A21_CityDao {
 	@Select("SELECT * FROM city WHERE CITY_NAME LIKE #{cityName} AND COUNTRY LIKE #{country} "
-			+ "ORDER BY CITY_ID DESC ")
+			+ "ORDER BY CITY_ID DESC")
 	List<City> getCityList(City sch);
 	
 	@Insert("INSERT INTO city VALUES (CITY_SEQ.NEXTVAL,#{cityName}, #{country}, #{population}, #{area}, #{foundedDate} )")

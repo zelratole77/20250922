@@ -36,7 +36,7 @@
 		public void 메서드명(JointPoint joinPoint){
 			// 수행 처리할 내용	
 		}
-		// 예이가 발생시
+		// 예외가 발생시
 		@AfterThrowing("execution(* 패키지...클래스.메서드**(**)")
 			* 해당 내용 상관없이 공통으로
 		public void 메서드명(JoinPoint joinPoint){

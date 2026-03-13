@@ -1,6 +1,8 @@
 package web.com.springweb.a00_config;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
@@ -26,7 +28,44 @@ public class LoggingAspect {
 				" 수행시간:"+(end-start)+"밀리 세컨드(ms- 1/1000초)");
 		return proceed;
 	}
+	// 특정한 패키지의 하위에 있는 모든 메서드에서 에러가 발생시 처리할 내용을 구현
+	// execution(* web.com.springweb..service..*(..))
+	// execution(* web.com.springweb..*Dao..*(..))
+	@AfterThrowing(
+			pointcut="execution(* web.com.springweb..service..*(..) ) || "
+					+ "execution(* web.com.springweb..*Dao..*(..) )", throwing="ex")
+	public void logAfterThrowing(JoinPoint joinPoint, Throwable ex) {
+		System.out.println("## 예외 발생 ###");
+		System.out.println("클래스/메서드:"+joinPoint.getSignature());
+		System.out.println("예외 타입:"+ex.getClass().getName());
+		System.out.println("예외 메시지:"+ex.getMessage());
+	}
+	@Around("execution(* web.com.springweb..service..*(..) ) || "
+	        + "execution(* web.com.springweb..*Dao..*(..) )")
+	public Object handleAndLogException(ProceedingJoinPoint joinPoint) throws Throwable {
+	    try {
+	        // 원래 메서드 실행
+	        return joinPoint.proceed();
+	    } catch (Throwable ex) {
+	        // 1. 에러 로깅 (기존 @AfterThrowing 로직)
+	        System.out.println("## 예외 발생 (가로채기 완료) ###");
+	        System.out.println("클래스/메서드:" + joinPoint.getSignature());
+	        System.out.println("예외 타입:" + ex.getClass().getName());
+	        System.out.println("예외 메시지:" + ex.getMessage());
 
+	        // 2. 정상적인 흐름으로 복구하기 위해 빈 데이터 반환
+	        // 리턴 타입에 따라 적절한 값 반환 (List면 빈 리스트, 객체면 null 등)
+	        return null; 
+	    }
+	}
+	
+	
+	// ex) LoggingAspect2 클래스 안에
+	//     web.com.springweb.a06_ajax_mvc.a01_controller 패키지 안에
+	//     특정한 예외 사항이 발생하면 처리되게 하세요..
+	
 }
-// ex) LoggingAspect2,    web.com.springweb.a07_fullcalendar 
-// 패키지에 Controller단 처리 수행 시간 처리 확인..
+
+
+
+
