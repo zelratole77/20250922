@@ -10,7 +10,7 @@
 			message_kor.properties # 한국어
 			message_ja.properties # 일본어
 		구체적인 파일 내용
-			(message_kor.properties)
+			(message_ko.properties)
 			greeting = 안녕하세요(자동으로 uni 코드가 만들어짐)
 			farewell = 안녕히 가세요
 			(message.properties)
